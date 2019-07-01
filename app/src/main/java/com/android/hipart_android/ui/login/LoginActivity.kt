@@ -1,7 +1,8 @@
-package com.android.hipart_android.login
+package com.android.hipart_android.ui.login
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import com.android.hipart_android.R
 
 class LoginActivity : AppCompatActivity() {
 

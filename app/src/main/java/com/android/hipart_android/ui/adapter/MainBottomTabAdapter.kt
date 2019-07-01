@@ -1,13 +1,13 @@
-package com.android.hipart_android.adapter
+package com.android.hipart_android.ui.adapter
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.ViewGroup
-import com.android.hipart_android.hipart.HiPartFragment
-import com.android.hipart_android.home.HomeFragment
-import com.android.hipart_android.mypage.MyPageFragment
-import com.android.hipart_android.portfolio.PortFolioFragment
+import com.android.hipart_android.ui.hipart.HiPartFragment
+import com.android.hipart_android.ui.home.HomeFragment
+import com.android.hipart_android.ui.mypage.MyPageFragment
+import com.android.hipart_android.ui.portfolio.PortFolioFragment
 
 // ###Issue : FragmentPagerAdapter VS FragmentStateAdapter
 class MainBottomTabAdapter(private val fragmentCount : Int, fm : FragmentManager) : FragmentPagerAdapter(fm){

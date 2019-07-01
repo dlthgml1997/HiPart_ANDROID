@@ -1,16 +1,22 @@
-package com.android.hipart_android
+package com.android.hipart_android.ui.main
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
-import com.android.hipart_android.adapter.MainBottomTabAdapter
+import com.android.hipart_android.R
+import com.android.hipart_android.ui.adapter.MainBottomTabAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+/**
+*
+* @author 탁형민
+* @since 2019-07-02 05:46
+**/
 
 class MainActivity : AppCompatActivity() {
 
-    val mainBottomTabAdapter : MainBottomTabAdapter by lazy {
+    private val mainBottomTabAdapter : MainBottomTabAdapter by lazy {
         MainBottomTabAdapter(4, supportFragmentManager)
     }
 
@@ -20,11 +26,17 @@ class MainActivity : AppCompatActivity() {
         configureMainTabMenu()
     }
 
+    // TODO
+    // FIXME
     private fun configureMainTabMenu() {
         main_fragment_pager.adapter = mainBottomTabAdapter
         main_fragment_pager.offscreenPageLimit = 4
         main_bottom_tab_layout.setupWithViewPager(main_fragment_pager)
+        setTabIcon()
+    }
 
+
+    private fun setTabIcon() {
         val bottomTabView: View = (this.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             .inflate(R.layout.bottom_tab_bar, null, false)
 

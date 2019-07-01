@@ -1,7 +1,7 @@
-package com.android.hipart_android.splash
+package com.android.hipart_android.ui.splash
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import com.android.hipart_android.R
 
 class SplashActivity : AppCompatActivity() {
