@@ -1,12 +1,12 @@
 package com.android.hipart_android.ui.main
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.adapter.MainBottomTabAdapter
+import com.android.hipart_android.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 /**
 *
@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 * @since 2019-07-02 05:46
 **/
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private val mainBottomTabAdapter : MainBottomTabAdapter by lazy {
         MainBottomTabAdapter(4, supportFragmentManager)
