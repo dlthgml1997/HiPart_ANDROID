@@ -2,11 +2,11 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         android:layout_width="320dp"
         android:layout_height="180dp"
         android:background="#fafafa">
-
     <ImageView
             android:src="@drawable/hipat_list_box"
             android:layout_centerHorizontal="true"
