@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.android.hipart_android.R
-import com.android.hipart_android.ui.hipat.data.PortFolioData
+import com.android.hipart_android.ui.hipat.data.HipatFragPortFolioData
 
-class HipatPortRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<PortFolioData>) :
-    RecyclerView.Adapter<HipatPortRecyclerViewAdapter.Holder>() {
+class HipatFragPortRecyclerViewAdapter(val ctx: Context, val dataListHipatFrag: ArrayList<HipatFragPortFolioData>) :
+    RecyclerView.Adapter<HipatFragPortRecyclerViewAdapter.Holder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_hipat_frag_portfolio, p0, false)
         return Holder(view)
@@ -21,8 +21,9 @@ class HipatPortRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Por
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.user_image_thumbnail.setImageResource(R.drawable.main_profile_photo_image)
-        holder.user_name.text = dataList[position].user_name
-        when(dataList[position].how_many_filter)
+        holder.user_name.text = dataListHipatFrag[position].user_name
+        holder.kind_of_pat.text = dataListHipatFrag[position].kind_of_pat
+        when(dataListHipatFrag[position].how_many_filter)
         {
             0-> {
                 holder.img_filter_holder1.visibility = View.GONE
@@ -37,14 +38,15 @@ class HipatPortRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<Por
                 holder.img_filter_more.visibility = View.GONE
             }
         }
-        holder.is_picked.isSelected = dataList[position].is_picked
-        holder.how_picked.text = dataList[position].how_picked.toString()
+        holder.is_picked.isSelected = dataListHipatFrag[position].is_picked
+        holder.how_picked.text = dataListHipatFrag[position].how_picked.toString()
 
 }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var user_image_thumbnail = itemView.findViewById(R.id.img_rv_item_hipat_frag_port_user_image) as ImageView
         var user_name = itemView.findViewById(R.id.img_rv_item_hipat_frag_port_user_name) as TextView
+        var kind_of_pat = itemView.findViewById(R.id.txt_hipat_frag_kind_of_pat) as TextView
         var img_filter_holder1 = itemView.findViewById(R.id.img_hipat_frag_filter_holder1) as ImageView
         var img_filter_holder2 = itemView.findViewById(R.id.img_hipat_frag_filter_holder2) as ImageView
         var img_filter_more = itemView.findViewById(R.id.img_hipat_frag_filter_more) as ImageView
