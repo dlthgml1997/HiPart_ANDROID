@@ -1,10 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-    android:text="홈 프레그먼트"
-    android:layout_centerInParent="true"/>
+    <RelativeLayout
+            android:layout_width="match_parent" android:layout_height="48dp">
+        <!--검색 버튼-->
+        <RelativeLayout
+                android:id="@+id/btn_frag_home_search"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true">
 
-</RelativeLayout>
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                       android:layout_margin="8dp"
+                       android:src="@drawable/main_search_icon"/>
+
+        </RelativeLayout>
+
+        <!--알람 버튼-->
+        <RelativeLayout
+                android:id="@+id/btn_frag_home_alarm"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/btn_frag_home_search">
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                       android:layout_margin="8dp"
+                       android:src="@drawable/main_alarm_icon"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/tv_frag_home_user_name"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="User"
+                android:fontFamily="@font/nanum_bold"
+                android:textColor="#242424"
+                android:textSize="20sp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="18dp"/>
+
+        <TextView
+                android:layout_toRightOf="@+id/tv_frag_home_user_name"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="님,"
+                android:fontFamily="@font/nanum_bold"
+                android:textColor="#242424"
+                android:textSize="20sp"
+                android:layout_marginTop="18dp"/>
+    </RelativeLayout>
+
+    <TextView
+
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="하이팟들과 하이파이브 어때요?"
+            android:fontFamily="@font/nanum_bold"
+            android:textColor="#242424"
+            android:textSize="20sp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="10dp"/>
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/vp_frag_home_recommend_hipat"
+            android:layout_width="match_parent"
+            android:layout_height="171dp"
+            android:layout_marginTop="20dp"
+            android:overScrollMode="never"
+            android:clipToPadding="false"
+            android:paddingHorizontal="24dp"
+    />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="35dp"
+              android:textSize="20sp"
+              android:textColor="#242424"
+              android:fontFamily="@font/nanum_bold"
+              android:text="하이팟"
+              android:layout_marginLeft="24dp"
+              android:layout_marginTop="20dp"
+    />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="52dp"
+                  android:layout_marginTop="30dp"
+                  android:orientation="horizontal"
+    >
+        <LinearLayout
+                android:id="@+id/btn_frag_home_c_pat"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                       android:src="@drawable/main_cpot_icon"
+                       android:layout_gravity="center"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="C-PAT"
+                      android:textSize="13sp"
+                      android:layout_marginTop="8dp"
+                      android:textColor="#707070"
+                      android:fontFamily="@font/nanum_regular"
+                      android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/btn_frag_home_e_pat"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                       android:src="@drawable/main_epot_icon"
+                       android:layout_gravity="center"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="E-PAT"
+                      android:textSize="13sp"
+                      android:layout_marginTop="8dp"
+                      android:textColor="#707070"
+                      android:fontFamily="@font/nanum_regular"
+                      android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/btn_frag_home_t_pat"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                       android:src="@drawable/main_tpot_icon"
+                       android:layout_gravity="center"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="T-PAT"
+                      android:textSize="13sp"
+                      android:layout_marginTop="8dp"
+                      android:textColor="#707070"
+                      android:fontFamily="@font/nanum_regular"
+                      android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/btn_frag_home_etc"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                       android:src="@drawable/main_etc_icon"
+                       android:layout_gravity="center"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="ETC."
+                      android:textSize="13sp"
+                      android:layout_marginTop="8dp"
+                      android:textColor="#707070"
+                      android:fontFamily="@font/nanum_regular"
+                      android:layout_gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+            android:id="@+id/rv_frag_home_advertising"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:layout_marginTop="32dp"
+            android:overScrollMode="never"
+            android:clipToPadding="false"
+            android:paddingHorizontal="24dp"
+    />
+
+
+
+</LinearLayout>

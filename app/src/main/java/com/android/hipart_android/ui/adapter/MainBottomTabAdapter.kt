@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.ViewGroup
-import com.android.hipart_android.ui.hipart.HiPartFragment
+import com.android.hipart_android.ui.hipat.HiPatFragment
 import com.android.hipart_android.ui.home.HomeFragment
 import com.android.hipart_android.ui.mypage.MyPageFragment
 import com.android.hipart_android.ui.portfolio.PortFolioFragment
@@ -12,7 +12,7 @@ import com.android.hipart_android.ui.portfolio.PortFolioFragment
 // ###Issue : FragmentPagerAdapter VS FragmentStateAdapter
 class MainBottomTabAdapter(private val fragmentCount : Int, fm : FragmentManager) : FragmentPagerAdapter(fm){
     val home = HomeFragment()
-    val hiPart = HiPartFragment()
+    val hiPart = HiPatFragment()
     val portFolio = PortFolioFragment()
     val myPage = MyPageFragment()
 

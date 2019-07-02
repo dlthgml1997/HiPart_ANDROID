@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <include
+                android:id="@+id/toolbar_hipat"
+                layout="@layout/toolbar_hipat"/>
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_hipat_frag_advertisement"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="24dp"
+        />
+        <android.support.design.widget.TabLayout
+                android:layout_marginLeft="24dp"
+                android:id="@+id/tl_hipat_frag_pat_nav"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                app:tabIndicatorHeight="0dp"
+                android:layout_marginRight="72dp"
+        />
+            <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_hipat_frag_nav"
+                    android:layout_width="match_parent"
+                    android:layout_height="800dp"
+                    android:background="#fafafa">
+                <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_hipat_frag_portfolio"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                />
+            </android.support.v4.view.ViewPager>
+    </LinearLayout>
+</RelativeLayout>
