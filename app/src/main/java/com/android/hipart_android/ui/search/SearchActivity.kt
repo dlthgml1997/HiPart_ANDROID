@@ -5,7 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import com.android.hipart_android.R
 import kotlinx.android.synthetic.main.activity_search.*
 
@@ -16,6 +19,8 @@ class SearchActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search)
 
         setSearch()
+
+        setViewPager()
     }
 
     private fun setSearch() {
@@ -39,5 +44,21 @@ class SearchActivity : AppCompatActivity() {
 
             }
         })
+    }
+
+    private fun setViewPager() {
+        vp_search_act.adapter = SearchFragmentPagerAdapter(5, supportFragmentManager)
+        tl_search_act.setupWithViewPager(vp_search_act)
+
+        val tabSearch = (this.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
+            .inflate(R.layout.tab_search_frag, null, false)
+
+        tl_search_act.getTabAt(0)!!.customView = tabSearch.findViewById(R.id.iv_tab_search_frag_all) as RelativeLayout
+        tl_search_act.getTabAt(1)!!.customView = tabSearch.findViewById(R.id.iv_tab_search_frag_c) as RelativeLayout
+        tl_search_act.getTabAt(2)!!.customView = tabSearch.findViewById(R.id.iv_tab_search_frag_e) as RelativeLayout
+        tl_search_act.getTabAt(3)!!.customView = tabSearch.findViewById(R.id.iv_tab_search_frag_t) as RelativeLayout
+        tl_search_act.getTabAt(4)!!.customView = tabSearch.findViewById(R.id.iv_tab_search_frag_etc) as RelativeLayout
+
+
     }
 }

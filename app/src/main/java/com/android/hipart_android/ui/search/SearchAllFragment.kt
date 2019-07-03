@@ -21,29 +21,10 @@ class SearchAllFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_search_all, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        setViewPager()
 
 
-    }
 
 
-    private fun setViewPager() {
-        vp_search_act.adapter = SearchFragmentPagerAdapter(5, childFragmentManager)
-        tl_search_act.setupWithViewPager(vp_search_act)
-
-        val tabSearch = this.layoutInflater.inflate(R.layout.tab_search_frag, null, false)
-
-        tl_search_act.getTabAt(0)!!.customView = tabSearch.findViewById(R.id.iv_tab_search_frag_all) as ImageView
-        tl_search_act.getTabAt(1)!!.customView = tabSearch.findViewById(R.id.iv_tab_search_frag_c) as ImageView
-        tl_search_act.getTabAt(2)!!.customView = tabSearch.findViewById(R.id.iv_tab_search_frag_e) as ImageView
-        tl_search_act.getTabAt(3)!!.customView = tabSearch.findViewById(R.id.iv_tab_search_frag_t) as ImageView
-        tl_search_act.getTabAt(4)!!.customView = tabSearch.findViewById(R.id.iv_tab_search_frag_etc) as ImageView
-
-
-    }
 
 
 }

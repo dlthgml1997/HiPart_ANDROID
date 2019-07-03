@@ -24,7 +24,7 @@
                     android:textColor="#707070"
                     android:lineSpacingExtra="3sp"
                     android:gravity="center_horizontal"
-                    tools:text="검색"
+                    android:text="검색"
                     android:layout_centerInParent="true"/>
         </RelativeLayout>
 
@@ -60,7 +60,7 @@
                           android:orientation="vertical"
                           android:id="@+id/ll_search_act_recent_search"
                           android:paddingHorizontal="25dp"
-                          android:visibility="gone">
+                          android:visibility="visible">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
                         android:textSize="12sp"
                         android:textColor="#a2a2a2"
                         android:lineSpacingExtra="1sp"
-                        tools:text="최근 검색어"/>
+                        android:text="최근 검색어"/>
                 <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
                                                         android:layout_height="wrap_content"
                                                         android:id="@+id/rc_search_act"
@@ -76,7 +76,8 @@
             </LinearLayout>
 
             <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:id="@+id/rl_search_act_search_result">
+                            android:id="@+id/rl_search_act_search_result"
+                            android:visibility="gone">
                 <android.support.design.widget.TabLayout android:layout_width="match_parent"
                                                          android:layout_height="32dp"
                                                          android:id="@+id/tl_search_act"></android.support.design.widget.TabLayout>
@@ -98,7 +99,7 @@
                 android:textSize="15sp"
                 android:textColor="#ffffff"
                 android:lineSpacingExtra="12sp"
-                tools:text="검색"/>
+                android:text="검색"/>
     </RelativeLayout>
 
 </RelativeLayout>
