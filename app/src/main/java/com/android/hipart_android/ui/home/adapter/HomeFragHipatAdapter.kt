@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.home.data.HomeFragHipatData
@@ -14,7 +15,7 @@ import com.android.hipart_android.ui.home.data.HomeFragHipatData
 /**
  * Created by TakHyeongMin on 2019-07-03.
  */
-class HomeFragHipatAdapter(private val dataList: List<HomeFragHipatData>, private val context: Context?) : PagerAdapter() {
+class HomeFragHipatAdapter(private val dataList: List<HomeFragHipatData>, private val context: Context?, private val picAnimListener : View.OnClickListener ) : PagerAdapter() {
 
     override fun getCount(): Int = dataList.size
 
@@ -23,6 +24,7 @@ class HomeFragHipatAdapter(private val dataList: List<HomeFragHipatData>, privat
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = LayoutInflater.from(context)!!.inflate(R.layout.vp_item_home_hipat, container, false)
+
 
         val userImg = view.findViewById<ImageView>(R.id.iv_rv_home_hipat_user)
 
@@ -40,7 +42,11 @@ class HomeFragHipatAdapter(private val dataList: List<HomeFragHipatData>, privat
 
         val pickNum = view.findViewById<TextView>(R.id.tv_rv_home_hipat_pick_num)
 
+        val btnPick = view.findViewById<LinearLayout>(R.id.btn_rv_home_hipat_pick)
+
         container.addView(view, 0)
+
+        btnPick.setOnClickListener (picAnimListener)
 
         return view
     }
@@ -48,4 +54,5 @@ class HomeFragHipatAdapter(private val dataList: List<HomeFragHipatData>, privat
     override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
         container.removeView(obj as View)
     }
+
 }
