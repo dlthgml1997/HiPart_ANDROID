@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingHorizontal="25dp">
+    <ImageView android:layout_width="wrap_content" android:layout_height="match_parent"
+               android:src="@drawable/selector_search_act_tab_all"
+               android:id="@+id/iv_tab_search_frag_all"/>
+    <ImageView android:layout_width="wrap_content" android:layout_height="match_parent"
+               android:src="@drawable/selector_search_act_tab_c"
+               android:id="@+id/iv_tab_search_frag_c"/>
+    <ImageView android:layout_width="wrap_content" android:layout_height="match_parent"
+               android:src="@drawable/selector_search_act_tab_e"
+               android:id="@+id/iv_tab_search_frag_e"/>
+    <ImageView android:layout_width="wrap_content" android:layout_height="match_parent"
+               android:src="@drawable/selector_search_act_tab_t"
+               android:id="@+id/iv_tab_search_frag_t"/>
+    <ImageView android:layout_width="wrap_content" android:layout_height="match_parent"
+               android:src="@drawable/selector_search_act_tab_etc"
+               android:id="@+id/iv_tab_search_frag_etc"/>
+
+</LinearLayout>

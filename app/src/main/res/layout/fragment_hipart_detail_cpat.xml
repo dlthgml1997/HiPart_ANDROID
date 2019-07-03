@@ -180,7 +180,7 @@
                   android:layout_below="@id/rl_frag_hip_det_c_title">
         <RelativeLayout android:layout_width="match_parent" android:layout_height="1dp"
                         android:background="#e4e4e4"
-        android:layout_marginHorizontal="25dp"></RelativeLayout>
+                        android:layout_marginHorizontal="25dp"></RelativeLayout>
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:paddingHorizontal="25.5dp"
                       android:orientation="vertical"
@@ -204,12 +204,81 @@
                     tools:text="안녕하세요~ 전 먹는게 세상에서 제일 좋아요!"
                     android:layout_marginTop="11dp"
             />
-            <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
-                                                    android:layout_height="19dp"
-                                                    android:layout_marginTop="15dp"
-                                                    android:id="@+id/rv_frag_hip_det_frag_tag">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:layout_marginTop="20dp">
+                <RelativeLayout style="@style/HipartDetailIntroTagLayout">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="11sp"
+                              android:textColor="#707070"
+                              android:lineSpacingExtra="1sp"
+                              android:gravity="center_horizontal"
+                              tools:text="먹방"
+                              android:layout_centerInParent="true"/>
+                </RelativeLayout>
+                <RelativeLayout style="@style/HipartDetailIntroTagLayout">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="11sp"
+                              android:textColor="#707070"
+                              android:lineSpacingExtra="1sp"
+                              android:gravity="center_horizontal"
+                              tools:text="먹방"
+                              android:layout_centerInParent="true"/>
+                </RelativeLayout>
+                <RelativeLayout style="@style/HipartDetailIntroTagLayout">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="11sp"
+                              android:textColor="#707070"
+                              android:lineSpacingExtra="1sp"
+                              android:gravity="center_horizontal"
+                              tools:text="먹방"
+                              android:layout_centerInParent="true"/>
+                </RelativeLayout>
+                <RelativeLayout style="@style/HipartDetailIntroTagLayout">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="11sp"
+                              android:textColor="#707070"
+                              android:lineSpacingExtra="1sp"
+                              android:gravity="center_horizontal"
+                              tools:text="먹방"
+                              android:layout_centerInParent="true"/>
+                </RelativeLayout>
+                <RelativeLayout style="@style/HipartDetailIntroTagLayout">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="11sp"
+                              android:textColor="#707070"
+                              android:lineSpacingExtra="1sp"
+                              android:gravity="center_horizontal"
+                              tools:text="먹방"
+                              android:layout_centerInParent="true"/>
+                </RelativeLayout>
+                <RelativeLayout style="@style/HipartDetailIntroTagLayout">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="11sp"
+                              android:textColor="#707070"
+                              android:lineSpacingExtra="1sp"
+                              android:gravity="center_horizontal"
+                              tools:text="먹방"
+                              android:layout_centerInParent="true"/>
+                </RelativeLayout>
+                <RelativeLayout style="@style/HipartDetailIntroTagLayout">
+                    <TextView android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textSize="11sp"
+                              android:textColor="#707070"
+                              android:lineSpacingExtra="1sp"
+                              android:gravity="center_horizontal"
+                              tools:text="먹방"
+                              android:layout_centerInParent="true"/>
+                </RelativeLayout>
 
-            </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -286,14 +355,16 @@
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="56dp"
                     android:layout_alignParentBottom="true">
-        <Button android:layout_width="334dp" android:layout_height="42dp"
+        <Button android:layout_width="match_parent" android:layout_height="42dp"
                 android:layout_centerInParent="true"
                 android:background="#7947fd"
                 android:textSize="15sp"
                 android:textColor="#ffffff"
                 android:lineSpacingExtra="12sp"
                 android:gravity="center"
-                tools:text="연락하기"/>
+                tools:text="연락하기"
+                android:layout_marginHorizontal="16dp"
+        />
     </RelativeLayout>
 
 
