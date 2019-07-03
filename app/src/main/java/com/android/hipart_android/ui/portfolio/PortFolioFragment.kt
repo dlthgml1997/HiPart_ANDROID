@@ -27,7 +27,10 @@ class PortFolioFragment : BottomSheetDialogFragment() {
 
     private fun setonBtnClickListener() {
         btn_port_frag_upload_today_port.setOnClickListener {
+            /* Tpat일 때
             startActivity<TpatUploadActivity>()
+             */
+            startActivity<NotTpatUploadActivity>()
         }
     }
 
