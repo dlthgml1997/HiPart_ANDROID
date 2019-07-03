@@ -47,17 +47,23 @@ class HiPatFragment : Fragment() {
 
         navHipatFragLayout = (activity!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)
             .inflate(R.layout.navigation_category_hipat_port, null, false)
-        tl_hipat_frag_pat_nav.getTabAt(0)!!.customView = navHipatFragLayout
-            .findViewById(R.id.rl_hipat_nav_all)
-        tl_hipat_frag_pat_nav.getTabAt(1)!!.customView = navHipatFragLayout
-            .findViewById(R.id.rl_hipat_nav_cpat)
-        tl_hipat_frag_pat_nav.getTabAt(2)!!.customView = navHipatFragLayout
-            .findViewById(R.id.rl_hipat_nav_epat)
-        tl_hipat_frag_pat_nav.getTabAt(3)!!.customView = navHipatFragLayout
-            .findViewById(R.id.rl_hipat_nav_tpat)
-        tl_hipat_frag_pat_nav.getTabAt(4)!!.customView = navHipatFragLayout
-            .findViewById(R.id.rl_hipat_nav_etc)
+//        tl_hipat_frag_pat_nav.getTabAt(0)!!.customView = navHipatFragLayout
+//            .findViewById(R.id.rl_hipat_nav_all)
+//        tl_hipat_frag_pat_nav.getTabAt(1)!!.customView = navHipatFragLayout
+//            .findViewById(R.id.rl_hipat_nav_cpat)
+//        tl_hipat_frag_pat_nav.getTabAt(2)!!.customView = navHipatFragLayout
+//            .findViewById(R.id.rl_hipat_nav_epat)
+//        tl_hipat_frag_pat_nav.getTabAt(3)!!.customView = navHipatFragLayout
+//            .findViewById(R.id.rl_hipat_nav_tpat)
+//        tl_hipat_frag_pat_nav.getTabAt(4)!!.customView = navHipatFragLayout
+//            .findViewById(R.id.rl_hipat_nav_etc)
+
+        tl_hipat_frag_pat_nav.getTabAt(0)!!.text = "전체"
+        tl_hipat_frag_pat_nav.getTabAt(1)!!.text = "C-PAT"
+        tl_hipat_frag_pat_nav.getTabAt(2)!!.text = "E-PAT"
+        tl_hipat_frag_pat_nav.getTabAt(3)!!.text = "T-PAT"
+        tl_hipat_frag_pat_nav.getTabAt(4)!!.text = "ETC."
+
 
     }
-
 }
