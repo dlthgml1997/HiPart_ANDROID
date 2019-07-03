@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/port_frag_bottom_sheet"
+              android:background="#fff"
+              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#73000000"
-              tools:context=".ui.portfolio.PortFolioFragment">
-    <LinearLayout
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="56dp"
-            android:orientation="vertical"
-            android:background="#fff"
-            android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+              app:behavior_hideable="true"
+              app:behavior_peekHeight="160dp"
+              app:layout_behavior="@string/bottom_sheet_behavior"
+              android:layout_marginBottom="56dp" >
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent" android:layout_height="80dp">
@@ -64,14 +62,10 @@
                 android:layout_height="wrap_content"/>
 
         <ImageView
-                android:id="@+id/btn_port_frag_upload_today_port"
                 android:src="@drawable/alarm_more_icon"
                 android:layout_gravity="right|center_vertical"
                 android:layout_marginRight="24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
     </LinearLayout>
-    </LinearLayout>
-
-
-</RelativeLayout>
+</LinearLayout>
