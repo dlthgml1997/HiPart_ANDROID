@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent" android:layout_height="184dp"
+                android:layout_marginHorizontal="25dp"
+                android:background="@drawable/haa">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:layout_marginHorizontal="24dp"
+                  android:layout_marginVertical="24dp"
+                  android:orientation="vertical">
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="80dp"
+                      android:orientation="horizontal">
+            <ImageView android:layout_width="80dp" android:layout_height="80dp"
+                       android:src="@drawable/main_profile_photo_image"/>
+            <RelativeLayout android:layout_width="wrap_content" android:layout_height="match_parent"
+
+                            android:layout_marginLeft="16dp">
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:orientation="vertical">
+                    <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                      android:orientation="vertical">
+                            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                          android:orientation="horizontal"
+                                          android:gravity="center_vertical">
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="20sp"
+                                        android:textColor="#242424"
+                                        android:lineSpacingExtra="3sp"
+                                        tools:text="Nado"
+                                />
+                                <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                                           android:src="@drawable/youtube_grey_img"
+                                           android:layout_marginLeft="8dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                      android:layout_alignParentRight="true"
+                                      android:orientation="vertical"
+                                      android:gravity="center_horizontal">
+                            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                       android:src="@drawable/main_pick_off_icon"/>
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="9sp"
+                                    android:textColor="#c7c7c7"
+                                    android:lineSpacingExtra="1sp"
+                                    tools:text="224"
+                            />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#707070"
+                            android:lineSpacingExtra="1sp"
+                            tools:text="크리에이터"/>
+
+
+                </LinearLayout>
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_alignParentBottom="true">
+                    <RelativeLayout style="@style/HipartDetailIntroTagLayout">
+                        <TextView android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:textSize="11sp"
+                                  android:textColor="#707070"
+                                  android:lineSpacingExtra="1sp"
+                                  android:gravity="center_horizontal"
+                                  tools:text="먹방"
+                                  android:layout_centerInParent="true"/>
+                    </RelativeLayout>
+                    <RelativeLayout style="@style/HipartDetailIntroTagLayout">
+                        <TextView android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:textSize="11sp"
+                                  android:textColor="#707070"
+                                  android:lineSpacingExtra="1sp"
+                                  android:gravity="center_horizontal"
+                                  tools:text="먹방"
+                                  android:layout_centerInParent="true"/>
+                    </RelativeLayout>
+                    <RelativeLayout style="@style/HipartDetailIntroTagLayout">
+                        <TextView android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:textSize="11sp"
+                                  android:textColor="#707070"
+                                  android:lineSpacingExtra="1sp"
+                                  android:gravity="center_horizontal"
+                                  tools:text="먹방"
+                                  android:layout_centerInParent="true"/>
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="#242424"
+            android:lineSpacingExtra="8dp"
+            tools:text="안녕하세요~ 먹고 싶은 모든 것들을 영상으로"
+    android:layout_marginTop="24dp"/>
+
+    </LinearLayout>
+</RelativeLayout>
+
