@@ -1,11 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#fff"
         tools:context=".ui.portfolio.TpatUploadActivity">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ImageView
+                android:id="@+id/btn_tpat_upload_act_back"
+                android:src="@drawable/back_grey_icon"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-</LinearLayout>
+        <TextView
+                android:text="Nado님,"
+                android:textSize="20sp"
+                android:textColor="#242424"
+                android:fontFamily="@font/nanum_square_bold"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:text="오늘의 번역을 기록해볼까요?"
+                android:textSize="20sp"
+                android:textColor="#242424"
+                android:fontFamily="@font/nanum_square_bold"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <LinearLayout
+                android:id="@+id/ll_tpat_upload_act_foreign"
+                android:orientation="vertical"
+                android:layout_marginTop="40dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginBottom="30dp"
+                android:padding="16dp"
+                android:background="@drawable/upload_tpat_port_border_gray"
+                android:layout_width="match_parent"
+                android:layout_height="170dp">
+            <TextView
+                    android:text="외국어"
+                    android:textSize="20sp"
+                    android:textColor="#242424"
+                    android:fontFamily="@font/nanum_square_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <EditText
+                    android:id="@+id/edt_tpat_upload_act_foreign"
+                    android:hint="예시) I LOVE YOU"
+                    android:layout_marginTop="10dp"
+                    android:textSize="13sp"
+                    android:background="@null"
+                    android:textColor="#434343"
+                    android:textColorHint="#c7c7c7"
+                    android:gravity="top"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/ll_tpat_upload_act_korean"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="24dp"
+                android:padding="16dp"
+                android:background="@drawable/upload_tpat_port_border_gray"
+                android:layout_width="match_parent"
+                android:layout_height="170dp">
+            <TextView
+                    android:text="한국어"
+                    android:textSize="20sp"
+                    android:textColor="#242424"
+                    android:fontFamily="@font/nanum_square_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <EditText
+                    android:id="@+id/edt_tpat_upload_act_korean"
+                    android:hint="뭐해요!?"
+                    android:layout_marginTop="10dp"
+                    android:textSize="13sp"
+                    android:background="@null"
+                    android:textColor="#434343"
+                    android:textColorHint="#c7c7c7"
+                    android:gravity="top"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+            android:id="@+id/btn_tpat_upload_act_submit"
+            android:text="작품 올리기"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:fontFamily="@font/nanum_extra_bold"
+            android:background="@drawable/signup_nextbtn"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"/>
+
+</RelativeLayout>
