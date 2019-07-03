@@ -2,6 +2,7 @@ package com.android.hipart_android.ui.main
 
 import android.graphics.Color
 import android.os.Bundle
+import android.support.design.widget.BottomSheetDialog
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
@@ -100,6 +101,9 @@ class MainActivity : BaseActivity() {
 
                         iv_mypage.setImageResource(R.drawable.main_tb_mypg_off_icon)
                         tv_mypage.textColor = Color.parseColor("#838383")
+
+//                        setBottomSheetDialog()
+
                     }
                     3 -> {
                         iv_home.setImageResource(R.drawable.main_tb_home_on_icon)
@@ -120,5 +124,12 @@ class MainActivity : BaseActivity() {
             override fun onPageSelected(p0: Int) {
             }
         })
+    }
+
+    private fun setBottomSheetDialog() {
+        val view = layoutInflater.inflate(R.layout.fragment_portfolio_bottom_sheet_dialog,null)
+        val dialog = BottomSheetDialog(this)
+        dialog.setContentView(view)
+        dialog.show()
     }
 }
