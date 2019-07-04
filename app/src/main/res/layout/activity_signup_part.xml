@@ -68,6 +68,7 @@
                 android:id="@+id/img_Signup_etc"
         />
     </LinearLayout>
+
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="12dp"
@@ -80,6 +81,7 @@
                 android:text="가입 진행 시,"
                 android:textColor="#707070"
                 android:textSize="11sp"
+                android:fontFamily="@font/nanum_square_regular"
         />
         <TextView
                 android:layout_width="wrap_content"
@@ -87,6 +89,7 @@
                 android:text=" 회원 약관"
                 android:textColor="#707070"
                 android:textSize="11sp"
+                android:fontFamily="@font/nanum_extra_bold"
         />
         <TextView
                 android:layout_width="wrap_content"
@@ -94,23 +97,19 @@
                 android:text="에 동의하는 것으로 간주합니다."
                 android:textColor="#707070"
                 android:textSize="11sp"
+                android:fontFamily="@font/nanum_square_regular"
         />
     </LinearLayout>
-    <LinearLayout
+    <Button
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="640dp"
-    >
-        <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="12dp"
-                android:background="@drawable/signup_nextbtn"
-                android:layout_marginVertical="5dp"
-                android:text="회원 가입 완료"
-                android:textColor="#ffffff"
-                android:textSize="15sp"
-        />
-    </LinearLayout>
-
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:background="@drawable/signup_nextbtn"
+            android:layout_marginBottom="5dp"
+            android:text="회원 가입 완료"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:layout_alignParentBottom="true"
+    />
 </RelativeLayout>
