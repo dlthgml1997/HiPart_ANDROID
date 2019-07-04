@@ -4,14 +4,13 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
-        android:layout_width="320dp"
-        android:layout_height="180dp"
-        android:background="#fafafa">
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
     <ImageView
-            android:src="@drawable/hipat_list_box"
+            android:background="@drawable/portfolio_border"
             android:layout_centerHorizontal="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="180dp"/>
 
     <ImageView
             android:id="@+id/img_rv_item_hipat_frag_port_user_image"

@@ -78,7 +78,6 @@
                 android:lineSpacingExtra="10sp"
                 android:gravity="center_horizontal"
                 android:text="ETC."
-                android:layout_centerHorizontal="true"
-        />
+                android:layout_centerHorizontal="true" />
     </RelativeLayout>
 </LinearLayout>

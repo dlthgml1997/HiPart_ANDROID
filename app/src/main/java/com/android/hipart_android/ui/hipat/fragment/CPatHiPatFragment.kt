@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.android.hipart_android.R
-import com.android.hipart_android.ui.hipat.adapter.HipatFragPortRecyclerViewAdapter
-import com.android.hipart_android.ui.hipat.data.HipatFragPortFolioData
+import com.android.hipart_android.ui.hipat.adapter.PortFolioRecyclerViewAdapter
+import com.android.hipart_android.ui.hipat.data.PortFolioData
 import kotlinx.android.synthetic.main.fragment_hipat_cpat.*
 
 class CPatHiPatFragment : Fragment() {
 
-    lateinit var hipatFragPortRecyclerViewAdapter: HipatFragPortRecyclerViewAdapter
+    lateinit var portFolioRecyclerViewAdapter: PortFolioRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,41 +36,41 @@ class CPatHiPatFragment : Fragment() {
 
     private fun configureRecyclerView() {
 
-        val dataListHipatFrag: ArrayList<HipatFragPortFolioData> = ArrayList()
+        val dataList: ArrayList<PortFolioData> = ArrayList()
 
-        dataListHipatFrag.add(
-            HipatFragPortFolioData(
+        dataList.add(
+            PortFolioData(
                 "default","NaDo","크리에이터",true,224,"안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)",3
             )
         )
-        dataListHipatFrag.add(
-            HipatFragPortFolioData(
+        dataList.add(
+            PortFolioData(
                 "default","NaDo","크리에이터",false,224,"안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)",1
             )
         )
-        dataListHipatFrag.add(
-            HipatFragPortFolioData(
+        dataList.add(
+            PortFolioData(
                 "default","NaDo","크리에이터",true,224,"안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)",2
             )
         )
-        dataListHipatFrag.add(
-            HipatFragPortFolioData(
+        dataList.add(
+            PortFolioData(
                 "default","NaDo","크리에이터",true,224,"안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)",3
             )
         )
-        dataListHipatFrag.add(
-            HipatFragPortFolioData(
+        dataList.add(
+            PortFolioData(
                 "default","NaDo","크리에이터",true,224,"안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)",3
             )
         )
-        dataListHipatFrag.add(
-            HipatFragPortFolioData(
+        dataList.add(
+            PortFolioData(
                 "default","NaDo","크리에이터",true,224,"안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)",3
             )
         )
 
-        hipatFragPortRecyclerViewAdapter = HipatFragPortRecyclerViewAdapter(context!!, dataListHipatFrag)
-        rv_hipat_cpat_frag.adapter = hipatFragPortRecyclerViewAdapter
+        portFolioRecyclerViewAdapter = PortFolioRecyclerViewAdapter(context!!, dataList)
+        rv_hipat_cpat_frag.adapter = portFolioRecyclerViewAdapter
         rv_hipat_cpat_frag.layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.VERTICAL, false)
 
 

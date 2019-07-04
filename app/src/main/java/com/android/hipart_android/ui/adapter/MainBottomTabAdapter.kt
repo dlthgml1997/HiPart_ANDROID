@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.view.ViewGroup
 import com.android.hipart_android.ui.hipat.HiPatFragment
 import com.android.hipart_android.ui.home.HomeFragment
-import com.android.hipart_android.ui.mypage.MyPageFragment
+import com.android.hipart_android.ui.mypage.fragment.MyPageFragment
 import com.android.hipart_android.ui.portfolio.PortFolioFragment
 
 // ###Issue : FragmentPagerAdapter VS FragmentStateAdapter
