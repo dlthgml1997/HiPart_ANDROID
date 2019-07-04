@@ -10,7 +10,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.search.SearchActivity"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_above="@+id/rl_search_act_search_button">
         <RelativeLayout android:layout_width="match_parent" android:layout_height="52dp">
             <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
                        android:src="@drawable/back_grey_icon"
@@ -33,12 +34,14 @@
             <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
                             android:background="@drawable/bg_search_act_round"
                             android:paddingHorizontal="25dp">
-                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                <ImageView
+                        android:id="@+id/iv_search_act_search_text"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
                            android:src="@drawable/search_search_icon"
                            android:layout_centerVertical="true"
                            android:layout_alignParentRight="true"
                            android:layout_marginRight="11dp"/>
-                <EditText android:layout_width="wrap_content"
+                <EditText android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:textSize="13sp"
                           android:textColor="#c7c7c7"
@@ -60,7 +63,7 @@
                           android:orientation="vertical"
                           android:id="@+id/ll_search_act_recent_search"
                           android:paddingHorizontal="25dp"
-                          android:visibility="visible">
+                          android:visibility="gone">
 
                 <TextView
                         android:layout_width="wrap_content"
@@ -75,23 +78,41 @@
                                                         android:layout_marginTop="8dp"></android.support.v7.widget.RecyclerView>
             </LinearLayout>
 
-            <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:id="@+id/rl_search_act_search_result"
-                            android:visibility="gone">
-                <android.support.design.widget.TabLayout android:layout_width="match_parent"
-                                                         android:layout_height="32dp"
-                                                         android:id="@+id/tl_search_act"></android.support.design.widget.TabLayout>
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:id="@+id/rl_search_act_search_result"
+                          android:visibility="visible"
+                          android:orientation="vertical">
+                <RelativeLayout android:layout_width="match_parent"
+                                android:layout_height="32dp">
+                    <android.support.design.widget.TabLayout android:layout_width="match_parent"
+                                                             android:layout_height="32dp"
+                                                             android:id="@+id/tl_search_act"
+                                                             android:paddingHorizontal="28dp"
+                                                             app:tabIndicatorFullWidth="false"
+                                                             app:tabMode="scrollable"
+                                                             app:tabIndicatorColor="#7947fd"
+                                                             app:tabMaxWidth="63dp">
+
+                    </android.support.design.widget.TabLayout>
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                          android:layout_marginHorizontal="28dp"
+                          android:background="#e4e4e4"
+                          android:layout_alignParentBottom="true"/>
+                </RelativeLayout>
                 <android.support.v4.view.ViewPager android:layout_width="match_parent"
                                                    android:layout_height="match_parent"
-                                                   android:id="@+id/vp_search_act"></android.support.v4.view.ViewPager>
-            </RelativeLayout>
+                                                   android:id="@+id/vp_search_act"
+                ></android.support.v4.view.ViewPager>
+
+            </LinearLayout>
 
         </LinearLayout>
 
 
     </LinearLayout>
     <RelativeLayout android:layout_width="match_parent" android:layout_height="56dp"
-                    android:layout_alignParentBottom="true">
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/rl_search_act_search_button">
         <Button android:layout_width="match_parent" android:layout_height="match_parent"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="8dp"

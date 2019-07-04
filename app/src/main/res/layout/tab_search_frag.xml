@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:paddingHorizontal="25dp">
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+
+    <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
                   android:orientation="horizontal">
         <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                         android:id="@+id/iv_tab_search_frag_all"
@@ -32,8 +32,3 @@
         android:background="@drawable/selector_search_act_tab_etc">
         </RelativeLayout>
     </LinearLayout>
-    <View android:layout_width="match_parent" android:layout_height="1dp"
-          android:background="#e4e4e4"
-          android:layout_alignParentBottom="true"/>
-
-</RelativeLayout>

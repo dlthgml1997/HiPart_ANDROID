@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:orientation="horizontal">
+    <RelativeLayout android:layout_width="48dp" android:layout_height="match_parent"
+                    android:id="@+id/rl_tab_search_frag_all">
+        <TextView
+                android:id="@+id/tv_tab_search_act_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/selector_tab_textcolor"
+                android:lineSpacingExtra="10sp"
+                android:gravity="center_horizontal"
+                android:text="전체"
+                android:layout_centerHorizontal="true"
+        />
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="64dp" android:layout_height="match_parent"
+                    android:id="@+id/rl_tab_search_frag_c">
+        <TextView
+                    android:id="@+id/tv_tab_search_act_c"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/selector_tab_textcolor"
+                android:lineSpacingExtra="10sp"
+                android:gravity="center_horizontal"
+                android:text="C-PAT"
+        />
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="64dp" android:layout_height="match_parent"
+                    android:id="@+id/rl_tab_search_frag_e">
+        <TextView
+                android:id="@+id/tv_tab_search_act_e"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/selector_tab_textcolor"
+                android:lineSpacingExtra="10sp"
+                android:gravity="center_horizontal"
+                android:text="E-PAT"
+                android:layout_centerHorizontal="true"
+        />
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="64dp" android:layout_height="match_parent"
+                    android:id="@+id/rl_tab_search_frag_t">
+        <TextView
+                android:id="@+id/tv_tab_search_act_t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/selector_tab_textcolor"
+                android:lineSpacingExtra="10sp"
+                android:gravity="center_horizontal"
+                android:text="T-PAT"
+                android:layout_centerHorizontal="true"
+        />
+
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="64dp" android:layout_height="match_parent"
+                    android:id="@+id/rl_tab_search_frag_etc">
+        <TextView
+                android:id="@+id/tv_tab_search_act_etc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/selector_tab_textcolor"
+                android:lineSpacingExtra="10sp"
+                android:gravity="center_horizontal"
+                android:text="ETC."
+                android:layout_centerHorizontal="true"
+        />
+    </RelativeLayout>
+</LinearLayout>
