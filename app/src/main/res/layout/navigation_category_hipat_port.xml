@@ -1,71 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
-              android:layout_width="match_parent"
+              android:layout_width="wrap_content"
               android:layout_height="24dp">
     <RelativeLayout
             android:id="@+id/rl_hipat_nav_all"
-            android:layout_width="match_parent"
+            android:layout_width="42dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center">
-        <ImageView
-                android:id="@+id/img_hipat_nav_all"
-                android:src="@drawable/hipat_nav_all_off_btn"
-                android:scaleType="fitXY"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+        <TextView
+                android:text="전체"
+                android:id="@+id/txt_hipat_nav_all"
+                android:textSize="14sp"
+                android:textColor="#484848"
+                android:fontFamily="@font/nanum_square_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/rl_hipat_nav_cpat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center">
-    <ImageView
-            android:id="@+id/img_hipat_nav_cpat"
-            android:src="@drawable/hipat_nav_cpat_off_btn"
-            android:layout_width="wrap_content"
-            android:scaleType="fitXY"
-            android:layout_height="wrap_content"/>
-</RelativeLayout>
+            android:id="@+id/rl_hipat_nav_cpat"
+            android:layout_width="58dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+    >
+        <TextView
+                android:text="C_PAT"
+                android:id="@+id/txt_hipat_nav_cpat"
+                android:textSize="14sp"
+                android:textColor="#484848"
+                android:fontFamily="@font/nanum_square_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+    </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/rl_hipat_nav_epat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center">
-    <ImageView
-            android:id="@+id/img_hipat_nav_epat"
-            android:src="@drawable/hipat_nav_epat_off_btn"
-            android:scaleType="fitXY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-</RelativeLayout>
+            android:id="@+id/rl_hipat_nav_epat"
+            android:layout_width="58dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+    >
+        <TextView
+                android:text="E-PAT"
+                android:id="@+id/txt_hipat_nav_epat"
+                android:textSize="14sp"
+                android:textColor="#484848"
+                android:fontFamily="@font/nanum_square_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+    </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/rl_hipat_nav_tpat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center">
-    <ImageView
-            android:id="@+id/img_hipat_nav_tpat"
-            android:src="@drawable/hipat_nav_tpat_off_btn"
-            android:scaleType="fitXY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-</RelativeLayout>
+            android:id="@+id/rl_hipat_nav_tpat"
+            android:layout_width="58dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+    >
+        <TextView
+                android:text="T-PAT"
+                android:id="@+id/txt_hipat_nav_tpat"
+                android:textSize="14sp"
+                android:textColor="#484848"
+                android:fontFamily="@font/nanum_square_bold"
+                android:layout_width="58dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+    </RelativeLayout>
     <RelativeLayout
             android:id="@+id/rl_hipat_nav_etc"
-            android:layout_width="match_parent"
+            android:layout_width="42dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-        <ImageView
-                android:id="@+id/img_hipat_nav_etc"
-                android:src="@drawable/hipat_nav_etc_off_btn"
-                android:scaleType="fitXY"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            android:gravity="center"
+    >
+        <TextView
+                android:text="ETC."
+                android:id="@+id/txt_hipat_nav_etc"
+                android:textSize="14sp"
+                android:textColor="#484848"
+                android:fontFamily="@font/nanum_square_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
     </RelativeLayout>
 </LinearLayout>
