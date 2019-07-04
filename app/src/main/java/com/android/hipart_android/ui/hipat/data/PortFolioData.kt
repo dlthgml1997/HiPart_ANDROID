@@ -1,6 +1,6 @@
 package com.android.hipart_android.ui.hipat.data
 
-data class HipatFragPortFolioData (
+data class PortFolioData (
     val user_image_thumbnail: String,
     val user_name: String,
     val kind_of_pat: String,
