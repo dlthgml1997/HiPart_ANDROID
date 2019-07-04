@@ -9,19 +9,155 @@
         android:background="#FFFFFF"
 >
 
-    <com.android.hipart_android.ui.adapter.MainViewPager
-            android:id="@+id/main_fragment_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+    <FrameLayout
+            android:id="@+id/frame_layout_main_act"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_main_act_tab_bar"
+    />
 
-    <android.support.design.widget.TabLayout
-            android:background="#FFFFFF"
-            android:id="@+id/main_bottom_tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
+    <LinearLayout
+            android:id="@+id/bottom_main_act_tab_bar"
+            android:layout_width="match_parent" android:layout_height="56dp"
             android:layout_alignParentBottom="true"
-            app:tabIndicatorHeight="0dp"
-            android:elevation="4dp">
-    </android.support.design.widget.TabLayout>
+            android:background="#FFFFFF"
+            android:elevation="4dp"
+            android:orientation="horizontal"
+    >
+        <RelativeLayout
+                android:id="@+id/btn_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+        >
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          android:layout_centerInParent="true">
+
+                <ImageView
+                        android:id="@+id/iv_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/main_tb_home_on_icon"/>
+
+                <TextView
+                        android:id="@+id/tv_home"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="홈"
+                        android:textSize="10sp"
+                        android:textColor="#7947fd"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:id="@+id/btn_hi_part"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          android:layout_centerInParent="true">
+
+                <ImageView
+                        android:id="@+id/iv_hi_part"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/btn_selector_main_act_hipot"
+                        android:layout_gravity="center"/>
+
+                <TextView
+                        android:id="@+id/tv_hipart"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="하이팟"
+                        android:textSize="10sp"
+                        android:textColor="#838383"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"/>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:id="@+id/btn_portfolio"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          android:layout_centerInParent="true">
+
+                <ImageView
+                        android:id="@+id/iv_portfolio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/btn_selector_main_act_portfolio"
+                        android:layout_gravity="center"/>
+
+                <TextView
+                        android:id="@+id/tv_portfolio"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="포트폴리오"
+                        android:textSize="10sp"
+                        android:textColor="#838383"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:id="@+id/btn_mypage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          android:layout_centerInParent="true"
+            android:background="#fafafa">
+
+                <ImageView
+                        android:id="@+id/iv_mypage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/btn_selector_main_act_mypage"
+                        android:layout_gravity="center"/>
+
+                <TextView
+                        android:id="@+id/tv_mypage"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="마이페이지"
+                        android:textSize="10sp"
+                        android:textColor="#838383"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="2dp"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <!--<android.support.design.widget.TabLayout-->
+    <!--android:background="#FFFFFF"-->
+    <!--android:id="@+id/main_bottom_tab_layout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="56dp"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--app:tabIndicatorHeight="0dp"-->
+    <!--android:elevation="4dp">-->
+    <!--</android.support.design.widget.TabLayout>-->
 
 </RelativeLayout>
