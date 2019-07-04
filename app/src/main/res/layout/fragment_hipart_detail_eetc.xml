@@ -121,13 +121,13 @@
         <ImageView
                 android:src="@drawable/main_profile_photo_image"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/iv_frag_hip_det_c_photo"
+                android:layout_height="wrap_content" android:id="@+id/iv_frag_hip_det_eetc_photo"
                 android:layout_marginTop="92dp"
                 android:layout_marginLeft="25dp"/>
         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:orientation="horizontal"
                       android:layout_below="@id/cl_frag_hip_det_c_top"
-                      android:layout_toRightOf="@id/iv_frag_hip_det_c_photo"
+                      android:layout_toRightOf="@id/iv_frag_hip_det_eetc_photo"
                       android:layout_marginTop="12.7dp"
                       android:layout_marginLeft="11dp">
 
@@ -146,7 +146,7 @@
                         android:textColor="#575757"
                         android:lineSpacingExtra="2sp"
                         tools:text="17,462"
-                        android:id="@+id/tv_frag_hip_det_c_sub_num"/>
+                        android:id="@+id/tv_frag_hip_det_eetc_sub_num"/>
 
             </LinearLayout>
 
@@ -166,7 +166,7 @@
                         android:textSize="15sp"
                         android:textColor="#575757"
                         android:lineSpacingExtra="2sp"
-                        tools:text="331" android:id="@+id/tv_frag_hip_det_c_hifi_num"/>
+                        tools:text="331" android:id="@+id/tv_frag_hip_det_eetc_hif_num"/>
 
             </LinearLayout>
 
@@ -203,7 +203,7 @@
                 </RelativeLayout>
                 <android.support.v7.widget.RecyclerView android:layout_width="wrap_content"
                                                         android:layout_height="20dp"
-                                                        android:id="@+id/rv_frag_hip_det_t_tag"></android.support.v7.widget.RecyclerView>
+                                                        android:id="@+id/rv_frag_hip_det_eetc_tag"></android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
 
@@ -225,7 +225,7 @@
                     android:gravity="center_horizontal"
                     tools:text="안녕하세요~ 전 먹는게 세상에서 제일 좋아요!"
                     android:layout_marginTop="11dp"
-                    android:id="@+id/tv_frag_hip_det_c_tag_primary"/>
+            />
         </LinearLayout>
 
         <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -241,7 +241,7 @@
                                                         android:id="@+id/rv_frag_hip_det_frag_article"
                                                         android:clipToPadding="true"
                                                         android:paddingLeft="24dp"
-                android:layout_centerVertical="true"></android.support.v7.widget.RecyclerView>
+                                                        android:layout_centerVertical="true"></android.support.v7.widget.RecyclerView>
             </RelativeLayout>
             <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:orientation="horizontal">
@@ -254,7 +254,7 @@
                         tools:text="작품"
                         android:layout_marginLeft="24dp"/>
                 <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:src="@drawable/hipat_tpatx_work_adot_img"/>
+                           android:src="@drawable/hipat_tpatx_work_adot_img"/>
             </LinearLayout>
         </RelativeLayout>
 
@@ -280,10 +280,35 @@
                     android:gravity="center_horizontal"
                     tools:text="안녕하세요~ 전 먹는게 세상에서 제일 좋아요!!"
                     android:layout_marginTop="11dp"
-                    android:id="@+id/tv_frag_hip_det_c_tag_want"/>
+                    android:id="@+id/tv_frag_hip_det_eetc_want"/>
 
         </LinearLayout>
 
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:paddingTop="30dp"
+                      android:paddingHorizontal="25dp"
+                      android:layout_alignParentBottom="true" android:layout_centerHorizontal="true">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#242424"
+                    android:lineSpacingExtra="1sp"
+                    tools:text="학력/자격증/수상/경력"
+            />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#242424"
+                    android:lineSpacingExtra="8dp"
+                    android:gravity="center_horizontal"
+                    tools:text="안녕하세요~ 전 먹는게 세상에서 제일 좋아요!!"
+                    android:layout_marginTop="11dp"
+                    android:id="@+id/tv_frag_hip_det_eetc_spec"/>
+
+        </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="56dp"
@@ -297,7 +322,7 @@
                 android:gravity="center"
                 tools:text="연락하기"
                 android:layout_marginHorizontal="16dp"
-        />
+                android:id="@+id/btn_frag_hip_det_eetc_call"/>
     </RelativeLayout>
 
 
