@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.android.hipart_android.R
-import com.android.hipart_android.ui.hipat.data.HipatFragPortFolioData
+import com.android.hipart_android.ui.hipat.data.PortFolioData
 
-class HipatFragPortRecyclerViewAdapter(val ctx: Context, val dataListHipatFrag: ArrayList<HipatFragPortFolioData>) :
-    RecyclerView.Adapter<HipatFragPortRecyclerViewAdapter.Holder>() {
+class PortFolioRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<PortFolioData>) :
+    RecyclerView.Adapter<PortFolioRecyclerViewAdapter.Holder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_hipat_frag_portfolio, p0, false)
         return Holder(view)
@@ -21,9 +21,9 @@ class HipatFragPortRecyclerViewAdapter(val ctx: Context, val dataListHipatFrag: 
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.user_image_thumbnail.setImageResource(R.drawable.main_profile_photo_image)
-        holder.user_name.text = dataListHipatFrag[position].user_name
-        holder.kind_of_pat.text = dataListHipatFrag[position].kind_of_pat
-        when(dataListHipatFrag[position].how_many_filter)
+        holder.user_name.text = dataList[position].user_name
+        holder.kind_of_pat.text = dataList[position].kind_of_pat
+        when(dataList[position].how_many_filter)
         {
             0-> {
                 holder.img_filter_holder1.visibility = View.GONE
@@ -38,8 +38,8 @@ class HipatFragPortRecyclerViewAdapter(val ctx: Context, val dataListHipatFrag: 
                 holder.img_filter_more.visibility = View.GONE
             }
         }
-        holder.is_picked.isSelected = dataListHipatFrag[position].is_picked
-        holder.how_picked.text = dataListHipatFrag[position].how_picked.toString()
+        holder.is_picked.isSelected = dataList[position].is_picked
+        holder.how_picked.text = dataList[position].how_picked.toString()
 
 }
 
