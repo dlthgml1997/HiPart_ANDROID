@@ -37,18 +37,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <RelativeLayout
-                android:clipToPadding="false"
+                android:id="@+id/rl_not_tpat_upload_act_album"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginHorizontal="24dp"
+                android:background="@drawable/upload_tpat_port_border_gray"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:padding="1dp"
+                android:layout_height="172dp">
             <LinearLayout
                     android:id="@+id/ll_not_tpat_upload_act_album"
                     android:orientation="vertical"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginHorizontal="24dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@drawable/upload_tpat_port_border_gray"
                     android:layout_width="match_parent"
-                    android:layout_height="172dp">
+                    android:layout_height="match_parent">
                 <TextView
                         android:text="작품 커버 이미지 업로드하기"
                         android:textSize="17sp"
@@ -82,16 +83,10 @@
                     android:visibility="invisible"
                     app:cardCornerRadius="21dp"
                     app:cardElevation="0dp"
-                    android:background="@drawable/upload_tpat_port_border_gray"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginHorizontal="24dp"
-                    android:layout_marginBottom="30dp"
                     android:layout_width="match_parent"
-                    android:layout_height="172dp"
-            >
+                    android:layout_height="match_parent" >
                 <ImageView
                         android:id="@+id/img_not_tpat_upload_act_album"
-                        android:visibility="invisible"
                         android:scaleType="centerCrop"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -130,6 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         <EditText
+                android:id="@+id/et_not_tpat_upload_act_url"
                 android:hint="https://youtu.be/hLp0YKfKHZA"
                 android:textColorHint="#a2a2a2"
                 android:textSize="13sp"
