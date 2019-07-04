@@ -18,7 +18,9 @@
                 android:textColor="#242424"
                 android:layout_marginTop="96dp"
                 android:layout_marginLeft="50dp"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:fontFamily="@font/nanum_square_bold"
+        />
         <TextView
                 android:text="나랑 하이팟 할래요?"
                 android:layout_width="wrap_content"
@@ -26,7 +28,9 @@
                 android:textColor="#242424"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="50dp"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:fontFamily="@font/nanum_square_bold"
+        />
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,72 +57,64 @@
                     android:id="@+id/edt_Signup_Email_img"
             />
             <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:inputType="textEmailAddress"
                     android:id="@+id/edt_Signup_Email"
                     android:hint="이메일"
+                    android:fontFamily="@font/nanum_regular"
                     android:textColorHint="#c7c7c7"
                     android:textSize="13sp"
                     android:background="@android:color/transparent"
-                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginStart="10dp"
             />
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="100dp"
-                    android:textSize="9sp"
-                    android:textColor="#ff2e59"
-                    android:lineSpacingExtra="1sp"
-                    tools:text="잘못된 형식"
-                    android:id="@+id/txt_Signup_Wrong_Email"
-            />
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="130dp"
-                    android:textSize="9sp"
-                    android:textColor="#ff2e59"
-                    android:lineSpacingExtra="1sp"
-                    tools:text="중복"
-                    android:id="@+id/txt_Signup_Overlap_Email"
-            />
+                <TextView
+                        android:layout_gravity="center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:visibility="invisible"
+                        android:textSize="9sp"
+                        android:textColor="#ff2e59"
+                        tools:text="잘못된 형식"
+                        android:id="@+id/txt_Signup_Wrong_Email"
+                />
         </LinearLayout>
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="50dp"
-            android:background="@drawable/signup_gray_border"
-            android:id="@+id/ll_Signup_Password"
-            android:orientation="horizontal">
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/login_password_off_icon"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:id="@+id/edt_Signup_Password_img"
-                android:layout_gravity="center_vertical"
-        />
-        <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:inputType="textPassword"
-                android:hint="비밀번호(8자 이상)"
-                android:textColorHint="#c7c7c7"
-                android:textSize="13sp"
-                android:id="@+id/edt_Signup_Password"
-                android:background="@android:color/transparent"
-                android:layout_marginHorizontal="16dp"
-        />
-    </LinearLayout>
         <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="50dp"
+                android:background="@drawable/signup_gray_border"
+                android:id="@+id/ll_Signup_Password"
+                android:orientation="horizontal">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login_password_off_icon"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:id="@+id/edt_Signup_Password_img"
+                    android:layout_gravity="center_vertical"
+            />
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:inputType="textPassword"
+                    android:hint="비밀번호(8자 이상)"
+                    android:textColorHint="#c7c7c7"
+                    android:fontFamily="@font/nanum_regular"
+                    android:textSize="13sp"
+                    android:id="@+id/edt_Signup_Password"
+                    android:background="@android:color/transparent"
+                    android:layout_marginHorizontal="16dp"
+            />
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="261dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginHorizontal="50dp"
@@ -135,12 +131,14 @@
                     android:layout_gravity="center_vertical"
             />
             <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPassword"
+                    android:layout_weight="1"
                     android:hint="비밀번호 확인"
                     android:textColorHint="#c7c7c7"
+                    android:fontFamily="@font/nanum_regular"
                     android:textSize="13sp"
                     android:id="@+id/edt_Signup_PasswordCheck"
                     android:layout_marginHorizontal="16dp"
@@ -149,9 +147,10 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="80dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="16dp"
                     android:textSize="9sp"
+                    android:visibility="invisible"
                     android:textColor="#ff2e59"
                     android:lineSpacingExtra="1sp"
                     tools:text="불일치"
@@ -176,12 +175,14 @@
                     android:layout_gravity="center_vertical"
             />
             <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:hint="닉네임"
+                    android:layout_weight="1"
                     android:textColorHint="#c7c7c7"
+                    android:fontFamily="@font/nanum_regular"
                     android:textSize="13sp"
                     android:id="@+id/edt_Signup_Nickname"
                     android:layout_marginHorizontal="16dp"
@@ -190,12 +191,13 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="130dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="15dp"
                     android:textSize="9sp"
                     android:textColor="#ff2e59"
                     android:lineSpacingExtra="1sp"
                     tools:text="중복"
+                    android:visibility="visible"
                     android:id="@+id/txt_Signup_Overlap_Nickname"
             />
         </LinearLayout>
@@ -210,7 +212,7 @@
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/login_id_off_icon"
+                    android:src="@drawable/login_phone_off_icon"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="8dp"
                     android:id="@+id/edt_Signup_Phonenumber_img"
@@ -219,9 +221,11 @@
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPhonetic"
                     android:hint="연락처"
                     android:textColorHint="#c7c7c7"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/nanum_regular"
                     android:textSize="13sp"
                     android:id="@+id/edt_Signup_Phonenumber"
                     android:layout_marginHorizontal="16dp"
@@ -242,16 +246,24 @@
                     android:textSize="11sp"
             />
         </LinearLayout>
-                <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="42dp"
-                        android:layout_marginHorizontal="12dp"
-                        android:background="@drawable/signup_nextbtn"
-                        android:layout_marginVertical="5dp"
-                        android:text="다음 단계로"
-                        android:textColor="#ffffff"
-                        android:textSize="15sp"
-                />
-
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="36dp"
+        >
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:background="@drawable/signup_nextbtn"
+                    android:layout_marginVertical="5dp"
+                    android:text="다음 단계로"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/nanum_extra_bold"
+                    android:id="@+id/btn_signup_nextstep"
+            />
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
