@@ -10,16 +10,16 @@
             android:layout_height="match_parent">
         <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="240dp">
+                android:layout_height="253dp">
             <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="130dp"
                     app:srcCompat="@color/colorPrimary"/>
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="36dp"
                     app:srcCompat="@drawable/pofol_back_white_icon"
                     android:id="@+id/btn_toolbar_mypage_frg_back"/>
             <ImageView
@@ -27,14 +27,14 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="36dp"
                     app:srcCompat="@drawable/mypage_setting_icon"
                     android:id="@+id/btn_toolbar_mypage_frg_setting"/>
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="92dp"
+                    android:layout_marginLeft="24dp"
                     app:srcCompat="@drawable/main_profile_photo_image"
                     android:id="@+id/img_mypage_frg_profile_photo"/>
             <LinearLayout
@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/img_mypage_frg_profile_photo"
-                    android:layout_marginTop="72dp"
+                    android:layout_marginTop="78dp"
                     android:layout_marginLeft="16dp">
                 <LinearLayout
                         android:orientation="horizontal"
@@ -51,6 +51,7 @@
                         android:layout_marginBottom="2dp">
                     <TextView
                             android:text="Nado"
+                            android:fontFamily="@font/nanum_bold"
                             android:textSize="20sp"
                             android:textColor="#ffffff"
                             android:layout_width="match_parent"
@@ -58,6 +59,7 @@
                             android:id="@+id/txt_mypage_frg_name"/>
                     <TextView
                             android:text="님"
+                            android:fontFamily="@font/nanum_regular"
                             android:textSize="15sp"
                             android:textColor="#ffffff"
                             android:layout_width="match_parent"
@@ -76,6 +78,7 @@
                         android:layout_height="wrap_content">
                     <TextView
                             android:text="크리에이터"
+                            android:fontFamily="@font/nanum_regular"
                             android:textSize="11sp"
                             android:textColor="#ffffff"
                             android:layout_width="wrap_content"
@@ -89,8 +92,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/img_mypage_frg_profile_photo"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="24dp"
             >
                 <LinearLayout
                         android:orientation="vertical"
@@ -99,6 +102,7 @@
                         android:layout_marginRight="24dp">
                     <TextView
                             android:text="30"
+                            android:fontFamily="@font/nanum_bold"
                             android:textSize="20sp"
                             android:textColor="#434343"
                             android:layout_width="match_parent"
@@ -107,6 +111,7 @@
                             android:id="@+id/txt_mypage_frg_fram_num"/>
                     <TextView
                             android:text="보유한 팜"
+                            android:fontFamily="@font/nanum_regular"
                             android:textSize="10sp"
                             android:textColor="#434343"
                             android:layout_width="match_parent"
@@ -119,6 +124,7 @@
                         android:layout_marginRight="24dp">
                     <TextView
                             android:text="2,555"
+                            android:fontFamily="@font/nanum_bold"
                             android:textSize="20sp"
                             android:textColor="#434343"
                             android:layout_width="match_parent"
@@ -127,6 +133,7 @@
                             android:id="@+id/txt_mypage_frg_pick_num"/>
                     <TextView
                             android:text="나를 픽했어요"
+                            android:fontFamily="@font/nanum_regular"
                             android:textSize="10sp"
                             android:textColor="#434343"
                             android:layout_width="match_parent"
@@ -138,6 +145,7 @@
                         android:layout_height="match_parent">
                     <TextView
                             android:text="331"
+                            android:fontFamily="@font/nanum_bold"
                             android:textSize="20sp"
                             android:textColor="#434343"
                             android:layout_width="match_parent"
@@ -146,6 +154,7 @@
                             android:id="@+id/txt_mypage_frg_hifive_num"/>
                     <TextView
                             android:text="나와 하이파이브했어요"
+                            android:fontFamily="@font/nanum_regular"
                             android:textSize="10sp"
                             android:textColor="#434343"
                             android:layout_width="match_parent"
@@ -157,12 +166,12 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="16dp">
+                android:layout_marginHorizontal="24dp">
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="12dp"
+                    android:layout_marginBottom="16dp"
                     android:id="@+id/ll_mypage_frg_mypick">
 
                 <ImageView
@@ -172,6 +181,7 @@
                 <TextView
                         android:text="마이 픽"
                         android:textSize="14sp"
+                        android:fontFamily="@font/nanum_bold"
                         android:textColor="#484848"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -181,7 +191,7 @@
             <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#f1f1f1"/>
+                    android:background="#e4e4e4"/>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -194,6 +204,7 @@
                         app:srcCompat="@drawable/mypage_hifive_grey_icon"/>
                 <TextView
                         android:text="나랑 하이파이브한 사람"
+                        android:fontFamily="@font/nanum_bold"
                         android:textSize="14sp"
                         android:textColor="#484848"
                         android:layout_width="wrap_content"
@@ -204,7 +215,7 @@
             <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#f1f1f1"/>
+                    android:background="#e4e4e4"/>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -217,6 +228,7 @@
                         app:srcCompat="@drawable/mypage_pofol_off_grey_icon"/>
                 <TextView
                         android:text="상세 포트폴리오 관리"
+                        android:fontFamily="@font/nanum_bold"
                         android:textSize="14sp"
                         android:textColor="#484848"
                         android:layout_width="wrap_content"
@@ -226,7 +238,7 @@
             <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#f1f1f1"/>
+                    android:background="#e4e4e4"/>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -239,6 +251,7 @@
                         app:srcCompat="@drawable/mypage_talk_off_grey_icon"/>
                 <TextView
                         android:text="1:1 문의"
+                        android:fontFamily="@font/nanum_bold"
                         android:textSize="14sp"
                         android:textColor="#484848"
                         android:layout_width="wrap_content"
@@ -248,7 +261,7 @@
             <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#f1f1f1"/>
+                    android:background="#e4e4e4"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
