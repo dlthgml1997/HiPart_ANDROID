@@ -16,7 +16,8 @@
             android:orientation="vertical"
             android:background="#fff"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_port_frag_portfolio_edit">
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent" android:layout_height="80dp">

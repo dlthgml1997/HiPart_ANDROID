@@ -2,16 +2,22 @@ package com.android.hipart_android.ui.portfolio.dialog
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
 import kotlinx.android.synthetic.main.activity_hipat_filter.*
 
 class FilterDialog : DialogFragment(){
+
+    private val filterSuccessDialog by lazy {
+        FilterSuccessDialog()
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_pofol_filter, container, false)
@@ -20,8 +26,6 @@ class FilterDialog : DialogFragment(){
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-
         setOnClickListener()
     }
 
@@ -56,6 +60,13 @@ class FilterDialog : DialogFragment(){
 
         btn_hipat_filter_filter.setOnClickListener {
             dismiss()
+            filterSuccessDialog.show(activity!!.supportFragmentManager, "filter success")
+            val handler = Handler()
+            handler.postDelayed({
+                run {
+                    filterSuccessDialog.dismiss()
+                }
+            }, 1500)
         }
     }
 

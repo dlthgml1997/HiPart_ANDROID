@@ -15,7 +15,18 @@ class HipatFilterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hipat_filter)
 
+        configureTitleBar()
         setOnClickListener()
+    }
+
+    private fun configureTitleBar(){
+        btn_toolbar_hipat_filter_back.setOnClickListener {
+            finish()
+        }
+        // 필터값이 적용된 것!!!
+        btn_hipat_filter_filter.setOnClickListener {
+            finish()
+        }
     }
 
     private fun setOnClickListener(){

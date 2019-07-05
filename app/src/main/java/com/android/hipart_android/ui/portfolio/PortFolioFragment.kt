@@ -35,7 +35,6 @@ class PortFolioFragment : BottomSheetDialogFragment() {
         }
 
         ll_port_frag_portfolio_edit.setOnClickListener {
-            showDialog()
         }
 
         img_port_frag_background.setOnClickListener {
@@ -43,10 +42,6 @@ class PortFolioFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun showDialog() {
-        val filterDialog = FilterDialog()
-        filterDialog.show(activity!!.supportFragmentManager, "filter dialog")
-    }
 
 
 }
