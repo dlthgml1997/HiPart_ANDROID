@@ -1,4 +1,4 @@
-package com.android.hipart_android.ui.mypage
+package com.android.hipart_android.ui.mypage.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
