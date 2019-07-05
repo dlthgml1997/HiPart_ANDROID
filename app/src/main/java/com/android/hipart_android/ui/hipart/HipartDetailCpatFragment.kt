@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.android.hipart_android.R
+import kotlinx.android.synthetic.main.fragment_hipart_detail_cpat.*
 
 class HipartDetailCpatFragment : Fragment() {
 
@@ -21,6 +22,11 @@ class HipartDetailCpatFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        btn_hip_det_c_frag_contact.setOnClickListener {
+            val contactDialog : ContactDialogFragment = ContactDialogFragment()
+            contactDialog.show(childFragmentManager, "contact Dialog")
+        }
 
 
     }
