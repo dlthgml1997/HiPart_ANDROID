@@ -1,19 +1,17 @@
-package com.android.hipart_android.ui.mypage.fragment
+package com.android.hipart_android.ui.mypage.dialog
 
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.hipart_android.R
-import com.android.hipart_android.ui.mypage.dialog.HifiveDialog
 import kotlinx.android.synthetic.main.dialog_mypage_hifive.*
-import kotlinx.android.synthetic.main.fragment_mypage.*
+import kotlinx.android.synthetic.main.dialog_mypage_hifive.view.*
 
-class MyPageFragment : Fragment() {
+class HifiveDialog : DialogFragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_mypage, container, false)
+        val view = inflater.inflate(R.layout.dialog_mypage_hifive, container, false)
         return view
     }
 
@@ -24,9 +22,8 @@ class MyPageFragment : Fragment() {
     }
 
     private fun setOnBtnClikListener(){
-        ll_mypage_frg_myhifive.setOnClickListener {
-            val hifiveDialog = HifiveDialog()
-            hifiveDialog.show(activity!!.supportFragmentManager, "hifive dialog")
+        btn_dialog_mypage_hifive.setOnClickListener {
+            dismiss()
         }
     }
 }
