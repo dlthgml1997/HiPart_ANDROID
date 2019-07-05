@@ -61,7 +61,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             .commit()
     }
 
-    private fun replaceFragment(frameLayoutId: Int, fragment: Fragment) {
+    fun replaceFragment(frameLayoutId: Int, fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .replace(frameLayoutId, fragment)
