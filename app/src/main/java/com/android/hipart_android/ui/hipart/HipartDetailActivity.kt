@@ -2,6 +2,7 @@ package com.android.hipart_android.ui.hipart
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.FragmentManager
 import com.android.hipart_android.R
 import kotlinx.android.synthetic.main.activity_hipart_detail.*
 
@@ -11,13 +12,10 @@ class HipartDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hipart_detail)
 
-        setClickListeners()
+        val fm = supportFragmentManager
+        val fragmentTransaction = fm.beginTransaction()
+        fragmentTransaction.add(R.id.fl_hip_detail_act, HipartDetailCpatFragment())
+        fragmentTransaction.commit()
     }
 
-    private fun setClickListeners() {
-        btn_hip_detail_act_contact.setOnClickListener {
-            val contactDialog: ContactAlertDialog = ContactAlertDialog(this)
-            contactDialog.show()
-        }
-    }
 }

@@ -241,7 +241,7 @@
                                                         android:id="@+id/rv_frag_hip_det_frag_article"
                                                         android:clipToPadding="true"
                                                         android:paddingLeft="24dp"
-                android:layout_centerVertical="true"></android.support.v7.widget.RecyclerView>
+                                                        android:layout_centerVertical="true"></android.support.v7.widget.RecyclerView>
             </RelativeLayout>
             <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:orientation="horizontal">
@@ -254,7 +254,7 @@
                         android:text="작품"
                         android:layout_marginLeft="24dp"/>
                 <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:src="@drawable/hipat_tpatx_work_adot_img"/>
+                           android:src="@drawable/hipat_tpatx_work_adot_img"/>
             </LinearLayout>
         </RelativeLayout>
 
@@ -297,7 +297,7 @@
                 android:gravity="center"
                 android:text="연락하기"
                 android:layout_marginHorizontal="16dp"
-        />
+                android:id="@+id/btn_hip_detail_frag_contact"/>
     </RelativeLayout>
 
 
