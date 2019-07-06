@@ -191,14 +191,14 @@ class HomeFragment : Fragment() {
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                iv_main_act_pick.visibility = View.GONE
+                rv_main_act_pick.visibility = View.GONE
             }
 
             override fun onAnimationStart(animation: Animation?) {
-                iv_main_act_pick.visibility = View.VISIBLE
+                rv_main_act_pick.visibility = View.VISIBLE
             }
         })
-        iv_main_act_pick.startAnimation(anim)
+        rv_main_act_pick.startAnimation(anim)
     }
 
     internal inner class MyBounceInterpolator(amplitude: Double, frequency: Double) :
