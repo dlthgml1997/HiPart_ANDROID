@@ -181,8 +181,7 @@
             </LinearLayout>
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/nanum_bold"
                     android:textSize="12sp"
                     android:textColor="#242424"
                     android:lineSpacingExtra="1sp"
@@ -191,9 +190,8 @@
                     android:id="@+id/tv_frag_hip_det_eetc_intro"
             />
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    style="@style/nanum_regular"
+                    android:textSize="12sp"
                     android:textColor="#242424"
                     android:lineSpacingExtra="8dp"
                     android:gravity="center_horizontal"
@@ -210,8 +208,7 @@
                           android:orientation="horizontal"
                           android:layout_marginTop="12dp">
                 <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="16dp"
+                        style="@style/nanum_bold"
                         android:textSize="12sp"
                         android:textColor="#242424"
                         android:lineSpacingExtra="1sp"

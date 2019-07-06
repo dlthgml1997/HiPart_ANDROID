@@ -6,8 +6,7 @@
     <ImageView android:layout_width="175dp" android:layout_height="98dp"
                android:src="@drawable/article_image"/>
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/nanum_bold"
             android:textSize="13sp"
             android:textColor="#434343"
             android:lineSpacingExtra="1sp"
@@ -17,12 +16,11 @@
             android:layout_marginTop="15dp"
     />
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/nanum_regular"
             android:textSize="10sp"
             android:textColor="#434343"
             android:lineSpacingExtra="4dp"
-            tools:text="너무너무 맛있어요~~!! 특히 치즈를 올려"
+            android:text="너무너무 맛있어요~~!! 특히 치즈를 올려"
             android:layout_marginLeft="6dp"
             android:layout_marginTop="8dp"/>
 
