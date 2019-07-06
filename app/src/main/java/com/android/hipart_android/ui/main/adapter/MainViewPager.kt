@@ -1,4 +1,4 @@
-package com.android.hipart_android.ui.adapter
+package com.android.hipart_android.ui.main.adapter
 
 import android.content.Context
 import android.support.v4.view.ViewPager

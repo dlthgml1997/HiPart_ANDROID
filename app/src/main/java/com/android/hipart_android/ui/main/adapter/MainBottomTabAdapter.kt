@@ -1,4 +1,4 @@
-package com.android.hipart_android.ui.adapter
+package com.android.hipart_android.ui.main.adapter
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
