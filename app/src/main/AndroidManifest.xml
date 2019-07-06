@@ -19,6 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.search.SearchActivity">
+
+        </activity>
+        <activity android:name=".ui.notification.NotificationActivity">
+
+        </activity>
     </application>
 
 </manifest>

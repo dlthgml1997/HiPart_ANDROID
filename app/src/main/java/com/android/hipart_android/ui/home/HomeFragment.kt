@@ -12,9 +12,42 @@ import com.android.hipart_android.ui.home.adapter.HomeFragAdAdapter
 import com.android.hipart_android.ui.home.adapter.HomeFragHipatAdapter
 import com.android.hipart_android.ui.home.data.HomeFragAdData
 import com.android.hipart_android.ui.home.data.HomeFragHipatData
+import com.android.hipart_android.ui.notification.NotificationActivity
+import com.android.hipart_android.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.jetbrains.anko.support.v4.startActivity
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), View.OnClickListener {
+    override fun onClick(v: View?) {
+        when (v) {
+
+            btn_frag_home_alarm -> {
+                startActivity<NotificationActivity>()
+            }
+
+            btn_frag_home_search -> {
+                startActivity<SearchActivity>()
+            }
+
+            btn_frag_home_c_pat -> {
+
+                // (context as MainActivity).replaceFragment(R.id.frame_layout_main_act, HiPatFragment())
+
+            }
+
+            btn_frag_home_e_pat -> {
+
+            }
+
+            btn_frag_home_t_pat -> {
+
+            }
+
+            btn_frag_home_etc -> {
+
+            }
+        }
+    }
 
     private val hipartDataList by lazy {
         ArrayList<HomeFragHipatData>()
@@ -33,12 +66,13 @@ class HomeFragment : Fragment() {
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
-            = inflater.inflate(R.layout.fragment_home, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+        inflater.inflate(R.layout.fragment_home, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setVpAdapter()
+        setOnClickListener()
     }
 
     private fun setVpAdapter() {
@@ -218,4 +252,13 @@ class HomeFragment : Fragment() {
     }
 
     private val picAnimListener = View.OnClickListener { setAnimPickIcon() }
+
+    private fun setOnClickListener() {
+        btn_frag_home_alarm.setOnClickListener(this)
+        btn_frag_home_search.setOnClickListener(this)
+        btn_frag_home_c_pat.setOnClickListener(this)
+        btn_frag_home_e_pat.setOnClickListener(this)
+        btn_frag_home_t_pat.setOnClickListener(this)
+        btn_frag_home_etc.setOnClickListener(this)
+    }
 }

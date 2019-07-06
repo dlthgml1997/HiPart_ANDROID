@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.home.data.HomeFragHipatData
@@ -24,7 +25,6 @@ class HomeFragHipatAdapter(private val dataList: List<HomeFragHipatData>, privat
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = LayoutInflater.from(context)!!.inflate(R.layout.vp_item_home_hipat, container, false)
-
 
         val userImg = view.findViewById<ImageView>(R.id.iv_rv_home_hipat_user)
 
@@ -44,15 +44,19 @@ class HomeFragHipatAdapter(private val dataList: List<HomeFragHipatData>, privat
 
         val btnPick = view.findViewById<LinearLayout>(R.id.btn_rv_home_hipat_pick)
 
+        val root = view.findViewById<RelativeLayout>(R.id.root_hipat_frag)
+
         container.addView(view, 0)
 
         btnPick.setOnClickListener (picAnimListener)
 
+
+
         return view
     }
+
 
     override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
         container.removeView(obj as View)
     }
-
 }
