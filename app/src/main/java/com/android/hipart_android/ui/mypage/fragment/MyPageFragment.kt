@@ -1,5 +1,6 @@
 package com.android.hipart_android.ui.mypage.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
@@ -28,12 +29,24 @@ class MyPageFragment : Fragment() {
     }
 
     private fun setOnBtnClikListener(){
-        ll_mypage_frg_myhifive.setOnClickListener {
+
+        btn_toolbar_mypage_frag_setting.setOnClickListener {
+            startActivity<ModifyActivity>()
+        }
+
+        ll_mypage_frag_mypick.setOnClickListener {
+            startActivity<MyPickActivity>()
+        }
+
+        ll_mypage_frag_myhifive.setOnClickListener {
             val hifiveDialog = HifiveDialog()
             hifiveDialog.show(activity!!.supportFragmentManager, "hifive dialog")
         }
 
-        ll_mypage_frg_talk.setOnClickListener {
+        ll_mypage_frag_mypofol.setOnClickListener {
+        }
+
+        ll_mypage_frag_talk.setOnClickListener {
             val questionDialog = QuestionDialog()
             questionDialog.show(activity!!.supportFragmentManager, "question dialog")
         }
