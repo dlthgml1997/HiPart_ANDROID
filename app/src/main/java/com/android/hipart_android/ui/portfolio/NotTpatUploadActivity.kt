@@ -70,7 +70,7 @@ class NotTpatUploadActivity : AppCompatActivity() {
     }
 
     private fun showDialog() {
-        portUploadSuccessDialog.show(supportFragmentManager, "portUploadDialod")
+        portUploadSuccessDialog.show(supportFragmentManager, "portUploadDialog")
         val handler = Handler()
         handler.postDelayed({
             run {
@@ -158,5 +158,3 @@ class NotTpatUploadActivity : AppCompatActivity() {
         return result
     }
 }
-
-
