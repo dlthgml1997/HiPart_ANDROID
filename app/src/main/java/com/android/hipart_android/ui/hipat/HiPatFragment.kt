@@ -45,7 +45,7 @@ class HiPatFragment : Fragment() {
     }
 
     private fun configureMainTab() {
-        vp_hipat_frag_nav.adapter = HipatFragPortViewPagerAdapter(fragmentManager!!, 5)
+        vp_hipat_frag_nav.adapter = HipatFragPortViewPagerAdapter(childFragmentManager!!, 5)
         tl_hipat_frag_pat_nav.setupWithViewPager(vp_hipat_frag_nav)
 
         setCustomTabView()
