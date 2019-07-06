@@ -23,6 +23,7 @@ class ContactAlertDialog(val ctx: Context) : AlertDialog(ctx) {
         setContentView(R.layout.fragment_contact_dialog)
 
         buttonChange()
+
     }
 
     private fun buttonChange() {
@@ -54,5 +55,9 @@ class ContactAlertDialog(val ctx: Context) : AlertDialog(ctx) {
         })
 
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

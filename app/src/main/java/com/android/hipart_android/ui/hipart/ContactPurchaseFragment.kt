@@ -13,6 +13,7 @@ import android.view.ViewGroup
 
 import com.android.hipart_android.R
 import kotlinx.android.synthetic.main.fragment_contact_purchase.*
+import org.jetbrains.anko.support.v4.toast
 
 class ContactPurchaseFragment : Fragment() {
 
@@ -32,11 +33,18 @@ class ContactPurchaseFragment : Fragment() {
 
     private fun setListeners() {
 
-        val number = tv_contact_purc_frag_nunmber.text
-        val cm = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        cm.setPrimaryClip(ClipData.newPlainText(null, number))
+
 
         iv_contact_purc_frag_back.setOnClickListener {
+            activity!!.onBackPressed()
+        }
+        btn_contact_dial_frag_copy.setOnClickListener {
+            val number = tv_contact_purc_frag_nunmber.text
+            val cm = activity!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            cm.apply {
+                setPrimaryClip(ClipData.newPlainText(null, number))
+                toast("번호가 복사되었습니다")
+            }
             activity!!.onBackPressed()
         }
 

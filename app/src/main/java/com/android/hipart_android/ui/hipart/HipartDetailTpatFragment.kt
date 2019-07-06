@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.android.hipart_android.R
+import kotlinx.android.synthetic.main.fragment_contact_dialog.*
 import kotlinx.android.synthetic.main.fragment_hipart_detail_cpat.*
 import kotlinx.android.synthetic.main.fragment_hipart_detail_tpat.*
 
@@ -34,12 +35,17 @@ class HipartDetailTpatFragment : Fragment() {
             val contactDialog: ContactAlertDialog = ContactAlertDialog(activity!!)
             contactDialog.show()
 
+            contactDialog.setCancelable(true)
+            contactDialog.setCanceledOnTouchOutside(true)
             contactDialog.setOnDismissListener {
                 val fm = activity!!.supportFragmentManager
                 val fragmentTransaction = fm.beginTransaction()
                 fragmentTransaction.add(R.id.fl_hip_detail_act, ContactPurchaseFragment())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
+            }
+            contactDialog.setOnCancelListener {
+                
             }
         }
 

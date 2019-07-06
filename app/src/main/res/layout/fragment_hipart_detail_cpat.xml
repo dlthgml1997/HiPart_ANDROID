@@ -5,295 +5,303 @@
                 android:layout_height="match_parent"
                 tools:context=".ui.hipart.HipartDetailCpatFragment"
                 android:orientation="vertical">
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="203dp"
-                    android:id="@+id/rl_frag_hip_det_c_title">
-
-        <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent" android:layout_height="130dp"
-                android:background="#3eecad"
-                android:id="@+id/cl_frag_hip_det_c_top"
-        >
-            <ImageView
-                    android:src="@android:drawable/btn_star_big_on"
-                    android:layout_width="85dp"
-                    android:layout_height="67.7dp"
-                    android:id="@+id/imageView" android:layout_marginTop="13dp"
-                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="11dp" android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.181"/>
-            <ImageView
-                    android:src="@android:drawable/btn_star_big_on"
-                    android:layout_width="41.3dp"
-                    android:layout_height="35dp"
-                    android:id="@+id/imageView2" app:layout_constraintStart_toEndOf="@+id/imageView"
-                    android:layout_marginTop="40dp"
-                    app:layout_constraintTop_toTopOf="@+id/imageView" android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent" android:layout_marginStart="44dp"/>
-            <ImageView
-                    android:src="@android:drawable/btn_star_big_on"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView3" app:layout_constraintStart_toEndOf="@+id/imageView2"
-                    android:layout_marginStart="44dp" android:layout_marginTop="17dp"
-                    app:layout_constraintTop_toTopOf="@+id/imageView"/>
-            <ImageView
-                    android:src="@android:drawable/btn_star_big_on"
-                    android:layout_width="80dp"
-                    android:layout_height="40dp"
-                    android:id="@+id/imageView4" app:layout_constraintStart_toEndOf="@+id/imageView3"
-                    android:layout_marginStart="13dp" android:layout_marginBottom="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="8dp" android:layout_marginTop="22dp"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
-            <ImageView
-                    android:src="@android:drawable/btn_star_big_on"
-                    android:layout_width="40dp"
-                    android:layout_height="16dp"
-                    android:id="@+id/imageView5"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" android:layout_marginTop="30dp"
-                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@+id/imageView2"
-                    android:layout_marginEnd="8dp"/>
-            <ImageView
-                    android:src="@drawable/pofol_back_white_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/iv_frag_hip_det_c_back" android:layout_marginTop="36dp"
-                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="17dp"/>
-            <ImageView
-                    android:src="@drawable/pofol_pick_off_white_icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:id="@+id/iv_frag_hip_det_c_pick_off"
-                    android:layout_marginTop="36dp" app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="25dp"/>
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="9sp"
-                    android:textColor="#ffffff"
-                    android:lineSpacingExtra="1sp"
-                    android:text="224"
-                    android:id="@+id/textView"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_frag_hip_det_c_pick_off"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="29dp"/>
-            <TextView
-                    style="@style/nanum_regular"
-                    android:textSize="12sp"
-                    android:textColor="#ffffff"
-                    android:lineSpacingExtra="3sp"
-                    android:text="크리에이터"
-                    android:id="@+id/tv_frag_hip_det_c_status"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3"
-                    app:layout_constraintStart_toStartOf="@+id/textView3" android:layout_marginTop="12dp"/>
-            <TextView
-                    style="@style/nanum_bold"
-                    android:textSize="20sp"
-                    android:textColor="#ffffff"
-                    android:lineSpacingExtra="3sp"
-                    android:text="Nado"
-                    android:id="@+id/textView3"
-                    android:layout_marginStart="126dp"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="72dp"
-                    app:layout_constraintTop_toTopOf="parent"/>
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="#ffffff"
-                    android:lineSpacingExtra="2sp"
-                    android:text="님"
-                    android:id="@+id/textView4" app:layout_constraintStart_toEndOf="@+id/textView3"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintTop_toTopOf="@+id/textView3"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView3"/>
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:orientation="horizontal" app:layout_constraintStart_toEndOf="@+id/textView4"
-                          android:layout_marginStart="4dp"
-                          app:layout_constraintTop_toTopOf="@+id/textView3">
-                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                           android:src="@drawable/pofol_youtube_white_img"
-                           android:layout_marginRight="4dp"/>
-                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                           android:src="@drawable/pofol_afreeca_white_img"
-                           android:layout_marginRight="4dp"/>
-                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                           android:src="@drawable/pofol_twitch_white_img"/>
-            </LinearLayout>
-
-        </android.support.constraint.ConstraintLayout>
-        <ImageView
-                android:src="@drawable/main_profile_photo_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/iv_frag_hip_det_c_photo"
-                android:layout_marginTop="92dp"
-                android:layout_marginLeft="24dp"/>
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:layout_below="@id/cl_frag_hip_det_c_top"
-                      android:layout_toRightOf="@id/iv_frag_hip_det_c_photo"
-                      android:layout_marginTop="12.7dp"
-                      android:layout_marginLeft="11dp">
-
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:orientation="vertical">
-                <TextView style="@style/nanum_regular"
-                          android:textSize="10sp"
-                          android:textColor="#434343"
-                          android:lineSpacingExtra="2sp"
-                          android:text="구독자"/>
-                <TextView
-                        style="@style/nanum_regular"
-                        android:textSize="15sp"
-                        android:textColor="#575757"
-                        android:lineSpacingExtra="2sp"
-                        android:text="17,462"
-                        android:id="@+id/tv_frag_hip_det_c_sub_num"
-                        android:layout_marginTop="12dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:orientation="vertical"
-                          android:layout_marginLeft="44dp">
-
-                <TextView style="@style/nanum_regular"
-                          android:textSize="10sp"
-                          android:textColor="#434343"
-                          android:lineSpacingExtra="2sp"
-                          android:text="하이파이브 매칭"/>
-                <TextView
-                        style="@style/nanum_regular"
-                        android:textSize="15sp"
-                        android:textColor="#575757"
-                        android:lineSpacingExtra="2sp"
-                        android:text="331" android:id="@+id/tv_frag_hip_det_c_hifi_num"
-                android:layout_marginTop="12dp"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                  android:orientation="vertical"
-                  android:layout_below="@id/rl_frag_hip_det_c_title">
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="1dp"
-                        android:background="#e4e4e4"
-                        android:layout_marginHorizontal="24dp"></RelativeLayout>
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:paddingHorizontal="25.5dp"
                       android:orientation="vertical"
-                      android:paddingTop="20.5dp">
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:orientation="horizontal">
+    android:layout_above="@+id/rl_hip_det_c_frag_contact">
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="203dp"
+                            android:id="@+id/rl_frag_hip_det_c_title">
 
-                <RelativeLayout android:layout_width="40dp" android:layout_height="20dp"
-                                android:background="@drawable/bg_tag_purple"
-                                android:layout_marginRight="8dp">
+                <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent" android:layout_height="130dp"
+                        android:background="#3eecad"
+                        android:id="@+id/cl_frag_hip_det_c_top"
+                >
+                    <ImageView
+                            android:src="@android:drawable/btn_star_big_on"
+                            android:layout_width="85dp"
+                            android:layout_height="67.7dp"
+                            android:id="@+id/imageView" android:layout_marginTop="13dp"
+                            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginStart="11dp" android:layout_marginBottom="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.181"/>
+                    <ImageView
+                            android:src="@android:drawable/btn_star_big_on"
+                            android:layout_width="41.3dp"
+                            android:layout_height="35dp"
+                            android:id="@+id/imageView2" app:layout_constraintStart_toEndOf="@+id/imageView"
+                            android:layout_marginTop="40dp"
+                            app:layout_constraintTop_toTopOf="@+id/imageView" android:layout_marginBottom="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginStart="44dp"/>
+                    <ImageView
+                            android:src="@android:drawable/btn_star_big_on"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView3" app:layout_constraintStart_toEndOf="@+id/imageView2"
+                            android:layout_marginStart="44dp" android:layout_marginTop="17dp"
+                            app:layout_constraintTop_toTopOf="@+id/imageView"/>
+                    <ImageView
+                            android:src="@android:drawable/btn_star_big_on"
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/imageView4" app:layout_constraintStart_toEndOf="@+id/imageView3"
+                            android:layout_marginStart="13dp" android:layout_marginBottom="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginEnd="8dp" android:layout_marginTop="22dp"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
+                    <ImageView
+                            android:src="@android:drawable/btn_star_big_on"
+                            android:layout_width="40dp"
+                            android:layout_height="16dp"
+                            android:id="@+id/imageView5"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView" android:layout_marginTop="30dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                            android:layout_marginEnd="8dp"/>
+                    <ImageView
+                            android:src="@drawable/pofol_back_white_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/iv_frag_hip_det_c_back" android:layout_marginTop="12dp"
+                            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginStart="17dp"/>
+                    <ImageView
+                            android:src="@drawable/pofol_pick_off_white_icon"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:id="@+id/iv_frag_hip_det_c_pick_off"
+                            android:layout_marginTop="36dp" app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="25dp"/>
                     <TextView
-                            android:id="@+id/tv_frag_hip_det_c_tag_primary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="9sp"
+                            android:textColor="#ffffff"
+                            android:lineSpacingExtra="1sp"
+                            android:text="224"
+                            android:id="@+id/textView"
+                            app:layout_constraintTop_toBottomOf="@+id/iv_frag_hip_det_c_pick_off"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginEnd="29dp"/>
+                    <TextView
+                            style="@style/nanum_regular"
+                            android:textSize="12sp"
+                            android:textColor="#ffffff"
+                            android:lineSpacingExtra="3sp"
+                            android:text="크리에이터"
+                            android:id="@+id/tv_frag_hip_det_c_status"
+                            app:layout_constraintTop_toBottomOf="@+id/textView3"
+                            app:layout_constraintStart_toStartOf="@+id/textView3" android:layout_marginTop="12dp"/>
+                    <TextView
+                            style="@style/nanum_bold"
+                            android:textSize="20sp"
+                            android:textColor="#ffffff"
+                            android:lineSpacingExtra="3sp"
+                            android:text="Nado"
+                            android:id="@+id/textView3"
+                            android:layout_marginStart="126dp"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="72dp"
+                            app:layout_constraintTop_toTopOf="parent"/>
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textColor="#ffffff"
+                            android:lineSpacingExtra="2sp"
+                            android:text="님"
+                            android:id="@+id/textView4" app:layout_constraintStart_toEndOf="@+id/textView3"
+                            android:layout_marginStart="8dp"
+                            app:layout_constraintTop_toTopOf="@+id/textView3"
+                            app:layout_constraintBottom_toBottomOf="@+id/textView3"/>
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                  android:orientation="horizontal" app:layout_constraintStart_toEndOf="@+id/textView4"
+                                  android:layout_marginStart="4dp"
+                                  app:layout_constraintTop_toTopOf="@+id/textView3">
+                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                   android:src="@drawable/pofol_youtube_white_img"
+                                   android:layout_marginRight="4dp"/>
+                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                   android:src="@drawable/pofol_afreeca_white_img"
+                                   android:layout_marginRight="4dp"/>
+                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                   android:src="@drawable/pofol_twitch_white_img"/>
+                    </LinearLayout>
+
+                </android.support.constraint.ConstraintLayout>
+                <ImageView
+                        android:src="@drawable/main_profile_photo_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/iv_frag_hip_det_c_photo"
+                        android:layout_marginTop="92dp"
+                        android:layout_marginLeft="24dp"/>
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:orientation="horizontal"
+                              android:layout_below="@id/cl_frag_hip_det_c_top"
+                              android:layout_toRightOf="@id/iv_frag_hip_det_c_photo"
+                              android:layout_marginTop="12.7dp"
+                              android:layout_marginLeft="11dp">
+
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                  android:orientation="vertical">
+                        <TextView style="@style/nanum_regular"
+                                  android:textSize="10sp"
+                                  android:textColor="#434343"
+                                  android:lineSpacingExtra="2sp"
+                                  android:text="구독자"/>
+                        <TextView
+                                style="@style/nanum_regular"
+                                android:textSize="15sp"
+                                android:textColor="#575757"
+                                android:lineSpacingExtra="2sp"
+                                android:text="17,462"
+                                android:id="@+id/tv_frag_hip_det_c_sub_num"
+                                android:layout_marginTop="12dp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                  android:orientation="vertical"
+                                  android:layout_marginLeft="44dp">
+
+                        <TextView style="@style/nanum_regular"
+                                  android:textSize="10sp"
+                                  android:textColor="#434343"
+                                  android:lineSpacingExtra="2sp"
+                                  android:text="하이파이브 매칭"/>
+                        <TextView
+                                style="@style/nanum_regular"
+                                android:textSize="15sp"
+                                android:textColor="#575757"
+                                android:lineSpacingExtra="2sp"
+                                android:text="331" android:id="@+id/tv_frag_hip_det_c_hifi_num"
+                                android:layout_marginTop="12dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                          android:orientation="vertical"
+                          android:layout_below="@id/rl_frag_hip_det_c_title">
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="1dp"
+                                android:background="#e4e4e4"
+                                android:layout_marginHorizontal="24dp"></RelativeLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:paddingHorizontal="25.5dp"
+                              android:orientation="vertical"
+                              android:paddingTop="20.5dp">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                  android:orientation="horizontal">
+
+                        <RelativeLayout android:layout_width="40dp" android:layout_height="20dp"
+                                        android:background="@drawable/bg_tag_purple"
+                                        android:layout_marginRight="8dp">
+                            <TextView
+                                    android:id="@+id/tv_frag_hip_det_c_tag_primary"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:textColor="#ffffff"
+                                    android:lineSpacingExtra="1sp"
+                                    android:layout_centerInParent="true"
+                                    android:text="먹방"/>
+                        </RelativeLayout>
+                        <android.support.v7.widget.RecyclerView android:layout_width="wrap_content"
+                                                                android:layout_height="20dp"
+                                                                android:id="@+id/rv_frag_hip_det_c_tag"></android.support.v7.widget.RecyclerView>
+
+                    </LinearLayout>
+
+                    <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
-                            android:textColor="#ffffff"
+                            android:textColor="#242424"
                             android:lineSpacingExtra="1sp"
-                            android:layout_centerInParent="true"
-                            android:text="먹방"/>
-                </RelativeLayout>
-                <android.support.v7.widget.RecyclerView android:layout_width="wrap_content"
-                                                        android:layout_height="20dp"
-                                                        android:id="@+id/rv_frag_hip_det_c_tag"></android.support.v7.widget.RecyclerView>
+                            android:text="소개"
+                            android:layout_marginTop="20dp"
+                    />
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:textColor="#242424"
+                            android:lineSpacingExtra="8dp"
+                            android:gravity="center_horizontal"
+                            android:text="안녕하세요~ 전 먹는게 세상에서 제일 좋아요!"
+                            android:layout_marginTop="11dp"
+                            android:id="@+id/tv_frag_hip_det_c_intro"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="vertical"
+                              android:layout_marginTop="12dp"
+                              android:background="#f6f6f6">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                  android:orientation="horizontal"
+                                  android:layout_marginTop="12dp">
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="16dp"
+                                android:textSize="12sp"
+                                android:textColor="#242424"
+                                android:lineSpacingExtra="1sp"
+                                android:text="작품"
+                                android:layout_marginLeft="24dp"/>
+                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                   android:src="@drawable/hipat_tpatx_work_adot_img"/>
+                    </LinearLayout>
+
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="170dp"
+                                    android:layout_marginTop="8dp"
+                                    android:background="#f6f6f6">
+                        <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
+                                                                android:layout_height="178dp"
+                                                                android:layout_marginTop="11dp"
+                                                                android:id="@+id/rv_frag_hip_det_frag_article"
+                                                                android:clipToPadding="true"
+                                                                android:paddingLeft="24dp"
+                                                                android:layout_centerVertical="true"></android.support.v7.widget.RecyclerView>
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="vertical"
+                              android:paddingTop="20dp"
+                              android:paddingHorizontal="24dp"
+                >
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#242424"
+                            android:lineSpacingExtra="1sp"
+                            android:text="이런 하이팟을 원해요!"
+                    />
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:textColor="#242424"
+                            android:lineSpacingExtra="8dp"
+                            android:gravity="center_horizontal"
+                            android:text="안녕하세요~ 전 먹는게 세상에서 제일 좋아요!!"
+                            android:layout_marginTop="11dp"
+                            android:id="@+id/tv_frag_hip_det_c_tag_want"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#242424"
-                    android:lineSpacingExtra="1sp"
-                    android:text="소개"
-                    android:layout_marginTop="20dp"
-            />
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:textColor="#242424"
-                    android:lineSpacingExtra="8dp"
-                    android:gravity="center_horizontal"
-                    android:text="안녕하세요~ 전 먹는게 세상에서 제일 좋아요!"
-                    android:layout_marginTop="11dp"
-                    android:id="@+id/tv_frag_hip_det_c_intro"/>
         </LinearLayout>
-
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:orientation="vertical"
-        android:layout_marginTop="12dp"
-        android:background="#f6f6f6">
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-            android:layout_marginTop="12dp">
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="16dp"
-                        android:textSize="12sp"
-                        android:textColor="#242424"
-                        android:lineSpacingExtra="1sp"
-                        android:text="작품"
-                        android:layout_marginLeft="24dp"/>
-                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                           android:src="@drawable/hipat_tpatx_work_adot_img"/>
-            </LinearLayout>
-
-            <RelativeLayout android:layout_width="match_parent" android:layout_height="170dp"
-                            android:layout_marginTop="8dp"
-                            android:background="#f6f6f6">
-                <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
-                                                        android:layout_height="178dp"
-                                                        android:layout_marginTop="11dp"
-                                                        android:id="@+id/rv_frag_hip_det_frag_article"
-                                                        android:clipToPadding="true"
-                                                        android:paddingLeft="24dp"
-                                                        android:layout_centerVertical="true"></android.support.v7.widget.RecyclerView>
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                      android:orientation="vertical"
-                      android:paddingTop="20dp"
-                      android:paddingHorizontal="24dp"
-        >
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#242424"
-                    android:lineSpacingExtra="1sp"
-                    android:text="이런 하이팟을 원해요!"
-            />
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:textColor="#242424"
-                    android:lineSpacingExtra="8dp"
-                    android:gravity="center_horizontal"
-                    android:text="안녕하세요~ 전 먹는게 세상에서 제일 좋아요!!"
-                    android:layout_marginTop="11dp"
-                    android:id="@+id/tv_frag_hip_det_c_tag_want"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="56dp"
-                    android:layout_alignParentBottom="true">
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/rl_hip_det_c_frag_contact">
+
         <Button android:layout_width="match_parent" android:layout_height="42dp"
                 android:layout_centerInParent="true"
                 android:background="@drawable/bg_frag_hip_det_call_btn"

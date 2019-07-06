@@ -33,6 +33,8 @@ class HipartDetailEEtcFragment : Fragment() {
             val contactDialog: ContactAlertDialog = ContactAlertDialog(activity!!)
             contactDialog.show()
 
+
+            contactDialog.setCanceledOnTouchOutside(true)
             contactDialog.setOnDismissListener {
                 val fm = activity!!.supportFragmentManager
                 val fragmentTransaction = fm.beginTransaction()
