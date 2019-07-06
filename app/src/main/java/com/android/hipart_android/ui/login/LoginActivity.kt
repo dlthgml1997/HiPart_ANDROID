@@ -30,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
                 img_login_act_email_off.setImageResource(R.drawable.login_id_off_icon)
             }
         }
+
         edt_login_act_password.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 rl_login_act_password.setBackgroundResource(R.drawable.primary_border)

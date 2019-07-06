@@ -35,16 +35,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
 
             btn_portfolio -> {
-                val frags = supportFragmentManager.fragments
-                var visibleFrag : Fragment = Fragment()
 
-                for(frag in frags){
-                    if(frag.isVisible){
-                        visibleFrag = frag
-                    }
-                }
-
-                if (visibleFrag !is PortFolioFragment) {
+                if (getVisibleFragment() !is PortFolioFragment) {
                     addFragment(R.id.frame_layout_main_act, PortFolioFragment())
                     setBottomIconChanger(FragmentKind.PortFolio)
                 }
@@ -102,10 +94,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 iv_portfolio.isSelected = false
                 iv_mypage.isSelected = false
 
+                setAllTextToGray()
                 tv_home.setTextColor(Color.parseColor("#7947fd"))
-                tv_hipart.setTextColor(Color.parseColor("#838383"))
-                tv_portfolio.setTextColor(Color.parseColor("#838383"))
-                tv_mypage.setTextColor(Color.parseColor("#838383"))
+
             }
             FragmentKind.Hipat -> {
                 iv_home.setImageResource(R.drawable.main_tb_home_off_icon)
@@ -113,10 +104,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 iv_portfolio.isSelected = false
                 iv_mypage.isSelected = false
 
-                tv_home.setTextColor(Color.parseColor("#838383"))
+                setAllTextToGray()
                 tv_hipart.setTextColor(Color.parseColor("#7947fd"))
-                tv_portfolio.setTextColor(Color.parseColor("#838383"))
-                tv_mypage.setTextColor(Color.parseColor("#838383"))
             }
             FragmentKind.PortFolio -> {
                 iv_home.setImageResource(R.drawable.main_tb_home_off_icon)
@@ -124,21 +113,16 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 iv_portfolio.isSelected = true
                 iv_mypage.isSelected = false
 
-                tv_home.setTextColor(Color.parseColor("#838383"))
-                tv_hipart.setTextColor(Color.parseColor("#838383"))
+                setAllTextToGray()
                 tv_portfolio.setTextColor(Color.parseColor("#7947fd"))
-                tv_mypage.setTextColor(Color.parseColor("#838383"))
             }
             FragmentKind.Mypage -> {
                 iv_home.setImageResource(R.drawable.main_tb_home_off_icon)
                 iv_hi_part.isSelected = false
                 iv_portfolio.isSelected = false
                 iv_mypage.isSelected = true
-
-                tv_home.setTextColor(Color.parseColor("#838383"))
-                tv_hipart.setTextColor(Color.parseColor("#838383"))
+                setAllTextToGray()
                 tv_portfolio.setTextColor(Color.parseColor("#838383"))
-                tv_mypage.setTextColor(Color.parseColor("#7947fd"))
             }
         }
 
@@ -150,4 +134,26 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         dialog.setContentView(view)
         dialog.show()
     }
+
+    private fun getVisibleFragment(): Fragment? =
+        supportFragmentManager.fragments.findLast { it.isVisible }
+
+    // 가려져 있는 프래그먼트 가져오기
+    private fun getSecondFragment(): Fragment? =
+        supportFragmentManager.fragments.find { it.isVisible }
+
+    private fun setAllTextToGray() {
+        tv_home.setTextColor(Color.parseColor("#838383"))
+        tv_hipart.setTextColor(Color.parseColor("#838383"))
+        tv_portfolio.setTextColor(Color.parseColor("#838383"))
+        tv_mypage.setTextColor(Color.parseColor("#838383"))
+    }
+
+    fun removeFragment() {
+        supportFragmentManager
+            .beginTransaction()
+            .remove(getVisibleFragment()!!)
+            .commit()
+    }
+
 }
