@@ -18,30 +18,23 @@
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="36dp"
-                    app:srcCompat="@drawable/pofol_back_white_icon"
-                    android:id="@+id/btn_toolbar_mypage_frg_back"/>
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="36dp"
                     app:srcCompat="@drawable/mypage_setting_icon"
-                    android:id="@+id/btn_toolbar_mypage_frg_setting"/>
+                    android:id="@+id/btn_toolbar_mypage_frag_setting"/>
             <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="92dp"
                     android:layout_marginLeft="24dp"
                     app:srcCompat="@drawable/main_profile_photo_image"
-                    android:id="@+id/img_mypage_frg_profile_photo"/>
+                    android:id="@+id/img_mypage_frag_profile_photo"/>
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@id/img_mypage_frg_profile_photo"
+                    android:layout_toEndOf="@id/img_mypage_frag_profile_photo"
                     android:layout_marginTop="78dp"
                     android:layout_marginLeft="16dp">
                 <LinearLayout
@@ -56,7 +49,7 @@
                             android:textColor="#ffffff"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/txt_mypage_frg_name"/>
+                            android:id="@+id/txt_mypage_frag_name"/>
                     <TextView
                             android:text="님"
                             android:fontFamily="@font/nanum_regular"
@@ -84,14 +77,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:id="@+id/txt_mypage_frg_part"/>
+                            android:id="@+id/txt_mypage_frag_part"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/img_mypage_frg_profile_photo"
+                    android:layout_below="@id/img_mypage_frag_profile_photo"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="24dp"
             >
@@ -108,7 +101,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:id="@+id/txt_mypage_frg_fram_num"/>
+                            android:id="@+id/txt_mypage_frag_fram_num"/>
                     <TextView
                             android:text="보유한 팜"
                             android:fontFamily="@font/nanum_regular"
@@ -130,7 +123,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:id="@+id/txt_mypage_frg_pick_num"/>
+                            android:id="@+id/txt_mypage_frag_pick_num"/>
                     <TextView
                             android:text="나를 픽했어요"
                             android:fontFamily="@font/nanum_regular"
@@ -151,7 +144,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:id="@+id/txt_mypage_frg_hifive_num"/>
+                            android:id="@+id/txt_mypage_frag_hifive_num"/>
                     <TextView
                             android:text="나와 하이파이브했어요"
                             android:fontFamily="@font/nanum_regular"
@@ -172,7 +165,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:id="@+id/ll_mypage_frg_mypick">
+                    android:id="@+id/ll_mypage_frag_mypick">
 
                 <ImageView
                         android:layout_width="wrap_content"
@@ -197,7 +190,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="12dp"
-                    android:id="@+id/ll_mypage_frg_myhifive">
+                    android:id="@+id/ll_mypage_frag_myhifive">
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -221,7 +214,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="12dp"
-                    android:id="@+id/ll_mypage_frg_mypofol">
+                    android:id="@+id/ll_mypage_frag_mypofol">
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -244,7 +237,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="12dp"
-                    android:id="@+id/ll_mypage_frg_talk">
+                    android:id="@+id/ll_mypage_frag_talk">
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
