@@ -35,8 +35,19 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
 
             btn_portfolio -> {
-                addFragment(R.id.frame_layout_main_act, PortFolioFragment())
-                setBottomIconChanger(FragmentKind.PortFolio)
+                val frags = supportFragmentManager.fragments
+                var visibleFrag : Fragment = Fragment()
+
+                for(frag in frags){
+                    if(frag.isVisible){
+                        visibleFrag = frag
+                    }
+                }
+
+                if (visibleFrag !is PortFolioFragment) {
+                    addFragment(R.id.frame_layout_main_act, PortFolioFragment())
+                    setBottomIconChanger(FragmentKind.PortFolio)
+                }
             }
 
             btn_mypage -> {
