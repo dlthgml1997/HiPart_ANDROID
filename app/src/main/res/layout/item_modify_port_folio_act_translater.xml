@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:layout_marginLeft="25dp">
+
+    <RelativeLayout android:layout_width="168dp" android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/tv_item_modify_portfolio_act_translater_beforetrans"
+                android:layout_width="match_parent" android:layout_height="58dp"
+                android:text="I LOVE YOU I LOVE YOUUUU \n 여기는 외국어 적는 뷰에요~ \n 총 세줄 40자까지 됩니다요"
+                android:lineSpacingExtra="8dp"
+                android:textSize="13sp"
+                android:layout_marginTop="4dp"
+                android:textColor="#434343"
+                android:fontFamily="@font/nanum_regular"/>
+
+        <ImageView
+                android:id="@+id/btn_item_modify_portfolio_act_translater_cancel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/pofol_delete_tpat_x_icon"
+                />
+
+    </RelativeLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp"
+          android:background="#7947fd"
+          android:layout_marginTop="16dp"
+          android:layout_marginBottom="13dp"/>
+
+    <TextView
+            android:id="@+id/tv_item_modify_portfolio_act_translater_aftertrans"
+            android:layout_width="match_parent" android:layout_height="58dp"
+            android:text="I LOVE YOU I LOVE YOUUUU \n 여기는 외국어 적는 뷰에요~ \n 총 세줄 40자까지 됩니다요"
+            android:lineSpacingExtra="8dp"
+            android:textSize="13sp"
+            android:layout_marginBottom="4dp"
+            android:textColor="#434343"
+            android:fontFamily="@font/nanum_regular"/>
+
+</LinearLayout>
