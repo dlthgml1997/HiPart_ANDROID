@@ -8,16 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.android.hipart_android.R
+import kotlinx.android.synthetic.main.fragment_hipart_detail_cpat.*
+import kotlinx.android.synthetic.main.fragment_hipart_detail_tpat.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class HipartDetailTpatFragment : Fragment() {
 
     override fun onCreateView(
@@ -28,5 +21,28 @@ class HipartDetailTpatFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_hipart_detail_tpat, container, false)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        setListeners()
+
+
+    }
+
+    private fun setListeners() {
+        btn_frag_hip_det_t_call.setOnClickListener {
+            val contactDialog: ContactAlertDialog = ContactAlertDialog(activity!!)
+            contactDialog.show()
+
+            contactDialog.setOnDismissListener {
+                val fm = activity!!.supportFragmentManager
+                val fragmentTransaction = fm.beginTransaction()
+                fragmentTransaction.add(R.id.fl_hip_detail_act, ContactPurchaseFragment())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
+        }
+
+    }
 
 }

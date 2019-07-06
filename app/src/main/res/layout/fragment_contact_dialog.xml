@@ -36,7 +36,8 @@
         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:orientation="horizontal"
                       android:layout_marginTop="12dp"
-                      android:gravity="center">
+                      android:gravity="center"
+        android:id="@+id/ll_contact_dial_frag_term">
             <ToggleButton android:layout_width="16dp" android:layout_height="16dp"
                           android:id="@+id/btn_contact_dial_term_accept"
                           android:background="@drawable/selector_contact_dialog_term_accept"

@@ -26,6 +26,13 @@ class ContactAlertDialog(val ctx: Context) : AlertDialog(ctx) {
     }
 
     private fun buttonChange() {
+        ll_contact_dial_frag_term.setOnClickListener{
+            if(btn_contact_dial_term_accept.isChecked){
+                btn_contact_dial_term_accept.isChecked = false
+            }else {
+                btn_contact_dial_term_accept.isChecked = true
+            }
+        }
         btn_contact_dial_term_accept.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
                 if (isChecked) {
