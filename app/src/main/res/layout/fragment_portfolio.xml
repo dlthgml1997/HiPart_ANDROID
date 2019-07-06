@@ -16,9 +16,9 @@
             android:orientation="vertical"
             android:background="#fff"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ll_port_frag_portfolio_edit">
+            android:layout_height="wrap_content">
         <LinearLayout
+                android:id="@+id/ll_port_frag_portfolio_edit"
                 android:orientation="horizontal"
                 android:layout_width="match_parent" android:layout_height="80dp">
             <ImageView
@@ -50,6 +50,8 @@
                 android:layout_height="1dp"
                 android:background="#c7c7c7"/>
         <LinearLayout
+
+                android:id="@+id/ll_port_frag_portfolio_upload"
                 android:orientation="horizontal"
                 android:layout_width="match_parent" android:layout_height="80dp">
             <ImageView

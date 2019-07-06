@@ -10,33 +10,34 @@ import com.android.hipart_android.ui.modifyportfolio.adapter.WorkRVAdapter
 import com.android.hipart_android.ui.modifyportfolio.data.FilterData
 import com.android.hipart_android.ui.modifyportfolio.data.TransWorkData
 import com.android.hipart_android.ui.modifyportfolio.data.WorkData
+import com.android.hipart_android.ui.portfolio.dialog.FilterDialog
 import com.android.hipart_android.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_modify_port_folio.*
 
-class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener{
+class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
-        when(v){
+        when (v) {
 
             btn_modify_port_folio_back -> {
                 finish()
             }
 
             btn_youtube -> {
-                btn_youtube.isSelected = ! btn_youtube.isSelected
+                btn_youtube.isSelected = !btn_youtube.isSelected
             }
 
             btn_afreeca -> {
-                btn_afreeca.isSelected = ! btn_afreeca.isSelected
+                btn_afreeca.isSelected = !btn_afreeca.isSelected
             }
 
             btn_twich -> {
-                btn_twich.isSelected = ! btn_twich.isSelected
+                btn_twich.isSelected = !btn_twich.isSelected
             }
 
             // 필터 수정하기
             btn_modify_port_folio_act_modify_filter -> {
-
+                filterDialog.show(supportFragmentManager,"filter dialog")
             }
 
             // 작품 올리기
@@ -78,6 +79,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener{
 
     private val transWorkRVAdapter by lazy {
         TransWorkRVAdapter(this@ModifyPortFolioActivity, transWorkDateList)
+    }
+
+    private val filterDialog by lazy {
+        FilterDialog()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
