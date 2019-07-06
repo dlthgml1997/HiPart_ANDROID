@@ -3,9 +3,10 @@ package com.android.hipart_android.ui.portfolio
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.android.hipart_android.R
+import com.android.hipart_android.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_upload_tpat.*
 
-class TpatUploadActivity : AppCompatActivity() {
+class TpatUploadActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

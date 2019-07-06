@@ -20,13 +20,14 @@ import android.view.View
 import android.widget.ImageView
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.portfolio.dialog.PortUploadSuccessDialog
+import com.android.hipart_android.util.BaseActivity
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_upload_not_tpat.*
 import java.lang.Exception
 import java.lang.Thread.sleep
 import java.util.jar.Manifest
 
-class NotTpatUploadActivity : AppCompatActivity() {
+class NotTpatUploadActivity : BaseActivity() {
 
     private val MY_READ_STORAGE_REQUEST_CODE by lazy {
         1004

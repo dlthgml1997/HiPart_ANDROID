@@ -29,7 +29,6 @@ class FilterDialog : DialogFragment(){
         setOnClickListener()
     }
 
-
     private fun setOnClickListener(){
         setClickListerOnRelativeView(btn_hipat_filter_act_game, tv_hipat_filter_act_game)
         setClickListerOnRelativeView(btn_hipat_filter_act_asmr, tv_hipat_filter_act_asmr)
@@ -67,6 +66,7 @@ class FilterDialog : DialogFragment(){
                     filterSuccessDialog.dismiss()
                 }
             }, 1500)
+
         }
     }
 
