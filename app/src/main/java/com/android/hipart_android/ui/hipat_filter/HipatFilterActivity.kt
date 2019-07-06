@@ -3,7 +3,6 @@ package com.android.hipart_android.ui.hipart_filter
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
@@ -30,35 +29,35 @@ class HipatFilterActivity : AppCompatActivity() {
     }
 
     private fun setOnClickListener(){
-        setClickListerOnRelativeView(btn_hipat_filter_act_game, tv_hipat_filter_act_game)
-        setClickListerOnRelativeView(btn_hipat_filter_act_asmr, tv_hipat_filter_act_asmr)
-        setClickListerOnRelativeView(btn_hipat_filter_act_prank, tv_hipat_filter_act_prank)
-        setClickListerOnRelativeView(btn_hipat_filter_act_sport, tv_hipat_filter_act_sport)
-        setClickListerOnRelativeView(btn_hipat_filter_act_cook, tv_hipat_filter_act_cook)
-        setClickListerOnRelativeView(btn_hipat_filter_act_moviemusic, tv_hipat_filter_act_moviemusic)
-        setClickListerOnRelativeView(btn_hipat_filter_act_eduinfo, tv_hipat_filter_act_eduinfo)
-        setClickListerOnRelativeView(btn_hipat_filter_act_edit, tv_hipat_filter_act_edit)
-        setClickListerOnRelativeView(btn_hipat_filter_act_produce, tv_hipat_filter_act_produce)
-        setClickListerOnRelativeView(btn_hipat_filter_act_english, tv_hipat_filter_act_english)
-        setClickListerOnRelativeView(btn_hipat_filter_act_japanese, tv_hipat_filter_act_japanese)
-        setClickListerOnRelativeView(btn_hipat_filter_act_chinese, tv_hipat_filter_act_chinese)
-        setClickListerOnRelativeView(btn_hipat_filter_act_german, tv_hipat_filter_act_german)
-        setClickListerOnRelativeView(btn_hipat_filter_act_indian, tv_hipat_filter_act_indian)
-        setClickListerOnRelativeView(btn_hipat_filter_act_russian, tv_hipat_filter_act_russian)
-        setClickListerOnRelativeView(btn_hipat_filter_act_french, tv_hipat_filter_act_french)
-        setClickListerOnRelativeView(btn_hipat_filter_act_spanish, tv_hipat_filter_act_spanish)
-        setClickListerOnRelativeView(btn_hipat_filter_act_vietnames, tv_hipat_filter_act_vietnames)
-        setClickListerOnRelativeView(btn_hipat_filter_act_italian, tv_hipat_filter_act_italian)
-        setClickListerOnRelativeView(btn_hipat_filter_act_indonesian, tv_hipat_filter_act_indonesian)
-        setClickListerOnRelativeView(btn_hipat_filter_act_props, tv_hipat_filter_act_props)
-        setClickListerOnRelativeView(btn_hipat_filter_act_codi, tv_hipat_filter_act_codi)
-        setClickListerOnRelativeView(btn_hipat_filter_act_light, tv_hipat_filter_act_light)
-        setClickListerOnRelativeView(btn_hipat_filter_act_film, tv_hipat_filter_act_film)
-        setClickListerOnRelativeView(btn_hipat_filter_act_manager, tv_hipat_filter_act_manager)
-        setClickListerOnRelativeView(btn_hipat_filter_act_thumbnail, tv_hipat_filter_act_thumbnail)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_game, tv_hipat_filter_act_game)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_asmr, tv_hipat_filter_act_asmr)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_prank, tv_hipat_filter_act_prank)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_sport, tv_hipat_filter_act_sport)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_cook, tv_hipat_filter_act_cook)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_moviemusic, tv_hipat_filter_act_moviemusic)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_eduinfo, tv_hipat_filter_act_eduinfo)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_edit, tv_hipat_filter_act_edit)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_produce, tv_hipat_filter_act_produce)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_english, tv_hipat_filter_act_english)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_japanese, tv_hipat_filter_act_japanese)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_chinese, tv_hipat_filter_act_chinese)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_german, tv_hipat_filter_act_german)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_indian, tv_hipat_filter_act_indian)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_russian, tv_hipat_filter_act_russian)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_french, tv_hipat_filter_act_french)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_spanish, tv_hipat_filter_act_spanish)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_vietnames, tv_hipat_filter_act_vietnames)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_italian, tv_hipat_filter_act_italian)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_indonesian, tv_hipat_filter_act_indonesian)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_props, tv_hipat_filter_act_props)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_codi, tv_hipat_filter_act_codi)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_light, tv_hipat_filter_act_light)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_film, tv_hipat_filter_act_film)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_manager, tv_hipat_filter_act_manager)
+        setClickListenerOnRelativeView(btn_hipat_filter_act_thumbnail, tv_hipat_filter_act_thumbnail)
     }
 
-    fun setClickListerOnRelativeView(relativeLayout : RelativeLayout, textView : TextView){
+    fun setClickListenerOnRelativeView(relativeLayout : RelativeLayout, textView : TextView){
         relativeLayout.setOnClickListener {
             // game이 안눌려있을 때 눌린 플로우
             if(relativeLayout.isSelected == false){
