@@ -1,19 +1,13 @@
 package com.android.hipart_android.ui.portfolio
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialog
 import android.support.design.widget.BottomSheetDialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.hipart_android.R
-import com.android.hipart_android.ui.hipat.fragment.TPatHiPatFragment
 import com.android.hipart_android.ui.main.MainActivity
-import com.android.hipart_android.ui.portfolio.dialog.FilterDialog
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_portfolio.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
 
 class PortFolioFragment : BottomSheetDialogFragment() {
@@ -38,8 +32,9 @@ class PortFolioFragment : BottomSheetDialogFragment() {
         }
 
         img_port_frag_background.setOnClickListener {
-            activity as MainActivity
+            (context as MainActivity).removeFragment()
         }
+
     }
 
 
