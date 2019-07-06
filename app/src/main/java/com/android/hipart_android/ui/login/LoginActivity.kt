@@ -6,7 +6,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.main.MainActivity
+import com.android.hipart_android.ui.signup.SignupActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import org.jetbrains.anko.startActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -47,11 +50,16 @@ class LoginActivity : AppCompatActivity() {
             val login_u_id = edt_login_act_email.text.toString()
             val login_u_pw: String = edt_login_act_password.text.toString()
             if (isValid(login_u_id, login_u_pw)) {
+                startActivity<MainActivity>()
                 /*val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)}
             postLoginResponse(login_u_id, login_u_pw)*/
             }
         }
+        txt_login_act_signup.setOnClickListener {
+            startActivity<SignupActivity>()
+        }
+
     }
 
     private fun isValid(u_id: String, u_pw: String): Boolean {

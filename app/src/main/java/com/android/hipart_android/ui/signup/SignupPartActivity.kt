@@ -1,14 +1,22 @@
 package com.android.hipart_android.ui.signup
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.support.v7.app.AppCompatActivity
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_signup_part.*
+import org.jetbrains.anko.startActivity
+
 class SignupPartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_part)
+
+        setOnClickListener()
+
+    }
+    
+    fun setOnClickListener(){
         img_Signup_cpat.setOnClickListener {
             if (img_Signup_cpat.isSelected == true) {
                 img_Signup_cpat.isSelected = false
@@ -48,6 +56,9 @@ class SignupPartActivity : AppCompatActivity() {
                     img_Signup_etc.isSelected = true
                 }
             }
+        }
+        iv_signup_part_act_finish.setOnClickListener {
+            startActivity<LoginActivity>()
         }
     }
 }

@@ -10,7 +10,9 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.hipart.HipartDetailActivity
 import com.android.hipart_android.ui.home.data.HomeFragHipatData
+import org.jetbrains.anko.startActivity
 
 
 /**
@@ -50,7 +52,9 @@ class HomeFragHipatAdapter(private val dataList: List<HomeFragHipatData>, privat
 
         btnPick.setOnClickListener (picAnimListener)
 
-
+        root.setOnClickListener{
+            context!!.startActivity<HipartDetailActivity>()
+        }
 
         return view
     }

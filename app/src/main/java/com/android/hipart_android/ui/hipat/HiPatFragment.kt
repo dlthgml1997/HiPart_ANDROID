@@ -9,15 +9,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.hipart_filter.HipatFilterActivity
 import com.android.hipart_android.ui.hipat.adapter.HipatFragAdRecyclerViewAdapter
 import com.android.hipart_android.ui.hipat.adapter.HipatFragPortViewPagerAdapter
 import com.android.hipart_android.ui.hipat.data.HipatFragAdData
 import kotlinx.android.synthetic.main.fragment_hipat.*
 import kotlinx.android.synthetic.main.navigation_category_hipat_port.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.textColor
 
 
-class HiPatFragment : Fragment() {
+class HiPatFragment : Fragment(), View.OnClickListener {
+    override fun onClick(v: View?) {
+        when(v) {
+            btn_frag_hipat_filter -> {
+                startActivity<HipatFilterActivity>()
+            }
+        }
+    }
 
     private val dataList by lazy {
         ArrayList<HipatFragAdData>()
@@ -38,6 +47,7 @@ class HiPatFragment : Fragment() {
 
         configureAdViewPager()
         configureMainTab()
+        setOnClickListener()
     }
 
     private fun configureAdViewPager() {
@@ -114,5 +124,9 @@ class HiPatFragment : Fragment() {
             }
 
         })
+    }
+
+    private fun setOnClickListener() {
+        btn_frag_hipat_filter.setOnClickListener(this)
     }
 }

@@ -101,6 +101,7 @@
         />
     </LinearLayout>
     <Button
+            android:id="@+id/iv_signup_part_act_finish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="12dp"

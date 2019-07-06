@@ -13,11 +13,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity android:name=".ui.main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".ui.search.SearchActivity">
 
@@ -25,6 +21,24 @@
         <activity android:name=".ui.notification.NotificationActivity">
 
         </activity>
+        <activity android:name=".ui.hipart.HipartDetailActivity">
+
+        </activity>
+        <activity android:name=".ui.login.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.signup.SignupActivity">
+
+        </activity>
+        <activity android:name=".ui.hipart_filter.HipatFilterActivity">
+
+        </activity>
+
+
     </application>
 
 </manifest>

@@ -1,21 +1,17 @@
 package com.android.hipart_android.ui.search
 
-import android.graphics.Color
-import android.opengl.Visibility
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.ViewPager
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.android.hipart_android.R
 import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.tab_search_act.*
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +23,17 @@ class SearchActivity : AppCompatActivity() {
 
         setTablayout()
 
+        setOnClickLister()
 
+
+    }
+
+    override fun onClick(v: View?) {
+        when(v) {
+            btn_act_search_cancel -> {
+                finish()
+            }
+        }
     }
 
     private fun setTablayout() {
@@ -131,5 +137,9 @@ class SearchActivity : AppCompatActivity() {
 //        tl_search_act.getTabAt(1)!!.customView = tabSearch.findViewById(R.id.rl_nav_category_main_new) as RelativeLayout
 //        tl_search_act.getTabAt(2)!!.customView = tabSearch.findViewById(R.id.rl_nav_category_main_end) as RelativeLayout
 
+    }
+
+    fun setOnClickLister(){
+        btn_act_search_cancel.setOnClickListener(this)
     }
 }
