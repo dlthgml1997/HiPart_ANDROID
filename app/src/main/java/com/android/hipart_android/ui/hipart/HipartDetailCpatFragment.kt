@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.android.hipart_android.R
+import kotlinx.android.synthetic.main.fragment_hipart_detail_cpat.*
 
 class HipartDetailCpatFragment : Fragment() {
 
@@ -22,6 +23,25 @@ class HipartDetailCpatFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        setListeners()
+
+
+    }
+
+    private fun setListeners() {
+        btn_hip_detail_frag_contact.setOnClickListener {
+            val contactDialog: ContactAlertDialog = ContactAlertDialog(activity!!)
+            contactDialog.show()
+
+            contactDialog.setCanceledOnTouchOutside(true)
+            contactDialog.setOnDismissListener {
+                val fm = activity!!.supportFragmentManager
+                val fragmentTransaction = fm.beginTransaction()
+                fragmentTransaction.add(R.id.fl_hip_detail_act, ContactPurchaseFragment())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
+        }
 
     }
 

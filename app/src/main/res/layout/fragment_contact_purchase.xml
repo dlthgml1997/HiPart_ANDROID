@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".ui.hipart.ContactPurchaseFragment"
+              android:orientation="vertical"
+android:background="@android:color/white">
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+               android:src="@drawable/pofol_back_white_icon"
+               android:layout_marginTop="12dp"
+               android:layout_marginLeft="16dp"
+    android:id="@+id/iv_contact_purc_frag_back"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:gravity="center_horizontal">
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginTop="64dp"
+                      android:gravity="center_vertical">
+            <TextView style="@style/nanum_bold"
+                      android:textSize="24sp"
+                      android:textColor="#838383"
+                      android:lineSpacingExtra="3sp"
+                      android:text="C-PAT"/>
+            <TextView style="@style/nanum_extra_bold"
+                      android:textSize="24sp"
+                      android:textColor="#7947fd"
+                      android:lineSpacingExtra="3sp"
+                      android:text="Nado"
+                      android:layout_marginLeft="8dp"
+                      android:id="@+id/tv_contact_purc_frag_name"/>
+            <TextView style="@style/nanum_bold"
+                      android:textSize="16sp"
+                      android:textColor="#838383"
+                      android:lineSpacingExtra="3sp"
+                      android:text="님께 연락하세요 :)"
+                      android:layout_marginLeft="4dp"/>
+
+        </LinearLayout>
+
+        <TextView style="@style/nanum_regular"
+                  android:textSize="16sp"
+                  android:textColor="#838383"
+                  android:lineSpacingExtra="2sp"
+                  android:gravity="center_horizontal"
+                  android:text="남은 팜: 30개"
+                  android:layout_marginTop="20dp"/>
+
+        <RelativeLayout android:layout_width="224dp" android:layout_height="216dp"
+                        android:layout_marginHorizontal="88dp"
+                        android:layout_marginTop="48dp"
+                        android:background="@drawable/bg_contact_purc_frag_image">
+
+        </RelativeLayout>
+
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="24dp"
+                        android:layout_marginTop="80dp"
+                        android:background="@drawable/bg_contact_purc_frag_number">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          android:layout_centerInParent="true"
+                          android:layout_marginTop="24dp"
+                          android:layout_marginBottom="16dp"
+                          android:gravity="center_horizontal">
+                <TextView style="@style/nanum_bold"
+                          android:textSize="20sp"
+                          android:textColor="#707070"
+                          android:lineSpacingExtra="3sp"
+                          android:text="010 8466 6041"
+                          android:id="@+id/tv_contact_purc_frag_nunmber"
+                />
+                <Button android:layout_width="match_parent" android:layout_height="48dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/bg_contact_alert_after"
+                        style="@style/nanum_bold"
+                        android:textSize="18sp"
+                        android:textColor="#ffffff"
+                        android:lineSpacingExtra="12sp"
+                        android:gravity="center"
+                        android:text="복사하기"
+                android:id="@+id/btn_contact_dial_frag_copy"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
