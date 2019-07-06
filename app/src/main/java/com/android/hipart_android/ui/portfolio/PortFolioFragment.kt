@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.hipat.fragment.TPatHiPatFragment
 import com.android.hipart_android.ui.main.MainActivity
+import com.android.hipart_android.ui.portfolio.dialog.FilterDialog
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_portfolio.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.startActivity
@@ -31,10 +33,15 @@ class PortFolioFragment : BottomSheetDialogFragment() {
             //startActivity<TpatUploadActivity>()
             startActivity<NotTpatUploadActivity>()
         }
+
+        ll_port_frag_portfolio_edit.setOnClickListener {
+        }
+
         img_port_frag_background.setOnClickListener {
             activity as MainActivity
         }
     }
+
 
 
 }

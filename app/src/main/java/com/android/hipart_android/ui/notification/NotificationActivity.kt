@@ -25,6 +25,7 @@ class NotificationActivity : AppCompatActivity() {
         }
     }
 
+    //통신과 연결할 부분!
     private fun configureRecyclerView() {
         var dataList: ArrayList<NotificationOverviewData> = ArrayList()
         dataList.add(
