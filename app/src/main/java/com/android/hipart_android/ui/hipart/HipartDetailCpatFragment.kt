@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import com.android.hipart_android.R
 import kotlinx.android.synthetic.main.fragment_hipart_detail_cpat.*
 
-class HipartDetailCpatFragment : Fragment() {
+class HipartDetailCpatFragment : Fragment(){
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,8 +25,8 @@ class HipartDetailCpatFragment : Fragment() {
 
         setListeners()
 
-
     }
+
 
     private fun setListeners() {
         btn_hip_detail_frag_contact.setOnClickListener {
@@ -44,6 +44,7 @@ class HipartDetailCpatFragment : Fragment() {
         }
 
     }
+
 
 
 }
