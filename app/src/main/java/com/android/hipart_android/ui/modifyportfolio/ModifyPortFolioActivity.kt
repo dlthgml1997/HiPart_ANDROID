@@ -1,7 +1,10 @@
 package com.android.hipart_android.ui.modifyportfolio
 
+import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.modifyportfolio.adapter.FilterRVAdapter
@@ -13,8 +16,15 @@ import com.android.hipart_android.ui.modifyportfolio.data.WorkData
 import com.android.hipart_android.ui.portfolio.dialog.FilterDialog
 import com.android.hipart_android.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_modify_port_folio.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+    }
 
     override fun onClick(v: View?) {
         when (v) {
@@ -37,7 +47,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
             // 필터 수정하기
             btn_modify_port_folio_act_modify_filter -> {
-                filterDialog.show(supportFragmentManager,"filter dialog")
+                filterDialog.show(supportFragmentManager, "filter dialog")
             }
 
             // 작품 올리기
@@ -56,13 +66,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
             }
         }
     }
-
-    private val filterDateList by lazy {
-        ArrayList<FilterData>()
-    }
+    private var filterDataList = ArrayList<FilterData>()
 
     private val filterRVAdapter by lazy {
-        FilterRVAdapter(this@ModifyPortFolioActivity, filterDateList)
+        FilterRVAdapter(this@ModifyPortFolioActivity, filterDataList)
     }
 
     private val workDateList by lazy {
@@ -91,6 +98,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
         initView()
 
+
     }
 
     private fun initView() {
@@ -102,14 +110,12 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setFilterRVAdapter() {
-        filterDateList.add(FilterData("기획", true))
-        filterDateList.add(FilterData("먹방", false))
-        filterDateList.add(FilterData("영어", false))
-        filterDateList.add(FilterData("소품", false))
 
         rv_modify_port_folio_act_filter.adapter = filterRVAdapter
         rv_modify_port_folio_act_filter.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
     }
+
 
     private fun setWorkRVAdapter() {
         workDateList.add(
@@ -214,5 +220,15 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         // 수정 완료
         btn_modify_port_folio_confirm.setOnClickListener(this)
 
+    }
+
+    fun setFilterData(arrayList: ArrayList<FilterData>) {
+        filterDataList = arrayList
+
+        filterRVAdapter.changeDataList(filterDataList)
+
+        filterRVAdapter.notifyDataSetChanged()
+
+        Log.v("TAGGGGG", filterDataList.toString())
     }
 }

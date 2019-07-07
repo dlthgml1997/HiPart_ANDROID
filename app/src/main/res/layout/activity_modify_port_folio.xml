@@ -226,18 +226,20 @@
                         <android.support.v7.widget.RecyclerView
                                 android:id="@+id/rv_modify_port_folio_act_filter"
                                 android:layout_width="wrap_content"
-                                android:layout_height="18dp"
+                                android:layout_height="wrap_content"
                         ></android.support.v7.widget.RecyclerView>
 
                         <RelativeLayout
                                 android:id="@+id/btn_modify_port_folio_act_modify_filter"
-                                android:layout_width="83dp" android:layout_height="18dp"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
                                 android:layout_toRightOf="@+id/rv_modify_port_folio_act_filter"
-                                android:layout_marginLeft="5dp"
+                                android:layout_marginLeft="3dp"
+                                android:paddingVertical="4dp"
+                                android:paddingHorizontal="10dp"
                                 android:background="@drawable/signup_gray_border">
                             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                      android:text="필터 수정하기"
-                                      android:textSize="11sp"
+                                      android:text="필터수정하기"
+                                      android:textSize="10sp"
                                       android:textColor="#707070"
                                       android:fontFamily="@font/nanum_light"
                                       android:layout_centerInParent="true"
@@ -350,7 +352,7 @@
                                       android:textSize="17sp"
                                       android:textColor="#484848"
                                       android:fontFamily="@font/nanum_bold"
-                                      android:text="업로드된 작 품이 없어요"
+                                      android:text="업로드된 작품이 없어요"
                                       android:layout_marginTop="22dp"
                                       android:layout_gravity="center_horizontal"/>
 
