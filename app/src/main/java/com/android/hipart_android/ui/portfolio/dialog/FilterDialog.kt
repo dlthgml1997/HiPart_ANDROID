@@ -1,35 +1,116 @@
 package com.android.hipart_android.ui.portfolio.dialog
 
+import android.app.Activity
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.DialogFragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.modifyportfolio.ModifyPortFolioActivity
+import com.android.hipart_android.ui.modifyportfolio.adapter.FilterRVAdapter
+import com.android.hipart_android.ui.modifyportfolio.data.FilterData
 import kotlinx.android.synthetic.main.activity_hipat_filter.*
+import org.jetbrains.anko.textColor
+import org.jetbrains.anko.textColorResource
 
-class FilterDialog : DialogFragment(){
+class FilterDialog : DialogFragment() {
 
     private val filterSuccessDialog by lazy {
         FilterSuccessDialog()
     }
+
+    lateinit var selectedDataList : ArrayList<FilterData>
+    lateinit var tvDataList : ArrayList<TextView>
+    lateinit var rlDataList : ArrayList<RelativeLayout>
+    lateinit var data : TextView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_pofol_filter, container, false)
         return view
     }
 
+    override fun onDismiss(dialog: DialogInterface?) {
+        super.onDismiss(dialog)
+
+        selectedDataToModifyActivity()
+        (context as ModifyPortFolioActivity).setFilterData(selectedDataList)
+    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setOnClickListener()
+        addFilterArray()
     }
 
-    private fun setOnClickListener(){
+    private fun addFilterArray() {
+        tvDataList = ArrayList<TextView>()
+        tvDataList.add(tv_hipat_filter_act_game)
+        tvDataList.add(tv_hipat_filter_act_asmr)
+        tvDataList.add(tv_hipat_filter_act_prank)
+        tvDataList.add(tv_hipat_filter_act_sport)
+        tvDataList.add(tv_hipat_filter_act_cook)
+        tvDataList.add(tv_hipat_filter_act_moviemusic)
+        tvDataList.add(tv_hipat_filter_act_eduinfo)
+        tvDataList.add(tv_hipat_filter_act_edit)
+        tvDataList.add(tv_hipat_filter_act_produce)
+        tvDataList.add(tv_hipat_filter_act_english)
+        tvDataList.add(tv_hipat_filter_act_japanese)
+        tvDataList.add(tv_hipat_filter_act_chinese)
+        tvDataList.add(tv_hipat_filter_act_german)
+        tvDataList.add(tv_hipat_filter_act_indian)
+        tvDataList.add(tv_hipat_filter_act_russian)
+        tvDataList.add(tv_hipat_filter_act_french)
+        tvDataList.add(tv_hipat_filter_act_spanish)
+        tvDataList.add(tv_hipat_filter_act_vietnames)
+        tvDataList.add(tv_hipat_filter_act_italian)
+        tvDataList.add(tv_hipat_filter_act_indonesian)
+        tvDataList.add(tv_hipat_filter_act_props)
+        tvDataList.add(tv_hipat_filter_act_codi)
+        tvDataList.add(tv_hipat_filter_act_light)
+        tvDataList.add(tv_hipat_filter_act_film)
+        tvDataList.add(tv_hipat_filter_act_manager)
+        tvDataList.add(tv_hipat_filter_act_thumbnail)
+
+        rlDataList = ArrayList<RelativeLayout>()
+        rlDataList.add(btn_hipat_filter_act_game)
+        rlDataList.add(btn_hipat_filter_act_asmr)
+        rlDataList.add(btn_hipat_filter_act_prank)
+        rlDataList.add(btn_hipat_filter_act_sport)
+        rlDataList.add(btn_hipat_filter_act_cook)
+        rlDataList.add(btn_hipat_filter_act_moviemusic)
+        rlDataList.add(btn_hipat_filter_act_eduinfo)
+        rlDataList.add(btn_hipat_filter_act_edit)
+        rlDataList.add(btn_hipat_filter_act_produce)
+        rlDataList.add(btn_hipat_filter_act_english)
+        rlDataList.add(btn_hipat_filter_act_japanese)
+        rlDataList.add(btn_hipat_filter_act_chinese)
+        rlDataList.add(btn_hipat_filter_act_german)
+        rlDataList.add(btn_hipat_filter_act_indian)
+        rlDataList.add(btn_hipat_filter_act_russian)
+        rlDataList.add(btn_hipat_filter_act_french)
+        rlDataList.add(btn_hipat_filter_act_spanish)
+        rlDataList.add(btn_hipat_filter_act_vietnames)
+        rlDataList.add(btn_hipat_filter_act_italian)
+        rlDataList.add(btn_hipat_filter_act_indonesian)
+        rlDataList.add(btn_hipat_filter_act_props)
+        rlDataList.add(btn_hipat_filter_act_codi)
+        rlDataList.add(btn_hipat_filter_act_light)
+        rlDataList.add(btn_hipat_filter_act_film)
+        rlDataList.add(btn_hipat_filter_act_manager)
+        rlDataList.add(btn_hipat_filter_act_thumbnail)
+
+        Log.v("init",tvDataList.size.toString())
+    }
+
+    private fun setOnClickListener() {
         setClickListerOnRelativeView(btn_hipat_filter_act_game, tv_hipat_filter_act_game)
         setClickListerOnRelativeView(btn_hipat_filter_act_asmr, tv_hipat_filter_act_asmr)
         setClickListerOnRelativeView(btn_hipat_filter_act_prank, tv_hipat_filter_act_prank)
@@ -59,28 +140,42 @@ class FilterDialog : DialogFragment(){
 
         btn_hipat_filter_filter.setOnClickListener {
             dismiss()
-            filterSuccessDialog.show(activity!!.supportFragmentManager, "filter success")
-            val handler = Handler()
-            handler.postDelayed({
-                run {
-                    filterSuccessDialog.dismiss()
-                }
-            }, 1500)
-
+            showFilterSuccessDialog()
         }
     }
 
-    fun setClickListerOnRelativeView(relativeLayout : RelativeLayout, textView : TextView){
+    private fun selectedDataToModifyActivity() {
+        selectedDataList = ArrayList(0)
+
+        for(i in rlDataList.indices){
+            if(rlDataList[i].isSelected)
+            {
+                selectedDataList.add(FilterData(tvDataList[i].text.toString(),true))
+            }
+        }
+    }
+
+    private fun showFilterSuccessDialog() {
+        filterSuccessDialog.show(activity!!.supportFragmentManager, "filter success")
+        val handler = Handler()
+        handler.postDelayed({
+            run {
+                filterSuccessDialog.dismiss()
+            }
+        }, 1500)
+    }
+
+    fun setClickListerOnRelativeView(relativeLayout: RelativeLayout, textView: TextView) {
         relativeLayout.setOnClickListener {
             // game이 안눌려있을 때 눌린 플로우
-            if(!relativeLayout.isSelected){
+            if (!relativeLayout.isSelected) {
                 reverseConceptBtn(relativeLayout, textView)
                 reversePdBtn(relativeLayout, textView)
                 reverseLanguageBtn(relativeLayout, textView)
                 reverseEtcBtn(relativeLayout, textView)
             }
             // game이 눌려있을 경우 눌린 플로우
-            else{
+            else {
                 relativeLayout.isSelected = false
                 textView.setTextColor(Color.parseColor("#707070"))
             }
@@ -88,8 +183,8 @@ class FilterDialog : DialogFragment(){
     }
 
     // 모든 버튼 초기화 한 뒤 reversedImg만 보라색으로!
-    private fun reverseConceptBtn(reversedImg : RelativeLayout, reversedTextView: TextView){
-        when(reversedImg){
+    private fun reverseConceptBtn(reversedImg: RelativeLayout, reversedTextView: TextView) {
+        when (reversedImg) {
             btn_hipat_filter_act_game -> {
                 initConceptBtnFlag()
                 reversedImg.isSelected = true
@@ -129,8 +224,9 @@ class FilterDialog : DialogFragment(){
         }
 
     }
+
     // 모든 버튼 회색으로 바꾸기
-    fun initConceptBtnFlag(){
+    fun initConceptBtnFlag() {
         // 겉 박스 색 26개
         // TODO : 이것도 26개
         btn_hipat_filter_act_game.isSelected = false
@@ -152,8 +248,8 @@ class FilterDialog : DialogFragment(){
     }
 
     // 모든 버튼 초기화 한 뒤 reversedImg만 보라색으로!
-    private fun reversePdBtn(reversedImg : RelativeLayout, reversedTextView: TextView){
-        when(reversedImg){
+    private fun reversePdBtn(reversedImg: RelativeLayout, reversedTextView: TextView) {
+        when (reversedImg) {
             btn_hipat_filter_act_edit -> {
                 initPdBtnFlag()
                 reversedImg.isSelected = true
@@ -167,8 +263,9 @@ class FilterDialog : DialogFragment(){
             }
         }
     }
+
     // 모든 버튼 회색으로 바꾸기
-    fun initPdBtnFlag(){
+    fun initPdBtnFlag() {
         // 겉 박스 색 26개
         btn_hipat_filter_act_edit.isSelected = false
         btn_hipat_filter_act_produce.isSelected = false
@@ -179,8 +276,8 @@ class FilterDialog : DialogFragment(){
     }
 
     // 모든 버튼 초기화 한 뒤 reversedImg만 보라색으로!
-    private fun reverseLanguageBtn(reversedImg : RelativeLayout, reversedTextView: TextView){
-        when(reversedImg){
+    private fun reverseLanguageBtn(reversedImg: RelativeLayout, reversedTextView: TextView) {
+        when (reversedImg) {
             btn_hipat_filter_act_english -> {
                 initLanguageBtnFlag()
                 reversedImg.isSelected = true
@@ -240,8 +337,9 @@ class FilterDialog : DialogFragment(){
         }
 
     }
+
     // 모든 버튼 회색으로 바꾸기
-    fun initLanguageBtnFlag(){
+    fun initLanguageBtnFlag() {
         // 겉 박스 색 26개
         btn_hipat_filter_act_english.isSelected = false
         btn_hipat_filter_act_japanese.isSelected = false
@@ -270,8 +368,8 @@ class FilterDialog : DialogFragment(){
     }
 
     // 모든 버튼 초기화 한 뒤 reversedImg만 보라색으로!
-    private fun reverseEtcBtn(reversedImg : RelativeLayout, reversedTextView: TextView){
-        when(reversedImg){
+    private fun reverseEtcBtn(reversedImg: RelativeLayout, reversedTextView: TextView) {
+        when (reversedImg) {
             btn_hipat_filter_act_props -> {
                 initEtcBtnFlag()
                 reversedImg.isSelected = true
@@ -305,8 +403,9 @@ class FilterDialog : DialogFragment(){
             }
         }
     }
+
     // 모든 버튼 회색으로 바꾸기
-    fun initEtcBtnFlag(){
+    fun initEtcBtnFlag() {
         // 겉 박스 색 26개
         btn_hipat_filter_act_props.isSelected = false
         btn_hipat_filter_act_codi.isSelected = false
@@ -324,4 +423,3 @@ class FilterDialog : DialogFragment(){
 
     }
 }
-
