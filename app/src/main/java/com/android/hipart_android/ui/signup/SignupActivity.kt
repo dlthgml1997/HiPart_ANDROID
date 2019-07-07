@@ -121,7 +121,6 @@ class SignupActivity : AppCompatActivity() {
                     edt_Signup_Phonenumber_img.setImageResource(R.drawable.login_phone_on_icon)
                 }
             }
-
         }
         btn_signup_nextstep.setOnClickListener {
             val intent = Intent(this, SignupPartActivity::class.java)
