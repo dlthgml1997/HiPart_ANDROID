@@ -13,8 +13,10 @@ import com.android.hipart_android.ui.hipart_filter.HipatFilterActivity
 import com.android.hipart_android.ui.hipat.adapter.HipatFragAdRecyclerViewAdapter
 import com.android.hipart_android.ui.hipat.adapter.HipatFragPortViewPagerAdapter
 import com.android.hipart_android.ui.hipat.data.HipatFragAdData
+import com.android.hipart_android.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_hipat.*
 import kotlinx.android.synthetic.main.navigation_category_hipat_port.*
+import kotlinx.android.synthetic.main.toolbar_hipat.*
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.textColor
 
@@ -24,6 +26,9 @@ class HiPatFragment : Fragment(), View.OnClickListener {
         when(v) {
             btn_frag_hipat_filter -> {
                 startActivity<HipatFilterActivity>()
+            }
+            btn_hipat_frag_search -> {
+                startActivity<SearchActivity>()
             }
         }
     }
@@ -128,5 +133,6 @@ class HiPatFragment : Fragment(), View.OnClickListener {
 
     private fun setOnClickListener() {
         btn_frag_hipat_filter.setOnClickListener(this)
+        btn_hipat_frag_search.setOnClickListener(this)
     }
 }

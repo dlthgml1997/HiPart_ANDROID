@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
 import android.support.v4.app.Fragment
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.hipat.HiPatFragment
 import com.android.hipart_android.ui.home.HomeFragment
@@ -155,5 +157,42 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             .remove(getVisibleFragment()!!)
             .commit()
     }
+
+    fun setAnimPickIcon() {
+        val interpolator = MyBounceInterpolator(0.2, 20.0)
+        val anim: Animation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.expand_anim)
+        anim.interpolator = interpolator
+
+        anim.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationRepeat(animation: Animation?) {
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                rl_main_act_anim.visibility = View.GONE
+            }
+
+            override fun onAnimationStart(animation: Animation?) {
+                rl_main_act_anim.visibility = View.VISIBLE
+            }
+        })
+        rl_main_act_anim.startAnimation(anim)
+    }
+
+    internal inner class MyBounceInterpolator(amplitude: Double, frequency: Double) :
+        android.view.animation.Interpolator {
+        private var mAmplitude = 1.0
+        private var mFrequency = 10.0
+
+        init {
+            mAmplitude = amplitude
+            mFrequency = frequency
+        }
+
+        override fun getInterpolation(time: Float): Float {
+            return (-1.0 * Math.pow(Math.E, -time / mAmplitude) *
+                    Math.cos(mFrequency * time) + 1).toFloat()
+        }
+    }
+
 
 }

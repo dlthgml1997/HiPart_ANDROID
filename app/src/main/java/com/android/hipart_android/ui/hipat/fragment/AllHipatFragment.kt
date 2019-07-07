@@ -71,7 +71,7 @@ class AllHipatFragment : Fragment() {
             )
         )
 
-        portFolioRecyclerViewAdapter = PortFolioRecyclerViewAdapter(context!!, dataList)
+        portFolioRecyclerViewAdapter = PortFolioRecyclerViewAdapter(context!!, dataList, true)
         rv_hipat_all_frag.adapter = portFolioRecyclerViewAdapter
         rv_hipat_all_frag.layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.VERTICAL, false)
 

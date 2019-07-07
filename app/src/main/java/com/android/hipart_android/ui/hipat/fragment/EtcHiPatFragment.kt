@@ -69,7 +69,7 @@ class EtcHiPatFragment : Fragment() {
             )
         )
 
-        portFolioRecyclerViewAdapter = PortFolioRecyclerViewAdapter(context!!, dataList)
+        portFolioRecyclerViewAdapter = PortFolioRecyclerViewAdapter(context!!, dataList, true)
         rv_hipat_etc_frag.adapter = portFolioRecyclerViewAdapter
         rv_hipat_etc_frag.layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.VERTICAL, false)
 

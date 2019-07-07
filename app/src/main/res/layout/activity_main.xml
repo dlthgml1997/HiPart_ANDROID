@@ -150,6 +150,44 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+            android:id="@+id/rl_main_act_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible">
+        <ImageView
+                android:id="@+id/iv_main_act_anim"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:src="@drawable/pick_popup_img"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/iv_main_act_anim"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/pick_modification_border"
+                android:paddingVertical="6dp"
+                android:paddingHorizontal="9dp">
+            <TextView
+                    android:text="PICK"
+                    android:textSize="14sp"
+                    android:textColor="#3eecad"
+                    android:fontFamily="@font/nanum_extra_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"/>
+            <TextView
+                    android:text="했습니다."
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nanum_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </RelativeLayout>
+
     <!--<android.support.design.widget.TabLayout-->
     <!--android:background="#FFFFFF"-->
     <!--android:id="@+id/main_bottom_tab_layout"-->

@@ -6,10 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.android.hipart_android.R
-import kotlinx.android.synthetic.main.fragment_contact_dialog.*
-import kotlinx.android.synthetic.main.fragment_hipart_detail_cpat.*
 import kotlinx.android.synthetic.main.fragment_hipart_detail_tpat.*
 
 class HipartDetailTpatFragment : Fragment() {
@@ -47,6 +44,10 @@ class HipartDetailTpatFragment : Fragment() {
             contactDialog.setOnCancelListener {
                 
             }
+        }
+
+        iv_frag_hip_det_t_back.setOnClickListener {
+            (context as HipartDetailActivity).finish()
         }
 
     }

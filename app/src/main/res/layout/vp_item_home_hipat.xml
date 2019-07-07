@@ -99,7 +99,7 @@
                       android:layout_marginTop="8dp">
 
             <RelativeLayout android:layout_width="40dp" android:layout_height="18dp"
-                            android:background="@drawable/box_rv_item_home_hipat"
+                            android:background="@drawable/grey_nine_radius_border"
 
             >
 
@@ -115,7 +115,7 @@
             </RelativeLayout>
 
             <RelativeLayout android:layout_width="40dp" android:layout_height="18dp"
-                            android:background="@drawable/box_rv_item_home_hipat"
+                            android:background="@drawable/grey_nine_radius_border"
                             android:layout_marginLeft="4dp"
             >
 
@@ -131,7 +131,7 @@
             </RelativeLayout>
 
             <RelativeLayout android:layout_width="40dp" android:layout_height="18dp"
-                            android:background="@drawable/box_rv_item_home_hipat"
+                            android:background="@drawable/grey_nine_radius_border"
                             android:layout_marginLeft="4dp"
             >
 

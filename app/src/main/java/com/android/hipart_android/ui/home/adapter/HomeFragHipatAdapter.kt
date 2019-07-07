@@ -12,13 +12,15 @@ import android.widget.TextView
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.hipart.HipartDetailActivity
 import com.android.hipart_android.ui.home.data.HomeFragHipatData
+import com.android.hipart_android.ui.main.MainActivity
 import org.jetbrains.anko.startActivity
 
 
 /**
  * Created by TakHyeongMin on 2019-07-03.
  */
-class HomeFragHipatAdapter(private val dataList: List<HomeFragHipatData>, private val context: Context?, private val picAnimListener : View.OnClickListener ) : PagerAdapter() {
+class HomeFragHipatAdapter(private val dataList: List<HomeFragHipatData>, private val context: Context?) :
+    PagerAdapter() {
 
     override fun getCount(): Int = dataList.size
 
@@ -38,7 +40,7 @@ class HomeFragHipatAdapter(private val dataList: List<HomeFragHipatData>, privat
 
         val secondTheme = view.findViewById<TextView>(R.id.tv_rv_home_hipat_theme_second)
 
-        val thirdTheme= view.findViewById<TextView>(R.id.tv_rv_home_hipat_theme_third)
+        val thirdTheme = view.findViewById<TextView>(R.id.tv_rv_home_hipat_theme_third)
 
         val des = view.findViewById<TextView>(R.id.tv_rv_home_hipat_description)
 
@@ -50,9 +52,11 @@ class HomeFragHipatAdapter(private val dataList: List<HomeFragHipatData>, privat
 
         container.addView(view, 0)
 
-        btnPick.setOnClickListener (picAnimListener)
+        btnPick.setOnClickListener {
+            (context as MainActivity).setAnimPickIcon()
+        }
 
-        root.setOnClickListener{
+        root.setOnClickListener {
             context!!.startActivity<HipartDetailActivity>()
         }
 

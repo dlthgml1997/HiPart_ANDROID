@@ -69,7 +69,7 @@ class CPatHiPatFragment : Fragment() {
             )
         )
 
-        portFolioRecyclerViewAdapter = PortFolioRecyclerViewAdapter(context!!, dataList)
+        portFolioRecyclerViewAdapter = PortFolioRecyclerViewAdapter(context!!, dataList, true)
         rv_hipat_cpat_frag.adapter = portFolioRecyclerViewAdapter
         rv_hipat_cpat_frag.layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.VERTICAL, false)
 

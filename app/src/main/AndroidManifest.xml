@@ -38,6 +38,12 @@
         <activity android:name=".ui.hipart_filter.HipatFilterActivity">
 
         </activity>
+        <activity android:name=".ui.modifyportfolio.ModifyPortFolioActivity">
+
+        </activity>
+        <activity android:name=".ui.mypage.MyPickActivity">
+
+        </activity>
 
 
     </application>
