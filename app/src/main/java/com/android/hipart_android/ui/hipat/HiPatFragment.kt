@@ -22,6 +22,9 @@ import org.jetbrains.anko.textColor
 
 
 class HiPatFragment : Fragment(), View.OnClickListener {
+
+    private var flag = 0
+
     override fun onClick(v: View?) {
         when(v) {
             btn_frag_hipat_filter -> {
@@ -44,6 +47,9 @@ class HiPatFragment : Fragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_hipat, container, false)
+
+
+        flag = arguments!!.getInt("flag")
         return view
     }
 
@@ -53,7 +59,14 @@ class HiPatFragment : Fragment(), View.OnClickListener {
         configureAdViewPager()
         configureMainTab()
         setOnClickListener()
+        setInitialViewPager()
     }
+
+    private fun setInitialViewPager() {
+        vp_hipat_frag_nav.setCurrentItem(flag)
+
+    }
+
 
     private fun configureAdViewPager() {
         vp_hipat_frag_ad.adapter = hipatFragAdRecyclerViewAdapter

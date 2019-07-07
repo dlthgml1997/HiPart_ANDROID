@@ -2,14 +2,17 @@ package com.android.hipart_android.ui.home
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.hipat.HiPatFragment
 import com.android.hipart_android.ui.home.adapter.HomeFragAdAdapter
 import com.android.hipart_android.ui.home.adapter.HomeFragHipatAdapter
 import com.android.hipart_android.ui.home.data.HomeFragAdData
 import com.android.hipart_android.ui.home.data.HomeFragHipatData
+import com.android.hipart_android.ui.main.MainActivity
 import com.android.hipart_android.ui.notification.NotificationActivity
 import com.android.hipart_android.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -28,21 +31,23 @@ class HomeFragment : Fragment(), View.OnClickListener {
             }
 
             btn_frag_home_c_pat -> {
-
-                // (context as MainActivity).replaceFragment(R.id.frame_layout_main_act, HiPatFragment())
-
+                (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 1)
+                Log.d("HomeFragment", "replaceFragmentFromHome")
             }
 
             btn_frag_home_e_pat -> {
-
+                (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 2)
+                Log.d("HomeFragment", "replaceFragmentFromHome")
             }
 
             btn_frag_home_t_pat -> {
-
+                (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 3)
+                Log.d("HomeFragment", "replaceFragmentFromHome")
             }
 
             btn_frag_home_etc -> {
-
+                (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 4)
+                Log.d("HomeFragment", "replaceFragmentFromHome")
             }
         }
     }

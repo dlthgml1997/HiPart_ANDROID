@@ -32,7 +32,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
 
             btn_hi_part -> {
-                replaceFragment(R.id.frame_layout_main_act, HiPatFragment())
+                replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 0)
                 setBottomIconChanger(FragmentKind.Hipat)
             }
 
@@ -77,6 +77,16 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         supportFragmentManager
             .beginTransaction()
             .add(frameLayoutId, fragment)
+            .commit()
+    }
+    fun replaceFragmentFromHome(frameLayoutId: Int, fragment: Fragment, position : Int) {
+        val bundle = Bundle()
+        bundle.putInt("flag", position)
+        fragment.arguments = bundle
+
+        supportFragmentManager
+            .beginTransaction()
+            .replace(frameLayoutId, fragment)
             .commit()
     }
 
