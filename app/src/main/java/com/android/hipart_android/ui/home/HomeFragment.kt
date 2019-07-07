@@ -5,8 +5,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.home.adapter.HomeFragAdAdapter
 import com.android.hipart_android.ui.home.adapter.HomeFragHipatAdapter
@@ -54,7 +52,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private val homeFragHipatAdapter by lazy {
-        HomeFragHipatAdapter(hipartDataList, this@HomeFragment.context, picAnimListener)
+        HomeFragHipatAdapter(hipartDataList, this@HomeFragment.context)
     }
 
     private val adDataList by lazy {
@@ -214,44 +212,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
         rv_frag_home_advertising.adapter = homeFragAdAdapter
     }
-
-    fun setAnimPickIcon() {
-        val interpolator = MyBounceInterpolator(0.2, 20.0)
-        val anim: Animation = AnimationUtils.loadAnimation(this@HomeFragment.context, R.anim.expand_anim)
-        anim.interpolator = interpolator
-
-        anim.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationRepeat(animation: Animation?) {
-            }
-
-            override fun onAnimationEnd(animation: Animation?) {
-                rv_main_act_pick.visibility = View.GONE
-            }
-
-            override fun onAnimationStart(animation: Animation?) {
-                rv_main_act_pick.visibility = View.VISIBLE
-            }
-        })
-        rv_main_act_pick.startAnimation(anim)
-    }
-
-    internal inner class MyBounceInterpolator(amplitude: Double, frequency: Double) :
-        android.view.animation.Interpolator {
-        private var mAmplitude = 1.0
-        private var mFrequency = 10.0
-
-        init {
-            mAmplitude = amplitude
-            mFrequency = frequency
-        }
-
-        override fun getInterpolation(time: Float): Float {
-            return (-1.0 * Math.pow(Math.E, -time / mAmplitude) *
-                    Math.cos(mFrequency * time) + 1).toFloat()
-        }
-    }
-
-    private val picAnimListener = View.OnClickListener { setAnimPickIcon() }
 
     private fun setOnClickListener() {
         btn_frag_home_alarm.setOnClickListener(this)
