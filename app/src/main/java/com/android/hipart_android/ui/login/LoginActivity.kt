@@ -6,12 +6,28 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import com.android.hipart_android.R
+import com.android.hipart_android.network.ApplicationController
+import com.android.hipart_android.network.NetworkService
+import com.android.hipart_android.ui.login.data.PostLoginRequest
+import com.android.hipart_android.ui.login.data.PostLoginResponse
 import com.android.hipart_android.ui.main.MainActivity
 import com.android.hipart_android.ui.signup.SignupActivity
+import com.android.hipart_android.util.SharedPreferenceController
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
+
+    val REQUEST_CODE_LOGIN_ACTIVITY = 1000
+
+    val networkService: NetworkService by lazy{
+        ApplicationController.instance.networkService
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,18 +63,45 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setOnBtnClickListener() {
         btn_login_act_submit.setOnClickListener {
-            val login_u_id = edt_login_act_email.text.toString()
-            val login_u_pw: String = edt_login_act_password.text.toString()
-            if (isValid(login_u_id, login_u_pw)) {
-                startActivity<MainActivity>()
-                /*val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)}
-            postLoginResponse(login_u_id, login_u_pw)*/
+            val user_email = edt_login_act_email.text.toString()
+            val user_pw: String = edt_login_act_password.text.toString()
+            if (isValid(user_email, user_pw)) {
+                postLoginResponse(user_email, user_pw)
             }
         }
         txt_login_act_signup.setOnClickListener {
             startActivity<SignupActivity>()
         }
+
+    }
+
+    private fun postLoginResponse(user_email: String, user_pw: String) {
+
+        val postLoginResponse: Call<PostLoginResponse> =
+            networkService.postLoginResponse("application/json", PostLoginRequest(user_email, user_pw))
+        postLoginResponse.enqueue(object: Callback<PostLoginResponse> {
+            override fun onFailure(call: Call<PostLoginResponse>, t: Throwable){
+                Log.e("Login failed", t.toString())
+            }
+
+            override fun onResponse(call: Call<PostLoginResponse>, response: Response<PostLoginResponse>) {
+                // TODO : 로그인 실패 분기 안함
+                response?.takeIf { it.isSuccessful }
+                    ?.body()?.takeIf { it.status == 200 }
+                    ?.let{
+                        SharedPreferenceController.setAuthorization(this@LoginActivity, it.data?.token?: " ")
+                        startActivity<MainActivity>()
+                        finish()
+                    }
+//                if(response.isSuccessful){
+//                    if(response.body()!!.status == 200){
+//
+//                        SharedPreferenceController.setAuthorization(applicationContext, response.body()!!.data!!.token)
+//                        startActivity<MainActivity>()
+//                    }
+//                }
+            }
+        })
 
     }
 
@@ -98,7 +141,6 @@ class LoginActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                Log.v("성청하", s!!.toString())
                 if (s!!.length != 0) {
                     rl_login_act_password.setBackgroundResource(R.drawable.primary_border)
                     img_login_act_password_off.setImageResource(R.drawable.login_password_on_icon)
