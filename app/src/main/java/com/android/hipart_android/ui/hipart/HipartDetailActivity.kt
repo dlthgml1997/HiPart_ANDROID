@@ -16,7 +16,7 @@ class HipartDetailActivity : BaseActivity() {
 
         val fm = supportFragmentManager
         val fragmentTransaction = fm.beginTransaction()
-        fragmentTransaction.add(R.id.fl_hip_detail_act, HipartDetailTpatFragment())
+        fragmentTransaction.add(R.id.fl_hip_detail_act, HipartDetailCpatFragment())
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
