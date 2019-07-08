@@ -10,10 +10,11 @@ import android.widget.LinearLayout
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.hipat.adapter.PortFolioRecyclerViewAdapter
 import com.android.hipart_android.ui.hipat.data.PortFolioData
+import com.android.hipart_android.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_mypick.*
 import kotlinx.android.synthetic.main.toolbar_mypick.*
 
-class MyPickActivity : AppCompatActivity(), View.OnClickListener {
+class MyPickActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v){
             btn_my_pick_back -> {

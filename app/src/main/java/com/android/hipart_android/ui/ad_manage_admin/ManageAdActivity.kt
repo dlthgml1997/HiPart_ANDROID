@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.ad_add.AddAdActivity
+import com.android.hipart_android.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_manage_ad.*
 import kotlinx.android.synthetic.main.rv_item_manage_ad_act_advertisement.*
 import org.jetbrains.anko.startActivity
 
-class ManageAdActivity : AppCompatActivity() {
+class ManageAdActivity : BaseActivity() {
 
     lateinit var manageAdRecyclerViewAdapter:ManageAdRecyclerViewAdapter
 

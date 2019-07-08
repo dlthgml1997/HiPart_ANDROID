@@ -12,6 +12,7 @@ import com.android.hipart_android.ui.login.data.PostLoginRequest
 import com.android.hipart_android.ui.login.data.PostLoginResponse
 import com.android.hipart_android.ui.main.MainActivity
 import com.android.hipart_android.ui.signup.SignupActivity
+import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SharedPreferenceController
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -21,7 +22,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     val REQUEST_CODE_LOGIN_ACTIVITY = 1000
 
@@ -39,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
         setOnBtnClickListener()
     }
 
+    // edt 클릭 시 포커스 주기
     private fun setOnFocusChangeListener() {
         edt_login_act_email.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
@@ -49,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
                 img_login_act_email_off.setImageResource(R.drawable.login_id_off_icon)
             }
         }
-
         edt_login_act_password.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 rl_login_act_password.setBackgroundResource(R.drawable.primary_border)
@@ -62,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setOnBtnClickListener() {
+        // 로그인 버튼 클릭 시
         btn_login_act_submit.setOnClickListener {
             val user_email = edt_login_act_email.text.toString()
             val user_pw: String = edt_login_act_password.text.toString()
@@ -69,6 +71,7 @@ class LoginActivity : AppCompatActivity() {
                 postLoginResponse(user_email, user_pw)
             }
         }
+        // 회원가입 클릭 시
         txt_login_act_signup.setOnClickListener {
             startActivity<SignupActivity>()
         }
@@ -87,9 +90,9 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<PostLoginResponse>, response: Response<PostLoginResponse>) {
                 // TODO : 로그인 실패 분기 안함
                 response?.takeIf { it.isSuccessful }
-                    ?.body()?.takeIf { it.status == 200 }
-                    ?.let{
-                        SharedPreferenceController.setAuthorization(this@LoginActivity, it.data?.token?: " ")
+                    ?.body()?.takeIf { it.message == "로그인 성공" }
+                    ?.let {
+                        SharedPreferenceController.setAuthorization(this@LoginActivity, it.data?.token ?: " ")
                         startActivity<MainActivity>()
                         finish()
                     }
