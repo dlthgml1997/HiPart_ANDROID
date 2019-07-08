@@ -17,6 +17,7 @@ import com.android.hipart_android.util.SharedPreferenceController
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -67,6 +68,7 @@ class LoginActivity : BaseActivity() {
         btn_login_act_submit.setOnClickListener {
             val user_email = edt_login_act_email.text.toString()
             val user_pw: String = edt_login_act_password.text.toString()
+            // 유효성 검사 후 로그인 통신
             if (isValid(user_email, user_pw)) {
                 postLoginResponse(user_email, user_pw)
             }
@@ -89,6 +91,7 @@ class LoginActivity : BaseActivity() {
 
             override fun onResponse(call: Call<PostLoginResponse>, response: Response<PostLoginResponse>) {
                 // TODO : 로그인 실패 분기 안함
+                // 로그인 성공
                 response?.takeIf { it.isSuccessful }
                     ?.body()?.takeIf { it.message == "로그인 성공" }
                     ?.let {
@@ -96,16 +99,15 @@ class LoginActivity : BaseActivity() {
                         startActivity<MainActivity>()
                         finish()
                     }
-//                if(response.isSuccessful){
-//                    if(response.body()!!.status == 200){
-//
-//                        SharedPreferenceController.setAuthorization(applicationContext, response.body()!!.data!!.token)
-//                        startActivity<MainActivity>()
-//                    }
-//                }
+
+                // 로그인 실패
+                response?.takeIf { it.isSuccessful }
+                    ?.body()?.takeIf { it.message == "ID 혹은 비밀번호가 일치하지 않습니다" }
+                    ?.let {
+                        toast("E-mail 혹은 비밀번호가 일치하지 않습니다")
+                    }
             }
         })
-
     }
 
     private fun isValid(u_id: String, u_pw: String): Boolean {
