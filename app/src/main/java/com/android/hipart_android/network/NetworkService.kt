@@ -8,6 +8,7 @@ import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioRespo
 import com.android.hipart_android.ui.modifyprofile.data.get.GetModifyProfileResponse
 import com.android.hipart_android.ui.modifyprofile.data.put.ModifyProfileResponse
 import com.android.hipart_android.ui.mypage.data.PostManToManQuestionRequest
+import com.android.hipart_android.ui.mypage.get.GetMypageResponse
 import com.android.hipart_android.ui.signup.data.GetDuplicateFlagResponse
 import com.android.hipart_android.ui.signup.data.PostSignUpResponse
 import okhttp3.MultipartBody
@@ -31,6 +32,15 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Body body: PostLoginRequest
     ): Call<PostLoginResponse>
+
+    /**
+     * 마이 페이지
+     */
+    @GET("mypage/info")
+    fun getMypageResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String
+    ): Call<GetMypageResponse>
 
     // 소희 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
     /**
