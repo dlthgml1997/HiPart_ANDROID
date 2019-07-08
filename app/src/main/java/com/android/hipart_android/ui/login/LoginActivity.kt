@@ -1,7 +1,6 @@
 package com.android.hipart_android.ui.login
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -14,11 +13,9 @@ import com.android.hipart_android.ui.main.MainActivity
 import com.android.hipart_android.ui.signup.SignupActivity
 import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SharedPreferenceController
-import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -90,12 +87,12 @@ class LoginActivity : BaseActivity() {
             }
 
             override fun onResponse(call: Call<PostLoginResponse>, response: Response<PostLoginResponse>) {
-                // TODO : 로그인 실패 분기 안함
                 // 로그인 성공
                 response?.takeIf { it.isSuccessful }
                     ?.body()?.takeIf { it.message == "로그인 성공" }
                     ?.let {
-                        SharedPreferenceController.setAuthorization(this@LoginActivity, it.data?.token ?: " ")
+                        SharedPreferenceController.setAuthorization(this@LoginActivity, it.data?.tokens?.token)
+                        SharedPreferenceController.setUserType(this@LoginActivity, it.data.user_type)
                         startActivity<MainActivity>()
                         finish()
                     }
