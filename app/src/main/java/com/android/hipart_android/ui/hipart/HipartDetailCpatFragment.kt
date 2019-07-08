@@ -39,6 +39,11 @@ class HipartDetailCpatFragment : Fragment(){
             Log.d(TAG, "contact btn clicked")
 
 
+            iv_frag_hip_det_c_back.setOnClickListener {
+                (context as HipartDetailActivity).finish()
+            }
+
+
 //            val contactDialog: ContactAlertDialog = ContactAlertDialog(activity!!)
 //            contactDialog.show()
 //

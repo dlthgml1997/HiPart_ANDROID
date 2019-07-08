@@ -3,6 +3,7 @@ package com.android.hipart_android.ui.hipart
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_hipart_detail_eetc.*
 
 class HipartDetailEEtcFragment : Fragment() {
 
+    private val TAG = "HipartDetailEEtcFrag"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,21 +32,16 @@ class HipartDetailEEtcFragment : Fragment() {
 
     private fun setListeners() {
         btn_frag_hip_det_eetc_call.setOnClickListener {
-            val contactDialog: ContactAlertDialog = ContactAlertDialog(activity!!)
-            contactDialog.show()
+            val contactDialog = ContactDialogFragment()
+            contactDialog.show(childFragmentManager, "contact dialog")
+            Log.d(TAG, "contact btn clicked")
 
-
-            contactDialog.setCanceledOnTouchOutside(true)
-            contactDialog.setOnDismissListener {
-                val fm = activity!!.supportFragmentManager
-                val fragmentTransaction = fm.beginTransaction()
-                fragmentTransaction.add(R.id.fl_hip_detail_act, ContactPurchaseFragment())
-                fragmentTransaction.addToBackStack(null)
-                fragmentTransaction.commit()
-            }
         }
 
+        iv_frag_hip_det_eetc_back.setOnClickListener {
+            (context as HipartDetailActivity).finish()
+        }
+        
     }
-
 
 }
