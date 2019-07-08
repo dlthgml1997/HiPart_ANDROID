@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.mypage.ModifyActivity">
+        tools:context=".ui.modifyprofile.ModifyActivity">
     <include
             android:id="@+id/toolbar_modify"
             layout="@layout/toolbar_modify"/>
@@ -28,9 +28,9 @@
                         android:id="@+id/cv_modify_act_user_image"
                         android:src="@drawable/main_profile_photo_image"
                         android:scaleType="centerCrop"
-                        android:layout_centerInParent="true"
                         android:layout_width="76dp"
-                        android:layout_height="76dp"/>
+                        android:layout_height="76dp" android:layout_centerHorizontal="true"
+                        android:layout_marginTop="0dp" android:layout_alignParentTop="true"/>
                 <ImageView
                         android:src="@drawable/mypage_camera_icon"
                         android:layout_alignParentBottom="true"
