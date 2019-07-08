@@ -5,6 +5,9 @@ import com.android.hipart_android.ui.home.data.post.PickResponse
 import com.android.hipart_android.ui.login.data.PostLoginRequest
 import com.android.hipart_android.ui.login.data.PostLoginResponse
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponse
+import com.android.hipart_android.ui.modifyprofile.data.get.GetModifyProfileResponse
+import com.android.hipart_android.ui.modifyprofile.data.put.ModifyProfileResponse
+import com.android.hipart_android.ui.mypage.data.PostManToManQuestionRequest
 import com.android.hipart_android.ui.signup.data.GetDuplicateFlagResponse
 import com.android.hipart_android.ui.signup.data.PostSignUpResponse
 import okhttp3.MultipartBody
@@ -95,6 +98,45 @@ interface NetworkService {
         @Header("token") token: String,
         @Body pickDTO: PickDTO
     ): Call<PickResponse>
+
+    /**
+     * 1대1 문의
+     * @header token
+     * @body comment
+     */
+    @POST("mypage/question")
+    fun postManToManQusetion(
+        @Header("Token") token: String,
+        @Body postManToManQuestionRequest : PostManToManQuestionRequest
+    ) : Call<PickResponse>
+
+    /**
+     * 회원정보 조회
+     * @header token
+     * @body comment
+     */
+    @GET("mypage/modify")
+    fun getProfile(
+        @Header("Token") token: String
+    ) : Call<GetModifyProfileResponse>
+
+    /**
+     * 회원정보 변경
+     * @header token
+     */
+    @Multipart
+    @PUT("mypage/modify")
+    fun modifyProfile(
+        @Header("Token") token: String,
+        @Part user_img: MultipartBody.Part?,
+        @Part("user_nickname") userNickname: RequestBody,
+        @Part("user_number") userNumber : RequestBody,
+        @Part("user_pw") userPw : RequestBody,
+        @Part("new_pw") newPw: RequestBody,
+        @Part("user_type") userType : Int
+    ) : Call<ModifyProfileResponse>
+
+
 
 
 }
