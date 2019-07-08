@@ -22,11 +22,12 @@ import com.android.hipart_android.R
 import com.android.hipart_android.ui.mypage.dialog.ModifyActCheckAgainDialog
 import com.android.hipart_android.ui.mypage.dialog.ModifyActSuccessDialog
 import com.android.hipart_android.ui.mypage.dialog.ModifyActWrongPasswordDialog
+import com.android.hipart_android.util.BaseActivity
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_modify.*
 import org.jetbrains.anko.textColor
 
-class ModifyActivity : AppCompatActivity() {
+class ModifyActivity : BaseActivity() {
 
     private val MY_READ_STORAGE_REQUEST_CODE by lazy {
         1004

@@ -20,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 
+
 // TODO : 사진 기본이미지로 작성하면 null로 들어가는지 확인
 class SignupPartActivity : AppCompatActivity() {
 
@@ -54,30 +55,60 @@ class SignupPartActivity : AppCompatActivity() {
         val phoneNum = RequestBody.create(MediaType.parse("text/plain"), phoneNum)
 
         val imgUri = Uri.parse(img)
+        if(img != ""){
+            // 압축 후 outPutStream으로 변환
+            var byteArrayOutputStream = ImageConverter(this@SignupPartActivity).imgToByteArrayStream(imgUri)
+            val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArrayOutputStream.toByteArray())
+            var image = MultipartBody.Part.createFormData("user_img", File(imgUri.toString()).name, photoBody)
 
-        // 압축 후 outPutStream으로 변환
-        var byteArrayOutputStream = ImageConverter(this@SignupPartActivity).imgToByteArrayStream(imgUri)
+            val postSignUpResponse = networkService.postSignUp(emailTemp, nickName, image, password, phoneNum, userType)
 
-        val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArrayOutputStream.toByteArray())
-        var image = MultipartBody.Part.createFormData("user_img", File(imgUri.toString()).name, photoBody)
+            postSignUpResponse.enqueue(object : Callback<PostSignUpResponse> {
+                override fun onFailure(call: Call<PostSignUpResponse>, t: Throwable) {
+                    Log.e("ERRORMESSAGE", t.toString())
+                }
 
-        val postSignUpResponse = networkService.postSignUp(emailTemp, nickName, image, password, phoneNum, userType)
+                override fun onResponse(call: Call<PostSignUpResponse>, response: Response<PostSignUpResponse>) {
 
-        postSignUpResponse.enqueue(object : Callback<PostSignUpResponse> {
-            override fun onFailure(call: Call<PostSignUpResponse>, t: Throwable) {
-                Log.e("ERRORMESSAGE", t.toString())
-            }
+                    response
+                        ?.takeIf { it.isSuccessful }
+                        ?.body()
+                        ?.takeIf { it.message == "회원가입 성공" }
+                        ?.let { startActivity<LoginActivity>() }
 
-            override fun onResponse(call: Call<PostSignUpResponse>, response: Response<PostSignUpResponse>) {
+                }
+            })
+        }else {
 
-                response?.
-                    takeIf { it.isSuccessful }
-                    ?.body()
-                    ?.takeIf { it.message == "회원가입 성공" }
-                    ?.let { startActivity<LoginActivity>() }
+            val byteArray = ImageConverter(this@SignupPartActivity).drawableToByteArrayStream(getDrawable(R.drawable.sign_photo_icon))
+//            val bitmap = ( as BitmapDrawable).bitmap
+//
+//            val byteArrayOutputStream = ByteArrayOutputStream()
+//            bitmap.compress(Bitmap.CompressFormat.PNG, 20, byteArrayOutputStream)
+//            val byteArray = byteArrayOutputStream.toByteArray()
 
-            }
-        })
+            val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArray)
+            var image = MultipartBody.Part.createFormData("user_img", "default_img.jpg", photoBody)
+
+            val postSignUpResponse = networkService.postSignUp(emailTemp, nickName, image, password, phoneNum, userType)
+
+            postSignUpResponse.enqueue(object : Callback<PostSignUpResponse> {
+                override fun onFailure(call: Call<PostSignUpResponse>, t: Throwable) {
+                    Log.e("ERRORMESSAGE", t.toString())
+                }
+
+                override fun onResponse(call: Call<PostSignUpResponse>, response: Response<PostSignUpResponse>) {
+
+                    response
+                        ?.takeIf { it.isSuccessful }
+                        ?.body()
+                        ?.takeIf { it.message == "회원가입 성공" }
+                        ?.let { startActivity<LoginActivity>() }
+
+                }
+            })
+        }
+
     }
 
     fun setOnClickListener() {

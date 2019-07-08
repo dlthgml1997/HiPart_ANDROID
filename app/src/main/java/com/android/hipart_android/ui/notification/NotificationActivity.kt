@@ -4,9 +4,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.android.hipart_android.R
+import com.android.hipart_android.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_notification.*
 
-class NotificationActivity : AppCompatActivity() {
+class NotificationActivity : BaseActivity() {
 
     lateinit var notificationOverviewRecyclerViewAdapter:NotificationOverviewRecyclerViewAdapter
     var product_id: Int = -1

@@ -39,6 +39,7 @@
     </RelativeLayout>
     <View android:layout_width="match_parent" android:layout_height="0.5dp"
           android:background="#f1f1f1"/>
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -86,7 +87,7 @@
                             android:id="@+id/tv_hipat_filter_act_game"
                             android:text="게임"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -105,7 +106,7 @@
                             android:id="@+id/tv_hipat_filter_act_asmr"
                             android:text="ASMR"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -124,7 +125,7 @@
                             android:id="@+id/tv_hipat_filter_act_prank"
                             android:text="Prank"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -143,7 +144,7 @@
                             android:id="@+id/tv_hipat_filter_act_sport"
                             android:text="스포츠"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -168,7 +169,7 @@
                             android:id="@+id/tv_hipat_filter_act_cook"
                             android:text="쿡/먹방"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -187,7 +188,7 @@
                             android:id="@+id/tv_hipat_filter_act_moviemusic"
                             android:text="영화/음악"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -206,7 +207,7 @@
                             android:id="@+id/tv_hipat_filter_act_eduinfo"
                             android:text="교육/정보"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -215,8 +216,8 @@
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
-        <View android:layout_width="match_parent" android:layout_height="0.5dp"
-              android:background="#f1f1f1"/>
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+              android:background="#e4e4e4"/>
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -251,7 +252,7 @@
                             android:id="@+id/tv_hipat_filter_act_edit"
                             android:text="편집"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -270,7 +271,7 @@
                             android:id="@+id/tv_hipat_filter_act_produce"
                             android:text="기획"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -280,8 +281,8 @@
             </LinearLayout>
 
         </LinearLayout>
-        <View android:layout_width="match_parent" android:layout_height="0.5dp"
-              android:background="#f1f1f1"/>
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+              android:background="#e4e4e4"/>
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -314,7 +315,7 @@
                             android:id="@+id/tv_hipat_filter_act_english"
                             android:text="영어"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -332,7 +333,7 @@
                             android:id="@+id/tv_hipat_filter_act_japanese"
                             android:text="일본어"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -350,7 +351,7 @@
                             android:id="@+id/tv_hipat_filter_act_chinese"
                             android:text="중국어"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -368,7 +369,7 @@
                             android:id="@+id/tv_hipat_filter_act_german"
                             android:text="독일어"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -391,7 +392,7 @@
                             android:id="@+id/tv_hipat_filter_act_indian"
                             android:text="인도어"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -409,7 +410,7 @@
                             android:id="@+id/tv_hipat_filter_act_russian"
                             android:text="러시아어"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -427,7 +428,7 @@
                             android:id="@+id/tv_hipat_filter_act_french"
                             android:text="프랑스어"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -445,7 +446,7 @@
                             android:id="@+id/tv_hipat_filter_act_spanish"
                             android:text="스페인어"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -468,7 +469,7 @@
                             android:id="@+id/tv_hipat_filter_act_vietnames"
                             android:text="베트남어"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -486,7 +487,7 @@
                             android:id="@+id/tv_hipat_filter_act_italian"
                             android:text="이탈리아어"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -504,7 +505,7 @@
                             android:id="@+id/tv_hipat_filter_act_indonesian"
                             android:text="인도네시아어"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -514,8 +515,8 @@
             </LinearLayout>
 
         </LinearLayout>
-        <View android:layout_width="match_parent" android:layout_height="0.5dp"
-              android:background="#f1f1f1"/>
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+              android:background="#e4e4e4"/>
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -549,7 +550,7 @@
                             android:id="@+id/tv_hipat_filter_act_props"
                             android:text="소품"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -567,7 +568,7 @@
                             android:id="@+id/tv_hipat_filter_act_codi"
                             android:text="코디"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -585,7 +586,7 @@
                             android:id="@+id/tv_hipat_filter_act_light"
                             android:text="조명"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -603,7 +604,7 @@
                             android:id="@+id/tv_hipat_filter_act_film"
                             android:text="촬영"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -627,7 +628,7 @@
                             android:id="@+id/tv_hipat_filter_act_manager"
                             android:text="매니저"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -645,7 +646,7 @@
                             android:id="@+id/tv_hipat_filter_act_thumbnail"
                             android:text="썸네일"
                             android:textColor="#707070"
-                            android:textSize="13sp"
+                            android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
@@ -662,6 +663,8 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/primary_border_fill"
-                android:id="@+id/btn_hipat_filter_filter"/>
+                android:id="@+id/btn_hipat_filter_filter"
+                android:layout_marginBottom="24dp"/>
     </LinearLayout>
+    </ScrollView>
 </LinearLayout>
