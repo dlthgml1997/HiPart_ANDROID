@@ -21,7 +21,6 @@ import retrofit2.Response
 import java.io.File
 
 
-// TODO : 사진 기본이미지로 작성하면 null로 들어가는지 확인
 class SignupPartActivity : AppCompatActivity() {
 
     private var email = ""
@@ -81,12 +80,6 @@ class SignupPartActivity : AppCompatActivity() {
         }else {
 
             val byteArray = ImageConverter(this@SignupPartActivity).drawableToByteArrayStream(getDrawable(R.drawable.sign_photo_icon))
-//            val bitmap = ( as BitmapDrawable).bitmap
-//
-//            val byteArrayOutputStream = ByteArrayOutputStream()
-//            bitmap.compress(Bitmap.CompressFormat.PNG, 20, byteArrayOutputStream)
-//            val byteArray = byteArrayOutputStream.toByteArray()
-
             val photoBody = RequestBody.create(MediaType.parse("image/jpg"), byteArray)
             var image = MultipartBody.Part.createFormData("user_img", "default_img.jpg", photoBody)
 

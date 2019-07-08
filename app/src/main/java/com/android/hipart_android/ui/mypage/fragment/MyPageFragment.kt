@@ -1,6 +1,5 @@
 package com.android.hipart_android.ui.mypage.fragment
 
-import android.media.Image
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -12,14 +11,13 @@ import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.modifyportfolio.ModifyPortFolioActivity
-import com.android.hipart_android.ui.mypage.ModifyActivity
+import com.android.hipart_android.ui.modifyprofile.ModifyActivity
 import com.android.hipart_android.ui.mypage.MyPickActivity
 import com.android.hipart_android.ui.mypage.dialog.HifiveDialog
 import com.android.hipart_android.ui.mypage.dialog.QuestionDialog
 import com.android.hipart_android.ui.mypage.get.GetMypageResponse
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_mypage.*
-import org.jetbrains.anko.image
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
