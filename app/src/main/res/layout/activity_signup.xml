@@ -6,7 +6,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="ui.signup.SignupActivity">
+        tools:context="ui.signup.SignupActivity"
+        android:background="#FFFFFF">
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,7 +36,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                android:id = "@+id/btn_signup_update"
+                android:id="@+id/btn_signup_update"
                 android:layout_marginTop="30dp"
         >
             <de.hdodenhof.circleimageview.CircleImageView
@@ -55,7 +56,7 @@
                     android:layout_alignParentBottom="true"
             />
         </RelativeLayout>
-        <LinearLayout
+        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="30dp"
@@ -73,6 +74,7 @@
                     android:id="@+id/edt_Signup_Email_img"
             />
             <EditText
+                    android:layout_toRightOf="@+id/edt_Signup_Email_img"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
@@ -84,20 +86,37 @@
                     android:textColorHint="#c7c7c7"
                     android:textSize="13sp"
                     android:background="@android:color/transparent"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginHorizontal="16dp"
             />
-                <TextView
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="16dp"
-                        android:visibility="invisible"
-                        android:textSize="9sp"
-                        android:textColor="#ff2e59"
-                        android:text="잘못된 형식"
-                        android:id="@+id/txt_Signup_Wrong_Email"
-                />
-        </LinearLayout>
+            <TextView
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:visibility="invisible"
+                    android:textSize="9sp"
+                    android:textColor="#ff2e59"
+                    android:text="잘못된 형식"
+                    android:id="@+id/txt_Signup_Wrong_Email"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+            />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="15dp"
+                    android:textSize="9sp"
+                    android:textColor="#ff2e59"
+                    android:lineSpacingExtra="1sp"
+                    android:text="중복"
+                    android:visibility="invisible"
+                    android:id="@+id/txt_Signup_Overlap_Email"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+            />
+        </RelativeLayout>
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
@@ -260,7 +279,7 @@
                     android:text="다시 한번 확인해주세요"
                     android:textColor="#ff2e59"
                     android:textSize="11sp"
-                    android:visibility = "invisible"
+                    android:visibility="invisible"
             />
         </LinearLayout>
         <LinearLayout
