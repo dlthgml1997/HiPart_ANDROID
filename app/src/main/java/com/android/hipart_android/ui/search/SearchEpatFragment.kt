@@ -24,7 +24,7 @@ class SearchEpatFragment : Fragment() {
         // Inflate the layout for this fragment
 
 
-        
+
         return inflater.inflate(R.layout.fragment_search_epat, container, false)
     }
 
