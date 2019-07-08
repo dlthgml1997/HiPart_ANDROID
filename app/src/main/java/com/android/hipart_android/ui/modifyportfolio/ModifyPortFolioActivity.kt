@@ -20,6 +20,7 @@ import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioRespo
 import com.android.hipart_android.ui.portfolio.dialog.FilterDialog
 import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SharedPreferenceController
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_modify_port_folio.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -85,12 +86,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         FilterRVAdapter(this@ModifyPortFolioActivity, filterDataList)
     }
 
-    private val workDateList by lazy {
-        ArrayList<WorkData>()
-    }
+    lateinit var workDateList : ArrayList<WorkData>
 
     private val workRVAdapter by lazy {
-        WorkRVAdapter(this@ModifyPortFolioActivity, workDateList)
+        WorkRVAdapter(this@ModifyPortFolioActivity, getModifyPortFolioDataList)
     }
 
     private val transWorkDateList by lazy {
@@ -105,7 +104,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         FilterDialog()
     }
 
-    lateinit var getModifyPortFolioData: GetModifyPortFolioData
+    lateinit var getModifyPortFolioDataList : ArrayList<GetModifyPortFolioData>
+
+    var dataList: ArrayList<GetModifyPortFolioData> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -123,7 +124,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun getModifyPortFolioResponse() {
-        val getModifyPortFolioResponse = networkService.getModifyPortFolioResponse("application/json","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6IuuLieuEpOyehCIsImlkeCI6MTIsInR5cGUiOjEsImlhdCI6MTU2MjUyMDUyNSwiZXhwIjoxNTYzNzMwMTI1LCJpc3MiOiJpZyJ9.jzDgQsmhkbl0fSSam8uOMfGhXVFN0B4eSU3-CZoHW_U")
+        val getModifyPortFolioResponse = networkService.getModifyPortFolioResponse(
+            "application/json",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM"
+        )
         getModifyPortFolioResponse.enqueue(object : Callback<GetModifyPortFolioResponse> {
             override fun onFailure(call: Call<GetModifyPortFolioResponse>, t: Throwable) {
                 Log.e("ModifyPortFolioAct Fail", t.toString())
@@ -135,24 +139,70 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
             ) {
                 if (response.isSuccessful) {
                     if (response.body()!!.message == "조회 성공") {
-                        Log.v("usertype TAGGG",response.body()!!.data.userType.toString())
-                        when(response.body()!!.data.userType)
-                        {
+
+                        val data = response.body()!!.data
+
+                        Log.v("usertype TAGGG", data.userType.toString())
+
+                        //유저 이미지
+                        Glide.with(this@ModifyPortFolioActivity)
+                            .load(data.userImg)
+                            .into(iv_act_modify_port_folio_user)
+
+                        //유저 이름
+                        tv_modify_port_act_user_name.text = data.userNickname
+
+                        //하이파이브
+                        edt_modify_port_act_hifive.hint = data.hifive.toString()
+
+                        //소개
+                        edt_modify_port_act_detail_oneline.hint = data.detailOneline
+
+                        //원해요
+                        edt_modify_port_act_want.hint = data.detailWant
+
+                        when (response.body()!!.data.userType) {
                             //C-PAT
-                            1-> {
+                            1 -> {
+                                //유저 타입
+                                tv_modify_port_folio_act_job.text = "크리에이터"
 
+                                //구독자
+                                edt_modify_port_act_subscriber.hint = data.detailSubscriber.toString()
+
+                                //플랫폼 초기 설정
+                                rl_modify_port_act_pick_platform.visibility = View.VISIBLE
+                                when (data.detailPlatform) {
+                                    1 -> {
+                                        btn_youtube.setImageResource(R.drawable.pofol_youtube_white_img)
+                                        btn_afreeca.setImageResource(R.drawable.pofol_afreeca_white_off_img)
+                                        btn_twich.setImageResource(R.drawable.pofol_twitch_white_off_img)
+                                    }
+                                    2 -> {
+                                        btn_youtube.setImageResource(R.drawable.pofol_youtube_off_img)
+                                        btn_afreeca.setImageResource(R.drawable.pofol_afreeca_white_img)
+                                        btn_twich.setImageResource(R.drawable.pofol_twitch_white_off_img)
+                                    }
+                                    3 -> {
+                                        btn_youtube.setImageResource(R.drawable.pofol_youtube_off_img)
+                                        btn_afreeca.setImageResource(R.drawable.pofol_afreeca_white_off_img)
+                                        btn_twich.setImageResource(R.drawable.pofol_twitch_white_img)
+                                    }
+                                }
+
+                                //작품 리사이클러뷰 설정
+
+                                setWorkRVAdapter(getModifyPortFolioDataList)
                             }
-                            //E-PAT
-                            2-> {
-
+                            //E-PAT, ETC
+                            2, 4 -> {
+                                //유저 타입
+                                tv_modify_port_folio_act_job.text = "편집자"
                             }
                             //T-PAT
-                            3->{
-
-                            }
-                            //ETC.
-                            4->{
-
+                            3 -> {
+                                //유저 타입
+                                tv_modify_port_folio_act_job.text = "번역가"
                             }
                         }
                     }
@@ -169,7 +219,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     }
 
 
-    private fun setWorkRVAdapter() {
+    private fun setWorkRVAdapter(tmp : ArrayList<GetModifyPortFolioData>) {
+        WorkRVAdapter.dataList = tmp
+        productOverviewRecyclerViewAdapter.notifyDataSetChanged()
+
         workDateList.add(
             WorkData(
                 "https://i.pinimg.com/236x/ae/c9/ea/aec9eadd89aa51a9b753b221f3bcce12.jpg"

@@ -10,6 +10,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.modifyportfolio.data.WorkData
+import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioData
 import com.bumptech.glide.Glide
 
 
@@ -17,7 +18,7 @@ import com.bumptech.glide.Glide
  * Created by TakHyeongMin on 2019-07-06.
  */
 
-class WorkRVAdapter(val ctx: Context, var dataList : ArrayList<WorkData>) : RecyclerView.Adapter<WorkRVAdapter.Holder>() {
+class WorkRVAdapter(val ctx: Context, var dataList : ArrayList<GetModifyPortFolioData>) : RecyclerView.Adapter<WorkRVAdapter.Holder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.item_frag_hip_det_c_article, p0, false)
@@ -30,13 +31,13 @@ class WorkRVAdapter(val ctx: Context, var dataList : ArrayList<WorkData>) : Recy
     override fun onBindViewHolder(p0: Holder, p1: Int) {
 
         Glide.with(ctx)
-            .load(dataList[p1].imgUrl)
+            .load(dataList[p1].thumbnail)
             .into(p0.img)
 
         p0.cancleBtn.visibility = View.VISIBLE
 
-        p0.title.text = dataList[p1].title
-        p0.description.text = dataList[p1].description
+        p0.title.text = dataList[p1].title.toString()
+        p0.description.text = dataList[p1].content.toString()
 
         if(p1 == 0){
             val dp = ctx.resources.displayMetrics.density
