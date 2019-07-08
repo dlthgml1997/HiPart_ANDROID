@@ -3,6 +3,7 @@ package com.android.hipart_android.ui.hipart
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import com.android.hipart_android.R
 import kotlinx.android.synthetic.main.fragment_hipart_detail_tpat.*
 
 class HipartDetailTpatFragment : Fragment() {
+
+    private val TAG = "HipartDetailTFrag"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,23 +31,9 @@ class HipartDetailTpatFragment : Fragment() {
     }
 
     private fun setListeners() {
-        btn_frag_hip_det_t_call.setOnClickListener {
-            val contactDialog: ContactAlertDialog = ContactAlertDialog(activity!!)
-            contactDialog.show()
-
-            contactDialog.setCancelable(true)
-            contactDialog.setCanceledOnTouchOutside(true)
-            contactDialog.setOnDismissListener {
-                val fm = activity!!.supportFragmentManager
-                val fragmentTransaction = fm.beginTransaction()
-                fragmentTransaction.add(R.id.fl_hip_detail_act, ContactPurchaseFragment())
-                fragmentTransaction.addToBackStack(null)
-                fragmentTransaction.commit()
-            }
-            contactDialog.setOnCancelListener {
-                
-            }
-        }
+        val contactDialog = ContactDialogFragment()
+        contactDialog.show(childFragmentManager, "contact dialog")
+        Log.d(TAG, "contact btn clicked")
 
         iv_frag_hip_det_t_back.setOnClickListener {
             (context as HipartDetailActivity).finish()
@@ -52,4 +41,8 @@ class HipartDetailTpatFragment : Fragment() {
 
     }
 
+
+
 }
+
+
