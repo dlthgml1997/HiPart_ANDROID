@@ -13,7 +13,8 @@
         <LinearLayout android:layout_width="wrap_content" android:layout_height="80dp"
                       android:orientation="horizontal">
             <ImageView android:layout_width="80dp" android:layout_height="80dp"
-                       android:src="@drawable/main_profile_photo_image"/>
+                       android:src="@drawable/main_profile_photo_image"
+                       android:id="@+id/iv_item_frag_search_photo"/>
             <RelativeLayout android:layout_width="wrap_content" android:layout_height="match_parent"
 
                             android:layout_marginLeft="16dp">
@@ -26,16 +27,17 @@
                                           android:orientation="horizontal"
                                           android:gravity="center_vertical">
                                 <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
+                                        style="@style/nanum_bold"
                                         android:textSize="20sp"
                                         android:textColor="#242424"
                                         android:lineSpacingExtra="3sp"
-                                        tools:text="Nado"
+                                        android:text="Nado"
+                                        android:id="@+id/tv_item_frag_sear_name"
                                 />
                                 <ImageView android:layout_width="24dp" android:layout_height="24dp"
                                            android:src="@drawable/youtube_grey_img"
-                                           android:layout_marginLeft="8dp"/>
+                                           android:layout_marginLeft="8dp"
+                                           android:id="@+id/iv_item_frag_search_platform"/>
                             </LinearLayout>
                         </LinearLayout>
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -45,58 +47,70 @@
                             <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
                                        android:src="@drawable/main_pick_off_icon"/>
                             <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    style="@style/nanum_bold"
                                     android:textSize="9sp"
                                     android:textColor="#c7c7c7"
                                     android:lineSpacingExtra="1sp"
-                                    tools:text="224"
+                                    android:text="224"
+                                    android:id="@+id/tv_item_frag_search_pick_num"
                             />
                         </LinearLayout>
                     </RelativeLayout>
 
                     <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/nanum_regular"
                             android:textSize="12sp"
                             android:textColor="#707070"
                             android:lineSpacingExtra="1sp"
-                            tools:text="크리에이터"/>
+                            android:text="크리에이터"
+                            android:id="@+id/tv_item_frag_search_type"/>
 
 
                 </LinearLayout>
                 <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                               android:orientation="horizontal"
                               android:layout_alignParentBottom="true">
-                    <RelativeLayout style="@style/HipartDetailIntroTagLayout">
-                        <TextView android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
+
+                    <RelativeLayout style="@style/HipartDetailIntroPrimaryTagLayout">
+                        <TextView style="@style/nanum_light"
                                   android:textSize="11sp"
-                                  android:textColor="#707070"
+                                  android:textColor="@android:color/white"
                                   android:lineSpacingExtra="1sp"
                                   android:gravity="center_horizontal"
-                                  tools:text="먹방"
-                                  android:layout_centerInParent="true"/>
+                                  android:text="먹방"
+                                  android:layout_centerInParent="true"
+                                  android:id="@+id/tv_item_frag_search_pd"/>
                     </RelativeLayout>
                     <RelativeLayout style="@style/HipartDetailIntroTagLayout">
-                        <TextView android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
+                        <TextView style="@style/nanum_light"
                                   android:textSize="11sp"
-                                  android:textColor="#707070"
+                                  android:textColor="#7947fd"
                                   android:lineSpacingExtra="1sp"
                                   android:gravity="center_horizontal"
-                                  tools:text="먹방"
-                                  android:layout_centerInParent="true"/>
+                                  android:text="먹방"
+                                  android:layout_centerInParent="true"
+                                  android:id="@+id/tv_item_frag_search_concept"/>
                     </RelativeLayout>
                     <RelativeLayout style="@style/HipartDetailIntroTagLayout">
-                        <TextView android:layout_width="wrap_content"
-                                  android:layout_height="wrap_content"
+                        <TextView style="@style/nanum_light"
                                   android:textSize="11sp"
                                   android:textColor="#707070"
                                   android:lineSpacingExtra="1sp"
                                   android:gravity="center_horizontal"
-                                  tools:text="먹방"
-                                  android:layout_centerInParent="true"/>
+                                  android:text="먹방"
+                                  android:layout_centerInParent="true"
+                                  android:id="@+id/tv_item_frag_search_lang"
+                        />
+                    </RelativeLayout>
+                    <RelativeLayout style="@style/HipartDetailIntroTagLayout">
+                        <TextView style="@style/nanum_light"
+                                  android:textSize="11sp"
+                                  android:textColor="#707070"
+                                  android:lineSpacingExtra="1sp"
+                                  android:gravity="center_horizontal"
+                                  android:text="먹방"
+                                  android:layout_centerInParent="true"
+                                  android:id="@+id/tv_item_frag_search_etc"/>
                     </RelativeLayout>
                 </LinearLayout>
 
@@ -104,15 +118,15 @@
 
 
         </LinearLayout>
-        
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="13sp"
-            android:textColor="#242424"
-            android:lineSpacingExtra="8dp"
-            tools:text="안녕하세요~ 먹고 싶은 모든 것들을 영상으로"
-    android:layout_marginTop="24dp"/>
+                style="@style/nanum_regular"
+                android:textSize="13sp"
+                android:textColor="#242424"
+                android:lineSpacingExtra="8dp"
+                android:text="안녕하세요~ 먹고 싶은 모든 것들을 영상으로"
+                android:layout_marginTop="24dp"
+                android:id="@+id/tv_item_frag_search_intro"/>
 
     </LinearLayout>
 </RelativeLayout>

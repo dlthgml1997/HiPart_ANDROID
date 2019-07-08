@@ -16,13 +16,12 @@
             <ImageView
                     android:id="@+id/btn_act_search_cancel"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
-                       android:src="@drawable/back_grey_icon"
-                       android:layout_marginLeft="17dp"
-                       android:layout_centerVertical="true"/>
+                    android:src="@drawable/back_grey_icon"
+                    android:layout_marginLeft="17dp"
+                    android:layout_centerVertical="true"/>
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/nanum_bold"
                     android:textSize="18sp"
                     android:textColor="#707070"
                     android:lineSpacingExtra="3sp"
@@ -39,19 +38,22 @@
                 <ImageView
                         android:id="@+id/iv_search_act_search_text"
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
-                           android:src="@drawable/search_search_icon"
-                           android:layout_centerVertical="true"
-                           android:layout_alignParentRight="true"
-                           android:layout_marginRight="11dp"/>
+                        android:src="@drawable/search_search_icon"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="11dp"/>
                 <EditText android:layout_width="match_parent"
                           android:layout_height="wrap_content"
+                          style="@style/nanum_regular"
                           android:textSize="13sp"
-                          android:textColor="#c7c7c7"
+                          android:textColor="#707070"
                           android:lineSpacingExtra="1sp"
                           android:hint="원하는 검색어를 입력해주세요."
                           android:background="@android:color/transparent"
                           android:layout_centerVertical="true"
-                          android:layout_marginLeft="13dp"
+                          android:layout_marginLeft="16dp"
+                          android:layout_marginRight="8dp"
+                          android:layout_toLeftOf="@id/iv_search_act_search_text"
                           android:id="@+id/et_search_act_search"/>
             </RelativeLayout>
 
@@ -60,54 +62,54 @@
                   android:layout_marginTop="13dp"
                   android:layout_marginBottom="24dp"
                   android:layout_marginHorizontal="25dp"/>
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
 
-            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:orientation="vertical"
-                          android:id="@+id/ll_search_act_recent_search"
-                          android:paddingHorizontal="25dp"
-                          android:visibility="gone">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="vertical"
+                              android:id="@+id/ll_search_act_recent_search"
+                              android:paddingHorizontal="25dp"
+                              android:visibility="visible">
 
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#a2a2a2"
-                        android:lineSpacingExtra="1sp"
-                        android:text="최근 검색어"/>
-                <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
-                                                        android:layout_height="wrap_content"
-                                                        android:id="@+id/rc_search_act"
-                                                        android:layout_marginTop="8dp"></android.support.v7.widget.RecyclerView>
-            </LinearLayout>
+                    <TextView
+                            style="@style/nanum_bold"
+                            android:textSize="12sp"
+                            android:textColor="#a2a2a2"
+                            android:lineSpacingExtra="1sp"
+                            android:text="최근 검색어"/>
+                    <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
+                                                            android:layout_height="wrap_content"
+                                                            android:id="@+id/rv_search_act"
+                                                            android:layout_marginTop="24dp"></android.support.v7.widget.RecyclerView>
+                </LinearLayout>
 
-            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:id="@+id/rl_search_act_search_result"
-                          android:visibility="visible"
-                          android:orientation="vertical">
-                <RelativeLayout android:layout_width="match_parent"
-                                android:layout_height="32dp">
-                    <android.support.design.widget.TabLayout android:layout_width="match_parent"
-                                                             android:layout_height="32dp"
-                                                             android:id="@+id/tl_search_act"
-                                                             android:paddingHorizontal="28dp"
-                                                             app:tabIndicatorFullWidth="false"
-                                                             app:tabMode="scrollable"
-                                                             app:tabIndicatorColor="#7947fd"
-                                                             app:tabMaxWidth="63dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                              android:id="@+id/rl_search_act_search_result"
+                              android:visibility="gone"
+                              android:orientation="vertical">
+                    <RelativeLayout android:layout_width="match_parent"
+                                    android:layout_height="32dp">
+                        <android.support.design.widget.TabLayout android:layout_width="match_parent"
+                                                                 android:layout_height="32dp"
+                                                                 android:id="@+id/tl_search_act"
+                                                                 android:paddingHorizontal="28dp"
+                                                                 app:tabIndicatorFullWidth="false"
+                                                                 app:tabMode="scrollable"
+                                                                 app:tabIndicatorColor="#7947fd"
+                                                                 app:tabMaxWidth="63dp">
 
-                    </android.support.design.widget.TabLayout>
-                    <View android:layout_width="match_parent" android:layout_height="1dp"
-                          android:layout_marginHorizontal="28dp"
-                          android:background="#e4e4e4"
-                          android:layout_alignParentBottom="true"/>
-                </RelativeLayout>
-                <android.support.v4.view.ViewPager android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   android:id="@+id/vp_search_act"
-                ></android.support.v4.view.ViewPager>
+                        </android.support.design.widget.TabLayout>
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                              android:layout_marginHorizontal="28dp"
+                              android:background="#e4e4e4"
+                              android:layout_alignParentBottom="true"/>
+                    </RelativeLayout>
+                    <android.support.v4.view.ViewPager android:layout_width="match_parent"
+                                                       android:layout_height="match_parent"
+                                                       android:id="@+id/vp_search_act"
+                    ></android.support.v4.view.ViewPager>
 
-            </LinearLayout>
-
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
 
 
@@ -119,10 +121,12 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="8dp"
                 android:background="#7947fd"
+                style="@style/nanum_extra_bold"
                 android:textSize="15sp"
                 android:textColor="#ffffff"
                 android:lineSpacingExtra="12sp"
-                android:text="검색"/>
+                android:text="검색"
+                android:id="@+id/btn_search_act_search"/>
     </RelativeLayout>
 
 </RelativeLayout>
