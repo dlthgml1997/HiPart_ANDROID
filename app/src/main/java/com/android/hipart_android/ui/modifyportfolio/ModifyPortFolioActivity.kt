@@ -1,6 +1,5 @@
 package com.android.hipart_android.ui.modifyportfolio
 
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -14,18 +13,16 @@ import com.android.hipart_android.ui.modifyportfolio.adapter.TransWorkRVAdapter
 import com.android.hipart_android.ui.modifyportfolio.adapter.WorkRVAdapter
 import com.android.hipart_android.ui.modifyportfolio.data.FilterData
 import com.android.hipart_android.ui.modifyportfolio.data.TransWorkData
-import com.android.hipart_android.ui.modifyportfolio.data.WorkData
-import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioData
+import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioDataCpat
+import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioDataTpat
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponse
 import com.android.hipart_android.ui.portfolio.dialog.FilterDialog
 import com.android.hipart_android.util.BaseActivity
-import com.android.hipart_android.util.SharedPreferenceController
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_modify_port_folio.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 import kotlin.collections.ArrayList
 
 class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
@@ -86,10 +83,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         FilterRVAdapter(this@ModifyPortFolioActivity, filterDataList)
     }
 
-    lateinit var workDateList : ArrayList<WorkData>
+    lateinit var dataList: GetModifyPortFolioDataCpat
 
     private val workRVAdapter by lazy {
-        WorkRVAdapter(this@ModifyPortFolioActivity, getModifyPortFolioDataList)
+        WorkRVAdapter(this@ModifyPortFolioActivity, dataList)
     }
 
     private val transWorkDateList by lazy {
@@ -104,9 +101,8 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         FilterDialog()
     }
 
-    lateinit var getModifyPortFolioDataList : ArrayList<GetModifyPortFolioData>
+    lateinit var getModifyPortFolioDataTpatList: ArrayList<GetModifyPortFolioDataTpat>
 
-    var dataList: ArrayList<GetModifyPortFolioData> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -118,9 +114,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     private fun initView() {
         getModifyPortFolioResponse()
         setFilterRVAdapter()
-        setTransWorkRVAdapter()
+        //setTransWorkRVAdapter()
         setOnClickListener()
-        // setWorkRVAdapter()
+//        setWorkRVAdapter()
     }
 
     private fun getModifyPortFolioResponse() {
@@ -141,7 +137,6 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                     if (response.body()!!.message == "조회 성공") {
 
                         val data = response.body()!!.data
-
                         Log.v("usertype TAGGG", data.userType.toString())
 
                         //유저 이미지
@@ -168,7 +163,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                                 tv_modify_port_folio_act_job.text = "크리에이터"
 
                                 //구독자
-                                edt_modify_port_act_subscriber.hint = data.detailSubscriber.toString()
+                                edt_modify_port_act_subscriber.hint = data.detailSubscriber
 
                                 //플랫폼 초기 설정
                                 rl_modify_port_act_pick_platform.visibility = View.VISIBLE
@@ -191,8 +186,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                                 }
 
                                 //작품 리사이클러뷰 설정
-
-                                setWorkRVAdapter(getModifyPortFolioDataList)
+                                val tmp: GetModifyPortFolioDataCpat = response.body()!!.data
+                                Log.v("dataList size", data.thumbnail.size.toString())
+                                setWorkRVAdapter(tmp)
                             }
                             //E-PAT, ETC
                             2, 4 -> {
@@ -219,68 +215,16 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     }
 
 
-    private fun setWorkRVAdapter(tmp : ArrayList<GetModifyPortFolioData>) {
-        WorkRVAdapter.dataList = tmp
-        productOverviewRecyclerViewAdapter.notifyDataSetChanged()
-
-        workDateList.add(
-            WorkData(
-                "https://i.pinimg.com/236x/ae/c9/ea/aec9eadd89aa51a9b753b221f3bcce12.jpg"
-                , "벤쯔의 먹방"
-                , "많이먹어요~"
-            )
-        )
-
-        workDateList.add(
-            WorkData(
-                "https://i.pinimg.com/236x/ae/c9/ea/aec9eadd89aa51a9b753b221f3bcce12.jpg"
-                , "벤쯔의 먹방"
-                , "많이먹어요~"
-            )
-        )
-
-        workDateList.add(
-            WorkData(
-                "https://i.pinimg.com/236x/ae/c9/ea/aec9eadd89aa51a9b753b221f3bcce12.jpg"
-                , "벤쯔의 먹방"
-                , "많이먹어요~"
-            )
-        )
-
-        workDateList.add(
-            WorkData(
-                "https://i.pinimg.com/236x/ae/c9/ea/aec9eadd89aa51a9b753b221f3bcce12.jpg"
-                , "벤쯔의 먹방"
-                , "많이먹어요~"
-            )
-        )
-
-        workDateList.add(
-            WorkData(
-                "https://i.pinimg.com/236x/ae/c9/ea/aec9eadd89aa51a9b753b221f3bcce12.jpg"
-                , "벤쯔의 먹방"
-                , "많이먹어요~"
-            )
-        )
-
-        workDateList.add(
-            WorkData(
-                "https://i.pinimg.com/236x/ae/c9/ea/aec9eadd89aa51a9b753b221f3bcce12.jpg"
-                , "벤쯔의 먹방"
-                , "많이먹어요~"
-            )
-        )
-
-        workDateList.add(
-            WorkData(
-                "https://i.pinimg.com/236x/ae/c9/ea/aec9eadd89aa51a9b753b221f3bcce12.jpg"
-                , "벤쯔의 먹방"
-                , "많이먹어요~"
-            )
-        )
-
+    private fun setWorkRVAdapter(tmp : GetModifyPortFolioDataCpat) {
+        dataList = tmp
+        if(dataList.thumbnail.isNotEmpty()){
+            rl_modify_port_folio_act_no_work.visibility = View.GONE
+        }
         rv_modify_port_folio_act_work.adapter = workRVAdapter
         rv_modify_port_folio_act_work.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        workRVAdapter.dataList = tmp
+        workRVAdapter.notifyDataSetChanged()
     }
 
     private fun setTransWorkRVAdapter() {

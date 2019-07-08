@@ -62,7 +62,7 @@ interface NetworkService {
      * @param input
      *  이메일 또는 닉네임
      * @return
-     *  data 값이 중복일 시 1, 중복 아니면 0
+     *  dataTpat 값이 중복일 시 1, 중복 아니면 0
      */
     @GET("auth/duplicated/{flag}/{input}")
     fun getDuplicateFlag(
