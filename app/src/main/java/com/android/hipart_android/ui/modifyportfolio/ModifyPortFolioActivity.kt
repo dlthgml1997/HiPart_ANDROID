@@ -7,19 +7,31 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.android.hipart_android.R
+import com.android.hipart_android.network.ApplicationController
+import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.modifyportfolio.adapter.FilterRVAdapter
 import com.android.hipart_android.ui.modifyportfolio.adapter.TransWorkRVAdapter
 import com.android.hipart_android.ui.modifyportfolio.adapter.WorkRVAdapter
 import com.android.hipart_android.ui.modifyportfolio.data.FilterData
 import com.android.hipart_android.ui.modifyportfolio.data.TransWorkData
 import com.android.hipart_android.ui.modifyportfolio.data.WorkData
+import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioData
+import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponse
 import com.android.hipart_android.ui.portfolio.dialog.FilterDialog
 import com.android.hipart_android.util.BaseActivity
+import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_modify_port_folio.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
 class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
+
+    val networkService: NetworkService by lazy {
+        ApplicationController.instance.networkService
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -66,6 +78,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
             }
         }
     }
+
     private var filterDataList = ArrayList<FilterData>()
 
     private val filterRVAdapter by lazy {
@@ -92,21 +105,60 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         FilterDialog()
     }
 
+    lateinit var getModifyPortFolioData: GetModifyPortFolioData
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modify_port_folio)
 
         initView()
-
-
     }
 
     private fun initView() {
+        getModifyPortFolioResponse()
         setFilterRVAdapter()
         setTransWorkRVAdapter()
         setOnClickListener()
         // setWorkRVAdapter()
+    }
 
+    private fun getModifyPortFolioResponse() {
+        val getModifyPortFolioResponse = networkService.getModifyPortFolioResponse("application/json","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6IuuLieuEpOyehCIsImlkeCI6MTIsInR5cGUiOjEsImlhdCI6MTU2MjUyMDUyNSwiZXhwIjoxNTYzNzMwMTI1LCJpc3MiOiJpZyJ9.jzDgQsmhkbl0fSSam8uOMfGhXVFN0B4eSU3-CZoHW_U")
+        getModifyPortFolioResponse.enqueue(object : Callback<GetModifyPortFolioResponse> {
+            override fun onFailure(call: Call<GetModifyPortFolioResponse>, t: Throwable) {
+                Log.e("ModifyPortFolioAct Fail", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<GetModifyPortFolioResponse>,
+                response: Response<GetModifyPortFolioResponse>
+            ) {
+                if (response.isSuccessful) {
+                    if (response.body()!!.message == "조회 성공") {
+                        Log.v("usertype TAGGG",response.body()!!.data.userType.toString())
+                        when(response.body()!!.data.userType)
+                        {
+                            //C-PAT
+                            1-> {
+
+                            }
+                            //E-PAT
+                            2-> {
+
+                            }
+                            //T-PAT
+                            3->{
+
+                            }
+                            //ETC.
+                            4->{
+
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
 
     private fun setFilterRVAdapter() {

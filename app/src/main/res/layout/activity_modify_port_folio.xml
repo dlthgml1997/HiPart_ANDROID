@@ -219,7 +219,8 @@
                           android:layout_marginHorizontal="25dp"/>
 
 
-                    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    <RelativeLayout android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:layout_marginTop="20dp"
                                     android:layout_marginLeft="24dp">
 
@@ -275,11 +276,16 @@
 
                     </LinearLayout>
 
-                    <RelativeLayout android:layout_width="match_parent" android:layout_height="204dp"
+                    <RelativeLayout
+                            android:id="@+id/rl_modify_act_cpat_workspace"
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="204dp"
                                     android:layout_marginTop="10dp"
                                     android:background="#f6f6f6">
 
-                        <RelativeLayout android:layout_width="wrap_content"
+                        <RelativeLayout
+                                android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:id="@+id/rl_tmp"
                                         android:layout_marginTop="10dp"
@@ -395,6 +401,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                            android:visibility="gone"
                             android:layout_width="match_parent" android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingTop="20dp"
