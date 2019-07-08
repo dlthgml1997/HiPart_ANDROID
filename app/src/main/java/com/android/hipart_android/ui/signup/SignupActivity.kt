@@ -138,8 +138,6 @@ class SignupActivity : AppCompatActivity() {
             }
         }
         btn_signup_nextstep.setOnClickListener {
-            Log.v("TAGGG", emailDuplicateFlag.toString())
-            Log.v("TAGGG", nickNameDuplicateFlag.toString())
             if (emailDuplicateFlag == false && nickNameDuplicateFlag == false)
                 startActivity<SignupPartActivity>(
                     "email" to edt_Signup_Email.text.toString(),
