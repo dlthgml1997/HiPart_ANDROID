@@ -91,6 +91,7 @@ class LoginActivity : BaseActivity() {
                 response?.takeIf { it.isSuccessful }
                     ?.body()?.takeIf { it.message == "로그인 성공" }
                     ?.let {
+                        SharedPreferenceController.clearSPC(this@LoginActivity)
                         SharedPreferenceController.setAuthorization(this@LoginActivity, it.data?.tokens?.token)
                         SharedPreferenceController.setUserType(this@LoginActivity, it.data.user_type)
                         startActivity<MainActivity>()
