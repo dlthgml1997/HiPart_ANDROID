@@ -6,9 +6,10 @@ import android.os.Bundle
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
+import com.android.hipart_android.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_hipat_filter.*
 
-class HipatFilterActivity : AppCompatActivity() {
+class HipatFilterActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +67,7 @@ class HipatFilterActivity : AppCompatActivity() {
             // game이 눌려있을 경우 눌린 플로우
             else{
                 relativeLayout.isSelected = false
+                textView.setTextColor(Color.parseColor("#707070"))
             }
         }
     }
