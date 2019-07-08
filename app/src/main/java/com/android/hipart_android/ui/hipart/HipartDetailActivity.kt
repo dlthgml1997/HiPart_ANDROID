@@ -14,12 +14,23 @@ class HipartDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hipart_detail)
 
+        setFragment()
+
+
+
+    }
+
+    private fun setFragment() {
+
         val fm = supportFragmentManager
         val fragmentTransaction = fm.beginTransaction()
         fragmentTransaction.add(R.id.fl_hip_detail_act, HipartDetailEEtcFragment())
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
+
+
     }
+
 
     override fun onBackPressed() {
         val count = supportFragmentManager.backStackEntryCount
