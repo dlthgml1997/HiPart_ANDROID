@@ -1,5 +1,7 @@
 package com.android.hipart_android.network
 
+import com.android.hipart_android.ui.home.data.post.PickDTO
+import com.android.hipart_android.ui.home.data.post.PickResponse
 import com.android.hipart_android.ui.login.data.PostLoginRequest
 import com.android.hipart_android.ui.login.data.PostLoginResponse
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponse
@@ -9,6 +11,8 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
+
+
 
 
 /**
@@ -69,6 +73,28 @@ interface NetworkService {
         @Path("flag") flag : Int,
         @Path("input") input : String
     ) : Call<GetDuplicateFlagResponse>
+
+    /**
+     * 픽추가
+     * @header token
+     * @body nickname
+     */
+    @POST("pick")
+    fun addPick(
+        @Header("token") token: String,
+        @Body pickDTO: PickDTO
+    ) : Call<PickResponse>
+
+    /**
+     * 픽 삭제
+     * @header token
+     * @body nickname
+     */
+    @HTTP(method = "DELETE", path = "pick", hasBody = true)
+    fun deletePick(
+        @Header("token") token: String,
+        @Body pickDTO: PickDTO
+    ): Call<PickResponse>
 
 
 }
