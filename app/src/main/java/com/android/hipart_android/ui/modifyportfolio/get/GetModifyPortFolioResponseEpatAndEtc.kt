@@ -4,7 +4,7 @@ package com.android.hipart_android.ui.modifyportfolio.get
 
 import com.google.gson.annotations.SerializedName
 
-data class GetModifyPortFolioResponseEpat(
+data class GetModifyPortFolioResponseEpatAndEtc(
     @SerializedName("status")
     var status: Int,
     @SerializedName("success")
@@ -12,11 +12,11 @@ data class GetModifyPortFolioResponseEpat(
     @SerializedName("message")
     var message: String,
     @SerializedName("data")
-    var data: GetModifyPortFolioDataEpat
+    var data: GetModifyPortFolioDataEpatAndEtc
 )
 
 //에디터
-data class GetModifyPortFolioDataEpat(
+data class GetModifyPortFolioDataEpatAndEtc(
     @SerializedName("user_nickname")
     var userNickname: String,
     @SerializedName("user_img")

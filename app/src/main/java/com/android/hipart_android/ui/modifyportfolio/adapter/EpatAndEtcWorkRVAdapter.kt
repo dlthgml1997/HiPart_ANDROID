@@ -9,10 +9,10 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
-import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioDataEpat
+import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioDataEpatAndEtc
 import com.bumptech.glide.Glide
 
-class EpatWorkRVAdapter(val ctx: Context, var dataList : GetModifyPortFolioDataEpat) : RecyclerView.Adapter<EpatWorkRVAdapter.Holder>() {
+class EpatAndEtcWorkRVAdapter(val ctx: Context, var dataList : GetModifyPortFolioDataEpatAndEtc) : RecyclerView.Adapter<EpatAndEtcWorkRVAdapter.Holder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.item_frag_hip_det_c_article, p0, false)
