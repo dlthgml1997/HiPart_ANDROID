@@ -62,9 +62,10 @@
                     <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/mypage_youtube_white_img"
+                            app:srcCompat="@drawable/pofol_twitch_white_img"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="4dp"/>
+                            android:layout_marginLeft="4dp"
+                            android:id="@+id/txt_mypage_frag_detail_platform"/>
                 </LinearLayout>
                 <LinearLayout
                         android:orientation="horizontal"
@@ -102,7 +103,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:id="@+id/txt_mypage_frag_fram_num"/>
+                            android:id="@+id/txt_mypage_frag_farm_num"/>
                     <TextView
                             android:text="보유한 팜"
                             android:fontFamily="@font/nanum_regular"

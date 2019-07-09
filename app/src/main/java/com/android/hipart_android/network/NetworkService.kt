@@ -1,14 +1,22 @@
 package com.android.hipart_android.network
 
+import com.android.hipart_android.ui.home.data.post.PickDTO
+import com.android.hipart_android.ui.home.data.post.PickResponse
 import com.android.hipart_android.ui.login.data.PostLoginRequest
 import com.android.hipart_android.ui.login.data.PostLoginResponse
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponse
+import com.android.hipart_android.ui.modifyprofile.data.get.GetModifyProfileResponse
+import com.android.hipart_android.ui.modifyprofile.data.put.ModifyProfileResponse
+import com.android.hipart_android.ui.mypage.data.PostManToManQuestionRequest
+import com.android.hipart_android.ui.mypage.get.GetMypageResponse
 import com.android.hipart_android.ui.signup.data.GetDuplicateFlagResponse
 import com.android.hipart_android.ui.signup.data.PostSignUpResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
+
+
 
 
 /**
@@ -24,6 +32,15 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Body body: PostLoginRequest
     ): Call<PostLoginResponse>
+
+    /**
+     * 마이 페이지
+     */
+    @GET("mypage/info")
+    fun getMypageResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String
+    ): Call<GetMypageResponse>
 
     // 소희 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
     /**
@@ -69,6 +86,67 @@ interface NetworkService {
         @Path("flag") flag : Int,
         @Path("input") input : String
     ) : Call<GetDuplicateFlagResponse>
+
+    /**
+     * 픽추가
+     * @header token
+     * @body nickname
+     */
+    @POST("pick")
+    fun addPick(
+        @Header("token") token: String,
+        @Body pickDTO: PickDTO
+    ) : Call<PickResponse>
+
+    /**
+     * 픽 삭제
+     * @header token
+     * @body nickname
+     */
+    @HTTP(method = "DELETE", path = "pick", hasBody = true)
+    fun deletePick(
+        @Header("token") token: String,
+        @Body pickDTO: PickDTO
+    ): Call<PickResponse>
+
+    /**
+     * 1대1 문의
+     * @header token
+     * @body comment
+     */
+    @POST("mypage/question")
+    fun postManToManQusetion(
+        @Header("Token") token: String,
+        @Body postManToManQuestionRequest : PostManToManQuestionRequest
+    ) : Call<PickResponse>
+
+    /**
+     * 회원정보 조회
+     * @header token
+     * @body comment
+     */
+    @GET("mypage/modify")
+    fun getProfile(
+        @Header("Token") token: String
+    ) : Call<GetModifyProfileResponse>
+
+    /**
+     * 회원정보 변경
+     * @header token
+     */
+    @Multipart
+    @PUT("mypage/modify")
+    fun modifyProfile(
+        @Header("Token") token: String,
+        @Part user_img: MultipartBody.Part?,
+        @Part("user_nickname") userNickname: RequestBody,
+        @Part("user_number") userNumber : RequestBody,
+        @Part("user_pw") userPw : RequestBody,
+        @Part("new_pw") newPw: RequestBody,
+        @Part("user_type") userType : Int
+    ) : Call<ModifyProfileResponse>
+
+
 
 
 }
