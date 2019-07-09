@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
-import com.android.hipart_android.ui.modifyportfolio.data.WorkData
+import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioDataCpat
 import com.bumptech.glide.Glide
 
 
@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide
  * Created by TakHyeongMin on 2019-07-06.
  */
 
-class WorkRVAdapter(val ctx: Context, var dataList : ArrayList<WorkData>) : RecyclerView.Adapter<WorkRVAdapter.Holder>() {
+class WorkRVAdapter(val ctx: Context, var dataList : GetModifyPortFolioDataCpat) : RecyclerView.Adapter<WorkRVAdapter.Holder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.item_frag_hip_det_c_article, p0, false)
@@ -25,25 +25,25 @@ class WorkRVAdapter(val ctx: Context, var dataList : ArrayList<WorkData>) : Recy
 
     }
 
-    override fun getItemCount(): Int = dataList.size
+    override fun getItemCount(): Int = dataList.thumbnail.size
 
     override fun onBindViewHolder(p0: Holder, p1: Int) {
 
         Glide.with(ctx)
-            .load(dataList[p1].imgUrl)
+            .load(dataList.thumbnail[p1])
             .into(p0.img)
 
         p0.cancleBtn.visibility = View.VISIBLE
 
-        p0.title.text = dataList[p1].title
-        p0.description.text = dataList[p1].description
+        p0.title.text = dataList.title[p1]
+        p0.description.text = dataList.detailSubscriber[p1].toString()
 
         if(p1 == 0){
             val dp = ctx.resources.displayMetrics.density
             val rootLayoutParams = p0.root.layoutParams as RelativeLayout.LayoutParams
             rootLayoutParams.leftMargin = (25 * dp).toInt()
             p0.root.layoutParams = rootLayoutParams
-        }else if(p1 == dataList.size - 1){
+        }else if(p1 == dataList.thumbnail.size - 1){
             val dp = ctx.resources.displayMetrics.density
             val rootLayoutParams = p0.root.layoutParams as RelativeLayout.LayoutParams
             rootLayoutParams.rightMargin = (19 * dp).toInt()
@@ -55,7 +55,7 @@ class WorkRVAdapter(val ctx: Context, var dataList : ArrayList<WorkData>) : Recy
 
 
         p0.cancleBtn.setOnClickListener {
-            dataList.removeAt(p1)
+            //dataList.thumbnail.removeAt(p1)
             notifyDataSetChanged()
         }
 
