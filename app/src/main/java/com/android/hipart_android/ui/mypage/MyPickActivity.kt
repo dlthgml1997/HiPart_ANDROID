@@ -3,18 +3,31 @@ package com.android.hipart_android.ui.mypage
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import com.android.hipart_android.R
+import com.android.hipart_android.network.ApplicationController
+import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.hipat.adapter.PortFolioRecyclerViewAdapter
 import com.android.hipart_android.ui.hipat.data.PortFolioData
+import com.android.hipart_android.ui.mypage.data.GetMyPickData
+import com.android.hipart_android.ui.mypage.data.GetMyPickResponse
 import com.android.hipart_android.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_mypick.*
 import kotlinx.android.synthetic.main.toolbar_mypick.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MyPickActivity : BaseActivity(), View.OnClickListener {
+
+    private val networkService:NetworkService by lazy{
+        ApplicationController.instance.networkService
+    }
+
     override fun onClick(v: View?) {
         when(v){
             btn_my_pick_back -> {
@@ -24,56 +37,47 @@ class MyPickActivity : BaseActivity(), View.OnClickListener {
     }
 
     val dataList by lazy {
-        ArrayList<PortFolioData>()
+        ArrayList<GetMyPickData>()
     }
-
+    //var dataList: ArrayList<PortFolioData> = ArrayList()
     lateinit var portFolioRecyclerViewAdapter: PortFolioRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mypick)
-
+        getMyPickResponse()
         configureRecyclerView()
         setOnClickListener()
     }
 
     private fun configureRecyclerView() {
-        dataList.add(
-            PortFolioData(
-                "default", "NaDo", "크리에이터", true, 224, "안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)", 3
-            )
-        )
-        dataList.add(
-            PortFolioData(
-                "default", "NaDo", "에디터", true, 224, "안녕 모든 것들을 먹으며 방송하고 있어! 감사 :)", 3
-            )
-        )
-        dataList.add(
-            PortFolioData(
-                "default", "NaDo", "트랜슬레이터", true, 224, "안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)", 3
-            )
-        )
-        dataList.add(
-            PortFolioData(
-                "default", "NaDo", "크리에이터", true, 224, "안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)", 3
-            )
-        )
-        dataList.add(
-            PortFolioData(
-                "default", "NaDo", "크리에이터", true, 224, "안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)", 3
-            )
-        )
-        dataList.add(
-            PortFolioData(
-                "default", "NaDo", "크리에이터", true, 224, "안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)", 3
-            )
-        )
-
-        portFolioRecyclerViewAdapter= PortFolioRecyclerViewAdapter(this,dataList, false)
+        portFolioRecyclerViewAdapter= PortFolioRecyclerViewAdapter(this, dataList , false)
         rv_mypick_act_port.adapter = portFolioRecyclerViewAdapter
         rv_mypick_act_port.layoutManager = LinearLayoutManager(this,LinearLayout.VERTICAL,false)
-    }
 
+    }
+    fun getMyPickResponse(){
+        val getMyPickResponse = networkService.getMyPickResponse("application/json",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM")
+        getMyPickResponse.enqueue(object: Callback<GetMyPickResponse> {
+            override fun onFailure(call: Call<GetMyPickResponse>, t: Throwable) {
+                Log.e("List Fail", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<GetMyPickResponse>, response: Response<GetMyPickResponse>
+            ) {
+                Log.e("Tagggg", response.body().toString())
+                if (response.isSuccessful) {
+                    if (response.body()!!.status == 200) {
+                        val tmp: ArrayList<GetMyPickData> = response!!.body()!!.data
+                        portFolioRecyclerViewAdapter.dataList = tmp
+                        portFolioRecyclerViewAdapter.notifyDataSetChanged()
+                    }
+                }
+            }
+        })
+    }
     fun setAnimPickIcon() {
         val interpolator = MyBounceInterpolator(0.2, 20.0)
         val anim: Animation = AnimationUtils.loadAnimation(this@MyPickActivity, R.anim.expand_anim)
