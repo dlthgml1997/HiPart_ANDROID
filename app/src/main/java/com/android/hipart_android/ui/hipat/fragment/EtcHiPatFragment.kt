@@ -3,14 +3,21 @@ package com.android.hipart_android.ui.hipat.fragment
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.android.hipart_android.R
+import com.android.hipart_android.network.ApplicationController
+import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.hipat.adapter.PortFolioRecyclerViewAdapter
-import kotlinx.android.synthetic.main.fragment_hipat_etc.*
+import com.android.hipart_android.ui.hipat.data.GetProfileLookUpResponse
 import com.android.hipart_android.ui.mypick.data.GetMyPickData
+import com.android.hipart_android.util.SharedPreferenceController
+import kotlinx.android.synthetic.main.fragment_hipat_etc.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class EtcHiPatFragment : Fragment() {
 
@@ -44,8 +51,37 @@ class EtcHiPatFragment : Fragment() {
         rv_hipat_etc_frag.adapter = portFolioRecyclerViewAdapter
         rv_hipat_etc_frag.layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.VERTICAL, false)
 
-
+        getProfileLookUp(4)
     }
 
+    fun getProfileLookUp(flag : Int){
+        var networkService: NetworkService = ApplicationController.instance.networkService
+
+        val getProfileLookUp = networkService.getProfileLookUp(
+            SharedPreferenceController.getAuthorization(this@EtcHiPatFragment.context!!),
+            flag
+        )
+
+        getProfileLookUp.enqueue(object: Callback<GetProfileLookUpResponse> {
+            override fun onFailure(call: Call<GetProfileLookUpResponse>, t: Throwable) {
+                Log.e("All HighPat Frag Err", Log.getStackTraceString(t))
+            }
+
+            override fun onResponse(
+                call: Call<GetProfileLookUpResponse>,
+                response: Response<GetProfileLookUpResponse>
+            ) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.takeIf { it.message == "조회 성공" }
+                    ?.data
+                    ?.let {
+                        portFolioRecyclerViewAdapter.dataList = it
+                        portFolioRecyclerViewAdapter.notifyDataSetChanged()
+                    }
+            }
+        })
+    }
 
 }

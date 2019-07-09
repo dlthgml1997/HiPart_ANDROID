@@ -3,6 +3,7 @@ package com.android.hipart_android.network
 import com.android.hipart_android.ui.hipart.get.GetDetailCResponse
 import com.android.hipart_android.ui.hipart.get.GetDetailEEtcResponse
 import com.android.hipart_android.ui.hipart.get.GetDetailTResponse
+import com.android.hipart_android.ui.hipat.data.GetProfileLookUpResponse
 import com.android.hipart_android.ui.home.data.get.GetCustomRecommendResponse
 import com.android.hipart_android.ui.home.data.post.PickDTO
 import com.android.hipart_android.ui.home.data.post.PickResponse
@@ -95,6 +96,26 @@ interface NetworkService {
         @Header("token") token: String
     ): Call<GetMypageResponse>
 
+    /**
+     * 하이 파이브한 사람
+     */
+    @POST("hifive")
+    fun postHifiveResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Body body: PostHifiveRequest
+    ): Call<PostHifiveResponse>
+
+    /**
+     * 하이 파이브한 사람 전화번호
+     */
+    @GET("hifive/{nickname}")
+    fun getHifiveNumResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Path("nickname") nickname: String
+    ): Call<GetHifiveNumResponse>
+
 //    /**
 //     * 알림 조회
 //     */
@@ -177,6 +198,7 @@ interface NetworkService {
 
 
     // 소희 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
+
     /**
      * 포트폴리오 수정 페이지 로딩 - 크리에이터
      */
@@ -223,6 +245,39 @@ interface NetworkService {
      */
     @HTTP(method = "DELETE", path = "portfolio/creator", hasBody = true)
     fun deleteModifyPortFolioResponseCpat(
+        @Header("token") token: String,
+        @Body workIndex : WorkIndex
+    ): Call<DeleteModifyPortFolioResponse>
+
+    /**
+     * 포트폴리오 수정 페이지 작품 삭제 - 에디터
+     * @header token
+     * @body work_idx
+     */
+    @HTTP(method = "DELETE", path = "portfolio/editor", hasBody = true)
+    fun deleteModifyPortFolioResponseEpat(
+        @Header("token") token: String,
+        @Body workIndex : WorkIndex
+    ): Call<DeleteModifyPortFolioResponse>
+
+    /**
+     * 포트폴리오 수정 페이지 작품 삭제 - 트랜슬레이터
+     * @header token
+     * @body work_idx
+     */
+    @HTTP(method = "DELETE", path = "portfolio/translator", hasBody = true)
+    fun deleteModifyPortFolioResponseTpat(
+        @Header("token") token: String,
+        @Body workIndex : WorkIndex
+    ): Call<DeleteModifyPortFolioResponse>
+
+    /**
+     * 포트폴리오 수정 페이지 작품 삭제 - 기타
+     * @header token
+     * @body work_idx
+     */
+    @HTTP(method = "DELETE", path = "portfolio/etc", hasBody = true)
+    fun deleteModifyPortFolioResponseEtc(
         @Header("token") token: String,
         @Body workIndex : WorkIndex
     ): Call<DeleteModifyPortFolioResponse>
@@ -360,5 +415,19 @@ interface NetworkService {
         @Header("token") token: String
     ): Call<GetCustomRecommendResponse>
 
+    /**
+     * @header token
+     * @param flag
+     *  0 -> 전체보기
+     *  1 -> 크리에이터
+     *  2 -> 에디터
+     *  3 -> 번역가
+     *  4 -> 기타
+     */
+    @GET("profile/list/{flag}")
+    fun getProfileLookUp(
+        @Header("token") token: String,
+        @Path("flag") flag: Int
+    ): Call<GetProfileLookUpResponse>
 
 }
