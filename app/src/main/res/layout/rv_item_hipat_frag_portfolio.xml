@@ -39,6 +39,7 @@
 
         <ImageView
                 android:src="@drawable/youtube_grey_img"
+                android:id="@+id/img_rv_item_hipat_frag_kind_of_creator"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="2dp"
                 android:layout_width="wrap_content"
@@ -86,26 +87,59 @@
             android:layout_below="@+id/txt_hipat_frag_kind_of_pat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        <ImageView
-                android:id="@+id/img_hipat_frag_filter_holder1"
-                android:visibility="visible"
-                android:src="@drawable/main_filter_1_icon"
+
+        <TextView
+                android:id="@+id/tv_hipat_filter_act_concept"
+                android:text="기획"
+                android:textColor="#707070"
+                android:textSize="11sp"
+                android:fontFamily="@font/nanum_light"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <ImageView
-                android:layout_marginLeft="4dp"
-                android:visibility="visible"
-                android:id="@+id/img_hipat_frag_filter_holder2"
-                android:src="@drawable/main_filter_1_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        <ImageView
-                android:layout_marginLeft="4dp"
-                android:visibility="visible"
-                android:id="@+id/img_hipat_frag_filter_more"
-                android:src="@drawable/main_more_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:background="@drawable/selector_hipat_filter_border"
+        />
+
+            <TextView
+                    android:id="@+id/tv_hipat_filter_pd"
+                    android:text="먹방"
+                    android:textColor="#707070"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/nanum_light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:background="@drawable/selector_hipat_filter_border"
+                    android:paddingVertical="4dp"
+                    android:layout_marginLeft="4dp"
+            />
+            <TextView
+                    android:id="@+id/tv_hipat_filter_lang"
+                    android:text="영어"
+                    android:textColor="#707070"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/nanum_light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:background="@drawable/selector_hipat_filter_border"
+                    android:paddingVertical="4dp"
+                    android:layout_marginLeft="4dp"
+            />
+            <TextView
+                    android:id="@+id/tv_hipat_filter_act_chinese"
+                    android:text="소통"
+                    android:textColor="#707070"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/nanum_light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:background="@drawable/selector_hipat_filter_border"
+                    android:paddingVertical="4dp"
+                    android:layout_marginLeft="4dp"
+            />
     </LinearLayout>
 
     <TextView
@@ -116,7 +150,7 @@
             android:textSize="13sp"
             android:textColor="#242424"
             android:textStyle="bold"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
