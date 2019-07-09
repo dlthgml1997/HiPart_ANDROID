@@ -9,6 +9,8 @@ import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.login.data.PostLoginRequest
 import com.android.hipart_android.ui.login.data.PostLoginResponse
+import com.android.hipart_android.ui.login.data.RefreshToken
+import com.android.hipart_android.ui.login.data.RefreshTokenResponse
 import com.android.hipart_android.ui.main.MainActivity
 import com.android.hipart_android.ui.signup.SignupActivity
 import com.android.hipart_android.util.BaseActivity
@@ -36,6 +38,7 @@ class LoginActivity : BaseActivity() {
         setTextChangedListenerEmail()
         setTextChangedListenerPassword()
         setOnBtnClickListener()
+        refreshToken("chI2McxQf89Y9krDcXCKBkEnAkzQ1Yc7L56voJc7pa20vC8LDnbNZymPsSfex6zYtnSfc93GKCNqbXjDujkU5cvaAJRAoUwR6Gzr62XRxEQZ6A5NAlxEpWN4sRFpn5VlMWD3zAC7HJStjXtLjhPr8GOfW77W4KiyRiHGU13CWurDWHHPeaIzbd9Wqzg1pqFq2uwNkqF99smCCuIgVkC1lSNeMNBQhPG6jCEjXRh0uIUcLdSOSHXYqp4ni5SeoTWM")
     }
 
     // edt 클릭 시 포커스 주기
@@ -74,9 +77,35 @@ class LoginActivity : BaseActivity() {
         txt_login_act_signup.setOnClickListener {
             startActivity<SignupActivity>()
         }
-
     }
 
+    //리프레시 토큰
+    private fun refreshToken(refreshToken : String){
+        val getRefreshToken: Call<RefreshTokenResponse> =
+            networkService.getRefreshToken("application/json",
+                SharedPreferenceController.getAuthorization((this@LoginActivity)))
+        getRefreshToken.enqueue(object: Callback<RefreshTokenResponse>{
+            override fun onFailure(call: Call<RefreshTokenResponse>, t: Throwable) {
+                Log.e("Refresh token failed", t.toString())
+
+            }
+
+            override fun onResponse(
+                call: Call<RefreshTokenResponse>, response: Response<RefreshTokenResponse>) {
+                Log.v("LoginActivity", response.toString())
+
+                Log.v("LoginActivity", response!!.body()!!.toString())
+
+                Log.v("LoginActivity", response!!.body()!!.message)
+
+                if(response.isSuccessful){
+                    if(response.body()!!.status == 200){
+                        val tmp: RefreshToken = response!!.body()!!.data
+                    }
+                }
+            }
+        })
+    }
     private fun postLoginResponse(user_email: String, user_pw: String) {
 
         val postLoginResponse: Call<PostLoginResponse> =
