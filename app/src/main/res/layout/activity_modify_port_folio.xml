@@ -300,7 +300,7 @@
                             android:id="@+id/rl_modify_act_cpat_work"
                             android:visibility="visible"
                             android:layout_width="match_parent"
-                            android:layout_height="204dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:background="#f6f6f6">
 
@@ -365,9 +365,9 @@
 
                         <LinearLayout
                                 android:id="@+id/rl_modify_port_folio_act_no_work"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
+                                android:layout_width="match_parent"
+                                android:layout_height="208dp"
+                                android:gravity="center"
                                 android:orientation="vertical"
                         >
 
