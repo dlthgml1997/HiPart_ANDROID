@@ -30,11 +30,11 @@ data class GetModifyPortFolioDataTpat(
     @SerializedName("detail_want")
     var detailWant: String,
     @SerializedName("work_idx")
-    var workIdx: List<Int>,
+    var workIdx: ArrayList<Int>,
     @SerializedName("before")
-    var before: List<String>,
+    var before: ArrayList<String>,
     @SerializedName("after")
-    var after: List<String>,
+    var after: ArrayList<String>,
     @SerializedName("hifive")
     var hifive: Int,
     @SerializedName("pick")

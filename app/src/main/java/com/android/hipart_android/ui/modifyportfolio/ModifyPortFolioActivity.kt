@@ -74,48 +74,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
             btn_modify_port_folio_confirm -> {
                 //수정 통신 put
                 //delete
-                if(removeIndexList.isNotEmpty()) {
-                    deleteModifyPortResponseCpat(removeIndexList)
-                }
+                deleteModifyPortResponse()
             }
         }
-    }
-
-    // 작품 삭제 - CPAT
-    private fun deleteModifyPortResponseCpat(workIndex: ArrayList<Int>) {
-        val deleteModifyPortResponseCpat = networkService.deleteModifyPortFolioResponseCpat(
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM"
-            , WorkIndex(workIndex))
-        deleteModifyPortResponseCpat.enqueue(object : Callback<DeleteModifyPortFolioResponse> {
-            override fun onFailure(call: Call<DeleteModifyPortFolioResponse>, t: Throwable) {
-                Log.e("TAGGG deleteWork Error", t.toString())
-            }
-
-            override fun onResponse(
-                call: Call<DeleteModifyPortFolioResponse>,
-                response: Response<DeleteModifyPortFolioResponse>
-            ) {
-                response
-                    ?.takeIf { it.isSuccessful }
-                    ?.body()
-                    ?.let {
-                        when (it?.message ?: " ") {
-                            "작품 삭제 성공" -> {
-                                Log.v("TAGGG", it.message)
-                            }
-                            " " -> {
-                                Log.v("TAGGG", "message가 널")
-                            }
-                            "작품이 존재 하지 않습니다" -> {
-                                Log.v("TAGGG", "작품이 존재 하지 않습니다")
-                            }
-                            else -> {
-                                Log.v("TAGGG", it.message)
-                            }
-                        }
-                    }
-            }
-        })
     }
 
     private var filterDataList = ArrayList<FilterData>()
@@ -139,11 +100,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     private val epatWorkRVAdapter by lazy {
         EpatAndEtcWorkRVAdapter(this@ModifyPortFolioActivity, dataListEpatAndEtc)
     }
-
     private val transWorkRVAdapter by lazy {
         TransWorkRVAdapter(this@ModifyPortFolioActivity, dataListTpat)
     }
-
     private val filterDialog by lazy {
         FilterDialog()
     }
@@ -187,7 +146,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     private fun getModifyPortFolioResponse() {
         val userType = SharedPreferenceController.getUserType(this@ModifyPortFolioActivity)
         Log.v("TAGGGG", userType.toString())
-        when (1) {
+        when (4) {
             //C-PAT
             1 -> {
                 getModifyPortFolioResponseCpat()
@@ -248,7 +207,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                             edt_modify_port_act_want.hint = data.detailWant
 
                         //유저 타입
-                        tv_modify_port_folio_act_job.text = "크리에이터"
+                        tv_modify_port_folio_act_job.text = "creator"
 
                         //구독자
                         ll_modify_port_act_subscriber.visibility = View.VISIBLE
@@ -291,21 +250,6 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         })
     }
 
-    //작품 리사이클러뷰 - 크리에이터
-    private fun setCpatWorkRVAdapter(tmp: GetModifyPortFolioDataCpat) {
-        dataListCpat = tmp
-        if (dataListCpat.thumbnail.isNotEmpty()) {
-            rl_modify_port_folio_act_no_work.visibility = View.GONE
-        }
-        rv_modify_port_folio_act_work.adapter = cpatWorkRVAdapter
-        rv_modify_port_folio_act_work.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        cpatWorkRVAdapter.dataList = tmp
-        Log.v("TAGGG remove", removeIndexList.toString())
-        cpatWorkRVAdapter.notifyDataSetChanged()
-
-    }
-
     //E-PAT 통신 - 에디터
     private fun getModifyPortFolioResponseEpat() {
         val getModifyPortFolioResponseEpat = networkService.getModifyPortFolioResponseEpat(
@@ -336,7 +280,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         tv_modify_port_act_user_name.text = data.userNickname
 
                         //유저 타입
-                        tv_modify_port_folio_act_job.text = "에디터"
+                        tv_modify_port_folio_act_job.text = "editor"
 
                         //하이파이브
                         edt_modify_port_act_hifive.hint = data.hifive.toString()
@@ -366,26 +310,11 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         })
     }
 
-    //작품 리사이클러뷰 - 에디터/기타
-    private fun setEpatAndEtcWorkRVAdapter(tmp: GetModifyPortFolioDataEpatAndEtc) {
-        dataListEpatAndEtc = tmp
-        if (dataListEpatAndEtc.thumbnail.isNotEmpty()) {
-            rl_modify_port_folio_act_no_work.visibility = View.GONE
-        }
-
-        rv_modify_port_folio_act_work.adapter = epatWorkRVAdapter
-        rv_modify_port_folio_act_work.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        epatWorkRVAdapter.dataList = tmp
-        epatWorkRVAdapter.notifyDataSetChanged()
-
-    }
-
     //T-PAT 통신 - 트랜슬레이터
     private fun getModifyPortFolioResponseTpat() {
         val getModifyPortFolioResponseTpat = networkService.getModifyPortFolioResponseTpat(
             "application/json",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6InRyYW5zbWFuIiwiaWR4Ijo0LCJ0eXBlIjozLCJpYXQiOjE1NjI1NjY4ODUsImV4cCI6MTU2Mzc3NjQ4NSwiaXNzIjoiaWcifQ.vPV_rl33SsxExk-M2jsJPNz7Ls54zdOe-2ARVuXaxl0"
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6InRyYW5zbWFuIiwiaWR4Ijo0LCJ0eXBlIjozLCJpYXQiOjE1NjI2NzU2MzIsImV4cCI6MTU2Mzg4NTIzMiwiaXNzIjoiaWcifQ.onbsHzwqnyFmOPcpiuKxt2KxQS0c1pc1FHYnGsR1Flo"
         )
         getModifyPortFolioResponseTpat.enqueue(object : Callback<GetModifyPortFolioResponseTpat> {
             override fun onFailure(call: Call<GetModifyPortFolioResponseTpat>, t: Throwable) {
@@ -410,7 +339,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         tv_modify_port_act_user_name.text = data.userNickname
 
                         //유저 타입
-                        tv_modify_port_folio_act_job.text = "트랜슬레이터"
+                        tv_modify_port_folio_act_job.text = "translator"
 
                         //하이파이브
                         edt_modify_port_act_hifive.hint = data.hifive.toString()
@@ -431,23 +360,13 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         //작품 리사이클러뷰 설정
                         val tmp: GetModifyPortFolioDataTpat? = response.body()!!.data
                         if (data.before != null) {
-                            Log.v("dataList sze", data.before.size.toString())
+                            Log.v("dataList size", data.before.size.toString())
                             setTpatWorkRVAdapter(tmp!!)
                         }
                     }
                 }
             }
         })
-    }
-
-    //작품 리사이클러 뷰 - 트랜슬레이터
-    private fun setTpatWorkRVAdapter(tmp: GetModifyPortFolioDataTpat) {
-        dataListTpat = tmp
-        if (dataListTpat.after.isNotEmpty()) {
-            rl_modify_port_folio_act_no_work.visibility = View.GONE
-        }
-        rv_modify_port_folio_act_work.adapter = transWorkRVAdapter
-        rv_modify_port_folio_act_work.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 
     //ETC. 통신 - 기타
@@ -480,7 +399,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         tv_modify_port_act_user_name.text = data.userNickname
 
                         //유저 타입
-                        tv_modify_port_folio_act_job.text = "기타"
+                        tv_modify_port_folio_act_job.text = "etc"
 
                         //하이파이브
                         edt_modify_port_act_hifive.hint = data.hifive.toString()
@@ -510,6 +429,219 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         })
     }
 
+    //작품 리사이클러뷰 - 크리에이터
+    private fun setCpatWorkRVAdapter(tmp: GetModifyPortFolioDataCpat) {
+        dataListCpat = tmp
+        if (dataListCpat.thumbnail.isNotEmpty()) {
+            rl_modify_port_folio_act_no_work.visibility = View.GONE
+        }
+        rv_modify_port_folio_act_work.adapter = cpatWorkRVAdapter
+        rv_modify_port_folio_act_work.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        cpatWorkRVAdapter.dataList = tmp
+        Log.v("TAGGG remove", removeIndexList.toString())
+        cpatWorkRVAdapter.notifyDataSetChanged()
+
+    }
+
+    //작품 리사이클러뷰 - 에디터/기타
+    private fun setEpatAndEtcWorkRVAdapter(tmp: GetModifyPortFolioDataEpatAndEtc) {
+        dataListEpatAndEtc = tmp
+        if (dataListEpatAndEtc.thumbnail.isNotEmpty()) {
+            rl_modify_port_folio_act_no_work.visibility = View.GONE
+        }
+
+        rv_modify_port_folio_act_work.adapter = epatWorkRVAdapter
+        rv_modify_port_folio_act_work.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        epatWorkRVAdapter.dataList = tmp
+        epatWorkRVAdapter.notifyDataSetChanged()
+
+    }
+
+    //작품 리사이클러 뷰 - 트랜슬레이터
+    private fun setTpatWorkRVAdapter(tmp: GetModifyPortFolioDataTpat) {
+        dataListTpat = tmp
+        if (dataListTpat.after.isNotEmpty()) {
+            rl_modify_port_folio_act_no_work.visibility = View.GONE
+        }
+        rv_modify_port_folio_act_work.adapter = transWorkRVAdapter
+        rv_modify_port_folio_act_work.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        transWorkRVAdapter.dataList = tmp
+        transWorkRVAdapter.notifyDataSetChanged()
+    }
+
+    //작품 삭제
+    private fun deleteModifyPortResponse() {
+        if (removeIndexList.isNotEmpty()) {
+            //SharedPreferenceController.getUserType(this@ModifyPortFolioActivity)
+            when (4) {
+                //크리에이터
+                1 -> deleteModifyPortResponseCpat(removeIndexList)
+                //에디터
+                2 -> deleteModifyPortFolioResponseEpat(removeIndexList)
+                //트랜슬레이터
+                3 -> deleteModifyPortFolioResponseTpat(removeIndexList)
+                //기타
+                4 -> deleteModifyPortFolioResponseEtc(removeIndexList)
+            }
+        }
+    }
+
+    // 작품 삭제 - CPAT
+    private fun deleteModifyPortResponseCpat(workIndex: ArrayList<Int>) {
+        val deleteModifyPortResponseCpat = networkService.deleteModifyPortFolioResponseCpat(
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM"
+            , WorkIndex(workIndex)
+        )
+        deleteModifyPortResponseCpat.enqueue(object : Callback<DeleteModifyPortFolioResponse> {
+            override fun onFailure(call: Call<DeleteModifyPortFolioResponse>, t: Throwable) {
+                Log.e("TAGGG deleteWork Error", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<DeleteModifyPortFolioResponse>,
+                response: Response<DeleteModifyPortFolioResponse>
+            ) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let {
+                        when (it?.message ?: " ") {
+                            "작품 삭제 성공" -> {
+                                Log.v("TAGGG", it.message)
+                            }
+                            " " -> {
+                                Log.v("TAGGG", "message가 널")
+                            }
+                            "작품이 존재 하지 않습니다" -> {
+                                Log.v("TAGGG", "작품이 존재 하지 않습니다")
+                            }
+                            else -> {
+                                Log.v("TAGGG", it.message)
+                            }
+                        }
+                    }
+            }
+        })
+    }
+
+    // 작품 삭제 - EPAT
+    private fun deleteModifyPortFolioResponseEpat(workIndex: ArrayList<Int>) {
+        val deleteModifyPortFolioResponseEpat = networkService.deleteModifyPortFolioResponseEpat(
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6IuyXkOuUlO2EsCIsImlkeCI6NSwidHlwZSI6MiwiaWF0IjoxNTYyNTY2OTM5LCJleHAiOjE1NjM3NzY1MzksImlzcyI6ImlnIn0.C4c6ibbr_QtAi2vk_S3ZftqmxJ9X0-EK7s8pNieLI_E"
+            , WorkIndex(workIndex)
+        )
+        deleteModifyPortFolioResponseEpat.enqueue(object : Callback<DeleteModifyPortFolioResponse> {
+            override fun onFailure(call: Call<DeleteModifyPortFolioResponse>, t: Throwable) {
+                Log.e("TAGGG deleteWork Error", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<DeleteModifyPortFolioResponse>,
+                response: Response<DeleteModifyPortFolioResponse>
+            ) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let {
+                        when (it?.message ?: " ") {
+                            "작품 삭제 성공" -> {
+                                Log.v("TAGGG", it.message)
+                            }
+                            " " -> {
+                                Log.v("TAGGG", "message가 널")
+                            }
+                            "작품이 존재 하지 않습니다" -> {
+                                Log.v("TAGGG", "작품이 존재 하지 않습니다")
+                            }
+                            else -> {
+                                Log.v("TAGGG", it.message)
+                            }
+                        }
+                    }
+            }
+        })
+    }
+
+    //작품 삭제 - TPAT
+    private fun deleteModifyPortFolioResponseTpat(workIndex: ArrayList<Int>) {
+        val deleteModifyPortFolioResponseTpat = networkService.deleteModifyPortFolioResponseTpat(
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6InRyYW5zbWFuIiwiaWR4Ijo0LCJ0eXBlIjozLCJpYXQiOjE1NjI2NzU2MzIsImV4cCI6MTU2Mzg4NTIzMiwiaXNzIjoiaWcifQ.onbsHzwqnyFmOPcpiuKxt2KxQS0c1pc1FHYnGsR1Flo"
+            , WorkIndex(workIndex)
+        )
+        deleteModifyPortFolioResponseTpat.enqueue(object : Callback<DeleteModifyPortFolioResponse> {
+            override fun onFailure(call: Call<DeleteModifyPortFolioResponse>, t: Throwable) {
+                Log.e("TAGGG deleteWork Error", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<DeleteModifyPortFolioResponse>,
+                response: Response<DeleteModifyPortFolioResponse>
+            ) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let {
+                        when (it?.message ?: " ") {
+                            "작품 삭제 성공" -> {
+                                Log.v("TAGGG", it.message)
+                            }
+                            " " -> {
+                                Log.v("TAGGG", "message가 널")
+                            }
+                            "작품이 존재 하지 않습니다" -> {
+                                Log.v("TAGGG", "작품이 존재 하지 않습니다")
+                            }
+                            else -> {
+                                Log.v("TAGGG", it.message)
+                            }
+                        }
+                    }
+            }
+        })
+
+    }
+
+    //작품 삭제 - ETC
+    private fun deleteModifyPortFolioResponseEtc(workIndex: ArrayList<Int>) {
+        val deleteModifyPortFolioResponseEtc = networkService.deleteModifyPortFolioResponseEtc(
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6Iuq4sO2DgCIsImlkeCI6NiwidHlwZSI6NCwiaWF0IjoxNTYyNTY2OTgwLCJleHAiOjE1NjM3NzY1ODAsImlzcyI6ImlnIn0.Q2x2Z6OKdAs78ExzZk5zZvRNfsu9lL3Av3WJ05XB74g"
+            , WorkIndex(workIndex)
+    )
+        deleteModifyPortFolioResponseEtc.enqueue(object : Callback<DeleteModifyPortFolioResponse> {
+            override fun onFailure(call: Call<DeleteModifyPortFolioResponse>, t: Throwable) {
+                Log.e("TAGGG deleteWork Error", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<DeleteModifyPortFolioResponse>,
+                response: Response<DeleteModifyPortFolioResponse>
+            ) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let {
+                        when (it?.message ?: " ") {
+                            "작품 삭제 성공" -> {
+                                Log.v("TAGGG", it.message)
+                            }
+                            " " -> {
+                                Log.v("TAGGG", "message가 널")
+                            }
+                            "작품이 존재 하지 않습니다" -> {
+                                Log.v("TAGGG", "작품이 존재 하지 않습니다")
+                            }
+                            else -> {
+                                Log.v("TAGGG", it.message)
+                            }
+                        }
+                    }
+            }
+        })
+    }
+
     //필터 리사이클러 뷰
     private fun setFilterRVAdapter() {
 
@@ -518,7 +650,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
     }
 
-    fun setRemoveIndexList(list: ArrayList<Int>) {
+    fun setRemoveIndexList(list: ArrayList<Int>,flag: Int) {
+        if(flag == 0)
+            rl_modify_port_folio_act_no_work.visibility = View.VISIBLE
         removeIndexList = list
         Log.v("TAGGG", "removeIndex in Act: " + removeIndexList.toString())
     }

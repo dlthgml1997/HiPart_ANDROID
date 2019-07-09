@@ -9,15 +9,17 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.modifyportfolio.ModifyPortFolioActivity
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioDataEpatAndEtc
 import com.bumptech.glide.Glide
 
 class EpatAndEtcWorkRVAdapter(val ctx: Context, var dataList : GetModifyPortFolioDataEpatAndEtc) : RecyclerView.Adapter<EpatAndEtcWorkRVAdapter.Holder>() {
 
+    var removeIndexList: ArrayList<Int> = ArrayList()
+
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.item_frag_hip_det_c_article, p0, false)
         return Holder(view)
-
     }
 
     override fun getItemCount(): Int = dataList.thumbnail.size
@@ -50,19 +52,36 @@ class EpatAndEtcWorkRVAdapter(val ctx: Context, var dataList : GetModifyPortFoli
 
 
         p0.cancleBtn.setOnClickListener {
-            //dataList.thumbnail.removeAt(p1)
+            removeDataList(p1)
+            //지워진 작품 인덱스 값 액티비티로 보내기
+            removeIndexToActivity(p1)
             notifyDataSetChanged()
         }
 
     }
 
-    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private fun removeDataList(position: Int) {
+        dataList.thumbnail.removeAt(position)
+        dataList.url.removeAt(position)
+        dataList.title.removeAt(position)
+        dataList.content.removeAt(position)
+    }
 
+    private fun removeIndexToActivity(position: Int) {
+        removeIndexList.add(dataList.workIdx[position])
+        dataList.workIdx.removeAt(position)
+        if(dataList.thumbnail.isEmpty())
+            (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList,0)
+        else
+            (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList,1)
+    }
+
+
+    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var root = itemView.findViewById(R.id.root_item_frag_hip_detc_article) as RelativeLayout
         var img = itemView.findViewById(R.id.iv_item_frag_hip_det_c_acticle) as ImageView
         var cancleBtn = itemView.findViewById(R.id.btn_item_frag_hip_det_c_acticle) as ImageView
         var title = itemView.findViewById(R.id.tv_item_frag_hip_det_c_acticle_title) as TextView
         var description = itemView.findViewById(R.id.tv_item_frag_hip_det_c_acticle_description) as TextView
-
     }
 }
