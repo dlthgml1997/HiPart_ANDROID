@@ -32,15 +32,15 @@ data class GetModifyPortFolioDataEpatAndEtc(
     @SerializedName("detail_want")
     var detailWant: String,
     @SerializedName("work_idx")
-    var workIdx: List<Int>,
+    var workIdx: ArrayList<Int>,
     @SerializedName("thumbnail")
-    var thumbnail: List<String>,
+    var thumbnail: ArrayList<String>,
     @SerializedName("url")
-    var url: List<String>,
+    var url: ArrayList<String>,
     @SerializedName("title")
-    var title: List<String>,
+    var title: ArrayList<String>,
     @SerializedName("content")
-    var content: List<String>,
+    var content: ArrayList<String>,
     @SerializedName("hifive")
     var hifive: Int,
     @SerializedName("pick")
