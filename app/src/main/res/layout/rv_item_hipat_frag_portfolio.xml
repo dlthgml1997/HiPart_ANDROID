@@ -20,7 +20,6 @@
             android:src="@drawable/main_profile_photo_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-
     <LinearLayout
             android:id="@+id/ll_rv_item_hipat_frag_user_name"
             android:orientation="horizontal"
