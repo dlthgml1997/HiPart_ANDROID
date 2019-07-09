@@ -35,9 +35,9 @@ object SharedPreferenceController {
         editor.commit()
     }
 
-    fun getUserType(context: Context) : String {
+    fun getUserType(context: Context) : Int {
         val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE) //현재 내 기기에서만 볼수 있는 데이터
-        return pref.getString(USER_TYPE, "")
+        return pref.getInt(USER_TYPE, 0)
     }
 
     fun setMyId(context: Context, id : String){

@@ -10,12 +10,17 @@ import android.view.ViewGroup
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.hipat.adapter.PortFolioRecyclerViewAdapter
 import com.android.hipart_android.ui.hipat.data.PortFolioData
+import com.android.hipart_android.ui.mypage.data.GetMyPickData
 import kotlinx.android.synthetic.main.fragment_hipat_cpat.*
 
 class CPatHiPatFragment : Fragment() {
 
     lateinit var portFolioRecyclerViewAdapter: PortFolioRecyclerViewAdapter
 
+    val dataList by lazy {
+        //portfoliodata
+        ArrayList<GetMyPickData>()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -36,43 +41,9 @@ class CPatHiPatFragment : Fragment() {
 
     private fun configureRecyclerView() {
 
-        val dataList: ArrayList<PortFolioData> = ArrayList()
-
-        dataList.add(
-            PortFolioData(
-                "default","NaDo","크리에이터",true,224,"안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)",3
-            )
-        )
-        dataList.add(
-            PortFolioData(
-                "default","NaDo","크리에이터",false,224,"안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)",1
-            )
-        )
-        dataList.add(
-            PortFolioData(
-                "default","NaDo","크리에이터",true,224,"안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)",2
-            )
-        )
-        dataList.add(
-            PortFolioData(
-                "default","NaDo","크리에이터",true,224,"안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)",3
-            )
-        )
-        dataList.add(
-            PortFolioData(
-                "default","NaDo","크리에이터",true,224,"안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)",3
-            )
-        )
-        dataList.add(
-            PortFolioData(
-                "default","NaDo","크리에이터",true,224,"안녕하세요~ 먹고 싶은 모든 것들을 먹으며 방송하고 있어요! 감사합니다아 :)",3
-            )
-        )
-
         portFolioRecyclerViewAdapter = PortFolioRecyclerViewAdapter(context!!, dataList, true)
         rv_hipat_cpat_frag.adapter = portFolioRecyclerViewAdapter
         rv_hipat_cpat_frag.layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.VERTICAL, false)
-
 
     }
 

@@ -48,6 +48,9 @@
         <activity android:name=".ui.signup.SignupPartActivity">
 
         </activity>
+        <activity android:name=".ui.modifyprofile.ModifyActivity">
+
+        </activity>
 
 
     </application>

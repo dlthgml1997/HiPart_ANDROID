@@ -197,6 +197,7 @@
                                         android:background="@drawable/bg_tag_purple"
                                         android:layout_marginRight="8dp"
                         android:id="@+id/rl_hip_det_eetc_frag_pd_background">
+                                        android:id="@+id/rl_hip_det_eetc_frag_pd_background">
                             <TextView
                                     android:id="@+id/tv_frag_hip_det_eetc_pd"
                                     style="@style/nanum_light"
