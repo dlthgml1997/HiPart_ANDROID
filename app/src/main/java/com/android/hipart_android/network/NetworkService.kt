@@ -1,9 +1,11 @@
 package com.android.hipart_android.network
 
+import com.android.hipart_android.ui.home.data.get.GetCustomRecommendResponse
 import com.android.hipart_android.ui.home.data.post.PickDTO
 import com.android.hipart_android.ui.home.data.post.PickResponse
 import com.android.hipart_android.ui.login.data.PostLoginRequest
 import com.android.hipart_android.ui.login.data.PostLoginResponse
+import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponseCpat
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponseEpat
 import com.android.hipart_android.ui.modifyprofile.data.get.GetModifyProfileResponse
 import com.android.hipart_android.ui.modifyprofile.data.put.ModifyProfileResponse
@@ -24,6 +26,12 @@ import retrofit2.http.*
  */
 interface NetworkService {
     // 도경 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
+
+    @GET("pick")
+    fun getMyPickResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String
+    ): Call<GetMyPickResponse>
 
     // 청하 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
     // 로그인-청하
@@ -70,6 +78,14 @@ interface NetworkService {
         @Header("token") token: String
     ): Call<GetModifyPortFolioResponseEpat>
 
+    /**
+     * 포트폴리오 수정 페이지 로딩 - 크리에이터
+     */
+    @GET("portfolio/detail/creator")
+    fun getModifyPortFolioResponseCpat(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String
+    ): Call<GetModifyPortFolioResponseCpat>
     // 지원 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
 
     // 형민 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
@@ -164,7 +180,14 @@ interface NetworkService {
         @Part("user_type") userType : Int
     ) : Call<ModifyProfileResponse>
 
-
+    /**
+     * 맞춤추천
+     * @header token
+     */
+    @GET("profile/recommend")
+    fun customRecommend(
+        @Header("token") token: String
+    ) : Call<GetCustomRecommendResponse>
 
 
 }
