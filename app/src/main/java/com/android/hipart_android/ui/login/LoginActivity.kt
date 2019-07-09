@@ -9,6 +9,8 @@ import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.login.data.PostLoginRequest
 import com.android.hipart_android.ui.login.data.PostLoginResponse
+import com.android.hipart_android.ui.login.data.RefreshToken
+import com.android.hipart_android.ui.login.data.RefreshTokenResponse
 import com.android.hipart_android.ui.main.MainActivity
 import com.android.hipart_android.ui.signup.SignupActivity
 import com.android.hipart_android.util.BaseActivity
@@ -27,6 +29,7 @@ class LoginActivity : BaseActivity() {
     val networkService: NetworkService by lazy{
         ApplicationController.instance.networkService
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,14 +81,12 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun postLoginResponse(user_email: String, user_pw: String) {
-
         val postLoginResponse: Call<PostLoginResponse> =
             networkService.postLoginResponse("application/json", PostLoginRequest(user_email, user_pw))
         postLoginResponse.enqueue(object: Callback<PostLoginResponse> {
             override fun onFailure(call: Call<PostLoginResponse>, t: Throwable){
                 Log.e("Login failed", t.toString())
             }
-
             override fun onResponse(call: Call<PostLoginResponse>, response: Response<PostLoginResponse>) {
                 // 로그인 성공
                 response?.takeIf { it.isSuccessful }
@@ -97,13 +98,33 @@ class LoginActivity : BaseActivity() {
                         startActivity<MainActivity>()
                         finish()
                     }
-
                 // 로그인 실패
                 response?.takeIf { it.isSuccessful }
                     ?.body()?.takeIf { it.message == "ID 혹은 비밀번호가 일치하지 않습니다" }
                     ?.let {
                         toast("E-mail 혹은 비밀번호가 일치하지 않습니다")
                     }
+            }
+        })
+    }
+    //리프레시 토큰
+    private fun refreshToken(refreshToken : String){
+        val getRefreshToken: Call<RefreshTokenResponse> =
+            networkService.postRefreshToken("application/json",
+                "HvCRztW4WUYobtHfGoDEoRV5DkHSnSEoYooVNfR9o5fnsdVfsBHC6mpeT2gRX5HRM06KQJQg1wgQ9tqHhXForKXCf9cwy2aTvISwRxMFEnD2de9IjTEXIVgnMgLqZ3McnBNmsfk9EIQQVX4VcJ9kSF7vTBXl42cJIKiA7teTrN374U6vSXDXRDqicjkEsjI6gT8uf2zCdxmaRyay1ooh44LupJBuNYqiHxnVnaYQrzhfuH4rGmG5y8GrpFq2t48H")
+        getRefreshToken.enqueue(object: Callback<RefreshTokenResponse>{
+            override fun onFailure(call: Call<RefreshTokenResponse>, t: Throwable) {
+                Log.e("Refresh token failed", t.toString())
+
+            }
+
+            override fun onResponse(
+                call: Call<RefreshTokenResponse>, response: Response<RefreshTokenResponse>) {
+                if(response.isSuccessful){
+                    if(response.body()!!.status == 200){
+                        val tmp: RefreshToken = response!!.body()!!.data
+                    }
+                }
             }
         })
     }
