@@ -8,28 +8,29 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.android.hipart_android.R
-import com.android.hipart_android.ui.modifyportfolio.data.TransWorkData
+import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioDataTpat
 
 
 /**
  * Created by TakHyeongMin on 2019-07-06.
  */
 
-class TransWorkRVAdapter(val ctx: Context, var dataList : ArrayList<TransWorkData>) : RecyclerView.Adapter<TransWorkRVAdapter.Holder>() {
+class TransWorkRVAdapter(val ctx: Context, var dataList: GetModifyPortFolioDataTpat) :
+    RecyclerView.Adapter<TransWorkRVAdapter.Holder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.item_modify_port_folio_act_translater, p0, false)
         return Holder(view)
     }
 
-    override fun getItemCount(): Int = dataList.size
+    override fun getItemCount(): Int = dataList.after.size
 
-    override fun onBindViewHolder(p0: Holder, p1: Int) {
-        p0.beforeTransText.text = dataList[p1].beforeTransText
-        p0.afterTransText.text = dataList[p1].afterTransText
+    override fun onBindViewHolder(holder: Holder, position: Int) {
+        holder.beforeTransText.text = dataList.before[position]
+        holder.afterTransText.text = dataList.after[position]
 
-        p0.cancleBtn.setOnClickListener {
-            dataList.removeAt(p1)
+        holder.cancleBtn.setOnClickListener {
+            //dataList.removeAt(position)
             notifyDataSetChanged()
         }
     }

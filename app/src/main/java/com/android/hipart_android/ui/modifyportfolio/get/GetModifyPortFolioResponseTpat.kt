@@ -1,10 +1,8 @@
 package com.android.hipart_android.ui.modifyportfolio.get
 
-
-
 import com.google.gson.annotations.SerializedName
 
-data class GetModifyPortFolioResponseCpat(
+data class GetModifyPortFolioResponseTpat(
     @SerializedName("status")
     var status: Int,
     @SerializedName("success")
@@ -12,11 +10,11 @@ data class GetModifyPortFolioResponseCpat(
     @SerializedName("message")
     var message: String,
     @SerializedName("data")
-    var data: GetModifyPortFolioDataCpat
+    var data: GetModifyPortFolioDataTpat
 )
 
-//크리에이터
-data class GetModifyPortFolioDataCpat(
+//트랜슬레이터
+data class GetModifyPortFolioDataTpat(
     @SerializedName("user_nickname")
     var userNickname: String,
     @SerializedName("user_img")
@@ -25,8 +23,6 @@ data class GetModifyPortFolioDataCpat(
     var userType: Int,
     @SerializedName("detail_platform")
     var detailPlatform: Int,
-    @SerializedName("detail_subscriber")
-    var detailSubscriber : String,
     @SerializedName("detail_oneline")
     var detailOneline: String,
     @SerializedName("detail_appeal")
@@ -35,14 +31,10 @@ data class GetModifyPortFolioDataCpat(
     var detailWant: String,
     @SerializedName("work_idx")
     var workIdx: List<Int>,
-    @SerializedName("thumbnail")
-    var thumbnail: List<String>,
-    @SerializedName("url")
-    var url: List<String>,
-    @SerializedName("title")
-    var title: List<String>,
-    @SerializedName("content")
-    var content: List<String>,
+    @SerializedName("before")
+    var before: List<String>,
+    @SerializedName("after")
+    var after: List<String>,
     @SerializedName("hifive")
     var hifive: Int,
     @SerializedName("pick")
