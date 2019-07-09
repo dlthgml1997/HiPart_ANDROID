@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.modifyportfolio.ModifyPortFolioActivity
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioDataTpat
 
 
@@ -17,6 +18,8 @@ import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioDataT
 
 class TransWorkRVAdapter(val ctx: Context, var dataList: GetModifyPortFolioDataTpat) :
     RecyclerView.Adapter<TransWorkRVAdapter.Holder>() {
+
+    var removeIndexList: ArrayList<Int> = ArrayList()
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.item_modify_port_folio_act_translater, p0, false)
@@ -29,10 +32,27 @@ class TransWorkRVAdapter(val ctx: Context, var dataList: GetModifyPortFolioDataT
         holder.beforeTransText.text = dataList.before[position]
         holder.afterTransText.text = dataList.after[position]
 
+
         holder.cancleBtn.setOnClickListener {
-            //dataList.removeAt(position)
+            removeDataList(position)
+            //지워진 작품 인덱스 값 액티비티로 보내기
+            removeIndexToActivity(position)
             notifyDataSetChanged()
         }
+
+    }
+    private fun removeDataList(position: Int) {
+        dataList.after.removeAt(position)
+        dataList.before.removeAt(position)
+    }
+
+    private fun removeIndexToActivity(position: Int) {
+        removeIndexList.add(dataList.workIdx[position])
+        dataList.workIdx.removeAt(position)
+        if(dataList.after.isEmpty())
+            (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList,0)
+        else
+        (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList,1)
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

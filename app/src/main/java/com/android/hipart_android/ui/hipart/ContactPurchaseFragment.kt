@@ -7,15 +7,30 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.android.hipart_android.R
+import com.android.hipart_android.network.ApplicationController
+import com.android.hipart_android.network.NetworkService
+import com.android.hipart_android.ui.hipart.data.GetHifiveNumResponse
+import com.android.hipart_android.ui.hipart.data.PostHifiveRequest
+import com.android.hipart_android.ui.hipart.data.PostHifiveResponse
+import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_contact_purchase.*
+import kotlinx.android.synthetic.main.fragment_mypage.*
 import org.jetbrains.anko.support.v4.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ContactPurchaseFragment : Fragment() {
+
+    val networkService: NetworkService by lazy{
+        ApplicationController.instance.networkService
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +43,12 @@ class ContactPurchaseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        getHifiveNumResponse("bj_ho")
+
         setListeners()
     }
 
     private fun setListeners() {
-
-
-
         iv_contact_purc_frag_back.setOnClickListener {
             activity!!.onBackPressed()
         }
@@ -47,7 +61,35 @@ class ContactPurchaseFragment : Fragment() {
             }
             activity!!.onBackPressed()
         }
+    }
 
+    private fun getHifiveNumResponse(nickName:String) {
+        val getHifiveNumResponse = networkService.getHifiveNumResponse("application/json",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM"
+            //SharedPreferenceController.getAuthorization(this@ContactPurchaseFragment.context!!)
+            , nickName)
+        getHifiveNumResponse.enqueue(object : Callback<GetHifiveNumResponse> {
+
+            // 통신 실패 시
+            override fun onFailure(call: Call<GetHifiveNumResponse>, t: Throwable) {
+                Log.e("MyPageFragment Fail", t.toString())
+            }
+
+            // 통신 성공 시
+            override fun onResponse(call: Call<GetHifiveNumResponse>, response: Response<GetHifiveNumResponse>) {
+                if (response.isSuccessful) {
+                    Log.v("Success!", response.body()!!.toString())
+                    if (response.body()!!.message == "조회 성공") {
+                        Log.v("Success!", response.body()!!.toString())
+                        val data = response.body()!!.data
+
+                        tv_contact_purc_frag_name.text = data.nickname
+                        tv_contact_purc_frag_farm.text = "남은 팜: " + data.point.toString() + "개"
+                        tv_contact_purc_frag_nunmber.text = data.number
+                    }
+                }
+            }
+        })
     }
 
 
