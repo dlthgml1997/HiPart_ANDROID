@@ -13,9 +13,11 @@ import com.android.hipart_android.ui.modifyportfolio.adapter.TransWorkRVAdapter
 import com.android.hipart_android.ui.modifyportfolio.adapter.CpatWorkRVAdapter
 import com.android.hipart_android.ui.modifyportfolio.adapter.EpatAndEtcWorkRVAdapter
 import com.android.hipart_android.ui.modifyportfolio.data.FilterData
+import com.android.hipart_android.ui.modifyportfolio.data.ModifyList
 import com.android.hipart_android.ui.modifyportfolio.data.WorkIndex
 import com.android.hipart_android.ui.modifyportfolio.delete.DeleteModifyPortFolioResponse
 import com.android.hipart_android.ui.modifyportfolio.get.*
+import com.android.hipart_android.ui.modifyportfolio.put.PutModifyPortFolioResponse
 import com.android.hipart_android.ui.portfolio.dialog.FilterDialog
 import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SharedPreferenceController
@@ -73,11 +75,76 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
             // 수정 완료
             btn_modify_port_folio_confirm -> {
                 //수정 통신 put
+                putModifyPortFolioResponse()
                 //delete
                 deleteModifyPortResponse()
             }
         }
     }
+
+    private fun putModifyPortFolioResponse() {
+        when (1) {
+            //크리에이터
+            1 -> {
+                //구독자
+                val subscriber = edt_modify_port_act_subscriber.text
+                //플랫폼
+                val platform = 1
+                //소개
+                val oneline = edt_modify_port_act_detail_oneline.text
+                //원해요
+                val want = edt_modify_port_act_want.text
+                //수상경력 = null
+                val concept = 1
+                val lang = 2
+                val pd = 2
+                val etc = 3
+
+                modifyList = ModifyList(
+                    platform,
+                    subscriber.toString(),
+                    oneline.toString(),
+                    want.toString(),
+                    "",
+                    concept,
+                    lang,
+                    pd,
+                    etc
+                )
+                val putModifyPortFolioResponse = networkService.putModifyPortFolioResponse(
+                    "application/json",
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM",
+                    modifyList
+                )
+                putModifyPortFolioResponse.enqueue(object : Callback<PutModifyPortFolioResponse> {
+                    override fun onFailure(call: Call<PutModifyPortFolioResponse>, t: Throwable) {
+                        Log.e("TAGGG putC Error", t.toString())
+                    }
+
+                    override fun onResponse(
+                        call: Call<PutModifyPortFolioResponse>,
+                        response: Response<PutModifyPortFolioResponse>
+                    ) {
+                        response
+                            ?.takeIf { it.isSuccessful }
+                            ?.body()
+                            ?.let {
+                                when (it?.message ?: " ") {
+                                    "성공" -> {
+                                        Log.v("TAGGG", it.message)
+                                    }
+                                    else ->{
+                                        Log.v("TAGGG", it.message)
+                                    }
+                                }
+                            }
+                    }
+                })
+            }
+        }
+    }
+
+    lateinit var modifyList: ModifyList
 
     private var filterDataList = ArrayList<FilterData>()
 
@@ -146,7 +213,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     private fun getModifyPortFolioResponse() {
         val userType = SharedPreferenceController.getUserType(this@ModifyPortFolioActivity)
         Log.v("TAGGGG", userType.toString())
-        when (4) {
+        when (1) {
             //C-PAT
             1 -> {
                 getModifyPortFolioResponseCpat()
@@ -476,7 +543,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     private fun deleteModifyPortResponse() {
         if (removeIndexList.isNotEmpty()) {
             //SharedPreferenceController.getUserType(this@ModifyPortFolioActivity)
-            when (4) {
+            when (1) {
                 //크리에이터
                 1 -> deleteModifyPortResponseCpat(removeIndexList)
                 //에디터
@@ -568,7 +635,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     //작품 삭제 - TPAT
     private fun deleteModifyPortFolioResponseTpat(workIndex: ArrayList<Int>) {
         val deleteModifyPortFolioResponseTpat = networkService.deleteModifyPortFolioResponseTpat(
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6InRyYW5zbWFuIiwiaWR4Ijo0LCJ0eXBlIjozLCJpYXQiOjE1NjI2NzU2MzIsImV4cCI6MTU2Mzg4NTIzMiwiaXNzIjoiaWcifQ.onbsHzwqnyFmOPcpiuKxt2KxQS0c1pc1FHYnGsR1Flo"
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6InRyYW5zbWFuIiwiaWR4Ijo0LCJ0eXBlIjozLCJpYXQiOjE1NjI2NzU2MzIsImV4cCI6MTU2Mzg4NTIzMiwiaXNzIjoiaWcifQ.onbsHzwqnyFmOPcpiuKxt2KxQS0c1pc1FHYnGsR1Flo"
             , WorkIndex(workIndex)
         )
         deleteModifyPortFolioResponseTpat.enqueue(object : Callback<DeleteModifyPortFolioResponse> {
@@ -607,9 +674,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     //작품 삭제 - ETC
     private fun deleteModifyPortFolioResponseEtc(workIndex: ArrayList<Int>) {
         val deleteModifyPortFolioResponseEtc = networkService.deleteModifyPortFolioResponseEtc(
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6Iuq4sO2DgCIsImlkeCI6NiwidHlwZSI6NCwiaWF0IjoxNTYyNTY2OTgwLCJleHAiOjE1NjM3NzY1ODAsImlzcyI6ImlnIn0.Q2x2Z6OKdAs78ExzZk5zZvRNfsu9lL3Av3WJ05XB74g"
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6Iuq4sO2DgCIsImlkeCI6NiwidHlwZSI6NCwiaWF0IjoxNTYyNTY2OTgwLCJleHAiOjE1NjM3NzY1ODAsImlzcyI6ImlnIn0.Q2x2Z6OKdAs78ExzZk5zZvRNfsu9lL3Av3WJ05XB74g"
             , WorkIndex(workIndex)
-    )
+        )
         deleteModifyPortFolioResponseEtc.enqueue(object : Callback<DeleteModifyPortFolioResponse> {
             override fun onFailure(call: Call<DeleteModifyPortFolioResponse>, t: Throwable) {
                 Log.e("TAGGG deleteWork Error", t.toString())
@@ -650,8 +717,8 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
     }
 
-    fun setRemoveIndexList(list: ArrayList<Int>,flag: Int) {
-        if(flag == 0)
+    fun setRemoveIndexList(list: ArrayList<Int>, flag: Int) {
+        if (flag == 0)
             rl_modify_port_folio_act_no_work.visibility = View.VISIBLE
         removeIndexList = list
         Log.v("TAGGG", "removeIndex in Act: " + removeIndexList.toString())
