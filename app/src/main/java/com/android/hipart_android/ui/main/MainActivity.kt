@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -14,6 +15,7 @@ import com.android.hipart_android.ui.mypage.fragment.MyPageFragment
 import com.android.hipart_android.ui.portfolio.PortFolioFragment
 import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.FragmentKind
+import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -56,6 +58,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
         attachHomeFragment()
         setOnClickListener()
+        Log.e("토큰", SharedPreferenceController.getAuthorization(this@MainActivity))
     }
 
 
