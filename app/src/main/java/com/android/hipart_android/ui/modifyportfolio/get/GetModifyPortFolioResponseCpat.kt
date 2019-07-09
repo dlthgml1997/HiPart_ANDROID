@@ -1,9 +1,10 @@
 package com.android.hipart_android.ui.modifyportfolio.get
 
 
+
 import com.google.gson.annotations.SerializedName
 
-data class GetModifyPortFolioResponse(
+data class GetModifyPortFolioResponseCpat(
     @SerializedName("status")
     var status: Int,
     @SerializedName("success")
