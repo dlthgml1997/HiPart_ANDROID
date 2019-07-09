@@ -8,6 +8,11 @@ data class PostLoginResponse(
 )
 
 data class PostLoginData(
+    val tokens: Tokens,
+    val user_type: Int
+)
+
+data class Tokens(
     val refreshToken: String,
     val token: String
 )
