@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide
  * Created by TakHyeongMin on 2019-07-06.
  */
 
-class WorkRVAdapter(val ctx: Context, var dataList : GetModifyPortFolioDataCpat) : RecyclerView.Adapter<WorkRVAdapter.Holder>() {
+class CpatWorkRVAdapter(val ctx: Context, var dataList : GetModifyPortFolioDataCpat) : RecyclerView.Adapter<CpatWorkRVAdapter.Holder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.item_frag_hip_det_c_article, p0, false)
@@ -36,7 +36,8 @@ class WorkRVAdapter(val ctx: Context, var dataList : GetModifyPortFolioDataCpat)
         p0.cancleBtn.visibility = View.VISIBLE
 
         p0.title.text = dataList.title[p1]
-        p0.description.text = dataList.detailSubscriber[p1].toString()
+        p0.description.text = dataList.content[p1]
+
 
         if(p1 == 0){
             val dp = ctx.resources.displayMetrics.density
