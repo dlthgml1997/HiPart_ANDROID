@@ -16,6 +16,7 @@ import com.android.hipart_android.ui.mypage.MyPickActivity
 import com.android.hipart_android.ui.mypage.dialog.HifiveDialog
 import com.android.hipart_android.ui.mypage.dialog.QuestionDialog
 import com.android.hipart_android.ui.mypage.get.GetMypageResponse
+import com.android.hipart_android.util.SharedPreferenceController
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_mypage.*
 import org.jetbrains.anko.support.v4.ctx
@@ -37,16 +38,16 @@ class MyPageFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        Log.v("성청하", "onActCre")
+
         getMypageResponse()
 
         setOnBtnClikListener()
     }
 
     private fun getMypageResponse() {
-        val getMypageResponse = networkService.getMypageResponse(
-            "application/json",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6IuyXkOuUlO2EsCIsImlkeCI6NSwidHlwZSI6MiwiaWF0IjoxNTYyNTY2OTM5LCJleHAiOjE1NjM3NzY1MzksImlzcyI6ImlnIn0.C4c6ibbr_QtAi2vk_S3ZftqmxJ9X0-EK7s8pNieLI_E"
-        )
+        val getMypageResponse = networkService.getMypageResponse("application/json",
+            SharedPreferenceController.getAuthorization(this@MyPageFragment.context!!))
         getMypageResponse.enqueue(object : Callback<GetMypageResponse> {
 
             // 통신 실패 시
@@ -55,11 +56,11 @@ class MyPageFragment : Fragment() {
             }
 
 
-            // 통시 성공 시
+            // 통신 성공 시
             override fun onResponse(call: Call<GetMypageResponse>, response: Response<GetMypageResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.message == "회원 조회 성공.") {
-                        // Log.v("Success!", response.body()!!.toString()
+                        //Log.v("Success!", response.body()!!.toString())
                         val data = response.body()!!.data[0]
 
                         txt_mypage_frag_name.text = data.user_nickname
