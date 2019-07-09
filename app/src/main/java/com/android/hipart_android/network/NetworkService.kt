@@ -4,7 +4,7 @@ import com.android.hipart_android.ui.home.data.post.PickDTO
 import com.android.hipart_android.ui.home.data.post.PickResponse
 import com.android.hipart_android.ui.login.data.PostLoginRequest
 import com.android.hipart_android.ui.login.data.PostLoginResponse
-import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponse
+import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponseEpat
 import com.android.hipart_android.ui.modifyprofile.data.get.GetModifyProfileResponse
 import com.android.hipart_android.ui.modifyprofile.data.put.ModifyProfileResponse
 import com.android.hipart_android.ui.mypage.data.PostManToManQuestionRequest
@@ -33,6 +33,15 @@ interface NetworkService {
         @Body body: PostLoginRequest
     ): Call<PostLoginResponse>
 
+//    /**
+//     * 알림 조회
+//     */
+//    @GET("mypage/info")
+//    fun getNotificationResponse(
+//        @Header("Content-Type") content_type: String,
+//        @Header("token") token: String
+//    ): Call<GetNotificationResponse>
+
     /**
      * 마이 페이지
      */
@@ -43,14 +52,23 @@ interface NetworkService {
     ): Call<GetMypageResponse>
 
     // 소희 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
+//    /**
+//     * 포트폴리오 수정 페이지 로딩
+//     */
+//    @GET("portfolio/detail")
+//    fun getModifyPortFolioResponse(
+//        @Header("Content-Type") content_type: String,
+//        @Header("token") token: String
+//    ): Call<GetModifyPortFolioResponse>
+
     /**
-     * 포트폴리오 수정 페이지 로딩
+     * 포트폴리오 수정 페이지 로딩 - 에디터
      */
-    @GET("portfolio/detail")
-    fun getModifyPortFolioResponse(
+    @GET("portfolio/detail/editor")
+    fun getModifyPortFolioResponseEpat(
         @Header("Content-Type") content_type: String,
         @Header("token") token: String
-    ): Call<GetModifyPortFolioResponse>
+    ): Call<GetModifyPortFolioResponseEpat>
 
     // 지원 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
 
