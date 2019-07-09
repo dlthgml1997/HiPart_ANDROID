@@ -6,10 +6,9 @@
               android:gravity="center_vertical">
 
     <TextView
-            android:id="@+id/tv_item_frag_hip_det_t_tag_eng"
-            android:layout_width="wrap_content"
-            android:layout_height="65dp"
-            android:textSize="14sp"
+            android:id="@+id/tv_item_frag_hip_det_t_before"
+            style="@style/nanum_regular"
+            android:textSize="13sp"
             android:textColor="#434343"
             android:lineSpacingExtra="8dp"
             android:text="여기는 외국어 적는 뷰에요~\nfffff \n fffff"/>
@@ -21,9 +20,8 @@
 
 
     <TextView
-            android:id="@+id/tv_item_frag_hip_det_t_tag_kor"
-            android:layout_width="wrap_content"
-            android:layout_height="65dp"
+            android:id="@+id/tv_item_frag_hip_det_t_after"
+            style="@style/nanum_regular"
             android:textSize="14sp"
             android:textColor="#434343"
             android:lineSpacingExtra="8dp"
