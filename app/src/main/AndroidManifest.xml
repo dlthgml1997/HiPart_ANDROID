@@ -42,7 +42,7 @@
         <activity android:name=".ui.modifyportfolio.ModifyPortFolioActivity">
 
         </activity>
-        <activity android:name=".ui.mypage.MyPickActivity">
+        <activity android:name=".ui.mypick.MyPickActivity">
 
         </activity>
         <activity android:name=".ui.signup.SignupPartActivity">

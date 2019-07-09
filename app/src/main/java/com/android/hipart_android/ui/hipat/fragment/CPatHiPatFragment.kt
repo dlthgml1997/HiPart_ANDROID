@@ -8,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.mypick.data.GetMyPickData
 import com.android.hipart_android.ui.hipat.adapter.PortFolioRecyclerViewAdapter
-import com.android.hipart_android.ui.hipat.data.PortFolioData
-import com.android.hipart_android.ui.mypage.data.GetMyPickData
 import kotlinx.android.synthetic.main.fragment_hipat_cpat.*
 
 class CPatHiPatFragment : Fragment() {
