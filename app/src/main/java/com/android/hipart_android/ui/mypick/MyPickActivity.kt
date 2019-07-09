@@ -1,7 +1,6 @@
-package com.android.hipart_android.ui.mypage
+package com.android.hipart_android.ui.mypick
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
@@ -12,9 +11,8 @@ import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.hipat.adapter.PortFolioRecyclerViewAdapter
-import com.android.hipart_android.ui.hipat.data.PortFolioData
-import com.android.hipart_android.ui.mypage.data.GetMyPickData
-import com.android.hipart_android.ui.mypage.data.GetMyPickResponse
+import com.android.hipart_android.ui.mypick.data.GetMyPickData
+import com.android.hipart_android.ui.mypick.data.GetMyPickResponse
 import com.android.hipart_android.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_mypick.*
 import kotlinx.android.synthetic.main.toolbar_mypick.*
@@ -57,26 +55,23 @@ class MyPickActivity : BaseActivity(), View.OnClickListener {
 
     }
     fun getMyPickResponse(){
-        val getMyPickResponse = networkService.getMyPickResponse("application/json",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM")
-        getMyPickResponse.enqueue(object: Callback<GetMyPickResponse> {
+        val getMyPickResponse = networkService.getMyPickResponse("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM")
+        getMyPickResponse.enqueue(object: Callback<GetMyPickResponse>{
             override fun onFailure(call: Call<GetMyPickResponse>, t: Throwable) {
-                Log.e("List Fail", t.toString())
+                Log.e("MyPickAct Err", Log.getStackTraceString(t))
             }
 
-            override fun onResponse(
-                call: Call<GetMyPickResponse>, response: Response<GetMyPickResponse>
-            ) {
-                Log.e("Tagggg", response.body().toString())
-                if (response.isSuccessful) {
-                    if (response.body()!!.status == 200) {
-                        val tmp: ArrayList<GetMyPickData> = response!!.body()!!.data
-                        portFolioRecyclerViewAdapter.dataList = tmp
+            override fun onResponse(call: Call<GetMyPickResponse>, response: Response<GetMyPickResponse>) {
+                 response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let {
+                        portFolioRecyclerViewAdapter.dataList = it.data
                         portFolioRecyclerViewAdapter.notifyDataSetChanged()
                     }
-                }
             }
         })
+
     }
     fun setAnimPickIcon() {
         val interpolator = MyBounceInterpolator(0.2, 20.0)
