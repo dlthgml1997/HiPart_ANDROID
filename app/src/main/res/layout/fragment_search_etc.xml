@@ -3,7 +3,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".ui.search.SearchAllFragment"
+                tools:context=".ui.search.fragment.SearchAllFragment"
                 android:background="#fafafa">
     <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
                     android:background="@android:color/white"
@@ -67,13 +67,15 @@
 
         <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
-                                                android:id="@+id/rv_sear_etc_frag"></android.support.v7.widget.RecyclerView>
+                                                android:id="@+id/rv_sear_etc_frag"
+                                                android:clipToPadding="true"
+                                                android:paddingTop="10dp"></android.support.v7.widget.RecyclerView>
 
         <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:background="@drawable/hipat_filter_floating_btn"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="96dp"
+                android:layout_marginBottom="88dp"
                 android:id="@+id/btn_sear_etc_frag_filter"/>
     </RelativeLayout>
 </RelativeLayout>

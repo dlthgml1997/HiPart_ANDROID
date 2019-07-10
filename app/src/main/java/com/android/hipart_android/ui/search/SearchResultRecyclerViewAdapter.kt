@@ -4,17 +4,28 @@ import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.ToggleButton
 import com.android.hipart_android.R
+import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.hipart.HipartDetailTagRecyclerAdapter
+import com.android.hipart_android.ui.home.data.post.PickDTO
+import com.android.hipart_android.ui.home.data.post.PickResponse
+import com.android.hipart_android.ui.main.MainActivity
+import com.android.hipart_android.ui.mypick.MyPickActivity
+import com.android.hipart_android.ui.search.get.User
 import com.android.hipart_android.util.Filter
+import com.android.hipart_android.util.SharedPreferenceController
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.fragment_hipart_detail_eetc.*
-import org.jetbrains.anko.find
 import org.jetbrains.anko.layoutInflater
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayList<User>) : RecyclerView.Adapter<SearchResultRecyclerViewAdapter.Holder>(){
 
@@ -28,25 +39,25 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
     override fun onBindViewHolder(holder: Holder, position: Int) {
         //사진
         Glide.with(ctx)
-            .load(dataList[position].user_img)
+            .load(dataList[position].info[0].user_img)
             .into(holder.photo)
         //이름
-        holder.name.text = dataList[position].user_nickname
+        holder.name.text = dataList[position].info[0].user_nickname
         //플랫폼
-        holder.platform.setImageResource(Filter.platform(dataList[position].detail_platform))
+        holder.platform.setImageResource(Filter.platform(dataList[position].info[0].detail_platform))
         //타입
-        holder.type.text = Filter.type(dataList[position].user_type)
+        holder.type.text = Filter.type(dataList[position].info[0].user_type)
         //pd
-        holder.pd.text = Filter.pd(dataList[position].pd)
+        holder.pd.text = Filter.pd(dataList[position].info[0].pd)
 
         //3가지 태그 리사이클러
         val tagList = ArrayList<String>()
-        if (dataList[position].concept != 0)
-            tagList.add(Filter.concept(dataList[position].concept))
-        if (dataList[position].lang != 0)
-            tagList.add(Filter.language(dataList[position].lang))
-        if (dataList[position].etc != 0)
-            tagList.add(Filter.etc(dataList[position].etc))
+        if (dataList[position].info[0].concept != 0)
+            tagList.add(Filter.concept(dataList[position].info[0].concept))
+        if (dataList[position].info[0].lang != 0)
+            tagList.add(Filter.language(dataList[position].info[0].lang))
+        if (dataList[position].info[0].etc != 0)
+            tagList.add(Filter.etc(dataList[position].info[0].etc))
 
         if (tagList.size > 0) {
             holder.tag.adapter = HipartDetailTagRecyclerAdapter(ctx, tagList)
@@ -55,14 +66,98 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
         }
 
         //소개
-        holder.intro.text = dataList[position].detail_oneline
+        holder.intro.text = dataList[position].info[0].detail_oneline
+
+        holder.pick.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener{
+            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
+                if(isChecked) {
+                    addPick(dataList[position].info[0].user_nickname!!, false)
+                    holder.pick_num.text = (dataList[position].info[0].pick + 1).toString()
+
+                }else
+                    deletePick(dataList[position].info[0].user_nickname!!)
+                    holder.pick_num.text = dataList[position].info[0].pick.toString()
+            }
+        })
 
         //픽 수
-        holder.pick_num.text = dataList[position].pick.toString()
-
+        holder.pick_num.text = dataList[position].info[0].pick.toString()
 
 
     }
+
+    private fun addPick(nickName: String, mainActFlag: Boolean) {
+
+        val networkService = ApplicationController.instance.networkService
+        val addPick = networkService.addPick(SharedPreferenceController.getAuthorization(ctx!!), PickDTO(nickName))
+        addPick.enqueue(object : Callback<PickResponse> {
+            override fun onFailure(call: Call<PickResponse>, t: Throwable) {
+                Log.e("Add Pick Error", Log.getStackTraceString(t))
+            }
+
+            override fun onResponse(call: Call<PickResponse>, response: Response<PickResponse>) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let {
+                        when (it?.message ?: " ") {
+                            "픽 성공" -> { }
+                            " " -> {
+                                Log.v("태그", "message가 널인데 ?")
+                            }
+                            "닉네임을 가진 유저가 없습니다." -> {
+                                Log.v("태그", "닉네임을 가진 유저가 없다.")
+                            }
+                            // TODO : 픽리스트 없음
+                            else -> {
+                                Log.v("태그", it.message)
+                            }
+                        }
+                    }
+            }
+        })
+    }
+
+
+    private fun deletePick(nickName: String) {
+
+        val networkService = ApplicationController.instance.networkService
+        val deletePick =
+            networkService.deletePick(SharedPreferenceController.getAuthorization(ctx!!), PickDTO(nickName))
+        deletePick.enqueue(object : Callback<PickResponse> {
+            override fun onFailure(call: Call<PickResponse>, t: Throwable) {
+                Log.e("Delete Pick Error", Log.getStackTraceString(t))
+            }
+
+            override fun onResponse(call: Call<PickResponse>, response: Response<PickResponse>) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let {
+                        when (it?.message ?: " ") {
+
+                            "픽 취소 성공" -> {
+                                Log.v("태그", it.message)
+                            }
+                            " " -> {
+                                Log.v("태그", "message가 널인데 ?")
+                            }
+                            "닉네임을 가진 유저가 없습니다." -> {
+                                Log.v("태그", "닉네임을 가진 유저가 없다.")
+                            }
+                            // TODO : 픽리스트 없음
+                            else -> {
+                                Log.v("태그", it.message)
+                            }
+                        }
+                    }
+            }
+        })
+    }
+
+
+
+
 
     inner class Holder( itemView : View) : RecyclerView.ViewHolder(itemView) {
         val photo = itemView.findViewById(R.id.iv_item_frag_search_photo) as ImageView
@@ -72,7 +167,8 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
         val pd = itemView.findViewById(R.id.tv_item_frag_search_pd) as TextView
         val tag = itemView.findViewById(R.id.rv_item_frag_search_tag) as RecyclerView
         val intro = itemView.findViewById(R.id.tv_item_frag_search_intro) as TextView
-        val pick_num = itemView.findViewById(R.id.tv_item_frag_search_pick_num) as TextView
+        val pick = itemView.findViewById(R.id.tb_item_frag_search_pick) as ToggleButton
+        var pick_num = itemView.findViewById(R.id.tv_item_frag_search_pick_num) as TextView
 
     }
 }

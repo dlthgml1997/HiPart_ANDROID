@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent" android:layout_height="171dp">
-    <RelativeLayout android:layout_width="310dp" android:layout_height="match_parent"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="176dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginHorizontal="24dp"
-                    android:background="@drawable/hipat_list_box">
+                    android:background="@drawable/hipat_list_box"
+                    android:layout_marginBottom="20dp">
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                       android:layout_marginHorizontal="24dp"
@@ -25,7 +26,7 @@
                         <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
                             <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                                           android:orientation="vertical">
-                                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                <LinearLayout android:layout_width="wrap_content" android:layout_height="match_parent"
                                               android:orientation="horizontal"
                                               android:gravity="center_vertical">
                                     <TextView
@@ -46,9 +47,13 @@
                                           android:layout_alignParentRight="true"
                                           android:orientation="vertical"
                                           android:gravity="center_horizontal">
-                                <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                           android:src="@drawable/main_pick_off_icon"
-                                android:id="@+id/iv_item_frag_search_pick"/>
+                                <ToggleButton android:layout_width="16dp" android:layout_height="16dp"
+                                              android:background="@drawable/selector_pick_icon"
+                                              android:text=""
+                                              android:textOn=""
+                                              android:textOff=""
+                                              android:checked="false"
+                                              android:id="@+id/tb_item_frag_search_pick"/>
                                 <TextView
                                         style="@style/nanum_bold"
                                         android:textSize="9sp"
@@ -66,6 +71,7 @@
                                 android:textColor="#707070"
                                 android:lineSpacingExtra="1sp"
                                 android:text="크리에이터"
+                                android:layout_marginTop="8dp"
                                 android:id="@+id/tv_item_frag_search_type"/>
 
 
@@ -84,11 +90,11 @@
                                       android:layout_centerInParent="true"
                                       android:id="@+id/tv_item_frag_search_pd"/>
                         </RelativeLayout>
-                        
+
                         <android.support.v7.widget.RecyclerView android:layout_width="wrap_content"
                                                                 android:layout_height="20dp"
-                        android:id="@+id/rv_item_frag_search_tag"></android.support.v7.widget.RecyclerView>
-                        
+                                                                android:id="@+id/rv_item_frag_search_tag"></android.support.v7.widget.RecyclerView>
+
                     </LinearLayout>
 
                 </RelativeLayout>
@@ -102,7 +108,7 @@
                     android:textColor="#242424"
                     android:lineSpacingExtra="8dp"
                     android:text="안녕하세요~ 먹고 싶은 모든 것들을 영상으로"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="20dp"
                     android:id="@+id/tv_item_frag_search_intro"/>
 
         </LinearLayout>
