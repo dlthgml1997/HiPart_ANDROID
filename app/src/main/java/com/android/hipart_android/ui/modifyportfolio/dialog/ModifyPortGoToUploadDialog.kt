@@ -16,7 +16,7 @@ import org.jetbrains.anko.support.v4.toast
 
 class ModifyPortGoToUploadDialog : DialogFragment() {
 
-    val userType by lazy {
+    private val userType by lazy {
         SharedPreferenceController.getUserType(context!!)
     }
 
@@ -38,11 +38,11 @@ class ModifyPortGoToUploadDialog : DialogFragment() {
             when (userType) {
                 1, 2, 4 -> {
                     startActivity<NotTpatUploadActivity>()
-                    (context as ModifyPortFolioActivity).finishActivityAfterDialogClickedOkay()
-                }
+                    (context as ModifyPortFolioActivity).finish()
+            }
                 3 -> {
                     startActivity<TpatUploadActivity>()
-                    (context as ModifyPortFolioActivity).finishActivityAfterDialogClickedOkay()
+                    (context as ModifyPortFolioActivity).finish()
                 }
                 else-> {
                     toast("유저타입이 잘못되었습니다.")

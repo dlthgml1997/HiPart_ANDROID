@@ -7,5 +7,7 @@ package com.android.hipart_android.ui.modifyportfolio.data
 
 data class FilterData(
     val filterName: String,
-    val filterFlag: Boolean
+    val filterFlag: Boolean,
+    val filterIndex: Int,
+    val filterPAT: String
 )
