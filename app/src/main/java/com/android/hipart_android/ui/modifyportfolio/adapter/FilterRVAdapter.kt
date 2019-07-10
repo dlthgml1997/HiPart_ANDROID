@@ -42,5 +42,18 @@ class FilterRVAdapter(val ctx: Context, var arrayList: ArrayList<FilterData>) :
 
     fun changeDataList(changeArrayList: ArrayList<FilterData>){
         arrayList = changeArrayList
+        moveToFrontMainFilter()
+    }
+
+    fun moveToFrontMainFilter(){
+        var i = 0
+        while(i < arrayList.size){
+            if(arrayList[i].filterFlag == true){
+                var tmp = arrayList[i]
+                arrayList[i] = arrayList[0]
+                arrayList[0] = tmp
+            }
+            i++
+        }
     }
 }

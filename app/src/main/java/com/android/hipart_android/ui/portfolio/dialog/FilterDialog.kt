@@ -49,6 +49,7 @@ class FilterDialog : DialogFragment() {
         selectedDataToModifyActivity()
         (context as ModifyPortFolioActivity).setFilterData(selectedDataList)
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setOnClickListener()
