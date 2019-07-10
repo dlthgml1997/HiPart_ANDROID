@@ -5,7 +5,7 @@
                 android:background="@drawable/bg_frag_hip_det_intro_round">
     <TextView style="@style/nanum_light"
               android:textSize="11sp"
-              android:textColor="#707070"
+              android:textColor="#7947fd"
               android:lineSpacingExtra="1sp"
               android:gravity="center_horizontal"
               android:id="@+id/tv_item_frag_hip_det_c_tag"

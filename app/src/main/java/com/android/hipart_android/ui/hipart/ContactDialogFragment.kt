@@ -61,6 +61,8 @@ class ContactDialogFragment : DialogFragment() {
                             fragmentTransaction.addToBackStack(null)
                             fragmentTransaction.commit()
 
+
+
                             // 연락처 보기 통신
                             var nickName = "bj_ho"
                             postHifiveResponse(nickName)

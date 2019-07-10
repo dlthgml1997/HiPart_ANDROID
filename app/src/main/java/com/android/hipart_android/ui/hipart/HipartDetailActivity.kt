@@ -13,6 +13,11 @@ import retrofit2.Response
 import java.io.Serializable
 
 class HipartDetailActivity : BaseActivity() {
+
+    companion object{
+        var hifiveStatus = 0
+    }
+
     private val TAG = "HipartDetailActivity"
 
     lateinit var userDetailData: UserDetailEEtcData
@@ -57,6 +62,8 @@ class HipartDetailActivity : BaseActivity() {
                         Log.d(TAG, response.body()!!.message)
                         if (response.body()?.data != null) {
                             var userData: DetailCData? = response.body()!!.data
+                            hifiveStatus = userData!!.hifiveState
+
                             var userDetailCData : UserDetailCData = userData!!.resData
                             setFragment(HipartDetailCpatFragment(), userDetailCData)
 
@@ -86,6 +93,8 @@ class HipartDetailActivity : BaseActivity() {
                         Log.d(TAG, response.body()!!.message)
                         if (response.body()?.data != null) {
                             var userData: DetailEEtcData = response.body()!!.data
+                            hifiveStatus = userData!!.hifiveState
+
                             userDetailData = userData.resData
                             Log.d(TAG, userDetailData.user_nickname)
 
@@ -117,6 +126,8 @@ class HipartDetailActivity : BaseActivity() {
                         Log.d(TAG, response.body()!!.message)
                         if (response.body()?.data != null) {
                             var userData: DetailTData = response.body()!!.data
+                            hifiveStatus = userData!!.hifiveState
+
                             userDetailTData = userData.resData
                             Log.d(TAG, userDetailTData.user_nickname)
 

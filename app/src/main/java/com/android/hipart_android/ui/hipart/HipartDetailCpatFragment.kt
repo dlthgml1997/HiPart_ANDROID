@@ -14,8 +14,10 @@ import com.android.hipart_android.R
 import com.android.hipart_android.ui.hipart.get.UserDetailCData
 import com.android.hipart_android.util.Filter
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.fragment_hipart_detail_cpat.*
 
 import kotlinx.android.synthetic.main.fragment_hipart_detail_eetc.*
+import kotlinx.android.synthetic.main.fragment_hipart_detail_eetc.rv_frag_hip_det_frag_article
 
 class HipartDetailCpatFragment : Fragment(){
 
@@ -67,6 +69,13 @@ class HipartDetailCpatFragment : Fragment(){
 
         tv_frag_hip_det_eetc_want.text = user.detail_want
         tv_frag_hip_det_eetc_spec.text = user.detail_appeal
+
+        //연락하기/연락처 보기
+        if(HipartDetailActivity.hifiveStatus ==1) {
+            btn_frag_hip_det_eetc_call.text = "연락처 보기"
+        }else
+            btn_frag_hip_det_eetc_call.text = "연락하기"
+
     }
     private fun setArticleList(user: UserDetailCData) {
         val articleList = ArrayList<HipartDetailArticleData>()
@@ -100,9 +109,17 @@ class HipartDetailCpatFragment : Fragment(){
     private fun setListeners() {
         btn_frag_hip_det_eetc_call.setOnClickListener {
 
-            val contactDialog = ContactDialogFragment()
-            contactDialog.show(childFragmentManager, "contact dialog")
-            Log.d(TAG, "contact btn clicked")
+            if(HipartDetailActivity.hifiveStatus == 0) {
+                val contactDialog = ContactDialogFragment()
+                contactDialog.show(childFragmentManager, "contact dialog")
+                Log.d(TAG, "contact btn clicked")
+            } else {
+                val fm = activity!!.supportFragmentManager
+                val fragmentTransaction = fm.beginTransaction()
+                fragmentTransaction.add(R.id.fl_hip_detail_act, ContactPurchaseFragment())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
 
 
             iv_frag_hip_det_eetc_back.setOnClickListener {
