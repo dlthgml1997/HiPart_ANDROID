@@ -50,9 +50,9 @@ class TransWorkRVAdapter(val ctx: Context, var dataList: GetModifyPortFolioDataT
         removeIndexList.add(dataList.workIdx[position])
         dataList.workIdx.removeAt(position)
         if(dataList.after.isEmpty())
-            (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList,0)
+            (ctx as ModifyPortFolioActivity).setRemoveIndexListFromAdapter(removeIndexList,0)
         else
-        (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList,1)
+        (ctx as ModifyPortFolioActivity).setRemoveIndexListFromAdapter(removeIndexList,1)
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
