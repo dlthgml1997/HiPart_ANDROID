@@ -1,12 +1,12 @@
 package com.android.hipart_android.ui.modifyportfolio
 
-import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import android.widget.ImageView
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
@@ -47,11 +47,11 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         ApplicationController.instance.networkService
     }
 
-    val userType by lazy {
+    private val userType by lazy {
         SharedPreferenceController.getUserType(this@ModifyPortFolioActivity)
     }
 
-    val userToken by lazy {
+    private val userToken by lazy {
         SharedPreferenceController.getAuthorization(this@ModifyPortFolioActivity)
     }
 
@@ -107,16 +107,36 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 finish()
             }
 
+            //플랫폼 단일 선택
             btn_youtube -> {
-                btn_youtube.isSelected = !btn_youtube.isSelected
+                if (!btn_youtube.isSelected) {
+                    reverseBtn(btn_youtube)
+                }
+                // game이 눌려있을 경우 눌린 플로우
+                else {
+                    btn_youtube.isSelected = false
+                    btn_youtube.setImageResource(R.drawable.pofol_youtube_off_img)
+                }
             }
-
             btn_afreeca -> {
-                btn_afreeca.isSelected = !btn_afreeca.isSelected
+                if (!btn_afreeca.isSelected) {
+                    reverseBtn(btn_afreeca)
+                }
+                // game이 눌려있을 경우 눌린 플로우
+                else {
+                    btn_afreeca.isSelected = false
+                    btn_afreeca.setImageResource(R.drawable.pofol_afreeca_white_off_img)
+                }
             }
-
             btn_twich -> {
-                btn_twich.isSelected = !btn_twich.isSelected
+                if (!btn_twich.isSelected) {
+                    reverseBtn(btn_twich)
+                }
+                // game이 눌려있을 경우 눌린 플로우
+                else {
+                    btn_twich.isSelected = false
+                    btn_twich.setImageResource(R.drawable.pofol_twitch_white_off_img)
+                }
             }
 
             // 필터 수정하기
@@ -142,11 +162,6 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 deleteModifyPortResponse()
             }
         }
-    }
-    private fun initView() {
-        setFilterRVAdapter()
-        getModifyPortFolioResponse()
-        setOnClickListener()
     }
 
     private fun setOnClickListener() {
@@ -228,11 +243,11 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
                         //소개
                         if (data.detailOneline != null)
-                            edt_modify_port_act_detail_oneline.hint = data.detailOneline
+                        edt_modify_port_act_detail_oneline.hint = data.detailOneline
 
                         //원해요
                         if (data.detailWant != null)
-                            edt_modify_port_act_want.hint = data.detailWant
+                        edt_modify_port_act_want.hint = data.detailWant
 
                         //유저 타입
                         tv_modify_port_folio_act_job.text = "creator"
@@ -672,7 +687,13 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                     subscriber = edt_modify_port_act_subscriber.text.toString()
                 else subscriber = edt_modify_port_act_subscriber.hint.toString()
                 //플랫폼
-                val platform = 1
+                var platform = 0
+                when {
+                    btn_youtube.isSelected -> platform =1
+                    btn_afreeca.isSelected -> platform =2
+                    btn_twich.isSelected -> platform=3
+                    else -> platform =0
+                }
                 //소개
                 var oneline = String()
                 if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
@@ -721,6 +742,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                                 when (it?.message ?: " ") {
                                     "성공" -> {
                                         showSuccessDialog()
+                                        Log.v("TAGG platform: ",platform.toString())
                                     }
                                     else -> {
                                         toast(it.message)
@@ -732,11 +754,17 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
             }
             //에디터
             2 -> {
-                //구독자
+                // 구독자
                 val subscriber = 0
-                //플랫폼 -나중에 수정
-                val platform = 1
-                //소개
+                // 플랫폼
+                var platform = 0
+                when {
+                    btn_youtube.isSelected -> platform =1
+                    btn_afreeca.isSelected -> platform =2
+                    btn_twich.isSelected -> platform=3
+                    else -> platform =0
+                }
+                // 소개
                 var oneline = String()
                 if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
                     oneline = edt_modify_port_act_detail_oneline.text.toString()
@@ -800,8 +828,14 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
             3 -> {
                 //구독자
                 val subscriber = 0
-                //플랫폼 -나중에 수정
-                val platform = 2
+                //플랫폼
+                var platform = 0
+                when {
+                    btn_youtube.isSelected -> platform =1
+                    btn_afreeca.isSelected -> platform =2
+                    btn_twich.isSelected -> platform=3
+                    else -> platform =0
+                }
                 //소개
                 var oneline = String()
                 if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
@@ -865,8 +899,15 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
             4 -> {
                 //구독자
                 val subscriber = 0
-                //플랫폼 -나중에 수정
-                val platform = 1
+
+                //플랫폼
+                var platform = 0
+                when {
+                    btn_youtube.isSelected -> platform =1
+                    btn_afreeca.isSelected -> platform =2
+                    btn_twich.isSelected -> platform=3
+                    else -> platform =0
+                }
                 //소개
                 var oneline = String()
                 if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
@@ -972,5 +1013,42 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
         Log.v("TAGGGGG", filterDataList.toString())
     }
+
+    //플랫폼 단일 선택을 위해 쓰이는 함수
+    private fun reverseBtn(imageView: ImageView?) {
+        when (imageView) {
+            btn_youtube -> {
+                initBtnFlag()
+                btn_youtube.isSelected = true
+                btn_youtube.setImageResource(R.drawable.pofol_youtube_white_img)
+            }
+            btn_afreeca -> {
+                initBtnFlag()
+                btn_afreeca.isSelected = true
+                btn_afreeca.setImageResource(R.drawable.pofol_afreeca_white_img)
+            }
+            btn_twich -> {
+                initBtnFlag()
+                btn_twich.isSelected = true
+                btn_twich.setImageResource(R.drawable.pofol_twitch_white_img)
+            }
+        }
+    }
+
+    private fun initBtnFlag() {
+        btn_youtube.isSelected = false
+        btn_youtube.setImageResource(R.drawable.pofol_youtube_off_img)
+        btn_afreeca.isSelected = false
+        btn_afreeca.setImageResource(R.drawable.pofol_afreeca_white_off_img)
+        btn_twich.isSelected = false
+        btn_twich.setImageResource(R.drawable.pofol_twitch_white_off_img)
+    }
+
+    private fun initView() {
+        setFilterRVAdapter()
+        getModifyPortFolioResponse()
+        setOnClickListener()
+    }
+
 
 }
