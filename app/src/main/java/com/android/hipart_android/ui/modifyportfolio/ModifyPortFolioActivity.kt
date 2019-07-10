@@ -1,6 +1,5 @@
 package com.android.hipart_android.ui.modifyportfolio
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
@@ -230,6 +229,8 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         val data = response.body()!!.data
                         Log.v("usertype TAGGG", data.userType.toString())
 
+                        //필터
+
                         //유저 이미지
                         Glide.with(this@ModifyPortFolioActivity)
                             .load(data.userImg)
@@ -243,11 +244,11 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
                         //소개
                         if (data.detailOneline != null)
-                        edt_modify_port_act_detail_oneline.hint = data.detailOneline
+                            edt_modify_port_act_detail_oneline.hint = data.detailOneline
 
                         //원해요
                         if (data.detailWant != null)
-                        edt_modify_port_act_want.hint = data.detailWant
+                            edt_modify_port_act_want.hint = data.detailWant
 
                         //유저 타입
                         tv_modify_port_folio_act_job.text = "creator"
@@ -527,7 +528,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    // 작품 삭제 - CPAT
+    //작품 삭제 - CPAT
     private fun deleteModifyPortResponseCpat(workIndex: ArrayList<Int>) {
         val deleteModifyPortResponseCpat = networkService.deleteModifyPortFolioResponseCpat(
             userToken, WorkIndex(workIndex)
@@ -564,7 +565,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         })
     }
 
-    // 작품 삭제 - EPAT
+    //작품 삭제 - EPAT
     private fun deleteModifyPortFolioResponseEpat(workIndex: ArrayList<Int>) {
         val deleteModifyPortFolioResponseEpat = networkService.deleteModifyPortFolioResponseEpat(
             userToken, WorkIndex(workIndex)
@@ -689,10 +690,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 //플랫폼
                 var platform = 0
                 when {
-                    btn_youtube.isSelected -> platform =1
-                    btn_afreeca.isSelected -> platform =2
-                    btn_twich.isSelected -> platform=3
-                    else -> platform =0
+                    btn_youtube.isSelected -> platform = 1
+                    btn_afreeca.isSelected -> platform = 2
+                    btn_twich.isSelected -> platform = 3
+                    else -> platform = 0
                 }
                 //소개
                 var oneline = String()
@@ -707,10 +708,27 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 //수상경력 = null
 
                 //필터
-                val concept = 1
-                val lang = 2
-                val pd = 2
-                val etc = 3
+                var concept = 0
+                var pd = 0
+                var lang = 0
+                var etc = 0
+                for (i in filterDataList.indices) {
+                    when (filterDataList[i].filterPAT) {
+                        "C" -> {
+                            Log.v("TAGGG","됐음")
+                            concept = filterDataList[i].filterIndex
+                        }
+                        "E" -> {
+                            pd = filterDataList[i].filterIndex
+                        }
+                        "T" -> {
+                            lang = filterDataList[i].filterIndex
+                        }
+                        "ETC" -> {
+                            etc = filterDataList[i].filterIndex
+                        }
+                    }
+                }
 
                 modifyList = ModifyList(
                     platform,
@@ -742,7 +760,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                                 when (it?.message ?: " ") {
                                     "성공" -> {
                                         showSuccessDialog()
-                                        Log.v("TAGG platform: ",platform.toString())
+                                        Log.v("TAGG platform: ", modifyList.toString())
                                     }
                                     else -> {
                                         toast(it.message)
@@ -759,10 +777,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 // 플랫폼
                 var platform = 0
                 when {
-                    btn_youtube.isSelected -> platform =1
-                    btn_afreeca.isSelected -> platform =2
-                    btn_twich.isSelected -> platform=3
-                    else -> platform =0
+                    btn_youtube.isSelected -> platform = 1
+                    btn_afreeca.isSelected -> platform = 2
+                    btn_twich.isSelected -> platform = 3
+                    else -> platform = 0
                 }
                 // 소개
                 var oneline = String()
@@ -831,10 +849,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 //플랫폼
                 var platform = 0
                 when {
-                    btn_youtube.isSelected -> platform =1
-                    btn_afreeca.isSelected -> platform =2
-                    btn_twich.isSelected -> platform=3
-                    else -> platform =0
+                    btn_youtube.isSelected -> platform = 1
+                    btn_afreeca.isSelected -> platform = 2
+                    btn_twich.isSelected -> platform = 3
+                    else -> platform = 0
                 }
                 //소개
                 var oneline = String()
@@ -903,10 +921,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 //플랫폼
                 var platform = 0
                 when {
-                    btn_youtube.isSelected -> platform =1
-                    btn_afreeca.isSelected -> platform =2
-                    btn_twich.isSelected -> platform=3
-                    else -> platform =0
+                    btn_youtube.isSelected -> platform = 1
+                    btn_afreeca.isSelected -> platform = 2
+                    btn_twich.isSelected -> platform = 3
+                    else -> platform = 0
                 }
                 //소개
                 var oneline = String()
@@ -982,7 +1000,6 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         }, 1500)
     }
 
-
     private fun showGoToUploadDialog() {
         modifyPortGoToUploadDialog.show(supportFragmentManager, "go to upload")
     }
@@ -991,6 +1008,17 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     private fun setFilterRVAdapter() {
         rv_modify_port_folio_act_filter.adapter = filterRVAdapter
         rv_modify_port_folio_act_filter.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    fun setFilterData(arrayList: ArrayList<FilterData>) {
+
+        filterDataList = arrayList
+
+        filterRVAdapter.changeDataList(filterDataList)
+
+        filterRVAdapter.notifyDataSetChanged()
+
+        Log.v("TAGGGGG", filterDataList.toString())
     }
 
     fun finishActivityAfterDialogClickedOkay() {
@@ -1002,16 +1030,6 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
             rl_modify_port_folio_act_no_work.visibility = View.VISIBLE
         removeIndexList = list
         Log.v("TAGGG", "removeIndex in Act: " + removeIndexList.toString())
-    }
-
-    fun setFilterData(arrayList: ArrayList<FilterData>) {
-        filterDataList = arrayList
-
-        filterRVAdapter.changeDataList(filterDataList)
-
-        filterRVAdapter.notifyDataSetChanged()
-
-        Log.v("TAGGGGG", filterDataList.toString())
     }
 
     //플랫폼 단일 선택을 위해 쓰이는 함수

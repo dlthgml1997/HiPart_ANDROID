@@ -18,12 +18,17 @@ import com.android.hipart_android.R
 import com.android.hipart_android.ui.modifyportfolio.ModifyPortFolioActivity
 import com.android.hipart_android.ui.modifyportfolio.adapter.FilterRVAdapter
 import com.android.hipart_android.ui.modifyportfolio.data.FilterData
+import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_hipat_filter.*
+import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.textColor
 import org.jetbrains.anko.textColorResource
 
 class FilterDialog : DialogFragment() {
 
+    private val userType by lazy{
+        SharedPreferenceController.getUserType(context!!)
+    }
     private val filterSuccessDialog by lazy {
         FilterSuccessDialog()
     }
@@ -147,10 +152,233 @@ class FilterDialog : DialogFragment() {
     private fun selectedDataToModifyActivity() {
         selectedDataList = ArrayList(0)
 
+        /**
+         * 1: 크리에이터
+         * 2: 에디터
+         * 3: 트랜슬레이터
+         * 4: 기타
+         */
+
         for(i in rlDataList.indices){
             if(rlDataList[i].isSelected)
             {
-                selectedDataList.add(FilterData(tvDataList[i].text.toString(),true))
+                when(tvDataList[i].text.toString()){
+                    //방송 컨셉 - 크리에이터
+                    "게임"->{
+                        Log.v("TAGGG cpat filter",tvDataList[i].text.toString())
+                        when(userType){
+                            1-> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,1,"C"))
+                            2,3,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,1,"C"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "ASMR"->{
+                        Log.v("TAGGG cpat filter",tvDataList[i].text.toString())
+                        when(userType){
+                            1-> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,2,"C"))
+                            2,3,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,2,"C"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "Prank"->{
+                    Log.v("TAGGG cpat filter",tvDataList[i].text.toString())
+                    when(userType){
+                        1-> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,3,"C"))
+                        2,3,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,3,"C"))
+                        else -> toast("User PAT Type Error")
+                    }
+                }
+                    "스포츠"->{
+                        Log.v("TAGGG cpat filter",tvDataList[i].text.toString())
+                        when(userType){
+                            1-> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,4,"C"))
+                            2,3,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,4,"C"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "쿡/먹방"->{
+                        Log.v("TAGGG cpat filter",tvDataList[i].text.toString())
+                        when(userType){
+                            1-> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,5,"C"))
+                            2,3,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,5,"C"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "영화/음악"->{
+                        Log.v("TAGGG cpat filter",tvDataList[i].text.toString())
+                        when(userType){
+                            1-> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,6,"C"))
+                            2,3,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,6,"C"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "교육/정보" ->{
+                        Log.v("TAGGG cpat filter",tvDataList[i].text.toString())
+                        when(userType){
+                            1-> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,7,"C"))
+                            2,3,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,7,"C"))
+                            else -> toast("User PAT Type Error")
+                            }
+                    }
+                    //PD - 에디터
+                    "편집"->{
+                        Log.v("TAGGG epat filter",tvDataList[i].text.toString())
+                        when(userType){
+                            2-> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,1,"E"))
+                            1,3,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,1,"E"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "기획" ->{
+                        Log.v("TAGGG epat filter",tvDataList[i].text.toString())
+                        when(userType){
+                            2-> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,2,"E"))
+                            1,3,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,2,"E"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    //언어 - 트랜슬레이터
+                    "영어" ->{
+                        Log.v("TAGGG trans filter",tvDataList[i].text.toString())
+                        when(userType){
+                            3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,1,"T"))
+                            1,2,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,1,"T"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "일본어"->{
+                        Log.v("TAGGG trans filter",tvDataList[i].text.toString())
+                        when(userType){
+                            3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,2,"T"))
+                            1,2,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,2,"T"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "중국어"->{
+                        Log.v("TAGGG trans filter",tvDataList[i].text.toString())
+                        when(userType){
+                            3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,3,"T"))
+                            1,2,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,3,"T"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "독일어"->{
+                        Log.v("TAGGG trans filter",tvDataList[i].text.toString())
+                        when(userType){
+                            3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,4,"T"))
+                            1,2,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,4,"T"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "인도어"->{
+                        Log.v("TAGGG trans filter",tvDataList[i].text.toString())
+                        when(userType){
+                            3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,5,"T"))
+                            1,2,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,5,"T"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "러시아어"->{
+                        Log.v("TAGGG trans filter",tvDataList[i].text.toString())
+                        when(userType){
+                            3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,6,"T"))
+                            1,2,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,6,"T"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "인도네시아어" ->{
+                        Log.v("TAGGG trans filter",tvDataList[i].text.toString())
+                        when(userType){
+                            3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,7,"T"))
+                            1,2,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,7,"T"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "베트남어"->{
+                        Log.v("TAGGG trans filter",tvDataList[i].text.toString())
+                        when(userType){
+                            3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,8,"T"))
+                            1,2,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,8,"T"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "이탈리아어"->{
+                        Log.v("TAGGG trans filter",tvDataList[i].text.toString())
+                        when(userType){
+                            3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,9,"T"))
+                            1,2,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,9,"T"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "프랑스어"->{
+                        Log.v("TAGGG trans filter",tvDataList[i].text.toString())
+                        when(userType){
+                            3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,10,"T"))
+                            1,2,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,10,"T"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "스페인어" ->{
+                        Log.v("TAGGG trans filter",tvDataList[i].text.toString())
+                        when(userType){
+                            3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,11,"T"))
+                            1,2,4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,11,"T"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    //기타 - 기타
+                    "소품"->{
+                        Log.v("TAGGG etc filter",tvDataList[i].text.toString())
+                        when(userType){
+                            4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,1,"ETC"))
+                            1,2,3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,1,"ETC"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "코디" ->{
+                        Log.v("TAGGG etc filter",tvDataList[i].text.toString())
+                        when(userType){
+                            4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,2,"ETC"))
+                            1,2,3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,2,"ETC"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "조명"->{
+                        Log.v("TAGGG etc filter",tvDataList[i].text.toString())
+                        when(userType){
+                            4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,3,"ETC"))
+                            1,2,3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,3,"ETC"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "촬영"->{
+                        Log.v("TAGGG etc filter",tvDataList[i].text.toString())
+                        when(userType){
+                            4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,4,"ETC"))
+                            1,2,3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,4,"ETC"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "매니저"->{
+                        Log.v("TAGGG etc filter",tvDataList[i].text.toString())
+                        when(userType){
+                            4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,5,"ETC"))
+                            1,2,3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,5,"ETC"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    "썸네일" ->{
+                        Log.v("TAGGG etc filter",tvDataList[i].text.toString())
+                        when(userType){
+                            4 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),true,6,"ETC"))
+                            1,2,3 -> selectedDataList.add(FilterData(tvDataList[i].text.toString(),false,6,"ETC"))
+                            else -> toast("User PAT Type Error")
+                        }
+                    }
+                    else-> {
+                        toast("필터 선택 에러")
+                    }
+                }
             }
         }
     }

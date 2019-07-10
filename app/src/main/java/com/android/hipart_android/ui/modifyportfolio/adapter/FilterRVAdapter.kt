@@ -29,12 +29,10 @@ class FilterRVAdapter(val ctx: Context, var arrayList: ArrayList<FilterData>) :
 
         p0.filterName.text = arrayList[p1].filterName
 
-        if (arrayList[p1].filterFlag == true) {
+        if (arrayList[p1].filterFlag) {
             p0.rootLayout.setBackgroundResource(R.drawable.box_modify_portfolio_act)
             p0.filterName.setTextColor(Color.parseColor("#FFFFFF"))
         }
-
-
     }
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
