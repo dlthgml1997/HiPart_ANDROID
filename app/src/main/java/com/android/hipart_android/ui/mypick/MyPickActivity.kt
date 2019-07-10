@@ -14,6 +14,7 @@ import com.android.hipart_android.ui.hipat.adapter.PortFolioRecyclerViewAdapter
 import com.android.hipart_android.ui.mypick.data.GetMyPickData
 import com.android.hipart_android.ui.mypick.data.GetMyPickResponse
 import com.android.hipart_android.util.BaseActivity
+import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_mypick.*
 import kotlinx.android.synthetic.main.toolbar_mypick.*
 import retrofit2.Call
@@ -26,6 +27,9 @@ class MyPickActivity : BaseActivity(), View.OnClickListener {
         ApplicationController.instance.networkService
     }
 
+    private val getTokenResponse by lazy{
+        SharedPreferenceController.getAuthorization(this@MyPickActivity)
+    }
     override fun onClick(v: View?) {
         when(v){
             btn_my_pick_back -> {
@@ -55,7 +59,7 @@ class MyPickActivity : BaseActivity(), View.OnClickListener {
 
     }
     fun getMyPickResponse(){
-        val getMyPickResponse = networkService.getMyPickResponse("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM")
+        val getMyPickResponse = networkService.getMyPickResponse("getTokenResponse")
         getMyPickResponse.enqueue(object: Callback<GetMyPickResponse>{
             override fun onFailure(call: Call<GetMyPickResponse>, t: Throwable) {
                 Log.e("MyPickAct Err", Log.getStackTraceString(t))
