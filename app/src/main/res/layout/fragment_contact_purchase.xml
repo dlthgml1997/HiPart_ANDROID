@@ -28,7 +28,7 @@ android:background="@android:color/white">
                       android:textSize="24sp"
                       android:textColor="#7947fd"
                       android:lineSpacingExtra="3sp"
-                      android:text="Nado"
+                      android:text=""
                       android:layout_marginLeft="8dp"
                       android:id="@+id/tv_contact_purc_frag_name"/>
             <TextView style="@style/nanum_bold"
@@ -70,7 +70,7 @@ android:background="@android:color/white">
                           android:textSize="20sp"
                           android:textColor="#707070"
                           android:lineSpacingExtra="3sp"
-                          android:text="010 8466 6041"
+                          android:text=""
                           android:id="@+id/tv_contact_purc_frag_nunmber"
                 />
                 <Button android:layout_width="match_parent" android:layout_height="48dp"

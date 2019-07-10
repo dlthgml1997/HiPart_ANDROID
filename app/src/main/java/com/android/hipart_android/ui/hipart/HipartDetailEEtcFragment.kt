@@ -65,6 +65,12 @@ class HipartDetailEEtcFragment : Fragment() {
 
         tv_frag_hip_det_eetc_want.text = user.detail_want
         tv_frag_hip_det_eetc_spec.text = user.detail_appeal
+
+        //연락하기/연락처 보기
+        if(HipartDetailActivity.hifiveStatus ==1) {
+            btn_frag_hip_det_eetc_call.text = "연락처 보기"
+        }else
+            btn_frag_hip_det_eetc_call.text = "연락하기"
     }
 
     private fun setArticleList(user: UserDetailEEtcData) {
@@ -97,9 +103,17 @@ class HipartDetailEEtcFragment : Fragment() {
 
     private fun setListeners() {
         btn_frag_hip_det_eetc_call.setOnClickListener {
-            val contactDialog = ContactDialogFragment()
-            contactDialog.show(childFragmentManager, "contact dialog")
-            Log.d(TAG, "contact btn clicked")
+            if(HipartDetailActivity.hifiveStatus == 0) {
+                val contactDialog = ContactDialogFragment()
+                contactDialog.show(childFragmentManager, "contact dialog")
+                Log.d(TAG, "contact btn clicked")
+            } else {
+                val fm = activity!!.supportFragmentManager
+                val fragmentTransaction = fm.beginTransaction()
+                fragmentTransaction.add(R.id.fl_hip_detail_act, ContactPurchaseFragment())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
 
         }
 
