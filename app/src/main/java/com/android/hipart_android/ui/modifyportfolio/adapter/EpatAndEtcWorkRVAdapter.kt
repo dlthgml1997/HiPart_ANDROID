@@ -71,9 +71,9 @@ class EpatAndEtcWorkRVAdapter(val ctx: Context, var dataList : GetModifyPortFoli
         removeIndexList.add(dataList.workIdx[position])
         dataList.workIdx.removeAt(position)
         if(dataList.thumbnail.isEmpty())
-            (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList,0)
+            (ctx as ModifyPortFolioActivity).setRemoveIndexListFromAdapter(removeIndexList,0)
         else
-            (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList,1)
+            (ctx as ModifyPortFolioActivity).setRemoveIndexListFromAdapter(removeIndexList,1)
     }
 
 
