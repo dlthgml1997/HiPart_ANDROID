@@ -1,7 +1,7 @@
 package com.android.hipart_android.ui.hipat.adapter
 
 import android.content.Context
-import android.provider.Contacts.PresenceColumns.INVISIBLE
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,15 +11,26 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
+import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.hipart.HipartDetailActivity
-import com.android.hipart_android.ui.hipat.data.PortFolioData
+import com.android.hipart_android.ui.home.data.post.PickDTO
+import com.android.hipart_android.ui.home.data.post.PickResponse
 import com.android.hipart_android.ui.main.MainActivity
-import com.android.hipart_android.ui.mypage.MyPickActivity
-import com.android.hipart_android.ui.mypage.data.GetMyPickData
-import org.jetbrains.anko.image
+import com.android.hipart_android.ui.mypick.MyPickActivity
+import com.android.hipart_android.ui.mypick.data.GetMyPickData
+import com.android.hipart_android.util.SharedPreferenceController
+import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.textColor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class PortFolioRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<GetMyPickData>, val mainActivityFlag : Boolean) :
+class PortFolioRecyclerViewAdapter(
+    val ctx: Context,
+    var dataList: ArrayList<GetMyPickData>,
+    val mainActivityFlag: Boolean
+) :
     RecyclerView.Adapter<PortFolioRecyclerViewAdapter.Holder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = LayoutInflater.from(ctx).inflate(R.layout.rv_item_hipat_frag_portfolio, p0, false)
@@ -33,9 +44,8 @@ class PortFolioRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<Get
         var pdFlag = false
         var langFlag = false
         var etcFlag = false
-        var pickBtnFlag = 0
 
-        var data = dataList[position]
+        var data = dataList[position].info[0]
 
         val firstTheme = holder.firstFilter
         when (data.user_type) {
@@ -103,57 +113,96 @@ class PortFolioRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<Get
         }
 
 
-        holder.user_image_thumbnail.setImageResource(R.drawable.main_profile_photo_image)
-        holder.user_name.text = dataList[position].user_nickname
-        when(dataList[position].detail_platform){
-            0->{//크리에이터 아닐때
-                holder.kind_of_creator.visibility = View.INVISIBLE
-            }
-            1->{//유튜브
-                holder.kind_of_creator.setImageResource(R.drawable.youtube_grey_img)
-            }
-            2->{//아프리카
-                holder.kind_of_creator.setImageResource(R.drawable.pofol_afreeca_white_img)
-            }
-            3->{//틱톡
-                holder.kind_of_creator.setImageResource(R.drawable.pofol_twitch_white_img)
-            }
-        }
-        when(dataList[position].user_type){
-            1->{ //c-pat
-                holder.kind_of_pat.text = "크리에이터"
-            }
-            2->{
-                holder.kind_of_pat.text = "편집자"
-            }
-            3->{
-                holder.kind_of_pat.text = "번역가"
-            }
-            4->{
-                holder.kind_of_pat.text = "기타"
-            }
-        }
-        //how_many_filter
+        val userImg = holder.user_image_thumbnail
+        Glide.with(ctx).load(data.user_img).into(userImg)
 
-        //when(dataList[position].pick){holder.is_picked.isSelected = 1}
-        //holder.is_picked.isSelected = dataList[position].detail_platform
-        holder.how_picked.text = dataList[position].detail_platform.toString()
+        val name = holder.user_name
+        name.text = data.user_nickname
+
+        val platform = holder.kind_of_creator
+        when (data.detail_platform) {
+            0 -> {//크리에이터 아닐때
+                platform.visibility = View.INVISIBLE
+            }
+            1 -> {//유튜브
+                platform.setImageResource(R.drawable.youtube_grey_img)
+            }
+            2 -> {//아프리카
+                platform.setImageResource(R.drawable.pofol_afreeca_white_img)
+            }
+            3 -> {//트위치
+                platform.setImageResource(R.drawable.pofol_twitch_white_img)
+            }
+        }
+
+        val kindOfPat = holder.kind_of_pat
+        when (data.user_type) {
+            1 -> { //c-pat
+                kindOfPat.text = "크리에이터"
+            }
+            2 -> {
+                kindOfPat.text = "편집자"
+            }
+            3 -> {
+                kindOfPat.text = "번역가"
+            }
+            4 -> {
+                kindOfPat.text = "기타"
+            }
+        }
+
+        val des = holder.des
+        des.text = data.detail_oneline
+
+        val pickNum = holder.how_picked
+        pickNum.text = data.pick.toString()
+
+        val btnPick = holder.is_picked
+
+        if (btnPick.isSelected == true) {
+            pickNum.textColor = Color.parseColor("#7947fd")
+        } else {
+            pickNum.textColor = Color.parseColor("#c7c7c7")
+        }
 
         holder.root.setOnClickListener { ctx!!.startActivity<HipartDetailActivity>() }
 
-        if(mainActivityFlag == true){
-            holder.is_picked.setOnClickListener {
-                if(holder.is_picked.isSelected == false) {
-                    (ctx as MainActivity).setAnimPickIcon()
+        if (mainActivityFlag == true) {
+            btnPick.setOnClickListener {
+//                if (holder.is_picked.isSelected == false) {
+//                    (ctx as MainActivity).setAnimPickIcon()
+//                }
+
+
+                if (btnPick.isSelected == false) {
+                    addPick(data.user_nickname, true)
+                    btnPick.isSelected = true
+                    pickNum.text = "${pickNum.text.toString().toInt() + 1}"
+                    pickNum.textColor = Color.parseColor("#7947fd")
+                } else {
+                    deletePick(data.user_nickname)
+                    btnPick.isSelected = false
+                    pickNum.text = "${pickNum.text.toString().toInt() - 1}"
+                    pickNum.textColor = Color.parseColor("#c7c7c7")
                 }
-                holder.is_picked.isSelected = !holder.is_picked.isSelected
             }
-        }else {
-            holder.is_picked.setOnClickListener {
-                if(holder.is_picked.isSelected == false) {
-                    (ctx as MyPickActivity).setAnimPickIcon()
+        } else {
+            btnPick.setOnClickListener {
+//                if (holder.is_picked.isSelected == false) {
+//                    (ctx as MyPickActivity).setAnimPickIcon()
+//                }
+//                holder.is_picked.isSelected = !holder.is_picked.isSelected
+                if (btnPick.isSelected == false) {
+                    addPick(data.user_nickname, false)
+                    btnPick.isSelected = true
+                    pickNum.text = "${pickNum.text.toString().toInt() + 1}"
+                    pickNum.textColor = Color.parseColor("#7947fd")
+                } else {
+                    deletePick(data.user_nickname)
+                    btnPick.isSelected = false
+                    pickNum.text = "${pickNum.text.toString().toInt() - 1}"
+                    pickNum.textColor = Color.parseColor("#c7c7c7")
                 }
-                holder.is_picked.isSelected = !holder.is_picked.isSelected
             }
         }
 
@@ -163,6 +212,7 @@ class PortFolioRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<Get
         var user_image_thumbnail = itemView.findViewById(R.id.img_rv_item_hipat_frag_port_user_image) as ImageView
         var user_name = itemView.findViewById(R.id.img_rv_item_hipat_frag_port_user_name) as TextView
         var kind_of_pat = itemView.findViewById(R.id.txt_hipat_frag_kind_of_pat) as TextView
+        var des = itemView.findViewById<TextView>(R.id.tv_hipat_filter_act_description)
         var kind_of_creator = itemView.findViewById(R.id.img_rv_item_hipat_frag_kind_of_creator) as ImageView
 
         //필터홀더 텍스트로 바꾸기
@@ -291,6 +341,80 @@ class PortFolioRecyclerViewAdapter(val ctx: Context, var dataList: ArrayList<Get
                 tv.visibility = View.GONE
             }
         }
+    }
+
+    private fun addPick(nickName: String, mainActFlag: Boolean) {
+
+        val networkService = ApplicationController.instance.networkService
+        val addPick = networkService.addPick(SharedPreferenceController.getAuthorization(ctx!!), PickDTO(nickName))
+        addPick.enqueue(object : Callback<PickResponse> {
+            override fun onFailure(call: Call<PickResponse>, t: Throwable) {
+                Log.e("Add Pick Error", Log.getStackTraceString(t))
+            }
+
+            override fun onResponse(call: Call<PickResponse>, response: Response<PickResponse>) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let {
+                        when (it?.message ?: " ") {
+                            "픽 성공" -> {
+                                if (mainActFlag == true)
+                                    (ctx as MainActivity).setAnimPickIcon()
+                                else
+                                    (ctx as MyPickActivity).setAnimPickIcon()
+
+                            }
+                            " " -> {
+                                Log.v("태그", "message가 널인데 ?")
+                            }
+                            "닉네임을 가진 유저가 없습니다." -> {
+                                Log.v("태그", "닉네임을 가진 유저가 없다.")
+                            }
+                            // TODO : 픽리스트 없음
+                            else -> {
+                                Log.v("태그", it.message)
+                            }
+                        }
+                    }
+            }
+        })
+    }
+
+    private fun deletePick(nickName: String) {
+
+        val networkService = ApplicationController.instance.networkService
+        val deletePick =
+            networkService.deletePick(SharedPreferenceController.getAuthorization(ctx!!), PickDTO(nickName))
+        deletePick.enqueue(object : Callback<PickResponse> {
+            override fun onFailure(call: Call<PickResponse>, t: Throwable) {
+                Log.e("Delete Pick Error", Log.getStackTraceString(t))
+            }
+
+            override fun onResponse(call: Call<PickResponse>, response: Response<PickResponse>) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.let {
+                        when (it?.message ?: " ") {
+
+                            "픽 취소 성공" -> {
+                                Log.v("태그", it.message)
+                            }
+                            " " -> {
+                                Log.v("태그", "message가 널인데 ?")
+                            }
+                            "닉네임을 가진 유저가 없습니다." -> {
+                                Log.v("태그", "닉네임을 가진 유저가 없다.")
+                            }
+                            // TODO : 픽리스트 없음
+                            else -> {
+                                Log.v("태그", it.message)
+                            }
+                        }
+                    }
+            }
+        })
     }
 
 }

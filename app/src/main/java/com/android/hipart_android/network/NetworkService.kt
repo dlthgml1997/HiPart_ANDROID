@@ -1,19 +1,26 @@
 package com.android.hipart_android.network
 
+import com.android.hipart_android.ui.hipart.get.GetDetailCResponse
+import com.android.hipart_android.ui.hipart.get.GetDetailEEtcResponse
+import com.android.hipart_android.ui.hipart.get.GetDetailTResponse
+import com.android.hipart_android.ui.hipat.data.GetProfileLookUpResponse
 import com.android.hipart_android.ui.home.data.get.GetCustomRecommendResponse
 import com.android.hipart_android.ui.home.data.post.PickDTO
 import com.android.hipart_android.ui.home.data.post.PickResponse
 import com.android.hipart_android.ui.login.data.PostLoginRequest
 import com.android.hipart_android.ui.login.data.PostLoginResponse
+import com.android.hipart_android.ui.modifyportfolio.data.WorkIndex
+import com.android.hipart_android.ui.modifyportfolio.delete.DeleteModifyPortFolioResponse
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponseCpat
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponseEpatAndEtc
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponseTpat
 import com.android.hipart_android.ui.modifyprofile.data.get.GetModifyProfileResponse
 import com.android.hipart_android.ui.modifyprofile.data.put.ModifyProfileResponse
-import com.android.hipart_android.ui.mypage.data.GetMyPickResponse
 import com.android.hipart_android.ui.mypage.data.PostManToManQuestionRequest
 import com.android.hipart_android.ui.mypage.get.GetMypageResponse
+import com.android.hipart_android.ui.mypick.data.GetMyPickResponse
 import com.android.hipart_android.ui.notification.get.GetNotificationResponse
+import com.android.hipart_android.ui.search.GetSearchResponse
 import com.android.hipart_android.ui.signup.data.GetDuplicateFlagResponse
 import com.android.hipart_android.ui.signup.data.PostSignUpResponse
 import okhttp3.MultipartBody
@@ -30,7 +37,6 @@ interface NetworkService {
 
     @GET("pick")
     fun getMyPickResponse(
-        @Header("Content-Type") content_type: String,
         @Header("token") token: String
     ): Call<GetMyPickResponse>
 
@@ -41,6 +47,30 @@ interface NetworkService {
 //        @Header("Content-Type") content_type: String,
 //        @Body body: PostLoginRequest
 //    ): Call<PostLoginResponse>
+
+//    @POST("auth/signin")
+//    fun postLoginResponse(
+//        @Header("Content-Type") content_type: String,
+//        @Body body: PostLoginRequest
+//    ): Call<PostLoginResponse>
+//
+//    /**
+//     * 알림 조회
+//     */
+//    @GET("main/notification")
+//    fun getNotificationResponse(
+//        @Header("Content-Type") content_type: String,
+//        @Header("token") token: String
+//    ): Call<GetNotificationResponse>
+//
+//    /**
+//     * 마이 페이지
+//     */
+//    @GET("mypage/info")
+//    fun getMypageResponse(
+//        @Header("Content-Type") content_type: String,
+//        @Header("token") token: String
+//    ): Call<GetMypageResponse>
 
     @POST("auth/signin")
     fun postLoginResponse(
@@ -66,6 +96,26 @@ interface NetworkService {
         @Header("token") token: String
     ): Call<GetMypageResponse>
 
+    /**
+     * 하이 파이브한 사람
+     */
+    @POST("hifive")
+    fun postHifiveResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Body body: PostHifiveRequest
+    ): Call<PostHifiveResponse>
+
+    /**
+     * 하이 파이브한 사람 전화번호
+     */
+    @GET("hifive/{nickname}")
+    fun getHifiveNumResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Path("nickname") nickname: String
+    ): Call<GetHifiveNumResponse>
+
 //    /**
 //     * 알림 조회
 //     */
@@ -85,32 +135,73 @@ interface NetworkService {
 //    ): Call<GetMypageResponse>
 
     // 소희 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
-//    /**
-//     * 포트폴리오 수정 페이지 로딩
-//     */
-//    @GET("portfolio/detail")
-//    fun getModifyPortFolioResponse(
+////    /**
+////     * 포트폴리오 수정 페이지 로딩
+////     */
+////    @GET("portfolio/detail")
+////    fun getModifyPortFolioResponse(
+////        @Header("Content-Type") content_type: String,
+////        @Header("token") token: String
+////    ): Call<GetModifyPortFolioResponse>
+//
+//    //    /**
+////     * 포트폴리오 수정 페이지 로딩 - 에디터
+////     */
+////    @GET("portfolio/detail/editor")
+////    fun getModifyPortFolioResponseEpat(
+////        @Header("Content-Type") content_type: String,
+////        @Header("token") token: String
+////    ): Call<GetModifyPortFolioResponseEpat>
+////
+////    /**
+////     * 포트폴리오 수정 페이지 로딩 - 크리에이터
+////     */
+////    @GET("portfolio/detail/creator")
+////    fun getModifyPortFolioResponseCpat(
+////        @Header("Content-Type") content_type: String,
+////        @Header("token") token: String
+////    ): Call<GetModifyPortFolioResponseCpat>
+//    @GET("portfolio/detail/creator")
+//    fun getModifyPortFolioResponseCpat(
 //        @Header("Content-Type") content_type: String,
 //        @Header("token") token: String
-//    ): Call<GetModifyPortFolioResponse>
-
-    //    /**
+//    ): Call<GetModifyPortFolioResponseCpat>
+//
+//    /**
 //     * 포트폴리오 수정 페이지 로딩 - 에디터
 //     */
 //    @GET("portfolio/detail/editor")
 //    fun getModifyPortFolioResponseEpat(
 //        @Header("Content-Type") content_type: String,
 //        @Header("token") token: String
-//    ): Call<GetModifyPortFolioResponseEpat>
+//    ): Call<GetModifyPortFolioResponseEpatAndEtc>
 //
 //    /**
-//     * 포트폴리오 수정 페이지 로딩 - 크리에이터
+//     * 포트폴리오 수정 페이지 로딩 - 트랜슬레이터
+//     * @header token
 //     */
-//    @GET("portfolio/detail/creator")
-//    fun getModifyPortFolioResponseCpat(
+//    @GET("portfolio/detail/translator")
+//    fun getModifyPortFolioResponseTpat(
 //        @Header("Content-Type") content_type: String,
 //        @Header("token") token: String
-//    ): Call<GetModifyPortFolioResponseCpat>
+//    ): Call<GetModifyPortFolioResponseTpat>
+//
+//    /**
+//     * 포트폴리오 수정 페이지 로딩 - 기타
+//     * @header token
+//     */
+//    @GET("portfolio/detail/etc")
+//    fun getModifyPortFolioResponseEtc(
+//        @Header("Content-Type") content_type: String,
+//        @Header("token") token: String
+//    ): Call<GetModifyPortFolioResponseEpatAndEtc>
+
+
+    // 소희 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
+
+    /**
+     * 포트폴리오 수정 페이지 로딩 - 크리에이터
+     */
     @GET("portfolio/detail/creator")
     fun getModifyPortFolioResponseCpat(
         @Header("Content-Type") content_type: String,
@@ -145,8 +236,84 @@ interface NetworkService {
         @Header("Content-Type") content_type: String,
         @Header("token") token: String
     ): Call<GetModifyPortFolioResponseEpatAndEtc>
-    // 지원 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
 
+
+    /**
+     * 포트폴리오 수정 페이지 작품 삭제 - 크리에이터
+     * @header token
+     * @body work_idx
+     */
+    @HTTP(method = "DELETE", path = "portfolio/creator", hasBody = true)
+    fun deleteModifyPortFolioResponseCpat(
+        @Header("token") token: String,
+        @Body workIndex : WorkIndex
+    ): Call<DeleteModifyPortFolioResponse>
+
+    /**
+     * 포트폴리오 수정 페이지 작품 삭제 - 에디터
+     * @header token
+     * @body work_idx
+     */
+    @HTTP(method = "DELETE", path = "portfolio/editor", hasBody = true)
+    fun deleteModifyPortFolioResponseEpat(
+        @Header("token") token: String,
+        @Body workIndex : WorkIndex
+    ): Call<DeleteModifyPortFolioResponse>
+
+    /**
+     * 포트폴리오 수정 페이지 작품 삭제 - 트랜슬레이터
+     * @header token
+     * @body work_idx
+     */
+    @HTTP(method = "DELETE", path = "portfolio/translator", hasBody = true)
+    fun deleteModifyPortFolioResponseTpat(
+        @Header("token") token: String,
+        @Body workIndex : WorkIndex
+    ): Call<DeleteModifyPortFolioResponse>
+
+    /**
+     * 포트폴리오 수정 페이지 작품 삭제 - 기타
+     * @header token
+     * @body work_idx
+     */
+    @HTTP(method = "DELETE", path = "portfolio/etc", hasBody = true)
+    fun deleteModifyPortFolioResponseEtc(
+        @Header("token") token: String,
+        @Body workIndex : WorkIndex
+    ): Call<DeleteModifyPortFolioResponse>
+
+    // 지원 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
+// 지원 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
+    @GET("main/search/{keyword}")
+    fun getSearchResponse(
+        @Header("Content-Type") content_type: String,
+        @Path("keyword") keyword: String
+    ): Call<GetSearchResponse>
+
+    //상세보기-지원
+    //c
+    @GET("profile/detail/editor/{nickname}")
+    fun getDetailEEtcResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Path("nickname") nickname: String
+    ): Call<GetDetailEEtcResponse>
+
+    //e
+    @GET("profile/detail/creator/{nickname}")
+    fun getDetailCResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Path("nickname") nickname: String
+    ): Call<GetDetailCResponse>
+
+    //t
+    @GET("profile/detail/translator/{nickname}")
+    fun getDetailTResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Path("nickname") nickname: String
+    ): Call<GetDetailTResponse>
     // 형민 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
 
 
@@ -248,5 +415,19 @@ interface NetworkService {
         @Header("token") token: String
     ): Call<GetCustomRecommendResponse>
 
+    /**
+     * @header token
+     * @param flag
+     *  0 -> 전체보기
+     *  1 -> 크리에이터
+     *  2 -> 에디터
+     *  3 -> 번역가
+     *  4 -> 기타
+     */
+    @GET("profile/list/{flag}")
+    fun getProfileLookUp(
+        @Header("token") token: String,
+        @Path("flag") flag: Int
+    ): Call<GetProfileLookUpResponse>
 
 }

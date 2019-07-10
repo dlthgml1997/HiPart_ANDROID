@@ -12,14 +12,12 @@ import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.modifyportfolio.ModifyPortFolioActivity
 import com.android.hipart_android.ui.modifyprofile.ModifyActivity
-import com.android.hipart_android.ui.mypage.MyPickActivity
 import com.android.hipart_android.ui.mypage.dialog.HifiveDialog
 import com.android.hipart_android.ui.mypage.dialog.QuestionDialog
 import com.android.hipart_android.ui.mypage.get.GetMypageResponse
+import com.android.hipart_android.ui.mypick.MyPickActivity
 import com.android.hipart_android.util.SharedPreferenceController
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_mypage.*
-import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,8 +44,10 @@ class MyPageFragment : Fragment() {
     }
 
     private fun getMypageResponse() {
-        val getMypageResponse = networkService.getMypageResponse("application/json",
-            SharedPreferenceController.getAuthorization(this@MyPageFragment.context!!))
+        val getMypageResponse = networkService.getMypageResponse(
+            "application/json",
+            SharedPreferenceController.getAuthorization(this@MyPageFragment.context!!)
+        )
         getMypageResponse.enqueue(object : Callback<GetMypageResponse> {
 
             // 통신 실패 시
@@ -58,23 +58,27 @@ class MyPageFragment : Fragment() {
 
             // 통신 성공 시
             override fun onResponse(call: Call<GetMypageResponse>, response: Response<GetMypageResponse>) {
-                if (response.isSuccessful) {
-                    if (response.body()!!.message == "회원 조회 성공.") {
-                        //Log.v("Success!", response.body()!!.toString())
-                        val data = response.body()!!.data[0]
-
-                        txt_mypage_frag_name.text = data.user_nickname
-                        txt_mypage_frag_part.text = getUserType(data.user_type)
-                        getPlatformType(data.detail_platform, txt_mypage_frag_detail_platform)
-                        Glide.with(ctx)
-                            .load(data.user_img)
-                            .into(img_mypage_frag_profile_photo)
-                        txt_mypage_frag_farm_num.text = data.point.toString()
-                        txt_mypage_frag_pick_num.text = data.pick.toString()
-                        txt_mypage_frag_hifive_num.text = data.hifive.toString()
+                //Log.v("Success!", response.body()!!.toString())
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.data
+                    ?.let {
+//                        val data = response.body()!!.data[0]
+//
+//                        txt_mypage_frag_name.text = data.user_nickname
+//                        txt_mypage_frag_part.text = getUserType(data.user_type)
+//                        getPlatformType(data.detail_platform, txt_mypage_frag_detail_platform)
+//                        Glide.with(ctx)
+//                            .load(data.user_img)
+//                            .into(img_mypage_frag_profile_photo)
+//                        txt_mypage_frag_farm_num.text = data.point.toString()
+//                        txt_mypage_frag_pick_num.text = data.pick.toString()
+//                        txt_mypage_frag_hifive_num.text = data.hifive.toString()
                     }
-                }
+
             }
+
         })
     }
 

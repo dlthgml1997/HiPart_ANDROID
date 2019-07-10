@@ -75,7 +75,10 @@ class CpatWorkRVAdapter(val ctx: Context, var dataList: GetModifyPortFolioDataCp
     private fun removeIndexToActivity(position: Int) {
         removeIndexList.add(dataList.workIdx[position])
         dataList.workIdx.removeAt(position)
-        (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList)
+        if(dataList.thumbnail.isEmpty())
+            (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList,0)
+        else
+            (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList,1)
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

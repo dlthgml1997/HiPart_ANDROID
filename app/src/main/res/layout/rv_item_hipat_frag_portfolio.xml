@@ -17,9 +17,8 @@
             android:id="@+id/img_rv_item_hipat_frag_port_user_image"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/main_profile_photo_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="75dp"
+            android:layout_height="75dp"/>
     <LinearLayout
             android:id="@+id/ll_rv_item_hipat_frag_user_name"
             android:orientation="horizontal"
@@ -30,20 +29,21 @@
             android:layout_height="wrap_content">
         <TextView
                 android:id="@+id/img_rv_item_hipat_frag_port_user_name"
-                android:text="Nado"
+                android:text="-"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_bold"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#242424"/>
 
         <ImageView
-                android:src="@drawable/youtube_grey_img"
                 android:id="@+id/img_rv_item_hipat_frag_kind_of_creator"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="2dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+        />
     </LinearLayout>
     <LinearLayout
             android:layout_alignParentRight="true"
@@ -59,18 +59,20 @@
                 android:layout_height="wrap_content"/>
         <TextView
                 android:id="@+id/txt_rv_item_hipat_frag_how_picked"
-                android:text="224"
+                android:text="-"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textSize="9sp"
+                android:fontFamily="@font/nanum_bold"
                 android:textColor="#c7c7c7"/>
     </LinearLayout>
     <TextView
             android:id="@+id/txt_hipat_frag_kind_of_pat"
-            android:text="크리에이터"
+            android:text="-"
             android:textSize="12sp"
             android:textColor="#707070"
+            android:fontFamily="@font/nanum_regular"
             android:layout_toRightOf="@id/img_rv_item_hipat_frag_port_user_image"
             android:layout_marginLeft="8dp"
             android:layout_below="@id/ll_rv_item_hipat_frag_user_name"
@@ -90,7 +92,7 @@
 
         <TextView
                 android:id="@+id/tv_hipat_filter_act_concept"
-                android:text="기획"
+                android:text="-"
                 android:textColor="#707070"
                 android:textSize="11sp"
                 android:fontFamily="@font/nanum_light"
@@ -103,7 +105,7 @@
 
             <TextView
                     android:id="@+id/tv_hipat_filter_pd"
-                    android:text="먹방"
+                    android:text="-"
                     android:textColor="#707070"
                     android:textSize="11sp"
                     android:fontFamily="@font/nanum_light"
@@ -116,7 +118,7 @@
             />
             <TextView
                     android:id="@+id/tv_hipat_filter_lang"
-                    android:text="영어"
+                    android:text="-"
                     android:textColor="#707070"
                     android:textSize="11sp"
                     android:fontFamily="@font/nanum_light"
@@ -129,7 +131,7 @@
             />
             <TextView
                     android:id="@+id/tv_hipat_filter_act_chinese"
-                    android:text="소통"
+                    android:text="-"
                     android:textColor="#707070"
                     android:textSize="11sp"
                     android:fontFamily="@font/nanum_light"
@@ -143,11 +145,13 @@
     </LinearLayout>
 
     <TextView
-            android:text="안녕하세요~ 먹고 싶은 모든 것들을 영상으로 올리고 있답니다! 감사합니다아 :)"
+            android:id="@+id/tv_hipat_filter_act_description"
+            android:text="-"
             android:layout_below="@id/rv_item_hipat_frag_portfolio_filter"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="56dp"
             android:textSize="13sp"
+            android:fontFamily="@font/nanum_regular"
             android:textColor="#242424"
             android:textStyle="bold"
             android:layout_marginTop="20dp"

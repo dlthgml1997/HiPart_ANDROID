@@ -46,7 +46,8 @@ android:background="@android:color/white">
                   android:lineSpacingExtra="2sp"
                   android:gravity="center_horizontal"
                   android:text="남은 팜: 30개"
-                  android:layout_marginTop="20dp"/>
+                  android:layout_marginTop="20dp"
+                  android:id="@+id/tv_contact_purc_frag_farm"/>
 
         <RelativeLayout android:layout_width="224dp" android:layout_height="216dp"
                         android:layout_marginHorizontal="88dp"
