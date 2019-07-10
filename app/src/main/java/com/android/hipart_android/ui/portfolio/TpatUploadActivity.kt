@@ -20,6 +20,11 @@ class TpatUploadActivity : BaseActivity() {
     val networkService: NetworkService by lazy{
         ApplicationController.instance.networkService
     }
+
+    private val userToken by lazy{
+        SharedPreferenceController.getAuthorization(this@TpatUploadActivity)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_tpat)
@@ -46,7 +51,7 @@ class TpatUploadActivity : BaseActivity() {
     private fun postPortfolioTransResponse(before: String, after: String) {
         val networkService = ApplicationController.instance.networkService
         val postPortfolioTransResponse = networkService.postPortfolioTransResponse("application/json",
-            SharedPreferenceController.getAuthorization(this@TpatUploadActivity),
+            userToken,
             PostPortfolioTransRequest(before, after)
         )
 
@@ -61,16 +66,9 @@ class TpatUploadActivity : BaseActivity() {
                 Log.v("qwejwqljqwil", response.body().toString())
                 Log.v("qwejwqljqwil", response.body()!!.message.toString())
 
-
                 response?.takeIf { it.isSuccessful }
                     ?.body()?.takeIf { it.message == "작품 등록 성공" }
                     ?.let {
-
-
-
-                        //SharedPreferenceController.clearSPC(this@TpatUploadActivity)
-                        //SharedPreferenceController.setAuthorization(this@TpatUploadActivity, it.data?.tokens?.token)
-                        //SharedPreferenceController.setUserType(this@TpatUploadActivity, it.data.user_type)
                         finish()
                     }
             }
