@@ -37,7 +37,7 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
         //3가지 태그 리사이클러
 
         //소개
-        holder.intro.text = dataList[position].detail_online
+        holder.intro.text = dataList[position].detail_oneline
 
         //픽 수
         holder.pick_num.text = dataList[position].pick.toString()

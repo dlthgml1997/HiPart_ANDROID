@@ -13,7 +13,7 @@ data class User(
     val user_type : Int,
     val pick : Int,
     val detail_platform : Int,
-    val detail_online : String,
+    val detail_oneline : String?,
     val concept : Int,
     val lang : Int,
     val pd : Int,
