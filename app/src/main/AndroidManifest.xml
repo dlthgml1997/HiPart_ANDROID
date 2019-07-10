@@ -51,6 +51,12 @@
         <activity android:name=".ui.modifyprofile.ModifyActivity">
 
         </activity>
+        <activity android:name=".ui.portfolio.TpatUploadActivity">
+
+        </activity>
+        <activity android:name=".ui.portfolio.NotTpatUploadActivity">
+
+        </activity>
 
 
     </application>

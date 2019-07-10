@@ -1,5 +1,8 @@
 package com.android.hipart_android.network
 
+import com.android.hipart_android.ui.hipart.data.GetHifiveNumResponse
+import com.android.hipart_android.ui.hipart.data.PostHifiveRequest
+import com.android.hipart_android.ui.hipart.data.PostHifiveResponse
 import com.android.hipart_android.ui.hipart.get.GetDetailCResponse
 import com.android.hipart_android.ui.hipart.get.GetDetailEEtcResponse
 import com.android.hipart_android.ui.hipart.get.GetDetailTResponse
@@ -9,11 +12,14 @@ import com.android.hipart_android.ui.home.data.post.PickDTO
 import com.android.hipart_android.ui.home.data.post.PickResponse
 import com.android.hipart_android.ui.login.data.PostLoginRequest
 import com.android.hipart_android.ui.login.data.PostLoginResponse
+import com.android.hipart_android.ui.login.data.RefreshTokenResponse
+import com.android.hipart_android.ui.modifyportfolio.data.ModifyList
 import com.android.hipart_android.ui.modifyportfolio.data.WorkIndex
 import com.android.hipart_android.ui.modifyportfolio.delete.DeleteModifyPortFolioResponse
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponseCpat
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponseEpatAndEtc
 import com.android.hipart_android.ui.modifyportfolio.get.GetModifyPortFolioResponseTpat
+import com.android.hipart_android.ui.modifyportfolio.put.PutModifyPortFolioResponse
 import com.android.hipart_android.ui.modifyprofile.data.get.GetModifyProfileResponse
 import com.android.hipart_android.ui.modifyprofile.data.put.ModifyProfileResponse
 import com.android.hipart_android.ui.mypage.data.PostManToManQuestionRequest
@@ -39,6 +45,19 @@ interface NetworkService {
     fun getMyPickResponse(
         @Header("token") token: String
     ): Call<GetMyPickResponse>
+
+    // 도경 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
+    @GET("pick")
+    fun getMyPickResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String
+    ): Call<GetMyPickResponse>
+
+    @GET("auth/refresh")
+    fun getRefreshToken(
+        @Header("Content-type") content_type: String,
+        @Header("refreshtoken") token : String
+    ):Call<RefreshTokenResponse>
 
     // 청하 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
 //    // 로그인-청하
@@ -71,7 +90,10 @@ interface NetworkService {
 //        @Header("Content-Type") content_type: String,
 //        @Header("token") token: String
 //    ): Call<GetMypageResponse>
-
+    
+    /**
+     * 로그인
+     */
     @POST("auth/signin")
     fun postLoginResponse(
         @Header("Content-Type") content_type: String,
@@ -115,6 +137,48 @@ interface NetworkService {
         @Header("token") token: String,
         @Path("nickname") nickname: String
     ): Call<GetHifiveNumResponse>
+
+    /**
+     * 크리에이터 작품 등록
+     *
+     */
+    @Multipart
+    @POST("portfolio/creator")
+    fun postCPortFolioResponse(
+        @Header("token") token: String,
+        @Part thumbnail: MultipartBody.Part?,
+        @Part("url") url: RequestBody,
+        @Part("title") title: RequestBody,
+        @Part("content") content: RequestBody
+    ): Call<PostCPortFolioResponse>
+
+    /**
+     * 에디터 작품 등록
+     *
+     */
+    @Multipart
+    @POST("portfolio/editor")
+    fun postEPortFolioResponse(
+        @Header("token") token: String,
+        @Part thumbnail: MultipartBody.Part?,
+        @Part("url") url: RequestBody,
+        @Part("title") title: RequestBody,
+        @Part("content") content: RequestBody
+    ): Call<PostEPortFolioResponse>
+
+    /**
+     * 기타 작품 등록
+     *
+     */
+    @Multipart
+    @POST("portfolio/etc")
+    fun postEtcPortFolioResponse(
+        @Header("token") token: String,
+        @Part thumbnail: MultipartBody.Part?,
+        @Part("url") url: RequestBody,
+        @Part("title") title: RequestBody,
+        @Part("content") content: RequestBody
+    ): Call<PostEtcPortFolioResponse>
 
 //    /**
 //     * 알림 조회
@@ -281,6 +345,18 @@ interface NetworkService {
         @Header("token") token: String,
         @Body workIndex : WorkIndex
     ): Call<DeleteModifyPortFolioResponse>
+
+    /**
+     * 포트폴리오 수정
+     * @header token
+     * @body work_idx
+     */
+    @PUT("portfolio/detail")
+    fun putModifyPortFolioResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Body modifyList: ModifyList
+    ): Call<PutModifyPortFolioResponse>
 
     // 지원 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
 // 지원 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
