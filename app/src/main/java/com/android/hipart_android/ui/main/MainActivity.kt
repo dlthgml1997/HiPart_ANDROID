@@ -15,6 +15,7 @@ import com.android.hipart_android.ui.mypage.fragment.MyPageFragment
 import com.android.hipart_android.ui.portfolio.PortFolioFragment
 import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.FragmentKind
+import com.android.hipart_android.util.OnSingleClickListener
 import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,34 +25,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  * @since 2019-07-02 05:46
  **/
 
-class MainActivity : BaseActivity(), View.OnClickListener {
-
-    override fun onClick(v: View?) {
-        when (v) {
-            btn_home -> {
-                replaceFragment(R.id.frame_layout_main_act, HomeFragment())
-                setBottomIconChanger(FragmentKind.Home)
-            }
-
-            btn_hi_part -> {
-                replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 0)
-                setBottomIconChanger(FragmentKind.Hipat)
-            }
-
-            btn_portfolio -> {
-
-                if (getVisibleFragment() !is PortFolioFragment) {
-                    addFragment(R.id.frame_layout_main_act, PortFolioFragment())
-                    setBottomIconChanger(FragmentKind.PortFolio)
-                }
-            }
-
-            btn_mypage -> {
-                replaceFragment(R.id.frame_layout_main_act, MyPageFragment())
-                setBottomIconChanger(FragmentKind.Mypage)
-            }
-        }
-    }
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +56,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             .add(frameLayoutId, fragment)
             .commit()
     }
-    fun replaceFragmentFromHome(frameLayoutId: Int, fragment: Fragment, position : Int) {
+
+    fun replaceFragmentFromHome(frameLayoutId: Int, fragment: Fragment, position: Int) {
         val bundle = Bundle()
         bundle.putInt("flag", position)
         fragment.arguments = bundle
@@ -94,10 +69,35 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setOnClickListener() {
-        btn_home.setOnClickListener(this)
-        btn_hi_part.setOnClickListener(this)
-        btn_portfolio.setOnClickListener(this)
-        btn_mypage.setOnClickListener(this)
+        btn_home.setOnClickListener(object : OnSingleClickListener() {
+            override fun onSingleClick(v: View) {
+                replaceFragment(R.id.frame_layout_main_act, HomeFragment())
+                setBottomIconChanger(FragmentKind.Home)
+            }
+        })
+        btn_hi_part.setOnClickListener(object : OnSingleClickListener() {
+            override fun onSingleClick(v: View) {
+                replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 0)
+                setBottomIconChanger(FragmentKind.Hipat)
+            }
+        })
+        btn_portfolio.setOnClickListener(object : OnSingleClickListener() {
+            override fun onSingleClick(v: View) {
+                if (getVisibleFragment() !is PortFolioFragment) {
+                    addFragment(R.id.frame_layout_main_act, PortFolioFragment())
+                    setBottomIconChanger(FragmentKind.PortFolio)
+                }
+            }
+        }
+        )
+        btn_mypage.setOnClickListener(object : OnSingleClickListener() {
+            override fun onSingleClick(v: View) {
+                if (getVisibleFragment() !is PortFolioFragment) {
+                    replaceFragment(R.id.frame_layout_main_act, MyPageFragment())
+                    setBottomIconChanger(FragmentKind.Mypage)
+                }
+            }
+        })
     }
 
     private fun setBottomIconChanger(fragKind: FragmentKind) {

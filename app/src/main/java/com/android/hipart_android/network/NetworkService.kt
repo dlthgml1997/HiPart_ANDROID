@@ -8,6 +8,7 @@ import com.android.hipart_android.ui.hipart.get.GetDetailEEtcResponse
 import com.android.hipart_android.ui.hipart.get.GetDetailTResponse
 import com.android.hipart_android.ui.hipat.data.GetProfileLookUpResponse
 import com.android.hipart_android.ui.home.data.get.GetCustomRecommendResponse
+import com.android.hipart_android.ui.home.data.get.GetNotificationFlagResponse
 import com.android.hipart_android.ui.home.data.post.PickDTO
 import com.android.hipart_android.ui.home.data.post.PickResponse
 import com.android.hipart_android.ui.login.data.PostLoginRequest
@@ -26,6 +27,11 @@ import com.android.hipart_android.ui.mypage.data.PostManToManQuestionRequest
 import com.android.hipart_android.ui.mypage.get.GetMypageResponse
 import com.android.hipart_android.ui.mypick.data.GetMyPickResponse
 import com.android.hipart_android.ui.notification.get.GetNotificationResponse
+import com.android.hipart_android.ui.portfolio.data.PostPortfolioTransRequest
+import com.android.hipart_android.ui.portfolio.data.PostPortfolioTransResponse
+import com.android.hipart_android.ui.portfolio.data.post.PostCPortFolioResponse
+import com.android.hipart_android.ui.portfolio.data.post.PostEPortFolioResponse
+import com.android.hipart_android.ui.portfolio.data.post.PostEtcPortFolioResponse
 import com.android.hipart_android.ui.search.GetSearchResponse
 import com.android.hipart_android.ui.signup.data.GetDuplicateFlagResponse
 import com.android.hipart_android.ui.signup.data.PostSignUpResponse
@@ -58,6 +64,13 @@ interface NetworkService {
         @Header("Content-type") content_type: String,
         @Header("refreshtoken") token : String
     ):Call<RefreshTokenResponse>
+
+    @POST("portfolio/translator")
+    fun postPortfolioTransResponse(
+        @Header("Content-type") content_type: String,
+        @Header("token") token: String,
+        @Body body : PostPortfolioTransRequest
+    ):Call<PostPortfolioTransResponse>
 
     // 청하 라인 ( 각 뷰 별로 주석으로 나눠주세요. )
 //    // 로그인-청하
@@ -505,5 +518,11 @@ interface NetworkService {
         @Header("token") token: String,
         @Path("flag") flag: Int
     ): Call<GetProfileLookUpResponse>
+
+    @GET("main/notificationState")
+    fun getNotificationFlag(
+        @Header("token") token: String
+    ): Call<GetNotificationFlagResponse>
+
 
 }
