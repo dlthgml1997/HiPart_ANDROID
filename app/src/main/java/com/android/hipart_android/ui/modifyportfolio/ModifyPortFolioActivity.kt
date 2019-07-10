@@ -1,6 +1,5 @@
 package com.android.hipart_android.ui.modifyportfolio
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
@@ -77,6 +76,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     private val transWorkRVAdapter by lazy {
         TransWorkRVAdapter(this@ModifyPortFolioActivity, dataListTpat)
     }
+
     private val filterDialog by lazy {
         FilterDialog()
     }
@@ -230,6 +230,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         val data = response.body()!!.data
                         Log.v("usertype TAGGG", data.userType.toString())
 
+                        //필터
+                        getFilterCpat(data)
+
                         //유저 이미지
                         Glide.with(this@ModifyPortFolioActivity)
                             .load(data.userImg)
@@ -237,17 +240,16 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
                         //유저 이름
                         tv_modify_port_act_user_name.text = data.userNickname
-
                         //하이파이브
                         edt_modify_port_act_hifive.hint = data.hifive.toString()
 
                         //소개
                         if (data.detailOneline != null)
-                        edt_modify_port_act_detail_oneline.hint = data.detailOneline
+                            edt_modify_port_act_detail_oneline.hint = data.detailOneline
 
                         //원해요
                         if (data.detailWant != null)
-                        edt_modify_port_act_want.hint = data.detailWant
+                            edt_modify_port_act_want.hint = data.detailWant
 
                         //유저 타입
                         tv_modify_port_folio_act_job.text = "creator"
@@ -293,6 +295,175 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         })
     }
 
+    //필터 로딩하기
+    private fun getFilterCpat(data: GetModifyPortFolioDataCpat) {
+        when (data.concept) {
+            //방송 컨셉 - 크리에이터
+            1 -> filterDataList.add(FilterData("게임", true, 1, "C"))
+            2 -> filterDataList.add(FilterData("ASMR", true, 2, "C"))
+            3 -> filterDataList.add(FilterData("Prank", true, 3, "C"))
+            4 -> filterDataList.add(FilterData("스포츠", true, 4, "C"))
+            5 -> filterDataList.add(FilterData("쿡/먹방", true, 5, "C"))
+            6 -> filterDataList.add(FilterData("영화/음악", true, 6, "C"))
+            7 -> filterDataList.add(FilterData("교육/정보", true, 7, "C"))
+        }
+        when (data.pd) {
+            //PD - 에디터
+            1 -> filterDataList.add(FilterData("편집", false, 1, "E"))
+            2 -> filterDataList.add(FilterData("기획", false, 2, "E"))
+        }
+        //언어 - 트랜슬레이터
+        when (data.lang) {
+            1 -> filterDataList.add(FilterData("영어", false, 1, "T"))
+            2 -> filterDataList.add(FilterData("일본어", false, 2, "T"))
+            3 -> filterDataList.add(FilterData("중국어", false, 3, "T"))
+            4 -> filterDataList.add(FilterData("독일어", false, 4, "T"))
+            5 -> filterDataList.add(FilterData("인도어", false, 5, "T"))
+            6 -> filterDataList.add(FilterData("러시아어", false, 6, "T"))
+            7 -> filterDataList.add(FilterData("인도네시아어", false, 7, "T"))
+            8 -> filterDataList.add(FilterData("베트남어", false, 8, "T"))
+            9 -> filterDataList.add(FilterData("이탈리아어", false, 9, "T"))
+            10 -> filterDataList.add(FilterData("프랑스어", false, 10, "T"))
+            11 -> filterDataList.add(FilterData("스페인어", false, 11, "T"))
+        }
+        //기타 - 기타
+        when (data.etc) {
+            1 -> filterDataList.add(FilterData("소품", false, 1, "ETC"))
+            2 -> filterDataList.add(FilterData("코디", false, 2, "ETC"))
+            3 -> filterDataList.add(FilterData("조명", false, 3, "ETC"))
+            4 -> filterDataList.add(FilterData("촬영", false, 4, "ETC"))
+            5 -> filterDataList.add(FilterData("매니저", false, 5, "ETC"))
+            6 -> filterDataList.add(FilterData("썸네일", false, 6, "ETC"))
+        }
+        setFilterData(filterDataList)
+    }
+
+    private fun getFilterEpat(data: GetModifyPortFolioDataEpatAndEtc) {
+        when (data.concept) {
+            //방송 컨셉 - 크리에이터
+            1 -> filterDataList.add(FilterData("게임", false, 1, "C"))
+            2 -> filterDataList.add(FilterData("ASMR", false, 2, "C"))
+            3 -> filterDataList.add(FilterData("Prank", false, 3, "C"))
+            4 -> filterDataList.add(FilterData("스포츠", false, 4, "C"))
+            5 -> filterDataList.add(FilterData("쿡/먹방", false, 5, "C"))
+            6 -> filterDataList.add(FilterData("영화/음악", false, 6, "C"))
+            7 -> filterDataList.add(FilterData("교육/정보", false, 7, "C"))
+        }
+        when (data.pd) {
+            //PD - 에디터
+            1 -> filterDataList.add(FilterData("편집", true, 1, "E"))
+            2 -> filterDataList.add(FilterData("기획", true, 2, "E"))
+        }
+        //언어 - 트랜슬레이터
+        when (data.lang) {
+            1 -> filterDataList.add(FilterData("영어", false, 1, "T"))
+            2 -> filterDataList.add(FilterData("일본어", false, 2, "T"))
+            3 -> filterDataList.add(FilterData("중국어", false, 3, "T"))
+            4 -> filterDataList.add(FilterData("독일어", false, 4, "T"))
+            5 -> filterDataList.add(FilterData("인도어", false, 5, "T"))
+            6 -> filterDataList.add(FilterData("러시아어", false, 6, "T"))
+            7 -> filterDataList.add(FilterData("인도네시아어", false, 7, "T"))
+            8 -> filterDataList.add(FilterData("베트남어", false, 8, "T"))
+            9 -> filterDataList.add(FilterData("이탈리아어", false, 9, "T"))
+            10 -> filterDataList.add(FilterData("프랑스어", false, 10, "T"))
+            11 -> filterDataList.add(FilterData("스페인어", false, 11, "T"))
+        }
+        //기타 - 기타
+        when (data.etc) {
+            1 -> filterDataList.add(FilterData("소품", false, 1, "ETC"))
+            2 -> filterDataList.add(FilterData("코디", false, 2, "ETC"))
+            3 -> filterDataList.add(FilterData("조명", false, 3, "ETC"))
+            4 -> filterDataList.add(FilterData("촬영", false, 4, "ETC"))
+            5 -> filterDataList.add(FilterData("매니저", false, 5, "ETC"))
+            6 -> filterDataList.add(FilterData("썸네일", false, 6, "ETC"))
+        }
+        setFilterData(filterDataList)
+    }
+
+    private fun getFilterTpat(data: GetModifyPortFolioDataTpat) {
+        when (data.concept) {
+            //방송 컨셉 - 크리에이터
+            1 -> filterDataList.add(FilterData("게임", false, 1, "C"))
+            2 -> filterDataList.add(FilterData("ASMR", false, 2, "C"))
+            3 -> filterDataList.add(FilterData("Prank", false, 3, "C"))
+            4 -> filterDataList.add(FilterData("스포츠", false, 4, "C"))
+            5 -> filterDataList.add(FilterData("쿡/먹방", false, 5, "C"))
+            6 -> filterDataList.add(FilterData("영화/음악", false, 6, "C"))
+            7 -> filterDataList.add(FilterData("교육/정보", false, 7, "C"))
+        }
+        when (data.pd) {
+            //PD - 에디터
+            1 -> filterDataList.add(FilterData("편집", false, 1, "E"))
+            2 -> filterDataList.add(FilterData("기획", false, 2, "E"))
+        }
+        //언어 - 트랜슬레이터
+        when (data.lang) {
+            1 -> filterDataList.add(FilterData("영어", true, 1, "T"))
+            2 -> filterDataList.add(FilterData("일본어", true, 2, "T"))
+            3 -> filterDataList.add(FilterData("중국어", true, 3, "T"))
+            4 -> filterDataList.add(FilterData("독일어", true, 4, "T"))
+            5 -> filterDataList.add(FilterData("인도어", true, 5, "T"))
+            6 -> filterDataList.add(FilterData("러시아어", true, 6, "T"))
+            7 -> filterDataList.add(FilterData("인도네시아어", true, 7, "T"))
+            8 -> filterDataList.add(FilterData("베트남어", true, 8, "T"))
+            9 -> filterDataList.add(FilterData("이탈리아어", true, 9, "T"))
+            10 -> filterDataList.add(FilterData("프랑스어", true, 10, "T"))
+            11 -> filterDataList.add(FilterData("스페인어", true, 11, "T"))
+        }
+        //기타 - 기타
+        when (data.etc) {
+            1 -> filterDataList.add(FilterData("소품", false, 1, "ETC"))
+            2 -> filterDataList.add(FilterData("코디", false, 2, "ETC"))
+            3 -> filterDataList.add(FilterData("조명", false, 3, "ETC"))
+            4 -> filterDataList.add(FilterData("촬영", false, 4, "ETC"))
+            5 -> filterDataList.add(FilterData("매니저", false, 5, "ETC"))
+            6 -> filterDataList.add(FilterData("썸네일", false, 6, "ETC"))
+        }
+        setFilterData(filterDataList)
+    }
+
+    private fun getFilterETC(data: GetModifyPortFolioDataEpatAndEtc) {
+        when (data.concept) {
+            //방송 컨셉 - 크리에이터
+            1 -> filterDataList.add(FilterData("게임", false, 1, "C"))
+            2 -> filterDataList.add(FilterData("ASMR", false, 2, "C"))
+            3 -> filterDataList.add(FilterData("Prank", false, 3, "C"))
+            4 -> filterDataList.add(FilterData("스포츠", false, 4, "C"))
+            5 -> filterDataList.add(FilterData("쿡/먹방", false, 5, "C"))
+            6 -> filterDataList.add(FilterData("영화/음악", false, 6, "C"))
+            7 -> filterDataList.add(FilterData("교육/정보", false, 7, "C"))
+        }
+        when (data.pd) {
+            //PD - 에디터
+            1 -> filterDataList.add(FilterData("편집", false, 1, "E"))
+            2 -> filterDataList.add(FilterData("기획", false, 2, "E"))
+        }
+        //언어 - 트랜슬레이터
+        when (data.lang) {
+            1 -> filterDataList.add(FilterData("영어", false, 1, "T"))
+            2 -> filterDataList.add(FilterData("일본어", false, 2, "T"))
+            3 -> filterDataList.add(FilterData("중국어", false, 3, "T"))
+            4 -> filterDataList.add(FilterData("독일어", false, 4, "T"))
+            5 -> filterDataList.add(FilterData("인도어", false, 5, "T"))
+            6 -> filterDataList.add(FilterData("러시아어", false, 6, "T"))
+            7 -> filterDataList.add(FilterData("인도네시아어", false, 7, "T"))
+            8 -> filterDataList.add(FilterData("베트남어", false, 8, "T"))
+            9 -> filterDataList.add(FilterData("이탈리아어", false, 9, "T"))
+            10 -> filterDataList.add(FilterData("프랑스어", false, 10, "T"))
+            11 -> filterDataList.add(FilterData("스페인어", false, 11, "T"))
+        }
+        //기타 - 기타
+        when (data.etc) {
+            1 -> filterDataList.add(FilterData("소품", true, 1, "ETC"))
+            2 -> filterDataList.add(FilterData("코디", true, 2, "ETC"))
+            3 -> filterDataList.add(FilterData("조명", true, 3, "ETC"))
+            4 -> filterDataList.add(FilterData("촬영", true, 4, "ETC"))
+            5 -> filterDataList.add(FilterData("매니저", true, 5, "ETC"))
+            6 -> filterDataList.add(FilterData("썸네일", true, 6, "ETC"))
+        }
+        setFilterData(filterDataList)
+    }
+
     //E-PAT 통신 - 에디터
     private fun getModifyPortFolioResponseEpat() {
         val getModifyPortFolioResponseEpat = networkService.getModifyPortFolioResponseEpat(
@@ -312,6 +483,8 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                     if (response.body()!!.message == "조회 성공") {
                         val data = response.body()!!.data
                         Log.v("usertype TAGGG", data.userType.toString())
+                        //필터
+                        getFilterEpat(data)
 
                         //유저 이미지
                         Glide.with(this@ModifyPortFolioActivity)
@@ -371,6 +544,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         val data = response.body()!!.data
                         Log.v("usertype TAGGG", data.userType.toString())
 
+                        //필터
+                        getFilterTpat(data)
+
                         //유저 이미지
                         Glide.with(this@ModifyPortFolioActivity)
                             .load(data.userImg)
@@ -428,6 +604,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                     if (response.body()!!.message == "조회 성공") {
                         val data = response.body()!!.data
                         Log.v("etcModify TAGGG", data.userType.toString())
+
+                        //필터
+                        getFilterETC(data)
 
                         //유저 이미지
                         Glide.with(this@ModifyPortFolioActivity)
@@ -527,7 +706,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    // 작품 삭제 - CPAT
+    //작품 삭제 - CPAT
     private fun deleteModifyPortResponseCpat(workIndex: ArrayList<Int>) {
         val deleteModifyPortResponseCpat = networkService.deleteModifyPortFolioResponseCpat(
             userToken, WorkIndex(workIndex)
@@ -564,7 +743,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         })
     }
 
-    // 작품 삭제 - EPAT
+    //작품 삭제 - EPAT
     private fun deleteModifyPortFolioResponseEpat(workIndex: ArrayList<Int>) {
         val deleteModifyPortFolioResponseEpat = networkService.deleteModifyPortFolioResponseEpat(
             userToken, WorkIndex(workIndex)
@@ -689,10 +868,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 //플랫폼
                 var platform = 0
                 when {
-                    btn_youtube.isSelected -> platform =1
-                    btn_afreeca.isSelected -> platform =2
-                    btn_twich.isSelected -> platform=3
-                    else -> platform =0
+                    btn_youtube.isSelected -> platform = 1
+                    btn_afreeca.isSelected -> platform = 2
+                    btn_twich.isSelected -> platform = 3
+                    else -> platform = 0
                 }
                 //소개
                 var oneline = String()
@@ -707,10 +886,26 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 //수상경력 = null
 
                 //필터
-                val concept = 1
-                val lang = 2
-                val pd = 2
-                val etc = 3
+                var concept = 0
+                var pd = 0
+                var lang = 0
+                var etc = 0
+                for (i in filterDataList.indices) {
+                    when (filterDataList[i].filterPAT) {
+                        "C" -> {
+                            concept = filterDataList[i].filterIndex
+                        }
+                        "E" -> {
+                            pd = filterDataList[i].filterIndex
+                        }
+                        "T" -> {
+                            lang = filterDataList[i].filterIndex
+                        }
+                        "ETC" -> {
+                            etc = filterDataList[i].filterIndex
+                        }
+                    }
+                }
 
                 modifyList = ModifyList(
                     platform,
@@ -742,7 +937,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                                 when (it?.message ?: " ") {
                                     "성공" -> {
                                         showSuccessDialog()
-                                        Log.v("TAGG platform: ",platform.toString())
+                                        Log.v("TAGG platform: ", modifyList.toString())
                                     }
                                     else -> {
                                         toast(it.message)
@@ -759,10 +954,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 // 플랫폼
                 var platform = 0
                 when {
-                    btn_youtube.isSelected -> platform =1
-                    btn_afreeca.isSelected -> platform =2
-                    btn_twich.isSelected -> platform=3
-                    else -> platform =0
+                    btn_youtube.isSelected -> platform = 1
+                    btn_afreeca.isSelected -> platform = 2
+                    btn_twich.isSelected -> platform = 3
+                    else -> platform = 0
                 }
                 // 소개
                 var oneline = String()
@@ -779,11 +974,28 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 if (edt_modify_port_act_appeal.text.isNotEmpty())
                     appeal = edt_modify_port_act_appeal.text.toString()
                 else appeal = edt_modify_port_act_appeal.hint.toString()
-                //필터 - 나중에 수정
-                val concept = 1
-                val lang = 2
-                val pd = 2
-                val etc = 3
+                //필터
+                var concept = 0
+                var pd = 0
+                var lang = 0
+                var etc = 0
+                for (i in filterDataList.indices) {
+                    when (filterDataList[i].filterPAT) {
+                        "C" -> {
+                            concept = filterDataList[i].filterIndex
+                        }
+                        "E" -> {
+                            pd = filterDataList[i].filterIndex
+                        }
+                        "T" -> {
+                            lang = filterDataList[i].filterIndex
+                        }
+                        "ETC" -> {
+                            etc = filterDataList[i].filterIndex
+                        }
+                    }
+                }
+
 
                 modifyList = ModifyList(
                     platform,
@@ -831,10 +1043,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 //플랫폼
                 var platform = 0
                 when {
-                    btn_youtube.isSelected -> platform =1
-                    btn_afreeca.isSelected -> platform =2
-                    btn_twich.isSelected -> platform=3
-                    else -> platform =0
+                    btn_youtube.isSelected -> platform = 1
+                    btn_afreeca.isSelected -> platform = 2
+                    btn_twich.isSelected -> platform = 3
+                    else -> platform = 0
                 }
                 //소개
                 var oneline = String()
@@ -851,10 +1063,29 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 if (edt_modify_port_act_appeal.text.isNotEmpty())
                     appeal = edt_modify_port_act_appeal.text.toString()
                 else appeal = edt_modify_port_act_appeal.hint.toString()
-                val concept = 1
-                val lang = 2
-                val pd = 2
-                val etc = 3
+
+                //필터
+                var concept = 0
+                var pd = 0
+                var lang = 0
+                var etc = 0
+                for (i in filterDataList.indices) {
+                    when (filterDataList[i].filterPAT) {
+                        "C" -> {
+                            concept = filterDataList[i].filterIndex
+                        }
+                        "E" -> {
+                            pd = filterDataList[i].filterIndex
+                        }
+                        "T" -> {
+                            lang = filterDataList[i].filterIndex
+                        }
+                        "ETC" -> {
+                            etc = filterDataList[i].filterIndex
+                        }
+                    }
+                }
+
 
                 modifyList = ModifyList(
                     platform,
@@ -903,10 +1134,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 //플랫폼
                 var platform = 0
                 when {
-                    btn_youtube.isSelected -> platform =1
-                    btn_afreeca.isSelected -> platform =2
-                    btn_twich.isSelected -> platform=3
-                    else -> platform =0
+                    btn_youtube.isSelected -> platform = 1
+                    btn_afreeca.isSelected -> platform = 2
+                    btn_twich.isSelected -> platform = 3
+                    else -> platform = 0
                 }
                 //소개
                 var oneline = String()
@@ -923,11 +1154,27 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 if (edt_modify_port_act_appeal.text.isNotEmpty())
                     appeal = edt_modify_port_act_appeal.text.toString()
                 else appeal = edt_modify_port_act_appeal.hint.toString()
-                //필터 - 나중에 수정
-                val concept = 1
-                val lang = 2
-                val pd = 2
-                val etc = 3
+                //필터
+                var concept = 0
+                var pd = 0
+                var lang = 0
+                var etc = 0
+                for (i in filterDataList.indices) {
+                    when (filterDataList[i].filterPAT) {
+                        "C" -> {
+                            concept = filterDataList[i].filterIndex
+                        }
+                        "E" -> {
+                            pd = filterDataList[i].filterIndex
+                        }
+                        "T" -> {
+                            lang = filterDataList[i].filterIndex
+                        }
+                        "ETC" -> {
+                            etc = filterDataList[i].filterIndex
+                        }
+                    }
+                }
 
                 modifyList = ModifyList(
                     platform,
@@ -982,7 +1229,6 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         }, 1500)
     }
 
-
     private fun showGoToUploadDialog() {
         modifyPortGoToUploadDialog.show(supportFragmentManager, "go to upload")
     }
@@ -993,18 +1239,8 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         rv_modify_port_folio_act_filter.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 
-    fun finishActivityAfterDialogClickedOkay() {
-        finish()
-    }
-
-    fun setRemoveIndexListFromAdapter(list: ArrayList<Int>, flag: Int) {
-        if (flag == 0)
-            rl_modify_port_folio_act_no_work.visibility = View.VISIBLE
-        removeIndexList = list
-        Log.v("TAGGG", "removeIndex in Act: " + removeIndexList.toString())
-    }
-
     fun setFilterData(arrayList: ArrayList<FilterData>) {
+
         filterDataList = arrayList
 
         filterRVAdapter.changeDataList(filterDataList)
@@ -1012,6 +1248,13 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         filterRVAdapter.notifyDataSetChanged()
 
         Log.v("TAGGGGG", filterDataList.toString())
+    }
+
+    fun setRemoveIndexListFromAdapter(list: ArrayList<Int>, flag: Int) {
+        if (flag == 0)
+            rl_modify_port_folio_act_no_work.visibility = View.VISIBLE
+        removeIndexList = list
+        Log.v("TAGGG", "removeIndex in Act: " + removeIndexList.toString())
     }
 
     //플랫폼 단일 선택을 위해 쓰이는 함수

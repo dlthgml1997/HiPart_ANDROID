@@ -1,5 +1,6 @@
 package com.android.hipart_android.ui.portfolio.dialog
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
@@ -13,5 +14,10 @@ class PortUploadSuccessDialog : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_upload_success_port,container,false)
         return view
+    }
+
+    override fun onDismiss(dialog: DialogInterface?) {
+        super.onDismiss(dialog)
+        (context as NotTpatUploadActivity).finish()
     }
 }

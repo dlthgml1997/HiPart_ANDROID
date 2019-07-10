@@ -29,12 +29,10 @@ class FilterRVAdapter(val ctx: Context, var arrayList: ArrayList<FilterData>) :
 
         p0.filterName.text = arrayList[p1].filterName
 
-        if (arrayList[p1].filterFlag == true) {
+        if (arrayList[p1].filterFlag) {
             p0.rootLayout.setBackgroundResource(R.drawable.box_modify_portfolio_act)
             p0.filterName.setTextColor(Color.parseColor("#FFFFFF"))
         }
-
-
     }
 
     inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
@@ -44,5 +42,18 @@ class FilterRVAdapter(val ctx: Context, var arrayList: ArrayList<FilterData>) :
 
     fun changeDataList(changeArrayList: ArrayList<FilterData>){
         arrayList = changeArrayList
+        moveToFrontMainFilter()
+    }
+
+    fun moveToFrontMainFilter(){
+        var i = 0
+        while(i < arrayList.size){
+            if(arrayList[i].filterFlag == true){
+                var tmp = arrayList[i]
+                arrayList[i] = arrayList[0]
+                arrayList[0] = tmp
+            }
+            i++
+        }
     }
 }

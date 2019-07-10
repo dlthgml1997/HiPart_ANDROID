@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         tools:context="ui.signup.SignupActivity"
         android:background="#FFFFFF">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -141,7 +142,6 @@
                     android:inputType="textPassword"
                     android:hint="비밀번호(8자 이상)"
                     android:textColorHint="#c7c7c7"
-                    android:fontFamily="@font/nanum_regular"
                     android:textSize="13sp"
                     android:id="@+id/edt_Signup_Password"
                     android:background="@android:color/transparent"
@@ -173,7 +173,6 @@
                     android:layout_weight="1"
                     android:hint="비밀번호 확인"
                     android:textColorHint="#c7c7c7"
-                    android:fontFamily="@font/nanum_regular"
                     android:textSize="13sp"
                     android:id="@+id/edt_Signup_PasswordCheck"
                     android:layout_marginHorizontal="16dp"
@@ -222,6 +221,7 @@
                     android:id="@+id/edt_Signup_Nickname"
                     android:layout_marginHorizontal="16dp"
                     android:background="@android:color/transparent"
+                    android:maxLength="5"
             />
             <TextView
                     android:layout_width="wrap_content"
@@ -302,4 +302,5 @@
             />
         </LinearLayout>
     </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
