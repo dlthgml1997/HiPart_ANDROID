@@ -21,8 +21,11 @@ import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.portfolio.data.post.PostCPortFolioResponse
+import com.android.hipart_android.ui.portfolio.data.post.PostEPortFolioResponse
+import com.android.hipart_android.ui.portfolio.data.post.PostEtcPortFolioResponse
 import com.android.hipart_android.ui.portfolio.dialog.PortUploadSuccessDialog
 import com.android.hipart_android.util.BaseActivity
+import com.android.hipart_android.util.SharedPreferenceController
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_upload_not_tpat.*
 import okhttp3.MediaType
@@ -55,6 +58,9 @@ class NotTpatUploadActivity : BaseActivity() {
         PortUploadSuccessDialog()
     }
 
+    private val user_type by lazy {
+        SharedPreferenceController.getUserType(this@NotTpatUploadActivity)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,55 +84,105 @@ class NotTpatUploadActivity : BaseActivity() {
         rl_not_tpat_upload_act_album.setOnClickListener {
             requestReadExternalStoragePermission()
         }
-
         btn_not_tpat_upload_act_submit.setOnClickListener {
-            Log.v("청하2", "청하")
-            getCPortFolioResponse()
-            Log.v("청하", "showDiaglog")
-
+            getCPortFolioResponse(user_type)
         }
     }
 
-
-    private fun getCPortFolioResponse() {
+    // C,E,Etc pat 통신 공통부분 & 나누기
+    private fun getCPortFolioResponse(user_type: Int) {
         val url = et_not_tpat_upload_act_url.text.toString()
         val title = et_not_tpat_upload_act_title.text.toString()
         val content = et_not_tpat_upload_act_content.text.toString()
 
         if (title.isNotEmpty() && content.isNotEmpty()) {
-            //val token = SharedPreferenceController.getAuthorization(this@NotTpatUploadActivity)
-            val token =
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM"
-            val url = RequestBody.create(MediaType.parse("text/plain"), url)
-            val title = RequestBody.create(MediaType.parse("text/plain"), title)
-            val content = RequestBody.create(MediaType.parse("text/plain"), content)
+            val user_token = SharedPreferenceController.getAuthorization(this@NotTpatUploadActivity)
+            val user_url = RequestBody.create(MediaType.parse("text/plain"), url)
+            val user_title = RequestBody.create(MediaType.parse("text/plain"), title)
+            val user_content = RequestBody.create(MediaType.parse("text/plain"), content)
 
-            val postCPortFolioResponse = networkService.postCPortFolioResponse(token, mImage, url, title, content)
-
-            postCPortFolioResponse.enqueue(object : Callback<PostCPortFolioResponse> {
-                override fun onFailure(call: Call<PostCPortFolioResponse>, t: Throwable) {
-                    Log.e("PortFoloi fail", t.toString())
+            when (user_type) {
+                1 -> {
+                    postPofolCpat(user_token, user_url, user_title, user_content)
+                    // Log.v("청하","Cpat 성공")
                 }
-
-                override fun onResponse(
-                    call: Call<PostCPortFolioResponse>,
-                    response: Response<PostCPortFolioResponse>
-                ) {
-                    // 작품 등록 성공
-                    Log.v("청하", "통신성공")
-                    //Log.v("청하2", response.body()!!.toString())
-                    response?.takeIf { it.isSuccessful }
-                        ?.body()?.takeIf { it.message == "작품 등록 성공" }
-                        ?.let {
-                            Log.v("청하", "작품 등록 성공")
-
-                            showDialog()
-                        }
+                2 -> {
+                    postPofolEpat(user_token, user_url, user_title, user_content)
+                    // Log.v("청하","Epat 성공")
                 }
-            })
+                4 -> {
+                    postPofolEtcpat(user_token, user_url, user_title, user_content)
+                    // Log.v("청하","Etcpat 성공")
+                }
+            }
         }
     }
 
+    // 크리에이터 통신
+    private fun postPofolCpat(token: String, url: RequestBody, title: RequestBody, content: RequestBody) {
+        val postCPortFolioResponse = networkService.postCPortFolioResponse(token, mImage, url, title, content)
+        postCPortFolioResponse.enqueue(object : Callback<PostCPortFolioResponse> {
+            override fun onFailure(call: Call<PostCPortFolioResponse>, t: Throwable) {
+                Log.e("PortFoloi fail", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<PostCPortFolioResponse>,
+                response: Response<PostCPortFolioResponse>
+            ) {
+                // 작품 등록 성공
+                response?.takeIf { it.isSuccessful }
+                    ?.body()?.takeIf { it.message == "작품 등록 성공" }
+                    ?.let {
+                        showDialog()
+                    }
+            }
+        })
+    }
+    // 에디터 통신
+    private fun postPofolEpat(token: String, url: RequestBody, title: RequestBody, content: RequestBody) {
+        val postEPortFolioResponse = networkService.postEPortFolioResponse(token, mImage, url, title, content)
+        postEPortFolioResponse.enqueue(object : Callback<PostEPortFolioResponse> {
+            override fun onFailure(call: Call<PostEPortFolioResponse>, t: Throwable) {
+                Log.e("PortFoloi fail", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<PostEPortFolioResponse>,
+                response: Response<PostEPortFolioResponse>
+            ) {
+                // 작품 등록 성공
+                response?.takeIf { it.isSuccessful }
+                    ?.body()?.takeIf { it.message == "작품 등록 성공" }
+                    ?.let {
+                        showDialog()
+                    }
+            }
+        })
+    }
+    // 기타 통신
+    private fun postPofolEtcpat(token: String, url: RequestBody, title: RequestBody, content: RequestBody) {
+        val postEtcPortFolioResponse = networkService.postEtcPortFolioResponse(token, mImage, url, title, content)
+        postEtcPortFolioResponse.enqueue(object : Callback<PostEtcPortFolioResponse> {
+            override fun onFailure(call: Call<PostEtcPortFolioResponse>, t: Throwable) {
+                Log.e("PortFoloi fail", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<PostEtcPortFolioResponse>,
+                response: Response<PostEtcPortFolioResponse>
+            ) {
+                // 작품 등록 성공
+                response?.takeIf { it.isSuccessful }
+                    ?.body()?.takeIf { it.message == "작품 등록 성공" }
+                    ?.let {
+                        showDialog()
+                    }
+            }
+        })
+    }
+
+    // 성공 다이얼로그 띄우기
     private fun showDialog() {
         portUploadSuccessDialog.show(supportFragmentManager, "modify pofol success")
         val handler = Handler()
@@ -228,3 +284,4 @@ class NotTpatUploadActivity : BaseActivity() {
         return result
     }
 }
+
