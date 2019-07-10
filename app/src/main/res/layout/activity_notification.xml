@@ -32,16 +32,31 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="124dp"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone">
+            <ImageView
+                    android:layout_width="268dp"
+                    android:layout_height="198dp"
+                    android:layout_marginBottom="40dp"
+                    app:srcCompat="@drawable/home_alarm_img"
+                    android:id="@+id/img_notification_nomessage"/>
             <TextView
                     android:text="확인해야 할 알림이 없습니다."
-                    android:layout_centerInParent="true"
+                    android:textSize="18sp"
+                    android:textColor="#b2b1b1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/txt_notification_nomessage"
-                    android:visibility="gone"/>
-    <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/rv_notification_overview_list"/>
+                    android:id="@+id/txt_notification_nomessage"/>
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rv_notification_overview_list"/>
     </RelativeLayout>
 </LinearLayout>
