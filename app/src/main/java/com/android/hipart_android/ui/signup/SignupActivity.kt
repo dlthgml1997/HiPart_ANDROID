@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.util.Patterns
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.signup.data.GetDuplicateFlagResponse
@@ -138,16 +140,20 @@ class SignupActivity : AppCompatActivity() {
             }
         }
         btn_signup_nextstep.setOnClickListener {
-            if (emailDuplicateFlag == false && nickNameDuplicateFlag == false)
-                startActivity<SignupPartActivity>(
-                    "email" to edt_Signup_Email.text.toString(),
-                    "password" to edt_Signup_Password.text.toString(),
-                    "nickName" to edt_Signup_Nickname.text.toString(),
-                    "phoneNum" to edt_Signup_Phonenumber.text.toString(),
-                    "img" to imageURI
-                )
+            if (emailDuplicateFlag == false && nickNameDuplicateFlag == false) {
+                if (txt_Signup_Wrong_Email.visibility == INVISIBLE && txt_Signup_Wrong_Password.visibility == INVISIBLE) {
+                    txt_signup_try_again.visibility = INVISIBLE
+                    startActivity<SignupPartActivity>(
+                        "email" to edt_Signup_Email.text.toString(),
+                        "password" to edt_Signup_Password.text.toString(),
+                        "nickName" to edt_Signup_Nickname.text.toString(),
+                        "phoneNum" to edt_Signup_Phonenumber.text.toString(),
+                        "img" to imageURI
+                    )
+                }
+            }
             else{
-                toast("규격에 맞게 작성해주세요.")
+                txt_signup_try_again.visibility = VISIBLE
             }
         }
     }
