@@ -13,10 +13,12 @@ import com.android.hipart_android.ui.home.adapter.HomeFragAdAdapter
 import com.android.hipart_android.ui.home.adapter.HomeFragHipatAdapter
 import com.android.hipart_android.ui.home.data.HomeFragAdData
 import com.android.hipart_android.ui.home.data.get.GetCustomRecommendResponse
+import com.android.hipart_android.ui.home.data.get.GetNotificationFlagResponse
 import com.android.hipart_android.ui.home.data.get.ResData
 import com.android.hipart_android.ui.main.MainActivity
 import com.android.hipart_android.ui.notification.NotificationActivity
 import com.android.hipart_android.ui.search.SearchActivity
+import com.android.hipart_android.util.OnSingleClickListener
 import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -24,39 +26,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeFragment : Fragment(), View.OnClickListener {
-    override fun onClick(v: View?) {
-        when (v) {
+class HomeFragment : Fragment(){
 
-            btn_frag_home_alarm -> {
-                startActivity<NotificationActivity>()
-            }
-
-            btn_frag_home_search -> {
-                startActivity<SearchActivity>()
-            }
-
-            btn_frag_home_c_pat -> {
-                (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 1)
-                Log.d("HomeFragment", "replaceFragmentFromHome")
-            }
-
-            btn_frag_home_e_pat -> {
-                (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 2)
-                Log.d("HomeFragment", "replaceFragmentFromHome")
-            }
-
-            btn_frag_home_t_pat -> {
-                (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 3)
-                Log.d("HomeFragment", "replaceFragmentFromHome")
-            }
-
-            btn_frag_home_etc -> {
-                (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 4)
-                Log.d("HomeFragment", "replaceFragmentFromHome")
-            }
-        }
-    }
+    private var customRecommedNetworkFlag = false
+    private var getNotiNetworkFlag = false
 
     lateinit var hipartDataList : ArrayList<ResData>
 
@@ -79,10 +52,16 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         hipartDataList = ArrayList<ResData>()
-        getCustomRecommend()
+        // 하는 중
+        if(customRecommedNetworkFlag == false){
+            getCustomRecommend()
+        }
+
+        if(getNotiNetworkFlag == false)
+            getNotificationFlag()
+
         setVpAdapter()
         setOnClickListener()
-
     }
 
     private fun setVpAdapter() {
@@ -92,6 +71,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     private fun setPatVpAdapter() {
         vp_frag_home_recommend_hipat.adapter = homeFragHipatAdapter
+        customRecommedNetworkFlag = false
     }
 
     private fun setAdVpAdapter() {
@@ -147,15 +127,44 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     private fun setOnClickListener() {
-        btn_frag_home_alarm.setOnClickListener(this)
-        btn_frag_home_search.setOnClickListener(this)
-        btn_frag_home_c_pat.setOnClickListener(this)
-        btn_frag_home_e_pat.setOnClickListener(this)
-        btn_frag_home_t_pat.setOnClickListener(this)
-        btn_frag_home_etc.setOnClickListener(this)
+        btn_frag_home_alarm.setOnClickListener(object : OnSingleClickListener(){
+            override fun onSingleClick(v: View) {
+                startActivity<NotificationActivity>()
+            }
+        })
+        btn_frag_home_search.setOnClickListener(object : OnSingleClickListener(){
+            override fun onSingleClick(v: View) {
+                startActivity<SearchActivity>()
+            }
+        })
+        btn_frag_home_c_pat.setOnClickListener(object : OnSingleClickListener(){
+            override fun onSingleClick(v: View) {
+                (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 1)
+                Log.d("HomeFragment", "replaceFragmentFromHome")
+            }
+        })
+        btn_frag_home_e_pat.setOnClickListener(object : OnSingleClickListener(){
+            override fun onSingleClick(v: View) {
+                (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 2)
+                Log.d("HomeFragment", "replaceFragmentFromHome")
+            }
+        })
+        btn_frag_home_t_pat.setOnClickListener(object : OnSingleClickListener(){
+            override fun onSingleClick(v: View) {
+                (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 3)
+                Log.d("HomeFragment", "replaceFragmentFromHome")
+            }
+        })
+        btn_frag_home_etc.setOnClickListener(object : OnSingleClickListener(){
+            override fun onSingleClick(v: View) {
+                (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 4)
+                Log.d("HomeFragment", "replaceFragmentFromHome")
+            }
+        })
     }
 
     private fun getCustomRecommend(){
+        customRecommedNetworkFlag = true
         val networkService = ApplicationController.instance.networkService
 
         val getCustomRecommend = networkService.customRecommend(
@@ -165,13 +174,14 @@ class HomeFragment : Fragment(), View.OnClickListener {
         getCustomRecommend.enqueue(object: Callback<GetCustomRecommendResponse>{
             override fun onFailure(call: Call<GetCustomRecommendResponse>, t: Throwable) {
                 Log.e("Home Frag Err", Log.getStackTraceString(t))
+                customRecommedNetworkFlag = false
             }
 
             override fun onResponse(
                 call: Call<GetCustomRecommendResponse>,
                 response: Response<GetCustomRecommendResponse>
             ) {
-                Log.e("ㅇㄴ!!!!", response.body()!!.data.resData.toString())
+
                 response
                     ?.takeIf { it.isSuccessful }
                     ?.body()
@@ -180,6 +190,39 @@ class HomeFragment : Fragment(), View.OnClickListener {
                         hipartDataList = it.resData
                         setPatVpAdapter()
                     }
+            }
+        })
+    }
+
+    private fun getNotificationFlag(){
+        getNotiNetworkFlag = true
+        val networkService = ApplicationController.instance.networkService
+
+        val getNotificationFlag = networkService.getNotificationFlag(
+            SharedPreferenceController.getAuthorization(this@HomeFragment.context!!)
+        )
+
+        getNotificationFlag.enqueue(object: Callback<GetNotificationFlagResponse>{
+            override fun onFailure(call: Call<GetNotificationFlagResponse>, t: Throwable) {
+                Log.e("Home Frag Err", Log.getStackTraceString(t))
+                getNotiNetworkFlag = false
+            }
+
+            override fun onResponse(
+                call: Call<GetNotificationFlagResponse>,
+                response: Response<GetNotificationFlagResponse>
+            ) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.data
+                    ?.let{
+                        if(it == 1)
+                            iv_frag_home_alarm.setImageResource(R.drawable.main_newalarm_icon)
+                        else
+                            iv_frag_home_alarm.setImageResource(R.drawable.main_alarm_icon)
+                    }
+                getNotiNetworkFlag = false
             }
         })
     }
