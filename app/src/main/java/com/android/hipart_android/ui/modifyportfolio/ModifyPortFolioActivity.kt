@@ -28,6 +28,17 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.collections.ArrayList
 
+/**
+ * userType
+ * 1: 크리에이터
+ * 2: 에디터
+ * 3: 트랜슬레이터
+ * 4: 기타
+ */
+
+/**
+ * 토큰 다 SharedPreferenceController로 바꿔야함
+ */
 class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
     val networkService: NetworkService by lazy {
@@ -87,14 +98,25 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
             //크리에이터
             1 -> {
                 //구독자
-                val subscriber = edt_modify_port_act_subscriber.text
+                var subscriber = String()
+                if (edt_modify_port_act_subscriber.text.isNotEmpty())
+                    subscriber = edt_modify_port_act_subscriber.text.toString()
+                else subscriber = edt_modify_port_act_subscriber.hint.toString()
                 //플랫폼
                 val platform = 1
                 //소개
-                val oneline = edt_modify_port_act_detail_oneline.text
+                var oneline = String()
+                if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
+                    oneline = edt_modify_port_act_detail_oneline.text.toString()
+                else oneline = edt_modify_port_act_detail_oneline.hint.toString()
                 //원해요
-                val want = edt_modify_port_act_want.text
+                var want = String()
+                if (edt_modify_port_act_want.text.isNotEmpty())
+                    want = edt_modify_port_act_want.text.toString()
+                else want = edt_modify_port_act_want.hint.toString()
                 //수상경력 = null
+
+                //필터
                 val concept = 1
                 val lang = 2
                 val pd = 2
@@ -102,9 +124,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
                 modifyList = ModifyList(
                     platform,
-                    subscriber.toString(),
-                    oneline.toString(),
-                    want.toString(),
+                    subscriber,
+                    oneline,
+                    want,
                     "",
                     concept,
                     lang,
@@ -133,7 +155,210 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                                     "성공" -> {
                                         Log.v("TAGGG", it.message)
                                     }
-                                    else ->{
+                                    else -> {
+                                        Log.v("TAGGG", it.message)
+                                    }
+                                }
+                            }
+                    }
+                })
+            }
+            //에디터
+            2 -> {
+                //구독자
+                val subscriber = 0
+                //플랫폼 -나중에 수정
+                val platform = 1
+                //소개
+                var oneline = String()
+                if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
+                    oneline = edt_modify_port_act_detail_oneline.text.toString()
+                else oneline = edt_modify_port_act_detail_oneline.hint.toString()
+                //원해요
+                var want = String()
+                if (edt_modify_port_act_want.text.isNotEmpty())
+                    want = edt_modify_port_act_want.text.toString()
+                else want = edt_modify_port_act_want.hint.toString()
+                //수상경력
+                var appeal = String()
+                if (edt_modify_port_act_appeal.text.isNotEmpty())
+                    appeal = edt_modify_port_act_appeal.text.toString()
+                else appeal = edt_modify_port_act_appeal.hint.toString()
+                //필터 - 나중에 수정
+                val concept = 1
+                val lang = 2
+                val pd = 2
+                val etc = 3
+
+                modifyList = ModifyList(
+                    platform,
+                    subscriber.toString(),
+                    oneline,
+                    want.toString(),
+                    appeal,
+                    concept,
+                    lang,
+                    pd,
+                    etc
+                )
+                val putModifyPortFolioResponse = networkService.putModifyPortFolioResponse(
+                    "application/json",
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6IuyXkOuUlO2EsCIsImlkeCI6NSwidHlwZSI6MiwiaWF0IjoxNTYyNTY2OTM5LCJleHAiOjE1NjM3NzY1MzksImlzcyI6ImlnIn0.C4c6ibbr_QtAi2vk_S3ZftqmxJ9X0-EK7s8pNieLI_E",
+                    modifyList
+                )
+                putModifyPortFolioResponse.enqueue(object : Callback<PutModifyPortFolioResponse> {
+                    override fun onFailure(call: Call<PutModifyPortFolioResponse>, t: Throwable) {
+                        Log.e("TAGGG putC Error", t.toString())
+                    }
+
+                    override fun onResponse(
+                        call: Call<PutModifyPortFolioResponse>,
+                        response: Response<PutModifyPortFolioResponse>
+                    ) {
+                        response
+                            ?.takeIf { it.isSuccessful }
+                            ?.body()
+                            ?.let {
+                                when (it?.message ?: " ") {
+                                    "성공" -> {
+                                        Log.v("TAGGG", it.message)
+                                    }
+                                    else -> {
+                                        Log.v("TAGGG", it.message)
+                                    }
+                                }
+                            }
+                    }
+                })
+            }
+            //트랜슬레이터
+            3 -> {
+                //구독자
+                val subscriber = 0
+                //플랫폼 -나중에 수정
+                val platform = 2
+                //소개
+                var oneline = String()
+                if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
+                    oneline = edt_modify_port_act_detail_oneline.text.toString()
+                else oneline = edt_modify_port_act_detail_oneline.hint.toString()
+                //원해요
+                var want = String()
+                if (edt_modify_port_act_want.text.isNotEmpty())
+                    want = edt_modify_port_act_want.text.toString()
+                else want = edt_modify_port_act_want.hint.toString()
+                //수상경력
+                var appeal = String()
+                if (edt_modify_port_act_appeal.text.isNotEmpty())
+                    appeal = edt_modify_port_act_appeal.text.toString()
+                else appeal = edt_modify_port_act_appeal.hint.toString()
+                val concept = 1
+                val lang = 2
+                val pd = 2
+                val etc = 3
+
+                modifyList = ModifyList(
+                    platform,
+                    subscriber.toString(),
+                    oneline,
+                    want.toString(),
+                    appeal,
+                    concept,
+                    lang,
+                    pd,
+                    etc
+                )
+                val putModifyPortFolioResponse = networkService.putModifyPortFolioResponse(
+                    "application/json",
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6InRyYW5zbWFuIiwiaWR4Ijo0LCJ0eXBlIjozLCJpYXQiOjE1NjI2NzU2MzIsImV4cCI6MTU2Mzg4NTIzMiwiaXNzIjoiaWcifQ.onbsHzwqnyFmOPcpiuKxt2KxQS0c1pc1FHYnGsR1Flo"
+                    , modifyList
+                )
+                putModifyPortFolioResponse.enqueue(object : Callback<PutModifyPortFolioResponse> {
+                    override fun onFailure(call: Call<PutModifyPortFolioResponse>, t: Throwable) {
+                        Log.e("TAGGG putC Error", t.toString())
+                    }
+
+                    override fun onResponse(
+                        call: Call<PutModifyPortFolioResponse>,
+                        response: Response<PutModifyPortFolioResponse>
+                    ) {
+                        response
+                            ?.takeIf { it.isSuccessful }
+                            ?.body()
+                            ?.let {
+                                when (it?.message ?: " ") {
+                                    "성공" -> {
+                                        Log.v("TAGGG", it.message)
+                                    }
+                                    else -> {
+                                        Log.v("TAGGG", it.message)
+                                    }
+                                }
+                            }
+                    }
+                })
+            }
+            //기타
+            4 -> {
+                //구독자
+                val subscriber = 0
+                //플랫폼 -나중에 수정
+                val platform = 1
+                //소개
+                var oneline = String()
+                if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
+                    oneline = edt_modify_port_act_detail_oneline.text.toString()
+                else oneline = edt_modify_port_act_detail_oneline.hint.toString()
+                //원해요
+                var want = String()
+                if (edt_modify_port_act_want.text.isNotEmpty())
+                    want = edt_modify_port_act_want.text.toString()
+                else want = edt_modify_port_act_want.hint.toString()
+                //수상경력
+                var appeal = String()
+                if (edt_modify_port_act_appeal.text.isNotEmpty())
+                    appeal = edt_modify_port_act_appeal.text.toString()
+                else appeal = edt_modify_port_act_appeal.hint.toString()
+                //필터 - 나중에 수정
+                val concept = 1
+                val lang = 2
+                val pd = 2
+                val etc = 3
+
+                modifyList = ModifyList(
+                    platform,
+                    subscriber.toString(),
+                    oneline,
+                    want.toString(),
+                    appeal,
+                    concept,
+                    lang,
+                    pd,
+                    etc
+                )
+                val putModifyPortFolioResponse = networkService.putModifyPortFolioResponse(
+                    "application/json",
+                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6Iuq4sO2DgCIsImlkeCI6NiwidHlwZSI6NCwiaWF0IjoxNTYyNTY2OTgwLCJleHAiOjE1NjM3NzY1ODAsImlzcyI6ImlnIn0.Q2x2Z6OKdAs78ExzZk5zZvRNfsu9lL3Av3WJ05XB74g"
+                    , modifyList
+                )
+                putModifyPortFolioResponse.enqueue(object : Callback<PutModifyPortFolioResponse> {
+                    override fun onFailure(call: Call<PutModifyPortFolioResponse>, t: Throwable) {
+                        Log.e("TAGGG putC Error", t.toString())
+                    }
+
+                    override fun onResponse(
+                        call: Call<PutModifyPortFolioResponse>,
+                        response: Response<PutModifyPortFolioResponse>
+                    ) {
+                        response
+                            ?.takeIf { it.isSuccessful }
+                            ?.body()
+                            ?.let {
+                                when (it?.message ?: " ") {
+                                    "성공" -> {
+                                        Log.v("TAGGG", it.message)
+                                    }
+                                    else -> {
                                         Log.v("TAGGG", it.message)
                                     }
                                 }
@@ -363,7 +588,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         // 학력/자격증/수상/경력
                         ll_modify_port_appeal.visibility = View.VISIBLE
                         if (data.detailAppeal != null)
-                            edt_modify_port_act_detail_oneline.hint = data.detailAppeal
+                            edt_modify_port_act_appeal.hint = data.detailAppeal
 
                         //작품 리사이클러뷰 설정
                         val tmp: GetModifyPortFolioDataEpatAndEtc? = response.body()!!.data
@@ -422,7 +647,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         // 학력/자격증/수상/경력
                         ll_modify_port_appeal.visibility = View.VISIBLE
                         if (data.detailAppeal != null)
-                            edt_modify_port_act_detail_oneline.hint = data.detailAppeal
+                            edt_modify_port_act_appeal.hint = data.detailAppeal
 
                         //작품 리사이클러뷰 설정
                         val tmp: GetModifyPortFolioDataTpat? = response.body()!!.data
@@ -482,7 +707,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         // 학력/자격증/수상/경력
                         ll_modify_port_appeal.visibility = View.VISIBLE
                         if (data.detailAppeal != null)
-                            edt_modify_port_act_detail_oneline.hint = data.detailAppeal
+                            edt_modify_port_act_appeal.hint = data.detailAppeal
 
                         //작품 리사이클러뷰 설정
                         val tmp: GetModifyPortFolioDataEpatAndEtc? = response.body()!!.data
