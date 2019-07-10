@@ -2,7 +2,6 @@ package com.android.hipart_android.util
 
 import android.content.Context
 
-
 /**
  * Created by TakHyeongMin on 2019-07-06.
  */
