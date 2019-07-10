@@ -196,27 +196,23 @@
                         </LinearLayout>
 
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                      android:orientation="vertical"
-                        >
+                                      android:orientation="vertical">
 
                             <TextView android:layout_width="wrap_content"
                                       android:layout_height="wrap_content"
                                       android:textSize="10sp"
                                       android:textColor="#434343"
                                       android:lineSpacingExtra="2sp"
-                                      android:text="하이파이브 매칭"
+                                      android:text="나와 하이파이브했어요"
                                       android:fontFamily="@font/nanum_regular"
                             />
-                            <EditText
+                            <TextView
                                     android:id="@+id/edt_modify_port_act_hifive"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textSize="15sp"
-                                    android:textColor="#575757"
-                                    android:textColorHint="#575757"
+                                    android:textColor="#434343"
                                     android:lineSpacingExtra="2sp"
-                                    android:hint="331"
-                                    android:background="@null"
                                     android:fontFamily="@font/nanum_regular"
                                     android:layout_marginTop="11dp"/>
 
@@ -338,7 +334,6 @@
                                     android:layout_marginRight="24dp">
 
                                 <TextView
-                                        android:visibility="gone"
                                         android:layout_width="wrap_content" android:layout_height="wrap_content"
                                         android:text="작품 올리기"
                                         android:textSize="11sp"
@@ -382,16 +377,6 @@
                                       android:text="업로드된 작품이 없어요"
                                       android:layout_marginTop="22dp"
                                       android:layout_gravity="center_horizontal"/>
-
-                            <TextView
-                                    android:visibility="gone"
-                                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                    android:textSize="12sp"
-                                    android:textColor="#a2a2a2"
-                                    android:fontFamily="@font/nanum_regular"
-                                    android:text="오늘의 작품 올리러 가기→"
-                                    android:layout_marginTop="11dp"
-                                    android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
 
                     </RelativeLayout>
@@ -443,7 +428,9 @@
                                 android:text="학력/자격증/수상/경력"
                                 android:fontFamily="@font/nanum_bold"
                         />
-                        <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+                        <EditText
+                                android:id="@+id/edt_modify_port_act_appeal"
+                                android:layout_width="match_parent" android:layout_height="wrap_content"
                                   android:background="@null"
                                   android:textSize="13sp"
                                   android:lineSpacingExtra="8dp"

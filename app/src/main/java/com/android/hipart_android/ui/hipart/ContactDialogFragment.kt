@@ -27,9 +27,14 @@ class ContactDialogFragment : DialogFragment() {
 
     private val TAG = "ContactDialogFragment"
 
+    private var nickname = ""
+    private var type : Int = 0
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_contact_dialog, container, false)
 
+        nickname = arguments!!.getString("nickname")
+        type = arguments!!.getInt("type")
         Log.d(TAG, "dialog created")
         return view
     }
@@ -55,17 +60,11 @@ class ContactDialogFragment : DialogFragment() {
                     btn_contact_dial_confirm.apply {
                         setBackgroundResource(R.drawable.bg_contact_alert_after)
                         setOnClickListener {
-                            val fm = activity!!.supportFragmentManager
-                            val fragmentTransaction = fm.beginTransaction()
-                            fragmentTransaction.add(R.id.fl_hip_detail_act, ContactPurchaseFragment())
-                            fragmentTransaction.addToBackStack(null)
-                            fragmentTransaction.commit()
-
-
 
                             // 연락처 보기 통신
-                            var nickName = "bj_ho"
-                            postHifiveResponse(nickName)
+                            postHifiveResponse(nickname, type)
+
+                            Log.d(TAG, "connect Server from Dialog")
                         }
                     }
 
@@ -76,7 +75,7 @@ class ContactDialogFragment : DialogFragment() {
             }
         })
     }
-    private fun postHifiveResponse(nickname: String) {
+    private fun postHifiveResponse(nickname: String, type : Int) {
 
         val networkService = ApplicationController.instance.networkService
         val postHifiveResponse = networkService.postHifiveResponse("application/json",
@@ -95,6 +94,9 @@ class ContactDialogFragment : DialogFragment() {
                 response?.takeIf { it.isSuccessful }
                     ?.body()?.takeIf { it.message == "연락 성공" }
                     ?.let {
+                        Log.d(TAG, "Diallog 통신 성공")
+                        (activity as HipartDetailActivity).addFragment(R.id.fl_hip_detail_act, ContactPurchaseFragment(), nickname, type)
+
                         dismiss()
                     }
 

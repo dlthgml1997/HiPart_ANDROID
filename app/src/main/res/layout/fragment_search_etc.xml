@@ -5,62 +5,65 @@
                 android:layout_height="match_parent"
                 tools:context=".ui.search.SearchAllFragment"
                 android:background="#fafafa">
-    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:orientation="vertical"
-                  android:layout_marginTop="80dp"
-                  android:layout_centerHorizontal="true"
-                  android:gravity="center_horizontal"
-                  android:id="@+id/ll_sear_etc_frag_no_result">
-        <RelativeLayout android:layout_width="216dp" android:layout_height="216dp"
-                        android:background="@drawable/border_frag_sear_nothing">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:id="@+id/rl_sear_etc_frag_no_result">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:layout_marginTop="80dp"
+                      android:layout_centerHorizontal="true"
+                      android:gravity="center_horizontal">
+            <RelativeLayout android:layout_width="216dp" android:layout_height="216dp"
+                            android:background="@drawable/border_frag_sear_nothing">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="25sp"
+                        android:textColor="#434343"
+                        android:lineSpacingExtra="3sp"
+                        android:gravity="center_horizontal"
+                        tools:text="결과없음 이미지"
+                        android:layout_centerInParent="true"
+                />
+            </RelativeLayout>
+
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="25sp"
-                    android:textColor="#434343"
+                    android:textSize="21sp"
+                    android:textColor="#bcbcbc"
                     android:lineSpacingExtra="3sp"
                     android:gravity="center_horizontal"
-                    tools:text="결과없음 이미지"
-                    android:layout_centerInParent="true"
+                    tools:text="검색결과가 없습니다."
+                    android:layout_marginTop="28dp"
             />
-        </RelativeLayout>
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="21sp"
-                android:textColor="#bcbcbc"
-                android:lineSpacingExtra="3sp"
-                android:gravity="center_horizontal"
-                tools:text="검색결과가 없습니다."
-                android:layout_marginTop="28dp"
-        />
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:textColor="#bcbcbc"
-                android:lineSpacingExtra="1sp"
-                android:gravity="center_horizontal"
-                tools:text="철자를 확인하거나"
-                android:layout_marginTop="16dp"
-        />
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:textColor="#bcbcbc"
-                android:lineSpacingExtra="1sp"
-                android:gravity="center_horizontal"
-                tools:text="긴 문구는 띄어쓰기를 해보세요."
-                android:layout_marginTop="8dp"/>
-    </LinearLayout>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#bcbcbc"
+                    android:lineSpacingExtra="1sp"
+                    android:gravity="center_horizontal"
+                    tools:text="철자를 확인하거나"
+                    android:layout_marginTop="16dp"
+            />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#bcbcbc"
+                    android:lineSpacingExtra="1sp"
+                    android:gravity="center_horizontal"
+                    tools:text="긴 문구는 띄어쓰기를 해보세요."
+                    android:layout_marginTop="8dp"/>
+        </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
 
                     android:visibility="gone"
-    android:id="@+id/rl_sear_etc_frag_yes_result">
+                    android:id="@+id/rl_sear_etc_frag_yes_result">
 
         <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
                                                 android:layout_height="match_parent"

@@ -5,12 +5,12 @@
               android:layout_height="match_parent"
               tools:context=".ui.hipart.ContactPurchaseFragment"
               android:orientation="vertical"
-android:background="@android:color/white">
+              android:background="@android:color/white">
     <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
                android:src="@drawable/pofol_back_white_icon"
                android:layout_marginTop="12dp"
                android:layout_marginLeft="16dp"
-    android:id="@+id/iv_contact_purc_frag_back"/>
+               android:id="@+id/iv_contact_purc_frag_back"/>
     <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                   android:orientation="vertical"
                   android:gravity="center_horizontal">
@@ -23,7 +23,8 @@ android:background="@android:color/white">
                       android:textSize="24sp"
                       android:textColor="#838383"
                       android:lineSpacingExtra="3sp"
-                      android:text="C-PAT"/>
+                      android:text="C-PAT"
+                      android:id="@+id/tv_contact_purc_frag_type"/>
             <TextView style="@style/nanum_extra_bold"
                       android:textSize="24sp"
                       android:textColor="#7947fd"
@@ -45,7 +46,7 @@ android:background="@android:color/white">
                   android:textColor="#838383"
                   android:lineSpacingExtra="2sp"
                   android:gravity="center_horizontal"
-                  android:text="남은 팜: 30개"
+                  android:text=""
                   android:layout_marginTop="20dp"
                   android:id="@+id/tv_contact_purc_frag_farm"/>
 
@@ -83,7 +84,7 @@ android:background="@android:color/white">
                         android:lineSpacingExtra="12sp"
                         android:gravity="center"
                         android:text="복사하기"
-                android:id="@+id/btn_contact_dial_frag_copy"/>
+                        android:id="@+id/btn_contact_dial_frag_copy"/>
             </LinearLayout>
         </RelativeLayout>
 

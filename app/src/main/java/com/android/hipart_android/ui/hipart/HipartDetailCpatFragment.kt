@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_hipart_detail_cpat.*
 import kotlinx.android.synthetic.main.fragment_hipart_detail_eetc.*
 import kotlinx.android.synthetic.main.fragment_hipart_detail_eetc.rv_frag_hip_det_frag_article
 
-class HipartDetailCpatFragment : Fragment(){
+class HipartDetailCpatFragment : Fragment() {
 
     private val TAG = "HipartDetailCpatfragmen"
 
@@ -45,6 +45,7 @@ class HipartDetailCpatFragment : Fragment(){
         setView()
 
     }
+
     private fun setView() {
         ll_hip_det_eetc_frag_spec.visibility = View.GONE
 
@@ -55,9 +56,11 @@ class HipartDetailCpatFragment : Fragment(){
         tv_hip_det_frag_eetc_name.text = user.user_nickname
         tv_hip_det_eetc_frag_pick_num.text = user.pick.toString()
 
-        if(user.pd != 0) {
+        tv_frag_hip_det_eetc_type.text = Filter.type(user.user_type)
+
+        if (user.pd != 0) {
             tv_frag_hip_det_eetc_pd.text = Filter.pd(user.pd)
-        }else
+        } else
             rl_hip_det_eetc_frag_pd_background.visibility = View.GONE
 
         setTagList(user)
@@ -71,12 +74,13 @@ class HipartDetailCpatFragment : Fragment(){
         tv_frag_hip_det_eetc_spec.text = user.detail_appeal
 
         //연락하기/연락처 보기
-        if(HipartDetailActivity.hifiveStatus ==1) {
+        if (HipartDetailActivity.hifiveStatus == 1) {
             btn_frag_hip_det_eetc_call.text = "연락처 보기"
-        }else
+        } else
             btn_frag_hip_det_eetc_call.text = "연락하기"
 
     }
+
     private fun setArticleList(user: UserDetailCData) {
         val articleList = ArrayList<HipartDetailArticleData>()
         if (user.thumbnail!!.isNotEmpty()) {
@@ -85,7 +89,8 @@ class HipartDetailCpatFragment : Fragment(){
 
 
             rv_frag_hip_det_frag_article.adapter = HipartDetailCpatArticleAdapter(activity!!, articleList)
-            rv_frag_hip_det_frag_article.layoutManager = LinearLayoutManager(activity!!, OrientationHelper.HORIZONTAL, false)
+            rv_frag_hip_det_frag_article.layoutManager =
+                LinearLayoutManager(activity!!, OrientationHelper.HORIZONTAL, false)
         }
     }
 
@@ -94,9 +99,9 @@ class HipartDetailCpatFragment : Fragment(){
         if (user.concept != 0)
             tagList.add(Filter.concept(user.concept))
         if (user.lang != 0)
-            tagList.add(Filter.concept(user.concept))
+            tagList.add(Filter.language(user.concept))
         if (user.concept != 0)
-            tagList.add(Filter.concept(user.concept))
+            tagList.add(Filter.etc(user.concept))
 
         if (tagList.size > 0) {
             rv_frag_hip_det_eetc_tag.adapter = HipartDetailTagRecyclerAdapter(activity!!, tagList)
@@ -109,22 +114,38 @@ class HipartDetailCpatFragment : Fragment(){
     private fun setListeners() {
         btn_frag_hip_det_eetc_call.setOnClickListener {
 
-            if(HipartDetailActivity.hifiveStatus == 0) {
+
+            if (HipartDetailActivity.hifiveStatus == 0) {
+
                 val contactDialog = ContactDialogFragment()
+
+                val bundle = Bundle()
+                bundle.putString("nickname", user.user_nickname)
+                bundle.putInt("type", user.user_type)
+                contactDialog.arguments = bundle
+
                 contactDialog.show(childFragmentManager, "contact dialog")
                 Log.d(TAG, "contact btn clicked")
             } else {
+                val purchaseFragment = ContactPurchaseFragment()
+
+                val bundle = Bundle()
+                bundle.putString("nickname", user.user_nickname)
+                bundle.putInt("type", user.user_type)
+                purchaseFragment.arguments = bundle
+
                 val fm = activity!!.supportFragmentManager
                 val fragmentTransaction = fm.beginTransaction()
-                fragmentTransaction.add(R.id.fl_hip_detail_act, ContactPurchaseFragment())
+                fragmentTransaction.add(R.id.fl_hip_detail_act, purchaseFragment)
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
             }
+        }
 
 
-            iv_frag_hip_det_eetc_back.setOnClickListener {
-                (context as HipartDetailActivity).finish()
-            }
+        iv_frag_hip_det_eetc_back.setOnClickListener {
+            (context as HipartDetailActivity).finish()
+        }
 
 
 //            val contactDialog: ContactAlertDialog = ContactAlertDialog(activity!!)
@@ -141,10 +162,9 @@ class HipartDetailCpatFragment : Fragment(){
 //            contactDialog.setOnDismissListener {
 //
 //            }
-        }
+
 
     }
-
 
 
 }

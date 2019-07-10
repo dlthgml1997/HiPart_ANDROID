@@ -1,9 +1,7 @@
 package com.android.hipart_android.ui.modifyportfolio.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,9 +74,9 @@ class CpatWorkRVAdapter(val ctx: Context, var dataList: GetModifyPortFolioDataCp
         removeIndexList.add(dataList.workIdx[position])
         dataList.workIdx.removeAt(position)
         if(dataList.thumbnail.isEmpty())
-            (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList,0)
+            (ctx as ModifyPortFolioActivity).setRemoveIndexListFromAdapter(removeIndexList,0)
         else
-            (ctx as ModifyPortFolioActivity).setRemoveIndexList(removeIndexList,1)
+            (ctx as ModifyPortFolioActivity).setRemoveIndexListFromAdapter(removeIndexList,1)
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {

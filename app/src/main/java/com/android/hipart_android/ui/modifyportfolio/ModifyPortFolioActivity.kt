@@ -1,10 +1,12 @@
 package com.android.hipart_android.ui.modifyportfolio
 
-import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
@@ -16,6 +18,8 @@ import com.android.hipart_android.ui.modifyportfolio.data.FilterData
 import com.android.hipart_android.ui.modifyportfolio.data.ModifyList
 import com.android.hipart_android.ui.modifyportfolio.data.WorkIndex
 import com.android.hipart_android.ui.modifyportfolio.delete.DeleteModifyPortFolioResponse
+import com.android.hipart_android.ui.modifyportfolio.dialog.ModifyPortGoToUploadDialog
+import com.android.hipart_android.ui.modifyportfolio.dialog.PofolModifySuccessDialog
 import com.android.hipart_android.ui.modifyportfolio.get.*
 import com.android.hipart_android.ui.modifyportfolio.put.PutModifyPortFolioResponse
 import com.android.hipart_android.ui.portfolio.dialog.FilterDialog
@@ -23,10 +27,19 @@ import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SharedPreferenceController
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_modify_port_folio.*
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import kotlin.collections.ArrayList
+
+/**
+ * userType
+ * 1: 크리에이터
+ * 2: 에디터
+ * 3: 트랜슬레이터
+ * 4: 기타
+ */
 
 class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
@@ -34,128 +47,21 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         ApplicationController.instance.networkService
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    private val userType by lazy {
+        SharedPreferenceController.getUserType(this@ModifyPortFolioActivity)
     }
 
-    override fun onClick(v: View?) {
-        when (v) {
-
-            btn_modify_port_folio_back -> {
-                finish()
-            }
-
-            btn_youtube -> {
-                btn_youtube.isSelected = !btn_youtube.isSelected
-            }
-
-            btn_afreeca -> {
-                btn_afreeca.isSelected = !btn_afreeca.isSelected
-            }
-
-            btn_twich -> {
-                btn_twich.isSelected = !btn_twich.isSelected
-            }
-
-            // 필터 수정하기
-            btn_modify_port_folio_act_modify_filter -> {
-                filterDialog.show(supportFragmentManager, "filter dialog")
-            }
-
-            // 작품 올리기
-            btn_modify_port_folio_act_work_add_work -> {
-
-            }
-
-            // 취소하기
-            btn_modify_port_folio_cancel -> {
-                finish()
-            }
-
-            // 수정 완료
-            btn_modify_port_folio_confirm -> {
-                //수정 통신 put
-                putModifyPortFolioResponse()
-                //delete
-                deleteModifyPortResponse()
-            }
-        }
+    private val userToken by lazy {
+        SharedPreferenceController.getAuthorization(this@ModifyPortFolioActivity)
     }
 
-    private fun putModifyPortFolioResponse() {
-        when (1) {
-            //크리에이터
-            1 -> {
-                //구독자
-                val subscriber = edt_modify_port_act_subscriber.text
-                //플랫폼
-                val platform = 1
-                //소개
-                val oneline = edt_modify_port_act_detail_oneline.text
-                //원해요
-                val want = edt_modify_port_act_want.text
-                //수상경력 = null
-                val concept = 1
-                val lang = 2
-                val pd = 2
-                val etc = 3
-
-                modifyList = ModifyList(
-                    platform,
-                    subscriber.toString(),
-                    oneline.toString(),
-                    want.toString(),
-                    "",
-                    concept,
-                    lang,
-                    pd,
-                    etc
-                )
-                val putModifyPortFolioResponse = networkService.putModifyPortFolioResponse(
-                    "application/json",
-                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM",
-                    modifyList
-                )
-                putModifyPortFolioResponse.enqueue(object : Callback<PutModifyPortFolioResponse> {
-                    override fun onFailure(call: Call<PutModifyPortFolioResponse>, t: Throwable) {
-                        Log.e("TAGGG putC Error", t.toString())
-                    }
-
-                    override fun onResponse(
-                        call: Call<PutModifyPortFolioResponse>,
-                        response: Response<PutModifyPortFolioResponse>
-                    ) {
-                        response
-                            ?.takeIf { it.isSuccessful }
-                            ?.body()
-                            ?.let {
-                                when (it?.message ?: " ") {
-                                    "성공" -> {
-                                        Log.v("TAGGG", it.message)
-                                    }
-                                    else ->{
-                                        Log.v("TAGGG", it.message)
-                                    }
-                                }
-                            }
-                    }
-                })
-            }
-        }
+    private val pofolModifySuccessDialog by lazy {
+        PofolModifySuccessDialog()
     }
 
-    lateinit var modifyList: ModifyList
-
-    private var filterDataList = ArrayList<FilterData>()
-
-    private var removeIndexList = ArrayList<Int>()
-
-    lateinit var dataListCpat: GetModifyPortFolioDataCpat
-
-    lateinit var dataListEpatAndEtc: GetModifyPortFolioDataEpatAndEtc
-
-    lateinit var dataListTpat: GetModifyPortFolioDataTpat
-
+    private val modifyPortGoToUploadDialog by lazy {
+        ModifyPortGoToUploadDialog()
+    }
 
     private val filterRVAdapter by lazy {
         FilterRVAdapter(this@ModifyPortFolioActivity, filterDataList)
@@ -164,6 +70,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     private val cpatWorkRVAdapter by lazy {
         CpatWorkRVAdapter(this@ModifyPortFolioActivity, dataListCpat)
     }
+
     private val epatWorkRVAdapter by lazy {
         EpatAndEtcWorkRVAdapter(this@ModifyPortFolioActivity, dataListEpatAndEtc)
     }
@@ -174,6 +81,18 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         FilterDialog()
     }
 
+    private var filterDataList = ArrayList<FilterData>()
+
+    private var removeIndexList = ArrayList<Int>()
+
+    lateinit var modifyList: ModifyList
+
+    lateinit var dataListCpat: GetModifyPortFolioDataCpat
+
+    lateinit var dataListEpatAndEtc: GetModifyPortFolioDataEpatAndEtc
+
+    lateinit var dataListTpat: GetModifyPortFolioDataTpat
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_modify_port_folio)
@@ -181,10 +100,68 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         initView()
     }
 
-    private fun initView() {
-        setFilterRVAdapter()
-        getModifyPortFolioResponse()
-        setOnClickListener()
+    override fun onClick(v: View?) {
+        when (v) {
+
+            btn_modify_port_folio_back -> {
+                finish()
+            }
+
+            //플랫폼 단일 선택
+            btn_youtube -> {
+                if (!btn_youtube.isSelected) {
+                    reverseBtn(btn_youtube)
+                }
+                // game이 눌려있을 경우 눌린 플로우
+                else {
+                    btn_youtube.isSelected = false
+                    btn_youtube.setImageResource(R.drawable.pofol_youtube_off_img)
+                }
+            }
+            btn_afreeca -> {
+                if (!btn_afreeca.isSelected) {
+                    reverseBtn(btn_afreeca)
+                }
+                // game이 눌려있을 경우 눌린 플로우
+                else {
+                    btn_afreeca.isSelected = false
+                    btn_afreeca.setImageResource(R.drawable.pofol_afreeca_white_off_img)
+                }
+            }
+            btn_twich -> {
+                if (!btn_twich.isSelected) {
+                    reverseBtn(btn_twich)
+                }
+                // game이 눌려있을 경우 눌린 플로우
+                else {
+                    btn_twich.isSelected = false
+                    btn_twich.setImageResource(R.drawable.pofol_twitch_white_off_img)
+                }
+            }
+
+            // 필터 수정하기
+            btn_modify_port_folio_act_modify_filter -> {
+                filterDialog.show(supportFragmentManager, "filter dialog")
+            }
+
+            // 작품 올리기
+            btn_modify_port_folio_act_work_add_work -> {
+                showGoToUploadDialog()
+            }
+
+            // 취소하기
+            btn_modify_port_folio_cancel -> {
+                finish()
+            }
+
+            // 수정 완료
+            btn_modify_port_folio_confirm -> {
+                //put
+                putModifyPortFolioResponse()
+                //delete
+                deleteModifyPortResponse()
+            }
+        }
     }
 
     private fun setOnClickListener() {
@@ -210,10 +187,10 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
     }
 
+    //통신
     private fun getModifyPortFolioResponse() {
-        val userType = SharedPreferenceController.getUserType(this@ModifyPortFolioActivity)
         Log.v("TAGGGG", userType.toString())
-        when (1) {
+        when (userType) {
             //C-PAT
             1 -> {
                 getModifyPortFolioResponseCpat()
@@ -237,8 +214,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     private fun getModifyPortFolioResponseCpat() {
         val getModifyPortFolioResponseCpat = networkService.getModifyPortFolioResponseCpat(
             "application/json",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM"
-            //SharedPreferenceController.getAuthorization(this)
+            userToken
         )
         getModifyPortFolioResponseCpat.enqueue(object : Callback<GetModifyPortFolioResponseCpat> {
             override fun onFailure(call: Call<GetModifyPortFolioResponseCpat>, t: Throwable) {
@@ -267,11 +243,11 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
                         //소개
                         if (data.detailOneline != null)
-                            edt_modify_port_act_detail_oneline.hint = data.detailOneline
+                        edt_modify_port_act_detail_oneline.hint = data.detailOneline
 
                         //원해요
                         if (data.detailWant != null)
-                            edt_modify_port_act_want.hint = data.detailWant
+                        edt_modify_port_act_want.hint = data.detailWant
 
                         //유저 타입
                         tv_modify_port_folio_act_job.text = "creator"
@@ -321,8 +297,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     private fun getModifyPortFolioResponseEpat() {
         val getModifyPortFolioResponseEpat = networkService.getModifyPortFolioResponseEpat(
             "application/json",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6IuyXkOuUlO2EsCIsImlkeCI6NSwidHlwZSI6MiwiaWF0IjoxNTYyNTY2OTM5LCJleHAiOjE1NjM3NzY1MzksImlzcyI6ImlnIn0.C4c6ibbr_QtAi2vk_S3ZftqmxJ9X0-EK7s8pNieLI_E"
-            //SharedPreferenceController.getAuthorization(this)
+            userToken
         )
         getModifyPortFolioResponseEpat.enqueue(object : Callback<GetModifyPortFolioResponseEpatAndEtc> {
             override fun onFailure(call: Call<GetModifyPortFolioResponseEpatAndEtc>, t: Throwable) {
@@ -363,7 +338,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         // 학력/자격증/수상/경력
                         ll_modify_port_appeal.visibility = View.VISIBLE
                         if (data.detailAppeal != null)
-                            edt_modify_port_act_detail_oneline.hint = data.detailAppeal
+                            edt_modify_port_act_appeal.hint = data.detailAppeal
 
                         //작품 리사이클러뷰 설정
                         val tmp: GetModifyPortFolioDataEpatAndEtc? = response.body()!!.data
@@ -380,8 +355,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     //T-PAT 통신 - 트랜슬레이터
     private fun getModifyPortFolioResponseTpat() {
         val getModifyPortFolioResponseTpat = networkService.getModifyPortFolioResponseTpat(
-            "application/json",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6InRyYW5zbWFuIiwiaWR4Ijo0LCJ0eXBlIjozLCJpYXQiOjE1NjI2NzU2MzIsImV4cCI6MTU2Mzg4NTIzMiwiaXNzIjoiaWcifQ.onbsHzwqnyFmOPcpiuKxt2KxQS0c1pc1FHYnGsR1Flo"
+            "application/json", userToken
         )
         getModifyPortFolioResponseTpat.enqueue(object : Callback<GetModifyPortFolioResponseTpat> {
             override fun onFailure(call: Call<GetModifyPortFolioResponseTpat>, t: Throwable) {
@@ -422,7 +396,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         // 학력/자격증/수상/경력
                         ll_modify_port_appeal.visibility = View.VISIBLE
                         if (data.detailAppeal != null)
-                            edt_modify_port_act_detail_oneline.hint = data.detailAppeal
+                            edt_modify_port_act_appeal.hint = data.detailAppeal
 
                         //작품 리사이클러뷰 설정
                         val tmp: GetModifyPortFolioDataTpat? = response.body()!!.data
@@ -439,9 +413,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     //ETC. 통신 - 기타
     private fun getModifyPortFolioResponseEtc() {
         val getModifyPortFolioResponseEtc = networkService.getModifyPortFolioResponseEtc(
-            "application/json",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6Iuq4sO2DgCIsImlkeCI6NiwidHlwZSI6NCwiaWF0IjoxNTYyNTY2OTgwLCJleHAiOjE1NjM3NzY1ODAsImlzcyI6ImlnIn0.Q2x2Z6OKdAs78ExzZk5zZvRNfsu9lL3Av3WJ05XB74g"
-            //SharedPreferenceController.getAuthorization(this)
+            "application/json", userToken
         )
         getModifyPortFolioResponseEtc.enqueue(object : Callback<GetModifyPortFolioResponseEpatAndEtc> {
             override fun onFailure(call: Call<GetModifyPortFolioResponseEpatAndEtc>, t: Throwable) {
@@ -482,7 +454,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         // 학력/자격증/수상/경력
                         ll_modify_port_appeal.visibility = View.VISIBLE
                         if (data.detailAppeal != null)
-                            edt_modify_port_act_detail_oneline.hint = data.detailAppeal
+                            edt_modify_port_act_appeal.hint = data.detailAppeal
 
                         //작품 리사이클러뷰 설정
                         val tmp: GetModifyPortFolioDataEpatAndEtc? = response.body()!!.data
@@ -542,8 +514,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     //작품 삭제
     private fun deleteModifyPortResponse() {
         if (removeIndexList.isNotEmpty()) {
-            //SharedPreferenceController.getUserType(this@ModifyPortFolioActivity)
-            when (1) {
+            when (userType) {
                 //크리에이터
                 1 -> deleteModifyPortResponseCpat(removeIndexList)
                 //에디터
@@ -559,8 +530,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     // 작품 삭제 - CPAT
     private fun deleteModifyPortResponseCpat(workIndex: ArrayList<Int>) {
         val deleteModifyPortResponseCpat = networkService.deleteModifyPortFolioResponseCpat(
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM"
-            , WorkIndex(workIndex)
+            userToken, WorkIndex(workIndex)
         )
         deleteModifyPortResponseCpat.enqueue(object : Callback<DeleteModifyPortFolioResponse> {
             override fun onFailure(call: Call<DeleteModifyPortFolioResponse>, t: Throwable) {
@@ -597,8 +567,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     // 작품 삭제 - EPAT
     private fun deleteModifyPortFolioResponseEpat(workIndex: ArrayList<Int>) {
         val deleteModifyPortFolioResponseEpat = networkService.deleteModifyPortFolioResponseEpat(
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6IuyXkOuUlO2EsCIsImlkeCI6NSwidHlwZSI6MiwiaWF0IjoxNTYyNTY2OTM5LCJleHAiOjE1NjM3NzY1MzksImlzcyI6ImlnIn0.C4c6ibbr_QtAi2vk_S3ZftqmxJ9X0-EK7s8pNieLI_E"
-            , WorkIndex(workIndex)
+            userToken, WorkIndex(workIndex)
         )
         deleteModifyPortFolioResponseEpat.enqueue(object : Callback<DeleteModifyPortFolioResponse> {
             override fun onFailure(call: Call<DeleteModifyPortFolioResponse>, t: Throwable) {
@@ -635,8 +604,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     //작품 삭제 - TPAT
     private fun deleteModifyPortFolioResponseTpat(workIndex: ArrayList<Int>) {
         val deleteModifyPortFolioResponseTpat = networkService.deleteModifyPortFolioResponseTpat(
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6InRyYW5zbWFuIiwiaWR4Ijo0LCJ0eXBlIjozLCJpYXQiOjE1NjI2NzU2MzIsImV4cCI6MTU2Mzg4NTIzMiwiaXNzIjoiaWcifQ.onbsHzwqnyFmOPcpiuKxt2KxQS0c1pc1FHYnGsR1Flo"
-            , WorkIndex(workIndex)
+            userToken, WorkIndex(workIndex)
         )
         deleteModifyPortFolioResponseTpat.enqueue(object : Callback<DeleteModifyPortFolioResponse> {
             override fun onFailure(call: Call<DeleteModifyPortFolioResponse>, t: Throwable) {
@@ -674,8 +642,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
     //작품 삭제 - ETC
     private fun deleteModifyPortFolioResponseEtc(workIndex: ArrayList<Int>) {
         val deleteModifyPortFolioResponseEtc = networkService.deleteModifyPortFolioResponseEtc(
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6Iuq4sO2DgCIsImlkeCI6NiwidHlwZSI6NCwiaWF0IjoxNTYyNTY2OTgwLCJleHAiOjE1NjM3NzY1ODAsImlzcyI6ImlnIn0.Q2x2Z6OKdAs78ExzZk5zZvRNfsu9lL3Av3WJ05XB74g"
-            , WorkIndex(workIndex)
+            userToken, WorkIndex(workIndex)
         )
         deleteModifyPortFolioResponseEtc.enqueue(object : Callback<DeleteModifyPortFolioResponse> {
             override fun onFailure(call: Call<DeleteModifyPortFolioResponse>, t: Throwable) {
@@ -709,15 +676,328 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
         })
     }
 
-    //필터 리사이클러 뷰
-    private fun setFilterRVAdapter() {
+    //포트폴리오 수정
+    private fun putModifyPortFolioResponse() {
+        when (userType) {
+            //크리에이터
+            1 -> {
+                //구독자
+                var subscriber = String()
+                if (edt_modify_port_act_subscriber.text.isNotEmpty())
+                    subscriber = edt_modify_port_act_subscriber.text.toString()
+                else subscriber = edt_modify_port_act_subscriber.hint.toString()
+                //플랫폼
+                var platform = 0
+                when {
+                    btn_youtube.isSelected -> platform =1
+                    btn_afreeca.isSelected -> platform =2
+                    btn_twich.isSelected -> platform=3
+                    else -> platform =0
+                }
+                //소개
+                var oneline = String()
+                if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
+                    oneline = edt_modify_port_act_detail_oneline.text.toString()
+                else oneline = edt_modify_port_act_detail_oneline.hint.toString()
+                //원해요
+                var want = String()
+                if (edt_modify_port_act_want.text.isNotEmpty())
+                    want = edt_modify_port_act_want.text.toString()
+                else want = edt_modify_port_act_want.hint.toString()
+                //수상경력 = null
 
-        rv_modify_port_folio_act_filter.adapter = filterRVAdapter
-        rv_modify_port_folio_act_filter.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+                //필터
+                val concept = 1
+                val lang = 2
+                val pd = 2
+                val etc = 3
 
+                modifyList = ModifyList(
+                    platform,
+                    subscriber,
+                    oneline,
+                    want,
+                    "",
+                    concept,
+                    lang,
+                    pd,
+                    etc
+                )
+                val putModifyPortFolioResponse = networkService.putModifyPortFolioResponse(
+                    "application/json", userToken, modifyList
+                )
+                putModifyPortFolioResponse.enqueue(object : Callback<PutModifyPortFolioResponse> {
+                    override fun onFailure(call: Call<PutModifyPortFolioResponse>, t: Throwable) {
+                        Log.e("TAGGG putC Error", t.toString())
+                    }
+
+                    override fun onResponse(
+                        call: Call<PutModifyPortFolioResponse>,
+                        response: Response<PutModifyPortFolioResponse>
+                    ) {
+                        response
+                            ?.takeIf { it.isSuccessful }
+                            ?.body()
+                            ?.let {
+                                when (it?.message ?: " ") {
+                                    "성공" -> {
+                                        showSuccessDialog()
+                                        Log.v("TAGG platform: ",platform.toString())
+                                    }
+                                    else -> {
+                                        toast(it.message)
+                                    }
+                                }
+                            }
+                    }
+                })
+            }
+            //에디터
+            2 -> {
+                // 구독자
+                val subscriber = 0
+                // 플랫폼
+                var platform = 0
+                when {
+                    btn_youtube.isSelected -> platform =1
+                    btn_afreeca.isSelected -> platform =2
+                    btn_twich.isSelected -> platform=3
+                    else -> platform =0
+                }
+                // 소개
+                var oneline = String()
+                if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
+                    oneline = edt_modify_port_act_detail_oneline.text.toString()
+                else oneline = edt_modify_port_act_detail_oneline.hint.toString()
+                //원해요
+                var want = String()
+                if (edt_modify_port_act_want.text.isNotEmpty())
+                    want = edt_modify_port_act_want.text.toString()
+                else want = edt_modify_port_act_want.hint.toString()
+                //수상경력
+                var appeal = String()
+                if (edt_modify_port_act_appeal.text.isNotEmpty())
+                    appeal = edt_modify_port_act_appeal.text.toString()
+                else appeal = edt_modify_port_act_appeal.hint.toString()
+                //필터 - 나중에 수정
+                val concept = 1
+                val lang = 2
+                val pd = 2
+                val etc = 3
+
+                modifyList = ModifyList(
+                    platform,
+                    subscriber.toString(),
+                    oneline,
+                    want.toString(),
+                    appeal,
+                    concept,
+                    lang,
+                    pd,
+                    etc
+                )
+                val putModifyPortFolioResponse = networkService.putModifyPortFolioResponse(
+                    "application/json", userToken, modifyList
+                )
+                putModifyPortFolioResponse.enqueue(object : Callback<PutModifyPortFolioResponse> {
+                    override fun onFailure(call: Call<PutModifyPortFolioResponse>, t: Throwable) {
+                        Log.e("TAGGG putE Error", t.toString())
+                    }
+
+                    override fun onResponse(
+                        call: Call<PutModifyPortFolioResponse>,
+                        response: Response<PutModifyPortFolioResponse>
+                    ) {
+                        response
+                            ?.takeIf { it.isSuccessful }
+                            ?.body()
+                            ?.let {
+                                when (it?.message ?: " ") {
+                                    "성공" -> {
+                                        showSuccessDialog()
+                                    }
+                                    else -> {
+                                        toast(it.message)
+                                    }
+                                }
+                            }
+                    }
+                })
+            }
+            //트랜슬레이터
+            3 -> {
+                //구독자
+                val subscriber = 0
+                //플랫폼
+                var platform = 0
+                when {
+                    btn_youtube.isSelected -> platform =1
+                    btn_afreeca.isSelected -> platform =2
+                    btn_twich.isSelected -> platform=3
+                    else -> platform =0
+                }
+                //소개
+                var oneline = String()
+                if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
+                    oneline = edt_modify_port_act_detail_oneline.text.toString()
+                else oneline = edt_modify_port_act_detail_oneline.hint.toString()
+                //원해요
+                var want = String()
+                if (edt_modify_port_act_want.text.isNotEmpty())
+                    want = edt_modify_port_act_want.text.toString()
+                else want = edt_modify_port_act_want.hint.toString()
+                //수상경력
+                var appeal = String()
+                if (edt_modify_port_act_appeal.text.isNotEmpty())
+                    appeal = edt_modify_port_act_appeal.text.toString()
+                else appeal = edt_modify_port_act_appeal.hint.toString()
+                val concept = 1
+                val lang = 2
+                val pd = 2
+                val etc = 3
+
+                modifyList = ModifyList(
+                    platform,
+                    subscriber.toString(),
+                    oneline,
+                    want.toString(),
+                    appeal,
+                    concept,
+                    lang,
+                    pd,
+                    etc
+                )
+                val putModifyPortFolioResponse = networkService.putModifyPortFolioResponse(
+                    "application/json", userToken, modifyList
+                )
+                putModifyPortFolioResponse.enqueue(object : Callback<PutModifyPortFolioResponse> {
+                    override fun onFailure(call: Call<PutModifyPortFolioResponse>, t: Throwable) {
+                        Log.e("TAGGG putT Error", t.toString())
+                    }
+
+                    override fun onResponse(
+                        call: Call<PutModifyPortFolioResponse>,
+                        response: Response<PutModifyPortFolioResponse>
+                    ) {
+                        response
+                            ?.takeIf { it.isSuccessful }
+                            ?.body()
+                            ?.let {
+                                when (it?.message ?: " ") {
+                                    "성공" -> {
+                                        showSuccessDialog()
+                                    }
+                                    else -> {
+                                        toast(it.message)
+                                    }
+                                }
+                            }
+                    }
+                })
+            }
+            //기타
+            4 -> {
+                //구독자
+                val subscriber = 0
+
+                //플랫폼
+                var platform = 0
+                when {
+                    btn_youtube.isSelected -> platform =1
+                    btn_afreeca.isSelected -> platform =2
+                    btn_twich.isSelected -> platform=3
+                    else -> platform =0
+                }
+                //소개
+                var oneline = String()
+                if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
+                    oneline = edt_modify_port_act_detail_oneline.text.toString()
+                else oneline = edt_modify_port_act_detail_oneline.hint.toString()
+                //원해요
+                var want = String()
+                if (edt_modify_port_act_want.text.isNotEmpty())
+                    want = edt_modify_port_act_want.text.toString()
+                else want = edt_modify_port_act_want.hint.toString()
+                //수상경력
+                var appeal = String()
+                if (edt_modify_port_act_appeal.text.isNotEmpty())
+                    appeal = edt_modify_port_act_appeal.text.toString()
+                else appeal = edt_modify_port_act_appeal.hint.toString()
+                //필터 - 나중에 수정
+                val concept = 1
+                val lang = 2
+                val pd = 2
+                val etc = 3
+
+                modifyList = ModifyList(
+                    platform,
+                    subscriber.toString(),
+                    oneline,
+                    want.toString(),
+                    appeal,
+                    concept,
+                    lang,
+                    pd,
+                    etc
+                )
+                val putModifyPortFolioResponse = networkService.putModifyPortFolioResponse(
+                    "application/json", userToken, modifyList
+                )
+                putModifyPortFolioResponse.enqueue(object : Callback<PutModifyPortFolioResponse> {
+                    override fun onFailure(call: Call<PutModifyPortFolioResponse>, t: Throwable) {
+                        Log.e("TAGGG putEtc Error", t.toString())
+                    }
+
+                    override fun onResponse(
+                        call: Call<PutModifyPortFolioResponse>,
+                        response: Response<PutModifyPortFolioResponse>
+                    ) {
+                        response
+                            ?.takeIf { it.isSuccessful }
+                            ?.body()
+                            ?.let {
+                                when (it?.message ?: " ") {
+                                    "성공" -> {
+                                        showSuccessDialog()
+                                    }
+                                    else -> {
+                                        toast(it.message)
+                                    }
+                                }
+                            }
+                    }
+                })
+            }
+        }
     }
 
-    fun setRemoveIndexList(list: ArrayList<Int>, flag: Int) {
+    //다이얼로그
+    private fun showSuccessDialog() {
+        pofolModifySuccessDialog.show(supportFragmentManager, "modify pofol success")
+        val handler = Handler()
+        handler.postDelayed({
+            run {
+                pofolModifySuccessDialog.dismiss()
+            }
+        }, 1500)
+    }
+
+
+    private fun showGoToUploadDialog() {
+        modifyPortGoToUploadDialog.show(supportFragmentManager, "go to upload")
+    }
+
+    //필터 리사이클러 뷰
+    private fun setFilterRVAdapter() {
+        rv_modify_port_folio_act_filter.adapter = filterRVAdapter
+        rv_modify_port_folio_act_filter.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    fun finishActivityAfterDialogClickedOkay() {
+        finish()
+    }
+
+    fun setRemoveIndexListFromAdapter(list: ArrayList<Int>, flag: Int) {
         if (flag == 0)
             rl_modify_port_folio_act_no_work.visibility = View.VISIBLE
         removeIndexList = list
@@ -733,5 +1013,42 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
         Log.v("TAGGGGG", filterDataList.toString())
     }
+
+    //플랫폼 단일 선택을 위해 쓰이는 함수
+    private fun reverseBtn(imageView: ImageView?) {
+        when (imageView) {
+            btn_youtube -> {
+                initBtnFlag()
+                btn_youtube.isSelected = true
+                btn_youtube.setImageResource(R.drawable.pofol_youtube_white_img)
+            }
+            btn_afreeca -> {
+                initBtnFlag()
+                btn_afreeca.isSelected = true
+                btn_afreeca.setImageResource(R.drawable.pofol_afreeca_white_img)
+            }
+            btn_twich -> {
+                initBtnFlag()
+                btn_twich.isSelected = true
+                btn_twich.setImageResource(R.drawable.pofol_twitch_white_img)
+            }
+        }
+    }
+
+    private fun initBtnFlag() {
+        btn_youtube.isSelected = false
+        btn_youtube.setImageResource(R.drawable.pofol_youtube_off_img)
+        btn_afreeca.isSelected = false
+        btn_afreeca.setImageResource(R.drawable.pofol_afreeca_white_off_img)
+        btn_twich.isSelected = false
+        btn_twich.setImageResource(R.drawable.pofol_twitch_white_off_img)
+    }
+
+    private fun initView() {
+        setFilterRVAdapter()
+        getModifyPortFolioResponse()
+        setOnClickListener()
+    }
+
 
 }

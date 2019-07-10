@@ -52,6 +52,8 @@ class HipartDetailTpatFragment : Fragment() {
         tv_hip_det_frag_eetc_name.text = user.user_nickname
         tv_hip_det_eetc_frag_pick_num.text = user.pick.toString()
 
+        tv_frag_hip_det_eetc_type.text = Filter.type(user.user_type)
+
         if(user.pd != 0) {
             tv_frag_hip_det_eetc_pd.text = Filter.pd(user.pd)
         }else
@@ -90,9 +92,9 @@ class HipartDetailTpatFragment : Fragment() {
         if (user.concept != 0)
             tagList.add(Filter.concept(user.concept))
         if (user.lang != 0)
-            tagList.add(Filter.concept(user.concept))
+            tagList.add(Filter.language(user.concept))
         if (user.concept != 0)
-            tagList.add(Filter.concept(user.concept))
+            tagList.add(Filter.etc(user.concept))
 
         if (tagList.size > 0) {
             rv_frag_hip_det_eetc_tag.adapter = HipartDetailTagRecyclerAdapter(activity!!, tagList)
