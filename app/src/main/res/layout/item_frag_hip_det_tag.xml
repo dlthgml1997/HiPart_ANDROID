@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="40dp"
-                android:layout_height="18dp"
-                android:background="@drawable/bg_frag_hip_det_intro_round">
+                android:layout_height="20dp"
+                android:background="@drawable/bg_frag_hip_det_intro_round"
+                android:layout_marginLeft="8dp">
     <TextView style="@style/nanum_light"
               android:textSize="11sp"
               android:textColor="#7947fd"

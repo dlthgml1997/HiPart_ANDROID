@@ -9,11 +9,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 
 import com.android.hipart_android.R
-import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.fragment_search_all.*
 import kotlinx.android.synthetic.main.fragment_search_etc.*
 
 class SearchAllFragment : Fragment() {
@@ -27,7 +24,7 @@ class SearchAllFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_search_all, container, false)
+        return inflater.inflate(R.layout.fragment_search_etc, container, false)
     }
 
 
@@ -35,14 +32,15 @@ class SearchAllFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val any =arguments?.getParcelable<BaseParcelable>("searchListAll")?.value
+
+        searchDataAll = any as ArrayList<User>
+        Log.d(TAG, "bf $searchDataAll.size")
         if(any != null) {
-            searchDataAll = any as ArrayList<User>
             Log.d(TAG, "$searchDataAll.size")
 
             if (searchDataAll.isNotEmpty()) {
-                ll_sear_all_frag_no_result.visibility = View.GONE
-                rl_sear_all_frag_yes_result.visibility = View.VISIBLE
-
+                rl_sear_etc_frag_no_result.visibility = View.GONE
+                rl_sear_etc_frag_yes_result.visibility = View.VISIBLE
 
                 setRecyclerView()
             }
@@ -51,8 +49,8 @@ class SearchAllFragment : Fragment() {
     }
 
     private fun setRecyclerView() {
-        rv_sear_all_frag.adapter = SearchResultRecyclerViewAdapter(activity!!, searchDataAll)
-        rv_sear_all_frag.layoutManager = LinearLayoutManager(activity!!, OrientationHelper.HORIZONTAL, false)
+        rv_sear_etc_frag.adapter = SearchResultRecyclerViewAdapter(activity!!, searchDataAll)
+        rv_sear_etc_frag.layoutManager = LinearLayoutManager(activity!!, OrientationHelper.HORIZONTAL, false)
     }
 
 

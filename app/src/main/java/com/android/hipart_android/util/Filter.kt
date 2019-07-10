@@ -15,6 +15,16 @@ object Filter {
         }
     }
 
+    fun typePat(num : Int) :String{
+        return when(num) {
+            0 ->""
+            1 -> "C-PAT"
+            2 -> "E-PAT"
+            3 -> "T-PAT"
+            else -> "ETC"
+        }
+    }
+
     fun platform(num: Int) : Int{
         return when(num){
             1 -> R.drawable.youtube_grey_img

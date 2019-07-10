@@ -18,6 +18,7 @@ import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.hipart.data.GetHifiveNumResponse
 import com.android.hipart_android.ui.hipart.data.PostHifiveRequest
 import com.android.hipart_android.ui.hipart.data.PostHifiveResponse
+import com.android.hipart_android.util.Filter
 import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_contact_purchase.*
 import kotlinx.android.synthetic.main.fragment_mypage.*
@@ -32,20 +33,34 @@ class ContactPurchaseFragment : Fragment() {
         ApplicationController.instance.networkService
     }
 
+    private var nickname : String = ""
+    private var type : Int = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+        nickname = arguments!!.getString("nickname")
+        type = arguments!!.getInt("type")
+
         return inflater.inflate(R.layout.fragment_contact_purchase, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        setView(nickname, type)
+
         getHifiveNumResponse("bj_ho")
 
         setListeners()
+    }
+
+    private fun setView(nickname : String, type : Int) {
+        tv_contact_purc_frag_name.text = nickname
+        tv_contact_purc_frag_type.text = Filter.typePat(type)
     }
 
     private fun setListeners() {
@@ -83,7 +98,6 @@ class ContactPurchaseFragment : Fragment() {
                         Log.v("Success!", response.body()!!.toString())
                         val data = response.body()!!.data
 
-                        tv_contact_purc_frag_name.text = data.nickname
                         tv_contact_purc_frag_farm.text = "남은 팜: " + data.point.toString() + "개"
                         tv_contact_purc_frag_nunmber.text = data.number
                     }
