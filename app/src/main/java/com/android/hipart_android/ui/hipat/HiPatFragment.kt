@@ -65,6 +65,7 @@ class HiPatFragment : Fragment(), View.OnClickListener {
     private fun setInitialViewPager() {
         vp_hipat_frag_nav.setCurrentItem(flag)
 
+
     }
 
 

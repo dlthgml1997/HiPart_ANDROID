@@ -91,7 +91,7 @@
                             android:textColor="#ffffff"
                             android:lineSpacingExtra="3sp"
                             android:text="편집자"
-                            android:id="@+id/tv_frag_hip_det_eetc_status"
+                            android:id="@+id/tv_frag_hip_det_eetc_type"
                             app:layout_constraintStart_toStartOf="@+id/tv_hip_det_frag_eetc_name"
                             app:layout_constraintTop_toBottomOf="@+id/tv_hip_det_frag_eetc_name"
                             android:layout_marginTop="12dp"/>

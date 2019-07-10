@@ -7,6 +7,7 @@ import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.hipart.get.*
 import com.android.hipart_android.util.BaseActivity
+import com.android.hipart_android.util.SharedPreferenceController
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,7 +39,7 @@ class HipartDetailActivity : BaseActivity() {
     private fun filterUser(nickname: String, type: Int) {
         when (type) {
             1 -> getDetailCResponse(nickname)
-            2 -> getDetailEEtcResponse(
+            2,4 -> getDetailEEtcResponse(
                 nickname)
             3 -> getDetailTResponse(nickname)
         }
@@ -47,7 +48,7 @@ class HipartDetailActivity : BaseActivity() {
     private fun getDetailCResponse(nickname: String) {
         val getDetailCResponse = networkService.getDetailCResponse(
             "application/json",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6Iuq4sO2DgCIsImlkeCI6NiwidHlwZSI6NCwiaWF0IjoxNTYyNTY2OTgwLCJleHAiOjE1NjM3NzY1ODAsImlzcyI6ImlnIn0.Q2x2Z6OKdAs78ExzZk5zZvRNfsu9lL3Av3WJ05XB74g",
+            SharedPreferenceController.getAuthorization(this),
             nickname
         )
 
@@ -78,7 +79,7 @@ class HipartDetailActivity : BaseActivity() {
     private fun getDetailEEtcResponse(nickname: String) {
         val getDetailEETcResponse = networkService.getDetailEEtcResponse(
             "application/json",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6Iuq4sO2DgCIsImlkeCI6NiwidHlwZSI6NCwiaWF0IjoxNTYyNTY2OTgwLCJleHAiOjE1NjM3NzY1ODAsImlzcyI6ImlnIn0.Q2x2Z6OKdAs78ExzZk5zZvRNfsu9lL3Av3WJ05XB74g",
+            SharedPreferenceController.getAuthorization(this),
             nickname
         )
 
@@ -111,7 +112,7 @@ class HipartDetailActivity : BaseActivity() {
     private fun getDetailTResponse(nickname: String) {
         val getDetailTResponse = networkService.getDetailTResponse(
             "application/json",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6Iuq4sO2DgCIsImlkeCI6NiwidHlwZSI6NCwiaWF0IjoxNTYyNTY2OTgwLCJleHAiOjE1NjM3NzY1ODAsImlzcyI6ImlnIn0.Q2x2Z6OKdAs78ExzZk5zZvRNfsu9lL3Av3WJ05XB74g",
+            SharedPreferenceController.getAuthorization(this),
             nickname
         )
 
@@ -156,6 +157,17 @@ class HipartDetailActivity : BaseActivity() {
         fragmentTransaction.commit()
 
 
+    }
+    fun addFragment(frameLayoutId: Int, fragment: Fragment, nickname : String, type : Int) {
+
+        val bundle = Bundle()
+        bundle.putString("nickname", nickname)
+        fragment.arguments = bundle
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(frameLayoutId, fragment)
+            .commit()
     }
 
 
