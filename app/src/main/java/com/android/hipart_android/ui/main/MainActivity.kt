@@ -97,10 +97,9 @@ class MainActivity : BaseActivity() {
         )
         btn_mypage.setOnClickListener(object : OnSingleClickListener() {
             override fun onSingleClick(v: View) {
-                if (getVisibleFragment() !is PortFolioFragment) {
-                    replaceFragment(R.id.frame_layout_main_act, MyPageFragment())
-                    setBottomIconChanger(FragmentKind.Mypage)
-                }
+                replaceFragment(R.id.frame_layout_main_act, MyPageFragment())
+                setBottomIconChanger(FragmentKind.Mypage)
+
             }
         })
     }
@@ -132,7 +131,6 @@ class MainActivity : BaseActivity() {
                 iv_hi_part.isSelected = false
                 iv_portfolio.isSelected = true
                 iv_mypage.isSelected = false
-
                 setAllTextToGray()
                 tv_portfolio.setTextColor(Color.parseColor("#7947fd"))
             }
@@ -142,7 +140,7 @@ class MainActivity : BaseActivity() {
                 iv_portfolio.isSelected = false
                 iv_mypage.isSelected = true
                 setAllTextToGray()
-                tv_portfolio.setTextColor(Color.parseColor("#838383"))
+                tv_mypage.setTextColor(Color.parseColor("#7947fd"))
             }
         }
 
@@ -222,21 +220,16 @@ class MainActivity : BaseActivity() {
             // Log.v("이놈!", data!!.getIntExtr("filterFlag", 0).toString())
             val filterFlag: Int = data!!.getIntExtra("filterFlag", 100)
 
-            if(filterFlag == 100){
+            if (filterFlag == 100) {
                 // 아무일도,, 아무것도,,
-            }else{
+            } else {
                 val hipatFragment = supportFragmentManager.findFragmentById(R.id.frame_layout_main_act) as HiPatFragment
-                val frag = hipatFragment.vp_hipat_frag_nav.adapter!!.instantiateItem(
-                    hipatFragment.vp_hipat_frag_nav,
-                    hipatFragment.tl_hipat_frag_pat_nav.selectedTabPosition
-                )
-
 //            Log.e(object{}::class.java.enclosingMethod.name,frag)
 
                 (0..4).forEach {
 
-
-                    val frag = hipatFragment.vp_hipat_frag_nav.adapter?.instantiateItem(hipatFragment.vp_hipat_frag_nav, it)
+                    val frag =
+                        hipatFragment.vp_hipat_frag_nav.adapter?.instantiateItem(hipatFragment.vp_hipat_frag_nav, it)
 
                     when (frag) {
                         is AllHipatFragment -> frag.setFilterData(filterFlag)
@@ -244,7 +237,6 @@ class MainActivity : BaseActivity() {
                         is EPatHiPatFragment -> frag.setFilterData(filterFlag)
                         is TPatHiPatFragment -> frag.setFilterData(filterFlag)
                         is EtcHiPatFragment -> frag.setFilterData(filterFlag)
-
                     }
 
                 }
