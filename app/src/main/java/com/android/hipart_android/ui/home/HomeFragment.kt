@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.hipat.HiPatFragment
@@ -44,6 +45,10 @@ class HomeFragment : Fragment(){
 
     private val homeFragAdAdapter by lazy {
         HomeFragAdAdapter(adDataList, this@HomeFragment.context)
+    }
+
+    private val iv by lazy {
+        view!!.findViewById<ImageView>(R.id.iv_frag_home_alarm)
     }
 
 
@@ -219,10 +224,7 @@ class HomeFragment : Fragment(){
                     ?.body()
                     ?.data
                     ?.let{
-                        if(it == 1)
-                            iv_frag_home_alarm.isSelected = true
-                        else
-                            iv_frag_home_alarm.isSelected = false
+                        iv.isSelected = it == 1
                     }
                 getNotiNetworkFlag = false
             }
