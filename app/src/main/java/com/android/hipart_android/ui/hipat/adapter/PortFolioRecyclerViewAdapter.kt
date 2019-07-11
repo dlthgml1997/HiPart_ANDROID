@@ -28,7 +28,7 @@ import retrofit2.Response
 
 class PortFolioRecyclerViewAdapter(
     val ctx: Context,
-    var dataList: ArrayList<GetMyPickData>,
+    var dataList: List<GetMyPickData>,
     val mainActivityFlag: Boolean
 ) :
     RecyclerView.Adapter<PortFolioRecyclerViewAdapter.Holder>() {
@@ -50,6 +50,7 @@ class PortFolioRecyclerViewAdapter(
         val firstTheme = holder.firstFilter
         when (data.user_type) {
             1 -> {
+                Log.v("요놈", data.user_nickname + "  " + data.concept)
                 setConceptTheme(data.concept, firstTheme)
                 conceptFlag = true
             }
@@ -69,6 +70,7 @@ class PortFolioRecyclerViewAdapter(
 
         val secondTheme = holder.secondFilter
         if (conceptFlag == false) {
+            Log.v("요놈", data.user_nickname + "  " + data.concept)
             setConceptTheme(data.concept, secondTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
@@ -84,6 +86,7 @@ class PortFolioRecyclerViewAdapter(
 
         val thirdTheme = holder.thirdFilter
         if (conceptFlag == false) {
+            Log.v("요놈", data.user_nickname + "  " + data.concept)
             setConceptTheme(data.concept, thirdTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
@@ -99,6 +102,7 @@ class PortFolioRecyclerViewAdapter(
 
         val fourthTheme = holder.fourthFilter
         if (conceptFlag == false) {
+            Log.v("요놈", data.user_nickname + "  " + data.concept)
             setConceptTheme(data.concept, fourthTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
@@ -159,11 +163,15 @@ class PortFolioRecyclerViewAdapter(
 
         val btnPick = holder.is_picked
 
+        btnPick.isSelected = dataList[position].pickState == 1
+
         if (btnPick.isSelected == true) {
             pickNum.textColor = Color.parseColor("#7947fd")
         } else {
             pickNum.textColor = Color.parseColor("#c7c7c7")
         }
+
+
 
         holder.root.setOnClickListener { ctx!!.startActivity<HipartDetailActivity>() }
 
@@ -177,14 +185,18 @@ class PortFolioRecyclerViewAdapter(
                 if (btnPick.isSelected == false) {
                     addPick(data.user_nickname, true)
                     btnPick.isSelected = true
-                    pickNum.text = "${pickNum.text.toString().toInt() + 1}"
                     pickNum.textColor = Color.parseColor("#7947fd")
+                    dataList[position].pickState = 1
+                    data.pick = data.pick + 1
+
                 } else {
                     deletePick(data.user_nickname)
                     btnPick.isSelected = false
-                    pickNum.text = "${pickNum.text.toString().toInt() - 1}"
+                    data.pick = data.pick - 1
                     pickNum.textColor = Color.parseColor("#c7c7c7")
+                    dataList[position].pickState = 0
                 }
+                notifyItemChanged(position)
             }
         } else {
             btnPick.setOnClickListener {
@@ -195,14 +207,17 @@ class PortFolioRecyclerViewAdapter(
                 if (btnPick.isSelected == false) {
                     addPick(data.user_nickname, false)
                     btnPick.isSelected = true
-                    pickNum.text = "${pickNum.text.toString().toInt() + 1}"
                     pickNum.textColor = Color.parseColor("#7947fd")
+                    dataList[position].pickState = 1
+                    data.pick = data.pick + 1
                 } else {
                     deletePick(data.user_nickname)
                     btnPick.isSelected = false
-                    pickNum.text = "${pickNum.text.toString().toInt() - 1}"
+                    data.pick = data.pick - 1
                     pickNum.textColor = Color.parseColor("#c7c7c7")
+                    dataList[position].pickState = 0
                 }
+                notifyItemChanged(position)
             }
         }
 

@@ -1,5 +1,6 @@
 package com.android.hipart_android.ui.main
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
@@ -10,6 +11,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.hipat.HiPatFragment
+import com.android.hipart_android.ui.hipat.fragment.*
 import com.android.hipart_android.ui.home.HomeFragment
 import com.android.hipart_android.ui.mypage.fragment.MyPageFragment
 import com.android.hipart_android.ui.portfolio.PortFolioFragment
@@ -18,6 +20,8 @@ import com.android.hipart_android.util.FragmentKind
 import com.android.hipart_android.util.OnSingleClickListener
 import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_hipat.*
+
 
 /**
  *
@@ -27,6 +31,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
+    private var FILTER_ACTIVITY_RESULT = 9
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -208,4 +213,42 @@ class MainActivity : BaseActivity() {
     }
 
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.v("이놈!", "잘들어오는중")
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.v("이놈!", requestCode.toString())
+        if (requestCode == FILTER_ACTIVITY_RESULT) {
+            Log.v("이놈!", "잘들어오는중")
+            // Log.v("이놈!", data!!.getIntExtr("filterFlag", 0).toString())
+            val filterFlag: Int = data!!.getIntExtra("filterFlag", 100)
+
+            if(filterFlag == 100){
+                // 아무일도,, 아무것도,,
+            }else{
+                val hipatFragment = supportFragmentManager.findFragmentById(R.id.frame_layout_main_act) as HiPatFragment
+                val frag = hipatFragment.vp_hipat_frag_nav.adapter!!.instantiateItem(
+                    hipatFragment.vp_hipat_frag_nav,
+                    hipatFragment.tl_hipat_frag_pat_nav.selectedTabPosition
+                )
+
+//            Log.e(object{}::class.java.enclosingMethod.name,frag)
+
+                (0..4).forEach {
+
+
+                    val frag = hipatFragment.vp_hipat_frag_nav.adapter?.instantiateItem(hipatFragment.vp_hipat_frag_nav, it)
+
+                    when (frag) {
+                        is AllHipatFragment -> frag.setFilterData(filterFlag)
+                        is CPatHiPatFragment -> frag.setFilterData(filterFlag)
+                        is EPatHiPatFragment -> frag.setFilterData(filterFlag)
+                        is TPatHiPatFragment -> frag.setFilterData(filterFlag)
+                        is EtcHiPatFragment -> frag.setFilterData(filterFlag)
+
+                    }
+
+                }
+            }
+        }
+    }
 }

@@ -5,20 +5,30 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.hipart_android.R
+import com.android.hipart_android.network.ApplicationController
+import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.hipart_filter.HipatFilterActivity
 import com.android.hipart_android.ui.hipat.adapter.HipatFragAdRecyclerViewAdapter
 import com.android.hipart_android.ui.hipat.adapter.HipatFragPortViewPagerAdapter
+import com.android.hipart_android.ui.hipat.data.GetProfileLookUpResponse
 import com.android.hipart_android.ui.hipat.data.HipatFragAdData
+import com.android.hipart_android.ui.mypick.data.GetMyPickData
 import com.android.hipart_android.ui.search.SearchActivity
+import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_hipat.*
 import kotlinx.android.synthetic.main.navigation_category_hipat_port.*
 import kotlinx.android.synthetic.main.toolbar_hipat.*
-import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.textColor
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class HiPatFragment : Fragment(), View.OnClickListener {
@@ -28,12 +38,16 @@ class HiPatFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v) {
             btn_frag_hipat_filter -> {
-                startActivity<HipatFilterActivity>()
+                activity!!.startActivityForResult<HipatFilterActivity>(9)
             }
             btn_hipat_frag_search -> {
-                startActivity<SearchActivity>()
+                activity!!.startActivity<SearchActivity>()
             }
         }
+    }
+
+    private val allDataList by lazy {
+        ArrayList<GetMyPickData>()
     }
 
     private val dataList by lazy {
@@ -60,12 +74,22 @@ class HiPatFragment : Fragment(), View.OnClickListener {
         configureMainTab()
         setOnClickListener()
         setInitialViewPager()
+
+//        txt_hipat_nav_all.setOnClickListener {
+//            object : OnSingleClickListener(){
+//                override fun onSingleClick(v: View) {
+//
+//                }
+//            }
+//            Log.v("ㄷㄱㄷㄱㄷ","되는것?")
+//        }
+//        txt_hipat_nav_cpat.setOnClickListener {
+//
+//        }
     }
 
     private fun setInitialViewPager() {
         vp_hipat_frag_nav.setCurrentItem(flag)
-
-
     }
 
 
@@ -79,6 +103,7 @@ class HiPatFragment : Fragment(), View.OnClickListener {
 
         setCustomTabView()
         setHipatFragTabPagerListener()
+        vp_hipat_frag_nav.offscreenPageLimit = 5
     }
 
     private fun setCustomTabView() {
@@ -148,5 +173,32 @@ class HiPatFragment : Fragment(), View.OnClickListener {
     private fun setOnClickListener() {
         btn_frag_hipat_filter.setOnClickListener(this)
         btn_hipat_frag_search.setOnClickListener(this)
+    }
+    fun getProfileLookUp(flag : Int){
+        var networkService: NetworkService = ApplicationController.instance.networkService
+
+        val getProfileLookUp = networkService.getProfileLookUp(
+            SharedPreferenceController.getAuthorization(this@HiPatFragment.context!!),
+            flag
+        )
+
+        getProfileLookUp.enqueue(object: Callback<GetProfileLookUpResponse> {
+            override fun onFailure(call: Call<GetProfileLookUpResponse>, t: Throwable) {
+                Log.e("All HighPat Frag Err", Log.getStackTraceString(t))
+            }
+
+            override fun onResponse(
+                call: Call<GetProfileLookUpResponse>,
+                response: Response<GetProfileLookUpResponse>
+            ) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.takeIf { it.message == "조회 성공" }
+                    ?.data
+                    ?.let {
+                    }
+            }
+        })
     }
 }
