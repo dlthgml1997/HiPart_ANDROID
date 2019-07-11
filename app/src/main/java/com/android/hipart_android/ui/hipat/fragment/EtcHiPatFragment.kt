@@ -83,5 +83,25 @@ class EtcHiPatFragment : Fragment() {
             }
         })
     }
+    fun setFilterData(flag: Int){
+        when(flag){
+            1,2,3,4,5,6,7 -> {
+                portFolioRecyclerViewAdapter.dataList.filter { it.info[0].concept == flag }
+                portFolioRecyclerViewAdapter.notifyDataSetChanged()
+            }
+            8, 9 -> {
+                portFolioRecyclerViewAdapter.dataList.filter { it.info[0].pd == flag - 7 }
+                portFolioRecyclerViewAdapter.notifyDataSetChanged()
+            }
+            10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 -> {
+                portFolioRecyclerViewAdapter.dataList.filter { it.info[0].lang == flag - 9 }
+                portFolioRecyclerViewAdapter.notifyDataSetChanged()
+            }
+            21, 22, 23, 24, 25, 26 -> {
+                portFolioRecyclerViewAdapter.dataList.filter { it.info[0].etc == flag - 20 }
+                portFolioRecyclerViewAdapter.notifyDataSetChanged()
+            }
+        }
+    }
 
 }
