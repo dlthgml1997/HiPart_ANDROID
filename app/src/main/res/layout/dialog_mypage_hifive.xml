@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="260dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="260dp"
         android:layout_height="300dp"
         android:clipToPadding="false">
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <TextView
-                android:text="슬픔이\n이미지"
-                android:textColor="#434343"
-                android:textSize="25sp"
-                android:fontFamily="@font/nanum_extra_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="59dp"
+        <ImageView
+                android:layout_width="150dp"
+                android:layout_height="119dp"
+                app:srcCompat="@drawable/mypage_sad_img"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
                 android:layout_gravity="center_horizontal"/>
         <TextView
                 android:text="지금은 서비스 준비중입니다..!"
@@ -23,7 +21,6 @@
                 android:textColor="#707070"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
                 android:layout_marginBottom="15dp"
                 android:layout_gravity="center_horizontal"/>
         <TextView

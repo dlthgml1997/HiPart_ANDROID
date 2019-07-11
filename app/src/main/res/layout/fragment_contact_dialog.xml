@@ -22,7 +22,7 @@
             <TextView style="@style/nanum_bold"
                       android:id="@+id/tv_contact_dia_pang"
                       android:textSize="20sp"
-                      android:text="3팡"
+                      android:text="3팜"
                       android:textColor="#7947fd"/>
             <TextView style="@style/nanum_regular"
                       android:textSize="20sp"
