@@ -205,6 +205,11 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
         val platform = view.findViewById<ImageView>(R.id.iv_rv_home_hipat_platform)
         setPlatform(data.detail_platform, platform)
 
+        conceptFlag = false
+        pdFlag = false
+        langFlag = false
+        etcFlag = false
+
         return view
     }
 
@@ -310,6 +315,7 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
     }
 
     private fun setConceptTheme(concept: Int, tv: TextView) {
+        tv.visibility = View.VISIBLE
         when (concept) {
             1 -> {
                 tv.text = "게임"
@@ -332,14 +338,17 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
             7 -> {
                 tv.text = "교육/정보"
             }
+            11->{
+                tv.text="..."
+            }
             else -> {
-                Log.e("HomeFragHipatAdapter", "conceptFlag == ?")
-                tv.text = "..."
+                tv.visibility = View.GONE
             }
         }
     }
 
     private fun setPDTheme(pd: Int, tv: TextView) {
+        tv.visibility = View.VISIBLE
         when (pd) {
             1 -> {
                 tv.text = "편집"
@@ -348,15 +357,14 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
                 tv.text = "기획"
             }
             else -> {
-                Log.e("HomeFragHipatAdapter", "pd == ?")
                 tv.visibility = View.GONE
             }
         }
     }
 
     private fun setLangTheme(lang: Int, tv: TextView) {
+        tv.visibility = View.VISIBLE
         when (lang) {
-
             1 -> {
                 tv.text = "영어"
             }
@@ -391,13 +399,13 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
                 tv.text = "인도네시아어"
             }
             else -> {
-                Log.e("HomeFragHipatAdapter", "langFlag == ?")
                 tv.visibility = View.GONE
             }
         }
     }
 
     private fun setEtcTheme(etc: Int, tv: TextView) {
+        tv.visibility = View.VISIBLE
         when (etc) {
             1 -> {
                 tv.text = "소품"
@@ -418,7 +426,6 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
                 tv.text = "썸네일"
             }
             else -> {
-                Log.e("HomeFragHipatAdapter", "etcFlag == ?")
                 tv.visibility = View.GONE
             }
         }
@@ -436,9 +443,5 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
                 iv.setImageResource(R.drawable.twitch_grey_img)
             }
         }
-    }
-
-    private val pickBtnCLickListener : View.OnClickListener = View.OnClickListener {
-
     }
 }

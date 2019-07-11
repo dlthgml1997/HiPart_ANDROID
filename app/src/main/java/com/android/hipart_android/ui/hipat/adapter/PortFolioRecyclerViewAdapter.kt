@@ -253,6 +253,10 @@ class PortFolioRecyclerViewAdapter(
             }
         }
 
+        conceptFlag = false
+        pdFlag = false
+        langFlag = false
+        etcFlag = false
     }
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -276,6 +280,7 @@ class PortFolioRecyclerViewAdapter(
     }
 
     private fun setConceptTheme(concept: Int, tv: TextView) {
+        tv.visibility = View.VISIBLE
         when (concept) {
             1 -> {
                 tv.text = "게임"
@@ -302,13 +307,13 @@ class PortFolioRecyclerViewAdapter(
                 tv.text="..."
             }
             else -> {
-                Log.e("HomeFragHipatAdapter", "conceptFlag == ?")
                 tv.visibility = View.GONE
             }
         }
     }
 
     private fun setPDTheme(pd: Int, tv: TextView) {
+        tv.visibility = View.VISIBLE
         when (pd) {
             1 -> {
                 tv.text = "편집"
@@ -317,15 +322,14 @@ class PortFolioRecyclerViewAdapter(
                 tv.text = "기획"
             }
             else -> {
-                Log.e("HomeFragHipatAdapter", "pd == ?")
                 tv.visibility = View.GONE
             }
         }
     }
 
     private fun setLangTheme(lang: Int, tv: TextView) {
+        tv.visibility = View.VISIBLE
         when (lang) {
-
             1 -> {
                 tv.text = "영어"
             }
@@ -360,13 +364,13 @@ class PortFolioRecyclerViewAdapter(
                 tv.text = "인도네시아어"
             }
             else -> {
-                Log.e("HomeFragHipatAdapter", "langFlag == ?")
                 tv.visibility = View.GONE
             }
         }
     }
 
     private fun setEtcTheme(etc: Int, tv: TextView) {
+        tv.visibility = View.VISIBLE
         when (etc) {
             1 -> {
                 tv.text = "소품"
@@ -387,7 +391,6 @@ class PortFolioRecyclerViewAdapter(
                 tv.text = "썸네일"
             }
             else -> {
-                Log.e("HomeFragHipatAdapter", "etcFlag == ?")
                 tv.visibility = View.GONE
             }
         }
