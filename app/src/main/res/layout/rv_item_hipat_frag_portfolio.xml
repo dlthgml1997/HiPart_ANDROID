@@ -102,6 +102,7 @@
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
                 android:background="@drawable/main_home_first_filter_box"
+                android:visibility="gone"
         />
 
             <TextView
@@ -116,6 +117,7 @@
                     android:background="@drawable/selector_hipat_filter_border"
                     android:paddingVertical="4dp"
                     android:layout_marginLeft="4dp"
+                    android:visibility="gone"
             />
             <TextView
                     android:id="@+id/tv_hipat_filter_lang"
@@ -129,6 +131,7 @@
                     android:background="@drawable/selector_hipat_filter_border"
                     android:paddingVertical="4dp"
                     android:layout_marginLeft="4dp"
+                    android:visibility="gone"
             />
             <TextView
                     android:id="@+id/tv_hipat_filter_act_chinese"
@@ -142,6 +145,7 @@
                     android:background="@drawable/selector_hipat_filter_border"
                     android:paddingVertical="4dp"
                     android:layout_marginLeft="4dp"
+                    android:visibility="gone"
             />
     </LinearLayout>
 
