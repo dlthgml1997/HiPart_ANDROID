@@ -10,15 +10,8 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="48dp">
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/back_grey_icon"
-                android:layout_marginLeft="16dp"
-                android:layout_centerVertical="true"
-                android:id="@+id/btn_toolbar_add_ad_back"/>
         <TextView
-                android:text="광고 추가"
+                android:text="협찬 신청하기"
                 android:textColor="#707070"
                 android:textSize="18sp"
                 android:fontFamily="@font/nanum_bold"
@@ -33,314 +26,243 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+            <RelativeLayout
+                    android:layout_width="360dp"
+                    android:layout_height="198dp">
+                <android.support.v4.view.ViewPager
+                        android:id="@+id/vp_add_ad_slider"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                </android.support.v4.view.ViewPager>
+                <android.support.design.widget.TabLayout
+                        android:id="@+id/tl_main_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        app:tabIndicatorHeight="0dp"
+                        app:tabBackground="@drawable/add_ad_dot_selector">
+                </android.support.design.widget.TabLayout>
+            </RelativeLayout>
             <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginHorizontal="24dp">
-                <LinearLayout
-                        android:orientation="vertical"
-                        android:background="@drawable/gray_border"
-                        android:layout_marginVertical="20dp"
-                        android:gravity="center_horizontal"
-                        android:layout_width="310dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ll_add_ad_ad_img_upload">
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="20dp"
-                            app:srcCompat="@drawable/pofol_upload_img"/>
-                    <TextView
-                            android:text="광고 커버 이미지 업로드하기"
-                            android:textSize="17sp"
-                            android:textColor="#484848"
-                            android:fontFamily="@font/nanum_bold"
-                            android:layout_marginBottom="16dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="20dp">
-                        <TextView
-                                android:text="파일 크기 I 최대 25MB 이하"
-                                android:textSize="13sp"
-                                android:textColor="#a2a2a2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"/>
-                        <TextView
-                                android:text="파일 형식 I .jpg"
-                                android:textSize="13sp"
-                                android:textColor="#a2a2a2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <EditText
-                        android:hint="타이틀을 입력해주세요"
-                        android:textColorHint="#838383"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="30dp">
+                <TextView
+                        android:text="롯데리아 더블 시리즈"
                         android:textColor="#434343"
                         android:textSize="20sp"
                         android:fontFamily="@font/nanum_bold"
-                        android:background="@android:color/transparent"
-                        android:layout_marginBottom="11dp"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/edt_add_ad_img_tilte"/>
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/txt_addad_act_title"/>
                 <TextView
-                        android:hint="부가 설명을 해주세요\n(최대 20자 이내)"
-                        android:textColorHint="#c7c7c7"
+                        android:text="먹방 크리에이터들을 위한 롯데리아의 신작"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:layout_width="match_parent"
-                        android:maxLength="20"
-                        android:lineSpacingExtra="8dp"
                         android:fontFamily="@font/nanum_light"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/edt_add_ad_img_des"/>
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/txt_addad_act_title_des"/>
                 <View
                         android:layout_width="match_parent"
+                        android:background="#f0f0f0"
                         android:layout_height="1dp"
-                        android:layout_marginVertical="20dp"/>
-                <LinearLayout
-                        android:orientation="vertical"
-                        android:background="@drawable/gray_border"
-                        android:layout_marginBottom="20dp"
-                        android:gravity="center_horizontal"
-                        android:layout_width="310dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ll_add_ad_more_img_upload">
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="20dp"
-                            app:srcCompat="@drawable/pofol_upload_img"/>
-                    <TextView
-                            android:text="상세 이미지 업로드하기"
-                            android:textSize="17sp"
-                            android:textColor="#484848"
-                            android:fontFamily="@font/nanum_bold"
-                            android:layout_marginBottom="16dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                    <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="20dp">
-                        <TextView
-                                android:text="파일 크기 I 최대 25MB 이하"
-                                android:textSize="13sp"
-                                android:textColor="#a2a2a2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"/>
-                        <TextView
-                                android:text="파일 형식 I .jpg"
-                                android:textSize="13sp"
-                                android:textColor="#a2a2a2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <EditText
-                        android:hint="[위치] 상호명"
-                        android:textColorHint="#838383"
+                        android:layout_marginBottom="20dp"/>
+                <TextView
+                        android:text="[망원] 하이팟 아지트"
                         android:textColor="#434343"
                         android:textSize="20sp"
                         android:fontFamily="@font/nanum_bold"
-                        android:background="@android:color/transparent"
-                        android:layout_marginBottom="11dp"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txt_add_ad_store_name"/>
-                <EditText
-                        android:hint="간단한 가게 설명"
-                        android:textColorHint="#c7c7c7"
-                        android:textColor="#707070"
+                        android:layout_marginBottom="10dp"
+                        android:id="@+id/txt_addad_act_store"/>
+                <TextView
+                        android:text="삼겹살로 서울을 제패한 하이팟 아지트에 초대합니다 ! "
+                        android:textColor="#434343"
                         android:textSize="13sp"
-                        android:background="@android:color/transparent"
-                        android:layout_width="match_parent"
-                        android:lineSpacingExtra="8dp"
-                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/nanum_light"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txt_add_ad_store_des"/>
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/txt_addad_act_title_store_des"/>
+                <View
+                        android:layout_width="match_parent"
+                        android:background="#f0f0f0"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="20dp"/>
                 <TextView
                         android:text="제공 내역"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="13dp"
                         android:fontFamily="@font/nanum_bold"
-                        android:layout_height="wrap_content"/>
-                <EditText
-                        android:hint="설명해주세요"
-                        android:textColorHint="#c7c7c7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"/>
+                <TextView
+                        android:text="앱잼, 망원동 단체회식"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:background="@android:color/transparent"
-                        android:layout_width="match_parent"
-                        android:lineSpacingExtra="8dp"
-                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/nanum_light"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txt_add_ad_provide_des"/>
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/txt_addad_act_offer"/>
                 <TextView
                         android:text="필수 키워드"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="13dp"
                         android:fontFamily="@font/nanum_bold"
-                        android:layout_height="wrap_content"/>
-                <EditText
-                        android:hint="설명해주세요"
-                        android:textColorHint="#c7c7c7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"/>
+                <TextView
+                        android:text="7만원 상당의 육류 + 식사류 + 주류"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:background="@android:color/transparent"
-                        android:layout_width="match_parent"
-                        android:lineSpacingExtra="8dp"
-                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/nanum_light"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txt_add_ad_keyword"/>
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/txt_addad_act_keyword"/>
                 <TextView
                         android:text="발표일"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="13dp"
                         android:fontFamily="@font/nanum_bold"
-                        android:layout_height="wrap_content"/>
-                <EditText
-                        android:hint="설명해주세요"
-                        android:textColorHint="#c7c7c7"
-                        android:textColor="#707070"
-                        android:textSize="13sp"
-                        android:background="@android:color/transparent"
-                        android:layout_width="match_parent"
-                        android:lineSpacingExtra="8dp"
-                        android:layout_marginBottom="20dp"
-                        android:fontFamily="@font/nanum_light"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txt_add_ad_present_date"/>
+                        android:layout_marginBottom="12dp"/>
                 <TextView
-                        android:text="사용자 &amp; 리뷰 기간"
+                        android:text="0000-00-00"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="13dp"
-                        android:fontFamily="@font/nanum_bold"
-                        android:layout_height="wrap_content"/>
-                <EditText
-                        android:hint="설명해주세요"
-                        android:textColorHint="#c7c7c7"
-                        android:textColor="#707070"
-                        android:textSize="13sp"
-                        android:background="@android:color/transparent"
-                        android:layout_width="match_parent"
-                        android:lineSpacingExtra="8dp"
-                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/nanum_light"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txt_add_ad_review"/>
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/txt_addad_act_date"/>
+                <TextView
+                        android:text="사용 &amp; 리뷰 기간"
+                        android:textColor="#707070"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/nanum_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"/>
+                <TextView
+                        android:text="0000-00-00 ~ 0000-00-00"
+                        android:textColor="#707070"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/nanum_light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/txt_addad_act_review"/>
                 <TextView
                         android:text="영업 시간 (휴무일 포함)"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="13dp"
                         android:fontFamily="@font/nanum_bold"
-                        android:layout_height="wrap_content"/>
-                <EditText
-                        android:hint="설명해주세요"
-                        android:textColorHint="#c7c7c7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"/>
+                <TextView
+                        android:text="월 ~ 금 10:00 ~ 22:00"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:background="@android:color/transparent"
-                        android:layout_width="match_parent"
-                        android:lineSpacingExtra="8dp"
-                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/nanum_light"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txt_add_ad_operating_time"/>
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/txt_addad_act_opentime"/>
                 <TextView
                         android:text="영상 등록 시 유의사항"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="13dp"
                         android:fontFamily="@font/nanum_bold"
-                        android:layout_height="wrap_content"/>
-                <EditText
-                        android:hint="설명해주세요"
-                        android:textColorHint="#c7c7c7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"/>
+                <TextView
+                        android:text="1. 영상 내에 지도 첨부"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:background="@android:color/transparent"
-                        android:layout_width="match_parent"
-                        android:lineSpacingExtra="8dp"
-                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/nanum_light"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txt_add_ad_uploda_note"/>
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/txt_addad_act_upload_note"/>
                 <TextView
                         android:text="방문 시 유의사항"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="13dp"
                         android:fontFamily="@font/nanum_bold"
-                        android:layout_height="wrap_content"/>
-                <EditText
-                        android:hint="설명해주세요"
-                        android:textColorHint="#c7c7c7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"/>
+                <TextView
+                        android:text="1. 방문 2~3일 전 예약(당일 예약시 체험 불가)"
                         android:textColor="#707070"
                         android:textSize="13sp"
-                        android:background="@android:color/transparent"
-                        android:layout_width="match_parent"
-                        android:lineSpacingExtra="8dp"
-                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/nanum_light"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txt_add_ad_visit_note"/>
-                <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginBottom="20dp"/>
-                <TextView
-                        android:text="*모든 항목을 입력하셔야 광고가 추가됩니다."
-                        android:textColor="#c7c7c7"
-                        android:textSize="10sp"
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/nanum_regular"
-                        android:layout_height="wrap_content"/>
-                <TextView
-                        android:text="*상세 사진은 최대 5장까지 가능합니다."
-                        android:textColor="#c7c7c7"
-                        android:textSize="10sp"
-                        android:layout_width="match_parent"
                         android:layout_marginBottom="27dp"
-                        android:fontFamily="@font/nanum_regular"
-                        android:layout_height="wrap_content"/>
+                        android:id="@+id/txt_addad_act_visit_note"/>
             </LinearLayout>
-            <Button
-                    android:text="광고 추가하기"
-                    android:textColor="#ffffff"
-                    android:textSize="15sp"
-                    android:fontFamily="@font/nanum_extra_bold"
-                    android:background="@drawable/gray_border_fill"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="7dp"
+            <RelativeLayout
                     android:layout_width="334dp"
                     android:layout_height="42dp"
-                    android:id="@+id/btn_add_ad_submit"/>
+                    android:background="@drawable/primary_border_fill"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="7dp">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:id="@+id/btn_addad_act_cancle">
+                        <TextView
+                                android:text="취소"
+                                android:textSize="15sp"
+                                android:textColor="#ffffff"
+                                android:fontFamily="@font/nanum_extra_bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_weight="1"/>
+                    </RelativeLayout>
+                    <View
+                            android:layout_width="1dp"
+                            android:layout_height="31dp"
+                            android:background="#ffffff"
+                            android:layout_gravity="center_vertical"/>
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:id="@+id/btn_addad_act_next">
+                        <TextView
+                                android:text="다음"
+                                android:textSize="15sp"
+                                android:textColor="#ffffff"
+                                android:fontFamily="@font/nanum_extra_bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_weight="1"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
