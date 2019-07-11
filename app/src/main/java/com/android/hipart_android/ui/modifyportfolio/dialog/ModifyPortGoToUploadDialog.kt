@@ -37,11 +37,11 @@ class ModifyPortGoToUploadDialog : DialogFragment() {
         txt_go_to_upload_ok.setOnClickListener {
             when (userType) {
                 1, 2, 4 -> {
-                    startActivity<NotTpatUploadActivity>()
+                    startActivity<NotTpatUploadActivity>("nickName" to SharedPreferenceController.getNickName(this@ModifyPortGoToUploadDialog.context!!))
                     (context as ModifyPortFolioActivity).finish()
             }
                 3 -> {
-                    startActivity<TpatUploadActivity>()
+                    startActivity<TpatUploadActivity>("nickName" to SharedPreferenceController.getNickName(this@ModifyPortGoToUploadDialog.context!!))
                     (context as ModifyPortFolioActivity).finish()
                 }
                 else-> {

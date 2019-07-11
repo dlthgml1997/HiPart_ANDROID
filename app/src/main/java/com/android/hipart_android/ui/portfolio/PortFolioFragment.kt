@@ -1,6 +1,5 @@
 package com.android.hipart_android.ui.portfolio
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialogFragment
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import com.android.hipart_android.ui.main.MainActivity
 import com.android.hipart_android.ui.modifyportfolio.ModifyPortFolioActivity
 import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_portfolio.*
-import org.jetbrains.anko.support.v4.defaultSharedPreferences
 import org.jetbrains.anko.support.v4.startActivity
 
 class PortFolioFragment : BottomSheetDialogFragment() {
@@ -30,10 +28,10 @@ class PortFolioFragment : BottomSheetDialogFragment() {
         ll_port_frag_portfolio_upload.setOnClickListener {
             when(userType){
                 1,2,4 ->{
-                    startActivity<NotTpatUploadActivity>()
+                    startActivity<NotTpatUploadActivity>("nickName" to SharedPreferenceController.getNickName(this@PortFolioFragment.context!!))
                 }
                 3->{
-                    startActivity<TpatUploadActivity>()
+                    startActivity<TpatUploadActivity>("nickName" to SharedPreferenceController.getNickName(this@PortFolioFragment.context!!))
                 }
             }
         }
