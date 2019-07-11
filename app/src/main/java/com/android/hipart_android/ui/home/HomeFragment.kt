@@ -220,9 +220,9 @@ class HomeFragment : Fragment(){
                     ?.data
                     ?.let{
                         if(it == 1)
-                            iv_frag_home_alarm.setImageResource(R.drawable.main_newalarm_icon)
+                            iv_frag_home_alarm.isSelected = true
                         else
-                            iv_frag_home_alarm.setImageResource(R.drawable.main_alarm_icon)
+                            iv_frag_home_alarm.isSelected = false
                     }
                 getNotiNetworkFlag = false
             }
