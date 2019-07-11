@@ -20,6 +20,8 @@ object SharedPreferenceController {
     private val USER_TYPE= "USER_TYPE"
 
     private val searchKey = "Search_Key"
+
+    private val USER_NICKNAME= "USER_NICKNAME"
     val searchHistoryList = ArrayList<String>()
 
     fun setAuthorization(context: Context, authorization : String){
@@ -44,6 +46,18 @@ object SharedPreferenceController {
     fun getUserType(context: Context) : Int {
         val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE) //현재 내 기기에서만 볼수 있는 데이터
         return pref.getInt(USER_TYPE, 0)
+    }
+
+    fun setNickName(context: Context, nickName : String){
+        val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE) //현재 내 기기에서만 볼수 있는 데이터
+        val editor = pref.edit()
+        editor.putString(USER_NICKNAME, nickName)
+        editor.commit()
+    }
+
+    fun getNickName(context: Context) : String {
+        val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE) //현재 내 기기에서만 볼수 있는 데이터
+        return pref.getString(USER_NICKNAME, "")
     }
 
     fun setMyId(context: Context, id : String){
