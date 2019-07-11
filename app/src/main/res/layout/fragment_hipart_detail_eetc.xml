@@ -46,6 +46,8 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginEnd="29dp"/>
                     <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
                             android:fontFamily="@font/nanum_square_regular"
                             android:textSize="12sp"
                             android:textColor="#ffffff"
