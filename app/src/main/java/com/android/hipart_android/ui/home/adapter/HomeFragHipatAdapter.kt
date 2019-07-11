@@ -166,7 +166,7 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
 
         root.setOnClickListener {
             // TODO : HipartDetailActivity에 user_id 넘기기
-            context!!.startActivity<HipartDetailActivity>()
+            context!!.startActivity<HipartDetailActivity>("user_nickname" to data.user_nickname, "user_type" to data.user_type)
         }
 
         val platform = view.findViewById<ImageView>(R.id.iv_rv_home_hipat_platform)

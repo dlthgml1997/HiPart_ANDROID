@@ -24,7 +24,7 @@ import com.android.hipart_android.ui.modifyportfolio.put.PutModifyPortFolioRespo
 import com.android.hipart_android.ui.modifyprofile.data.get.GetModifyProfileResponse
 import com.android.hipart_android.ui.modifyprofile.data.put.ModifyProfileResponse
 import com.android.hipart_android.ui.mypage.data.PostManToManQuestionRequest
-import com.android.hipart_android.ui.mypage.get.GetMypageResponse
+import com.android.hipart_android.ui.mypage.data.get.GetMyPageResponse
 import com.android.hipart_android.ui.mypick.data.GetMyPickResponse
 import com.android.hipart_android.ui.notification.get.GetNotificationResponse
 import com.android.hipart_android.ui.portfolio.data.PostPortfolioTransRequest
@@ -129,7 +129,7 @@ interface NetworkService {
     fun getMypageResponse(
         @Header("Content-Type") content_type: String,
         @Header("token") token: String
-    ): Call<GetMypageResponse>
+    ): Call<GetMyPageResponse>
 
     /**
      * 하이 파이브한 사람

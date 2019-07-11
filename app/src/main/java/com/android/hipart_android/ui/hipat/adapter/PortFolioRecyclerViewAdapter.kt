@@ -173,7 +173,7 @@ class PortFolioRecyclerViewAdapter(
 
 
 
-        holder.root.setOnClickListener { ctx!!.startActivity<HipartDetailActivity>() }
+        holder.root.setOnClickListener { ctx!!.startActivity<HipartDetailActivity>("user_nickname" to data.user_nickname, "user_type" to data.user_type) }
 
         if (mainActivityFlag == true) {
             btnPick.setOnClickListener {
