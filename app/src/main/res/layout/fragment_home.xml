@@ -87,7 +87,8 @@
                 android:layout_marginTop="20dp"
                 android:overScrollMode="never"
                 android:clipToPadding="false"
-                android:paddingHorizontal="24dp"
+                android:paddingLeft="22dp"
+                android:paddingRight="20dp"
         />
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -100,7 +101,6 @@
         />
 
         <LinearLayout
-                android:paddingHorizontal="24dp"
                 android:layout_width="match_parent" android:layout_height="52dp"
                       android:layout_marginTop="30dp"
                       android:orientation="horizontal"
