@@ -125,7 +125,8 @@ android:scrollbars="none">
         </LinearLayout>
         <RelativeLayout android:layout_width="match_parent" android:layout_height="56dp"
                         android:layout_alignParentBottom="true"
-                        android:id="@+id/rl_search_act_search_button">
+                        android:id="@+id/rl_search_act_search_button"
+        android:background="@android:color/white">
             <Button android:layout_width="match_parent" android:layout_height="match_parent"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginVertical="8dp"

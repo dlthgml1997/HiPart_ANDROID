@@ -213,7 +213,7 @@
                 <!--android:paddingVertical="6dp"-->
                 <!--android:paddingHorizontal="9dp">-->
             <!--<TextView-->
-                    <!--android:text="PICK"-->
+                    <!--android:searchText="PICK"-->
                     <!--android:textSize="14sp"-->
                     <!--android:textColor="#3eecad"-->
                     <!--android:fontFamily="@font/nanum_extra_bold"-->
@@ -221,7 +221,7 @@
                     <!--android:layout_height="wrap_content"-->
                     <!--android:layout_marginRight="6dp"/>-->
             <!--<TextView-->
-                    <!--android:text="했습니다."-->
+                    <!--android:searchText="했습니다."-->
                     <!--android:textColor="#ffffff"-->
                     <!--android:textSize="14sp"-->
                     <!--android:fontFamily="@font/nanum_regular"-->

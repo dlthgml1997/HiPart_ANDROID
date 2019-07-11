@@ -97,9 +97,9 @@ class NotTpatUploadActivity : BaseActivity() {
 
         if (title.isNotEmpty() && content.isNotEmpty()) {
             val user_token = SharedPreferenceController.getAuthorization(this@NotTpatUploadActivity)
-            val user_url = RequestBody.create(MediaType.parse("text/plain"), url)
-            val user_title = RequestBody.create(MediaType.parse("text/plain"), title)
-            val user_content = RequestBody.create(MediaType.parse("text/plain"), content)
+            val user_url = RequestBody.create(MediaType.parse("searchText/plain"), url)
+            val user_title = RequestBody.create(MediaType.parse("searchText/plain"), title)
+            val user_content = RequestBody.create(MediaType.parse("searchText/plain"), content)
 
             when (user_type) {
                 1 -> {

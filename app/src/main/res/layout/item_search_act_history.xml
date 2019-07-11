@@ -4,7 +4,8 @@
                 android:layout_width="match_parent" android:layout_height="24dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="8dp"
-                android:layout_marginHorizontal="24dp">
+                android:layout_marginHorizontal="24dp"
+                android:id="@+id/rl_item_search_act_history">
     <TextView
             style="@style/nanum_regular"
             android:textSize="13sp"
@@ -19,6 +20,6 @@
                android:layout_alignParentRight="true"
                android:layout_marginRight="12dp"
                android:layout_centerVertical="true"
-    android:id="@+id/tv_item_sear_act_history_delete"/>
+               android:id="@+id/tv_item_sear_act_history_delete"/>
 
 </RelativeLayout>

@@ -21,6 +21,7 @@ import com.android.hipart_android.ui.search.fragment.SearchEpatFragment
 import com.android.hipart_android.ui.search.get.GetSearchResponse
 import com.android.hipart_android.ui.search.get.SearchUserDetail
 import com.android.hipart_android.ui.search.get.User
+import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SearchData
 import com.android.hipart_android.util.SharedPreferenceController
 import com.android.hipart_android.util.SharedPreferenceController.addSearchHistory
@@ -33,14 +34,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-
-
-class SearchActivity : AppCompatActivity(), View.OnClickListener, KeyboardVisibilityEventListener {
+class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityEventListener {
     override fun onVisibilityChanged(isOpen: Boolean) {
-        if(isOpen) {
+        if (isOpen) {
             sv_search_act.scrollTo(0, sv_search_act.bottom)
             rl_search_act_search_button.visibility = View.VISIBLE
-        }else {
+        } else {
             sv_search_act.scrollTo(0, sv_search_act.top)
             rl_search_act_search_button.visibility = View.GONE
         }
@@ -89,16 +88,17 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener, KeyboardVisibi
         btn_search_act_search.setOnClickListener {
             Log.d(TAG, "search button clicked")
             setViewPagerVisibility()
-            getSearchResponse(token)
+
+            val searchText = et_search_act_search.text.toString()
+            getSearchResponse(searchText, token)
 
             setKeyboardListener()
         }
 
-
     }
 
     fun setRecentSearchList() {
-        rv_search_act_history.adapter = SearchHistoryAdapter(this, SharedPreferenceController.getSearchHistory(this))
+        rv_search_act_history.adapter = SearchHistoryAdapter(SharedPreferenceController.getSearchHistory(this))
         rv_search_act_history.layoutManager = LinearLayoutManager(this)
     }
 
@@ -107,7 +107,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener, KeyboardVisibi
         hideKeyboard()
     }
 
-    private fun hideKeyboard()   {
+    private fun hideKeyboard() {
         imm.hideSoftInputFromWindow(et_search_act_search.windowToken, 0)
 
     }
@@ -117,9 +117,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener, KeyboardVisibi
         rl_search_act_search_result.visibility = View.VISIBLE
     }
 
-
-    private fun getSearchResponse(token: String) {
-        val searchText = et_search_act_search.text.toString()
+    fun getSearchResponse(searchText : String, token: String) {
         getSearchResponse = networkService.getSearchResponse("application/json", token, searchText)
         getSearchResponse.enqueue(object : Callback<GetSearchResponse> {
             override fun onFailure(call: Call<GetSearchResponse>, t: Throwable) {
@@ -130,12 +128,14 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener, KeyboardVisibi
             override fun onResponse(call: Call<GetSearchResponse>, response: Response<GetSearchResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
-                        Log.d(TAG, response.body()!!.message + response.body()!!.data.size.toString())
-                        SearchData.searchDataAll = response.body()!!.data
+                        if(response.body()!!.data != null) {
+                            Log.d(TAG, response.body()!!.message + response.body()!!.data.size.toString())
+                            SearchData.searchDataAll = response.body()!!.data
 
-                        filterSearchData(SearchData.searchDataAll)
+                            filterSearchData(SearchData.searchDataAll)
 
-                        addSearchHistory(this@SearchActivity, searchText)
+                            addSearchHistory(this@SearchActivity, searchText)
+                        }
 
                     }
                 }

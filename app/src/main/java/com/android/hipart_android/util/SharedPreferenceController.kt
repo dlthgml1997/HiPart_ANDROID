@@ -66,20 +66,44 @@ object SharedPreferenceController {
     }
 
     fun addSearchHistory(context : Context, text : String) {
-        searchHistoryList.add(text)
-        val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE)
-        val editor = pref.edit()
-        val ja = JSONArray()
-        searchHistoryList.add(text)
         for(i in 0..searchHistoryList.size-1) {
-            ja.put(searchHistoryList[i])
+            if(searchHistoryList[i] == text) {
+
+            }else{
+                searchHistoryList.add(text)
+                val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE)
+                val editor = pref.edit()
+                val ja = JSONArray()
+                for(i in 0..searchHistoryList.size-1) {
+                    ja.put(searchHistoryList[i])
+                }
+                if(!searchHistoryList.isEmpty()) {
+                    editor.putString(searchKey,ja.toString())
+                }else {
+                    editor.putString(searchKey, null)
+                }
+                editor.apply()
+            }
         }
-        if(!searchHistoryList.isEmpty()) {
-            editor.putString(searchKey,ja.toString())
-        }else {
-            editor.putString(searchKey, null)
+
+    }
+
+    fun removeSearchHistory(context : Context, index : Int) {
+        if(searchHistoryList.size>0) {
+            searchHistoryList.removeAt(index)
+            val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE)
+            val editor = pref.edit()
+            val ja = JSONArray()
+            for (i in 0..searchHistoryList.size - 1) {
+                ja.put(searchHistoryList[i])
+            }
+            if (!searchHistoryList.isEmpty()) {
+                editor.putString(searchKey, ja.toString())
+            } else {
+                editor.putString(searchKey, null)
+            }
+            editor.apply()
         }
-        editor.apply()
     }
     fun getSearchHistory(context : Context) : ArrayList<String> {
         val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE)

@@ -66,15 +66,15 @@ class MyPageFragment : Fragment() {
                     ?.let {
 //                        val data = response.body()!!.data[0]
 //
-//                        txt_mypage_frag_name.text = data.user_nickname
-//                        txt_mypage_frag_part.text = getUserType(data.user_type)
+//                        txt_mypage_frag_name.searchText = data.user_nickname
+//                        txt_mypage_frag_part.searchText = getUserType(data.user_type)
 //                        getPlatformType(data.detail_platform, txt_mypage_frag_detail_platform)
 //                        Glide.with(ctx)
 //                            .load(data.user_img)
 //                            .into(img_mypage_frag_profile_photo)
-//                        txt_mypage_frag_farm_num.text = data.point.toString()
-//                        txt_mypage_frag_pick_num.text = data.pick.toString()
-//                        txt_mypage_frag_hifive_num.text = data.hifive.toString()
+//                        txt_mypage_frag_farm_num.searchText = data.point.toString()
+//                        txt_mypage_frag_pick_num.searchText = data.pick.toString()
+//                        txt_mypage_frag_hifive_num.searchText = data.hifive.toString()
                     }
 
             }

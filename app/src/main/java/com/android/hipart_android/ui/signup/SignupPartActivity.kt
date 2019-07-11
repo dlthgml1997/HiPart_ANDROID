@@ -48,10 +48,10 @@ class SignupPartActivity : AppCompatActivity() {
     private fun postSignUp() {
         val networkService = ApplicationController.instance.networkService
 
-        val emailTemp = RequestBody.create(MediaType.parse("text/plain"), email)
-        val password = RequestBody.create(MediaType.parse("text/plain"), password)
-        val nickName = RequestBody.create(MediaType.parse("text/plain"), nickName)
-        val phoneNum = RequestBody.create(MediaType.parse("text/plain"), phoneNum)
+        val emailTemp = RequestBody.create(MediaType.parse("searchText/plain"), email)
+        val password = RequestBody.create(MediaType.parse("searchText/plain"), password)
+        val nickName = RequestBody.create(MediaType.parse("searchText/plain"), nickName)
+        val phoneNum = RequestBody.create(MediaType.parse("searchText/plain"), phoneNum)
 
         val imgUri = Uri.parse(img)
         if(img != ""){

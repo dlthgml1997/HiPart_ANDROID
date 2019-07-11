@@ -305,10 +305,10 @@ class ModifyActivity : BaseActivity() {
     fun modifyProfile() {
         val networkService = ApplicationController.instance.networkService
 
-        val nickName = RequestBody.create(MediaType.parse("text/plain"), et_modify_act_nickname.text.toString())
-        val phoneNum = RequestBody.create(MediaType.parse("text/plain"), et_modify_act_phone_number.text.toString())
-        val nowPw = RequestBody.create(MediaType.parse("text/plain"), et_modify_act_pw_now.text.toString())
-        val newPw = RequestBody.create(MediaType.parse("text/plain"), et_modify_act_pw_new.text.toString())
+        val nickName = RequestBody.create(MediaType.parse("searchText/plain"), et_modify_act_nickname.text.toString())
+        val phoneNum = RequestBody.create(MediaType.parse("searchText/plain"), et_modify_act_phone_number.text.toString())
+        val nowPw = RequestBody.create(MediaType.parse("searchText/plain"), et_modify_act_pw_now.text.toString())
+        val newPw = RequestBody.create(MediaType.parse("searchText/plain"), et_modify_act_pw_new.text.toString())
 
         // 이미지 변경 됐을 시
         if (imageString != "") {
