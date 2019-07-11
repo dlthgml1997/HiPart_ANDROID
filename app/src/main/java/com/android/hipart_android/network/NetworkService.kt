@@ -32,7 +32,7 @@ import com.android.hipart_android.ui.portfolio.data.PostPortfolioTransResponse
 import com.android.hipart_android.ui.portfolio.data.post.PostCPortFolioResponse
 import com.android.hipart_android.ui.portfolio.data.post.PostEPortFolioResponse
 import com.android.hipart_android.ui.portfolio.data.post.PostEtcPortFolioResponse
-import com.android.hipart_android.ui.search.GetSearchResponse
+import com.android.hipart_android.ui.search.get.GetSearchResponse
 import com.android.hipart_android.ui.signup.data.GetDuplicateFlagResponse
 import com.android.hipart_android.ui.signup.data.PostSignUpResponse
 import okhttp3.MultipartBody
@@ -376,6 +376,7 @@ interface NetworkService {
     @GET("main/search/{keyword}")
     fun getSearchResponse(
         @Header("Content-Type") content_type: String,
+        @Header("token") token : String,
         @Path("keyword") keyword: String
     ): Call<GetSearchResponse>
 
