@@ -26,7 +26,6 @@ class MyPickActivity : BaseActivity(), View.OnClickListener {
     private val networkService:NetworkService by lazy{
         ApplicationController.instance.networkService
     }
-
     private val getTokenResponse by lazy{
         SharedPreferenceController.getAuthorization(this@MyPickActivity)
     }
@@ -70,8 +69,13 @@ class MyPickActivity : BaseActivity(), View.OnClickListener {
                     ?.takeIf { it.isSuccessful }
                     ?.body()
                     ?.let {
-                        portFolioRecyclerViewAdapter.dataList = it.data
-                        portFolioRecyclerViewAdapter.notifyDataSetChanged()
+                        if(it.data.isNullOrEmpty()){
+                            rv_mypick_act_no_result.visibility = View.VISIBLE
+                            rv_mypick_act_port.visibility = View.GONE
+                        }else{
+                            portFolioRecyclerViewAdapter.dataList = it.data
+                            portFolioRecyclerViewAdapter.notifyDataSetChanged()
+                        }
                     }
             }
         })

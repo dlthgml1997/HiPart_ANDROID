@@ -7,6 +7,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.mypick.MyPickActivity">
+
+    <LinearLayout
+            android:id="@+id/rv_mypick_act_no_result"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+    >
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@drawable/mypick_img"
+                   android:layout_gravity="center_horizontal"
+                   android:layout_centerInParent="true"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="내가 픽한 하이팟이 없습니다"
+                  android:layout_gravity="center_horizontal"
+                  android:textSize="21sp"
+                  android:textColor="#bcbcbc"
+                  android:fontFamily="@font/nanum_bold"
+                  android:layout_marginTop="40dp"
+        />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="새로운 파트너를 찾아보는건 어떨까요 ?"
+                  android:layout_gravity="center_horizontal"
+                  android:textSize="13sp"
+                  android:textColor="#bcbcbc"
+                  android:fontFamily="@font/nanum_regular"
+                  android:layout_marginTop="16dp"
+        />
+
+
+    </LinearLayout>
     <include
             android:id="@+id/toolbar_mypick"
             layout="@layout/toolbar_mypick"/>
@@ -14,6 +46,7 @@
             android:layout_below="@+id/toolbar_mypick"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_mypick_act_port"
                 android:layout_marginHorizontal="24dp"
@@ -21,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"/>
     </RelativeLayout>
+
 
     <RelativeLayout
             android:id="@+id/rl_mypick_act_anim"
