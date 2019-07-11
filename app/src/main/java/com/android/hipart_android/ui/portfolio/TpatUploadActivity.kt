@@ -30,7 +30,8 @@ class TpatUploadActivity : BaseActivity() {
         setContentView(R.layout.activity_upload_tpat)
             setOnBtnClickListener()
             setOnFocusChangeListener()
-
+        var nickName = intent.getStringExtra("nickName")
+        setNickName(nickName)
     }
 
     private fun setOnBtnClickListener(){
@@ -90,5 +91,8 @@ class TpatUploadActivity : BaseActivity() {
                 ll_tpat_upload_act_foreign.setBackgroundResource(R.drawable.upload_tpat_port_border_gray)
             }
         }
+    }
+    private fun setNickName(nickName: String){
+        tv_tpat_upload_act_nickname.text = "${nickName}님,"
     }
 }

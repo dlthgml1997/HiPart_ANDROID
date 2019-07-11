@@ -27,6 +27,7 @@ import com.android.hipart_android.util.ImageConverter
 import com.android.hipart_android.util.SharedPreferenceController
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_modify.*
+import kotlinx.android.synthetic.main.toolbar_modify.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -86,6 +87,9 @@ class ModifyActivity : BaseActivity() {
 
         rl_modify_act_user_image.setOnClickListener {
             requestReadExternalStoragePermission()
+        }
+        btn_modify_act_back.setOnClickListener {
+            finish()
         }
     }
 

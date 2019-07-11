@@ -15,6 +15,7 @@ import com.android.hipart_android.ui.home.data.HomeFragAdData
 import com.android.hipart_android.ui.home.data.get.GetCustomRecommendResponse
 import com.android.hipart_android.ui.home.data.get.GetNotificationFlagResponse
 import com.android.hipart_android.ui.home.data.get.ResData
+import com.android.hipart_android.ui.login.data.get.GetMyInfoResponse
 import com.android.hipart_android.ui.main.MainActivity
 import com.android.hipart_android.ui.notification.NotificationActivity
 import com.android.hipart_android.ui.search.SearchActivity
@@ -50,6 +51,7 @@ class HomeFragment : Fragment(){
         inflater.inflate(R.layout.fragment_home, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        getMyInfo()
         super.onActivityCreated(savedInstanceState)
         hipartDataList = ArrayList<ResData>()
         // 하는 중
@@ -227,4 +229,26 @@ class HomeFragment : Fragment(){
         })
     }
 
+    private fun getMyInfo(){
+        val networkService = ApplicationController.instance.networkService
+        val getMyInfo = networkService.getMyInfo(
+            SharedPreferenceController.getAuthorization(this@HomeFragment.context!!)
+        )
+
+        getMyInfo.enqueue(object : Callback<GetMyInfoResponse>{
+            override fun onFailure(call: Call<GetMyInfoResponse>, t: Throwable) {
+                Log.e("Login Act Err", Log.getStackTraceString(t))
+            }
+
+            override fun onResponse(call: Call<GetMyInfoResponse>, response: Response<GetMyInfoResponse>) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.data
+                    ?.let{
+                        SharedPreferenceController.setNickName(this@HomeFragment.context!!, it[0].user_nickname)
+                    }
+            }
+        })
+    }
 }

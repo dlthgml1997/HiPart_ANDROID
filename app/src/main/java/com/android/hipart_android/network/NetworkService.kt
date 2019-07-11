@@ -14,6 +14,7 @@ import com.android.hipart_android.ui.home.data.post.PickResponse
 import com.android.hipart_android.ui.login.data.PostLoginRequest
 import com.android.hipart_android.ui.login.data.PostLoginResponse
 import com.android.hipart_android.ui.login.data.RefreshTokenResponse
+import com.android.hipart_android.ui.login.data.get.GetMyInfoResponse
 import com.android.hipart_android.ui.modifyportfolio.data.ModifyList
 import com.android.hipart_android.ui.modifyportfolio.data.WorkIndex
 import com.android.hipart_android.ui.modifyportfolio.delete.DeleteModifyPortFolioResponse
@@ -524,6 +525,11 @@ interface NetworkService {
     fun getNotificationFlag(
         @Header("token") token: String
     ): Call<GetNotificationFlagResponse>
+
+    @GET("myinfo")
+    fun getMyInfo(
+        @Header("token") token: String
+    ): Call<GetMyInfoResponse>
 
 
 }
