@@ -9,7 +9,7 @@ data class GetMyPickResponse(
 
 data class GetMyPickData(
     val info: ArrayList<Info>,
-    val pickState: Int
+    var pickState: Int
 )
 
 data class Info(
@@ -19,7 +19,7 @@ data class Info(
     val etc: Int,
     val lang: Int,
     val pd: Int,
-    val pick: Int,
+    var pick: Int,
     val user_img: String,
     val user_nickname: String,
     val user_type: Int

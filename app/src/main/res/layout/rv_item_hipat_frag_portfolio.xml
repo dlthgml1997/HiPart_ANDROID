@@ -93,14 +93,14 @@
         <TextView
                 android:id="@+id/tv_hipat_filter_act_concept"
                 android:text="-"
-                android:textColor="#707070"
+                android:textColor="#FFFFFF"
                 android:textSize="11sp"
                 android:fontFamily="@font/nanum_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="4dp"
-                android:background="@drawable/selector_hipat_filter_border"
+                android:background="@drawable/main_home_first_filter_box"
         />
 
             <TextView

@@ -1,13 +1,11 @@
 package com.android.hipart_android.ui.hipat.adapter
 
-import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.PagerAdapter
+import android.support.v4.app.FragmentStatePagerAdapter
 import com.android.hipart_android.ui.hipat.fragment.*
 
-class HipatFragPortViewPagerAdapter(fm: FragmentManager, private val num_fragment: Int) : FragmentPagerAdapter(fm) {
+class HipatFragPortViewPagerAdapter(fm: FragmentManager, private val num_fragment: Int) : FragmentStatePagerAdapter(fm) {
     companion object {
         private var allHiPatFragment: AllHipatFragment? = null
         private var cPatHiPatFragment: CPatHiPatFragment? = null
@@ -48,11 +46,11 @@ class HipatFragPortViewPagerAdapter(fm: FragmentManager, private val num_fragmen
 
     override fun getItem(position: Int): Fragment? {
         return when (position) {
-            0 -> getAllHiPatFragment()
-            1 -> getCPatHiPatFragment()
-            2 -> getEPatHiPatFragment()
-            3 -> getTPatHiPatFragment()
-            4 -> getEtcHiPatFragment()
+            0 -> AllHipatFragment()
+            1 -> CPatHiPatFragment()
+            2 -> EPatHiPatFragment()
+            3 -> EtcHiPatFragment()
+            4 -> TPatHiPatFragment()
             else -> null
         }
     }

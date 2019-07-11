@@ -1,16 +1,20 @@
 package com.android.hipart_android.ui.hipart_filter
 
+import android.content.Intent
 import android.graphics.Color
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.main.MainActivity
 import com.android.hipart_android.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_hipat_filter.*
 
+
+
 class HipatFilterActivity : BaseActivity() {
 
+    private var filterFlag = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hipat_filter)
@@ -21,10 +25,16 @@ class HipatFilterActivity : BaseActivity() {
 
     private fun configureTitleBar(){
         btn_toolbar_hipat_filter_back.setOnClickListener {
+            val intent = Intent(this@HipatFilterActivity, MainActivity::class.java)
+            intent.putExtra("filterFlag", filterFlag)
+            setResult(0, intent)
             finish()
         }
         // 필터값이 적용된 것!!!
         btn_hipat_filter_filter.setOnClickListener {
+            val intent = Intent(this@HipatFilterActivity, MainActivity::class.java)
+            intent.putExtra("filterFlag", filterFlag)
+            setResult(9, intent)
             finish()
         }
     }
@@ -66,6 +76,7 @@ class HipatFilterActivity : BaseActivity() {
             }
             // game이 눌려있을 경우 눌린 플로우
             else{
+                filterFlag = 0
                 relativeLayout.isSelected = false
                 textView.setTextColor(Color.parseColor("#707070"))
             }
@@ -75,136 +86,158 @@ class HipatFilterActivity : BaseActivity() {
     private fun reverseBtn(reversedImg : RelativeLayout, reversedTextView: TextView){
         when(reversedImg){
             btn_hipat_filter_act_game -> {
+                filterFlag = 1
                 initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_asmr -> {
-
+                filterFlag = 2
                 initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_prank -> {
+                filterFlag = 3
                 initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_sport -> {
+                filterFlag = 4
                 initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_cook -> {
-                initBtnFlag()
+                filterFlag = 5
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_moviemusic -> {
-                initBtnFlag()
+                filterFlag = 6
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_eduinfo -> {
-                initBtnFlag()
+                filterFlag = 7
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_edit -> {
-                initBtnFlag()
+                filterFlag = 8
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_produce -> {
-
-                initBtnFlag()
+                filterFlag = 9
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_english -> {
-                initBtnFlag()
+                filterFlag = 10
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_japanese -> {
-                initBtnFlag()
+                filterFlag = 11
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_chinese -> {
-                initBtnFlag()
+                filterFlag = 12
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_german -> {
-                initBtnFlag()
+                filterFlag = 13
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_indian -> {
-                initBtnFlag()
+                filterFlag = 14
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_russian -> {
-                initBtnFlag()
+                filterFlag = 15
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_indonesian -> {
-
-                initBtnFlag()
+                filterFlag = 16
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_vietnames -> {
-                initBtnFlag()
+                filterFlag = 17
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_italian -> {
-                initBtnFlag()
+                filterFlag = 18
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_french -> {
-                initBtnFlag()
+                filterFlag = 19
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_spanish -> {
-                initBtnFlag()
+                filterFlag = 20
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_props -> {
-                initBtnFlag()
+                filterFlag = 21
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_codi -> {
-                initBtnFlag()
+                filterFlag = 22
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_light -> {
-
-                initBtnFlag()
+                filterFlag = 23
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_film -> {
-                initBtnFlag()
+                filterFlag = 24
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_manager -> {
-                initBtnFlag()
+                filterFlag = 25
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
             btn_hipat_filter_act_thumbnail -> {
-                initBtnFlag()
+                filterFlag = 26
+                    initBtnFlag()
                 reversedImg.isSelected = true
                 reversedTextView.setTextColor(Color.parseColor("#7947fd"))
             }
