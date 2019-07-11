@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -21,6 +22,8 @@ import com.android.hipart_android.ui.search.get.GetSearchResponse
 import com.android.hipart_android.ui.search.get.SearchUserDetail
 import com.android.hipart_android.ui.search.get.User
 import com.android.hipart_android.util.SearchData
+import com.android.hipart_android.util.SharedPreferenceController
+import com.android.hipart_android.util.SharedPreferenceController.addSearchHistory
 import kotlinx.android.synthetic.main.activity_search.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
@@ -73,6 +76,7 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener, KeyboardVisibi
         val token: String =
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6Iuq4sO2DgCIsImlkeCI6NiwidHlwZSI6NCwiaWF0IjoxNTYyNTY2OTgwLCJleHAiOjE1NjM3NzY1ODAsImlzcyI6ImlnIn0.Q2x2Z6OKdAs78ExzZk5zZvRNfsu9lL3Av3WJ05XB74g"
 
+        setRecentSearchList()
 
         setSearch()
 
@@ -88,10 +92,14 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener, KeyboardVisibi
             getSearchResponse(token)
 
             setKeyboardListener()
-
         }
 
 
+    }
+
+    fun setRecentSearchList() {
+        rv_search_act_history.adapter = SearchHistoryAdapter(this, SharedPreferenceController.getSearchHistory(this))
+        rv_search_act_history.layoutManager = LinearLayoutManager(this)
     }
 
     private fun setKeyboardListener() {
@@ -126,6 +134,8 @@ class SearchActivity : AppCompatActivity(), View.OnClickListener, KeyboardVisibi
                         SearchData.searchDataAll = response.body()!!.data
 
                         filterSearchData(SearchData.searchDataAll)
+
+                        addSearchHistory(this@SearchActivity, searchText)
 
                     }
                 }

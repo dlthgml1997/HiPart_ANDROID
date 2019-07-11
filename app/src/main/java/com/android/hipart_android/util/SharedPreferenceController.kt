@@ -1,6 +1,10 @@
 package com.android.hipart_android.util
 
 import android.content.Context
+import org.json.JSONArray
+import org.json.JSONException
+
+
 
 /**
  * Created by TakHyeongMin on 2019-07-06.
@@ -14,6 +18,9 @@ object SharedPreferenceController {
     private val my_id = "my_id"
 
     private val USER_TYPE= "USER_TYPE"
+
+    private val searchKey = "Search_Key"
+    val searchHistoryList = ArrayList<String>()
 
     fun setAuthorization(context: Context, authorization : String){
         val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE) //현재 내 기기에서만 볼수 있는 데이터
@@ -57,4 +64,42 @@ object SharedPreferenceController {
         editor.clear()
         editor.commit()
     }
+
+    fun addSearchHistory(context : Context, text : String) {
+        searchHistoryList.add(text)
+        val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        val ja = JSONArray()
+        searchHistoryList.add(text)
+        for(i in 0..searchHistoryList.size-1) {
+            ja.put(searchHistoryList[i])
+        }
+        if(!searchHistoryList.isEmpty()) {
+            editor.putString(searchKey,ja.toString())
+        }else {
+            editor.putString(searchKey, null)
+        }
+        editor.apply()
+    }
+    fun getSearchHistory(context : Context) : ArrayList<String> {
+        val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE)
+        val json : String = pref.getString(searchKey, "")
+        val recentSearchList = ArrayList<String>()
+        if(json != null) {
+            try{
+                val ja = JSONArray(json)
+                for(i in 0..ja.length()-1) {
+                    var searchText = ja.optString(i)
+                    recentSearchList.add(searchText)
+                }
+
+            }catch(e : JSONException) {
+                e.printStackTrace()
+            }
+        }
+
+        return recentSearchList
+    }
+
+
 }

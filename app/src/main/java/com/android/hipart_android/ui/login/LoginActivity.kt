@@ -34,11 +34,19 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        setAutoLogin()
         setOnFocusChangeListener()
         setTextChangedListenerEmail()
         setTextChangedListenerPassword()
         setOnBtnClickListener()
         refreshToken("chI2McxQf89Y9krDcXCKBkEnAkzQ1Yc7L56voJc7pa20vC8LDnbNZymPsSfex6zYtnSfc93GKCNqbXjDujkU5cvaAJRAoUwR6Gzr62XRxEQZ6A5NAlxEpWN4sRFpn5VlMWD3zAC7HJStjXtLjhPr8GOfW77W4KiyRiHGU13CWurDWHHPeaIzbd9Wqzg1pqFq2uwNkqF99smCCuIgVkC1lSNeMNBQhPG6jCEjXRh0uIUcLdSOSHXYqp4ni5SeoTWM")
+    }
+
+    private fun setAutoLogin() {
+        if (SharedPreferenceController.getAuthorization(this).isNotEmpty()) {
+            startActivity<MainActivity>()
+            finish()
+        }
     }
 
     // edt 클릭 시 포커스 주기

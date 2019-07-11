@@ -59,7 +59,7 @@ class MyPickActivity : BaseActivity(), View.OnClickListener {
 
     }
     fun getMyPickResponse(){
-        val getMyPickResponse = networkService.getMyPickResponse("getTokenResponse")
+        val getMyPickResponse = networkService.getMyPickResponse(SharedPreferenceController.getAuthorization(this@MyPickActivity))
         getMyPickResponse.enqueue(object: Callback<GetMyPickResponse>{
             override fun onFailure(call: Call<GetMyPickResponse>, t: Throwable) {
                 Log.e("MyPickAct Err", Log.getStackTraceString(t))
