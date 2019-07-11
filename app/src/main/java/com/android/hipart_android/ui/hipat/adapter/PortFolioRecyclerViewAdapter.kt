@@ -132,10 +132,10 @@ class PortFolioRecyclerViewAdapter(
                 platform.setImageResource(R.drawable.youtube_grey_img)
             }
             2 -> {//아프리카
-                platform.setImageResource(R.drawable.pofol_afreeca_white_img)
+                platform.setImageResource(R.drawable.afreeca_grey_img)
             }
             3 -> {//트위치
-                platform.setImageResource(R.drawable.pofol_twitch_white_img)
+                platform.setImageResource(R.drawable.twitch_grey_img)
             }
         }
 
