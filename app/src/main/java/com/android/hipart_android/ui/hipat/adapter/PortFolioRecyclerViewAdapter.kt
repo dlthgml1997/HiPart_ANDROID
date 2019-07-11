@@ -84,35 +84,67 @@ class PortFolioRecyclerViewAdapter(
             etcFlag = true
         }
 
+
         val thirdTheme = holder.thirdFilter
         if (conceptFlag == false) {
-            Log.v("요놈", data.user_nickname + "  " + data.concept)
-            setConceptTheme(data.concept, thirdTheme)
+            if(firstTheme.text.length+secondTheme.text.length >10)
+            {
+                setConceptTheme(11,thirdTheme)
+            }else
+                setConceptTheme(data.concept, thirdTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
-            setPDTheme(data.pd, thirdTheme)
+            if(firstTheme.text.length+secondTheme.text.length >10)
+            {
+                setConceptTheme(11,thirdTheme)
+            }else
+                setPDTheme(data.pd, thirdTheme)
             pdFlag = true
         } else if (langFlag == false) {
-            setLangTheme(data.lang, thirdTheme)
+            if(firstTheme.text.length+secondTheme.text.length >10)
+            {
+                setConceptTheme(11,thirdTheme)
+            }else
+                setLangTheme(data.lang, thirdTheme)
             langFlag = true
         } else if (etcFlag == false) {
-            setEtcTheme(data.etc, thirdTheme)
+            if(firstTheme.text.length+secondTheme.text.length >10)
+            {
+                setConceptTheme(11,thirdTheme)
+            }else
+                setEtcTheme(data.etc, thirdTheme)
             etcFlag = true
         }
 
         val fourthTheme = holder.fourthFilter
         if (conceptFlag == false) {
-            Log.v("요놈", data.user_nickname + "  " + data.concept)
-            setConceptTheme(data.concept, fourthTheme)
+            Log.v("TAGGG",(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length).toString())
+            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
+            {
+                setConceptTheme(11,fourthTheme)
+            }else
+                setConceptTheme(data.concept, fourthTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
-            setPDTheme(data.pd, fourthTheme)
+            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
+            {
+                setConceptTheme(11,fourthTheme)
+            }else
+                setPDTheme(data.pd, fourthTheme)
             pdFlag = true
         } else if (langFlag == false) {
-            setLangTheme(data.lang, fourthTheme)
+            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
+            {
+                setConceptTheme(11,fourthTheme)
+            }else
+                setLangTheme(data.lang, fourthTheme)
             langFlag = true
         } else if (etcFlag == false) {
-            setEtcTheme(data.etc, fourthTheme)
+            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
+            {
+                setConceptTheme(11,fourthTheme)
+            }else
+                setEtcTheme(data.etc, fourthTheme)
             etcFlag = true
         }
 
@@ -132,10 +164,10 @@ class PortFolioRecyclerViewAdapter(
                 platform.setImageResource(R.drawable.youtube_grey_img)
             }
             2 -> {//아프리카
-                platform.setImageResource(R.drawable.pofol_afreeca_white_img)
+                platform.setImageResource(R.drawable.afreeca_grey_img)
             }
             3 -> {//트위치
-                platform.setImageResource(R.drawable.pofol_twitch_white_img)
+                platform.setImageResource(R.drawable.twitch_grey_img)
             }
         }
 
@@ -265,6 +297,9 @@ class PortFolioRecyclerViewAdapter(
             }
             7 -> {
                 tv.text = "교육/정보"
+            }
+            11->{
+                tv.text="..."
             }
             else -> {
                 Log.e("HomeFragHipatAdapter", "conceptFlag == ?")

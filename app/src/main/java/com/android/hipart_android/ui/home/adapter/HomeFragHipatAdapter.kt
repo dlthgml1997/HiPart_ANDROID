@@ -98,30 +98,63 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
 
         val thirdTheme = view.findViewById<TextView>(R.id.tv_rv_home_hipat_theme_third)
         if (conceptFlag == false) {
+            if(firstTheme.text.length+secondTheme.text.length >10)
+            {
+                setConceptTheme(11,thirdTheme)
+            }else
             setConceptTheme(data.concept, thirdTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
+            if(firstTheme.text.length+secondTheme.text.length >10)
+            {
+                setConceptTheme(11,thirdTheme)
+            }else
             setPDTheme(data.pd, thirdTheme)
             pdFlag = true
         } else if (langFlag == false) {
+            if(firstTheme.text.length+secondTheme.text.length >10)
+            {
+                setConceptTheme(11,thirdTheme)
+            }else
             setLangTheme(data.lang, thirdTheme)
             langFlag = true
         } else if (etcFlag == false) {
+            if(firstTheme.text.length+secondTheme.text.length >10)
+            {
+                setConceptTheme(11,thirdTheme)
+            }else
             setEtcTheme(data.etc, thirdTheme)
             etcFlag = true
         }
 
         val fourthTheme = view.findViewById<TextView>(R.id.tv_rv_home_hipat_theme_fourth)
         if (conceptFlag == false) {
+            Log.v("TAGGG",(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length).toString())
+            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
+            {
+                setConceptTheme(11,fourthTheme)
+            }else
             setConceptTheme(data.concept, fourthTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
+            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
+            {
+                setConceptTheme(11,fourthTheme)
+            }else
             setPDTheme(data.pd, fourthTheme)
             pdFlag = true
         } else if (langFlag == false) {
+            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
+            {
+                setConceptTheme(11,fourthTheme)
+            }else
             setLangTheme(data.lang, fourthTheme)
             langFlag = true
         } else if (etcFlag == false) {
+            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
+            {
+                setConceptTheme(11,fourthTheme)
+            }else
             setEtcTheme(data.etc, fourthTheme)
             etcFlag = true
         }
@@ -301,7 +334,7 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
             }
             else -> {
                 Log.e("HomeFragHipatAdapter", "conceptFlag == ?")
-                tv.visibility = View.GONE
+                tv.text = "..."
             }
         }
     }

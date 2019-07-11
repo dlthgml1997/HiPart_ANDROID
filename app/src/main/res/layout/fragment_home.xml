@@ -16,7 +16,8 @@
             <!--검색 버튼-->
             <RelativeLayout
                     android:id="@+id/btn_frag_home_search"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true">
@@ -53,7 +54,7 @@
                     android:id="@+id/tv_frag_home_user_name"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:text="User"
-                    android:fontFamily="@font/nanum_bold"
+                    android:fontFamily="@font/nanum_square_bold"
                     android:textColor="#242424"
                     android:textSize="20sp"
                     android:layout_marginLeft="24dp"
@@ -63,7 +64,7 @@
                     android:layout_toRightOf="@+id/tv_frag_home_user_name"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:text="님,"
-                    android:fontFamily="@font/nanum_bold"
+                    android:fontFamily="@font/nanum_square_bold"
                     android:textColor="#242424"
                     android:textSize="20sp"
                     android:layout_marginTop="18dp"/>
@@ -73,7 +74,7 @@
 
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:text="하이팟들과 하이파이브 어때요?"
-                android:fontFamily="@font/nanum_bold"
+                android:fontFamily="@font/nanum_square_bold"
                 android:textColor="#242424"
                 android:textSize="20sp"
                 android:layout_marginLeft="24dp"
@@ -86,10 +87,11 @@
                 android:layout_marginTop="20dp"
                 android:overScrollMode="never"
                 android:clipToPadding="false"
-                android:paddingHorizontal="24dp"
+                android:paddingLeft="22dp"
+                android:paddingRight="20dp"
         />
 
-        <TextView android:layout_width="wrap_content" android:layout_height="35dp"
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:textSize="20sp"
                   android:textColor="#242424"
                   android:fontFamily="@font/nanum_bold"
@@ -98,7 +100,8 @@
                   android:layout_marginTop="20dp"
         />
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="52dp"
+        <LinearLayout
+                android:layout_width="match_parent" android:layout_height="52dp"
                       android:layout_marginTop="30dp"
                       android:orientation="horizontal"
         >
