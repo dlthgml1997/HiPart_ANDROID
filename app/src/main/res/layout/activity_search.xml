@@ -89,7 +89,7 @@ android:scrollbars="none">
                                 android:text="최근 검색어"/>
                         <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
                                                                 android:layout_height="wrap_content"
-                                                                android:id="@+id/rv_search_act"
+                                                                android:id="@+id/rv_search_act_history"
                                                                 android:layout_marginTop="24dp"></android.support.v7.widget.RecyclerView>
                     </LinearLayout>
 
