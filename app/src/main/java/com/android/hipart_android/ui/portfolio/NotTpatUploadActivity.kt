@@ -10,7 +10,6 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.provider.MediaStore
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
@@ -66,6 +65,8 @@ class NotTpatUploadActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_upload_not_tpat)
 
+        setNickName(intent.getStringExtra("nickName"))
+
         setOnBtnClickListener()
         setOnFocusListener()
     }
@@ -86,6 +87,9 @@ class NotTpatUploadActivity : BaseActivity() {
         }
         btn_not_tpat_upload_act_submit.setOnClickListener {
             getCPortFolioResponse(user_type)
+        }
+        btn_tpat_upload_act_back.setOnClickListener {
+            finish()
         }
     }
 
@@ -282,6 +286,10 @@ class NotTpatUploadActivity : BaseActivity() {
         val result = cursor.getString(column_idx)
         cursor.close()
         return result
+    }
+
+    private fun setNickName(nickname: String) {
+        tv_tpat_upload_act_nickname.text = "${nickname} + 님,"
     }
 }
 
