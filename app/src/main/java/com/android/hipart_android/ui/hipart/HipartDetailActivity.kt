@@ -24,6 +24,8 @@ class HipartDetailActivity : BaseActivity() {
     lateinit var userDetailData: UserDetailEEtcData
     lateinit var userDetailTData: UserDetailTData
 
+    private val userID = ""
+    private val userNickName = ""
 
     private val networkService = ApplicationController.instance.networkService
 
@@ -32,7 +34,7 @@ class HipartDetailActivity : BaseActivity() {
         setContentView(R.layout.activity_hipart_detail)
 
         //여기 숫자에 인텐트로 받아온 유저의 user_nickname, user_type
-        filterUser("cuteyang", 1)
+        filterUser(intent.getStringExtra("user_nickname"), intent.getIntExtra("user_type", 0))
 
     }
 
