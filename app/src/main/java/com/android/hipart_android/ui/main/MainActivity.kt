@@ -40,6 +40,12 @@ class MainActivity : BaseActivity() {
         Log.e("토큰", SharedPreferenceController.getAuthorization(this@MainActivity))
     }
 
+    override fun onBackPressed() {
+        SharedPreferenceController.clearSPC(this)
+        super.onBackPressed()
+
+    }
+
 
     private fun attachHomeFragment() {
         supportFragmentManager
