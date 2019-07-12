@@ -16,11 +16,13 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         animation_act_splash.addAnimatorListener(object : Animator.AnimatorListener {
+
             override fun onAnimationRepeat(animation: Animator?) {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
                 startActivity<LoginActivity>()
+                finish()
             }
 
             override fun onAnimationCancel(animation: Animator?) {
