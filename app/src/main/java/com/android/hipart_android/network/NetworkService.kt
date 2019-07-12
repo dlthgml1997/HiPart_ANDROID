@@ -549,6 +549,7 @@ interface NetworkService {
      */
     @PUT("banner/click")
     fun putClickBanner(
+        @Header("Content-Type") content_type: String,
         @Header("token") token: String,
         @Body putClickBannerRequest : PutClickBannerRequest
     ): Call<PutModifyPortFolioResponse>
