@@ -16,6 +16,7 @@ import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.hipart.data.GetHifiveNumResponse
 import com.android.hipart_android.util.Filter
+import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_contact_purchase.*
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
@@ -30,6 +31,7 @@ class ContactPurchaseFragment : Fragment() {
 
     private var nickname : String = ""
     private var type : Int = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,17 +48,19 @@ class ContactPurchaseFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 //
-//        setView(nickname, type)
+        setView(nickname, type)
 
-        getHifiveNumResponse("bj_ho")
+
 
         setListeners()
     }
-//
-//    private fun setView(nickname : String, type : Int) {
-//        tv_contact_purc_frag_name.text = nickname
-//        tv_contact_purc_frag_type.text = Filter.typePat(type)
-//    }
+
+
+    private fun setView(nickname : String, type : Int) {
+        tv_contact_purc_frag_name.text = nickname
+        tv_contact_purc_frag_type.text = Filter.typePat(type)
+        getHifiveNumResponse(nickname)
+    }
 
     private fun setListeners() {
         iv_contact_purc_frag_back.setOnClickListener {
@@ -75,7 +79,7 @@ class ContactPurchaseFragment : Fragment() {
 
     private fun getHifiveNumResponse(nickName:String) {
         val getHifiveNumResponse = networkService.getHifiveNumResponse("application/json",
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6ImN1dGV5YW5nIiwiaWR4IjozLCJ0eXBlIjoxLCJpYXQiOjE1NjI1NjcyNTgsImV4cCI6MTU2Mzc3Njg1OCwiaXNzIjoiaWcifQ.WHzr5l6RfzF3Uw88qUeuJe9rpLD4RHlsCB9pto-4MbM"
+            SharedPreferenceController.getAuthorization(activity!!)
             //SharedPreferenceController.getAuthorization(this@ContactPurchaseFragment.context!!)
             , nickName)
         getHifiveNumResponse.enqueue(object : Callback<GetHifiveNumResponse> {

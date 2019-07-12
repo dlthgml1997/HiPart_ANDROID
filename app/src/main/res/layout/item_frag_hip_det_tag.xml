@@ -3,7 +3,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_frag_hip_det_intro_round"
-                android:layout_marginRight="8dp">
+                android:layout_marginRight="4dp">
     <TextView style="@style/nanum_light"
               android:textSize="11sp"
               android:paddingHorizontal="10dp"

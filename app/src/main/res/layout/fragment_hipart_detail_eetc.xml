@@ -174,19 +174,24 @@
                     <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                                   android:orientation="horizontal">
 
-                        <RelativeLayout android:layout_width="40dp" android:layout_height="20dp"
-                                        android:background="@drawable/bg_tag_purple"
-                                        android:layout_marginRight="8dp"
-                                        android:id="@+id/rl_hip_det_eetc_frag_pd_background">
-                            android:id="@+id/rl_hip_det_eetc_frag_pd_background">
-                            <TextView
-                                    android:id="@+id/tv_frag_hip_det_eetc_pd"
-                                    style="@style/nanum_light"
-                                    android:textSize="12sp"
-                                    android:textColor="#ffffff"
-                                    android:lineSpacingExtra="1sp"
-                                    android:layout_centerInParent="true"
-                                    android:text="먹방"/>
+                        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/main_home_first_filter_box"
+                                        android:layout_marginRight="4dp"
+                        android:id="@+id/rl_hip_det_eetc_frag_pd_background">
+                            <TextView style="@style/nanum_light"
+                                      android:textSize="11sp"
+                                      android:paddingHorizontal="10dp"
+                                      android:paddingVertical="4dp"
+                                      android:textColor="#FFF"
+                                      android:lineSpacingExtra="1sp"
+                                      android:gravity="center_horizontal"
+                                      android:id="@+id/tv_frag_hip_det_eetc_pd"
+                                      android:layout_centerInParent="true"
+                                      android:fontFamily="@font/nanum_light"
+                                      android:text="먹방"/>
+
                         </RelativeLayout>
                         <android.support.v7.widget.RecyclerView android:layout_width="wrap_content"
                                                                 android:layout_height="wrap_content"
@@ -265,12 +270,10 @@
                         <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
                                 android:background="#f6f6f6">
                             <android.support.v7.widget.RecyclerView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="11dp"
                                     android:id="@+id/rv_frag_hip_det_frag_article"
                                     android:clipToPadding="false"
                                     android:paddingLeft="24dp"
@@ -297,7 +300,6 @@
                             android:textSize="13sp"
                             android:textColor="#242424"
                             android:lineSpacingExtra="8dp"
-                            android:gravity="center_horizontal"
                             android:text="안녕하세요~ 전 먹는게 세상에서 제일 좋아요!!"
                             android:layout_marginTop="11dp"
                             android:id="@+id/tv_frag_hip_det_eetc_want"/>
@@ -310,7 +312,7 @@
                         android:orientation="vertical"
                         android:paddingTop="30dp"
                         android:paddingHorizontal="25dp"
-                        android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+                        android:layout_alignParentBottom="true"
                         android:id="@+id/ll_hip_det_eetc_frag_spec">
                     <TextView
                             style="@style/nanum_bold"
