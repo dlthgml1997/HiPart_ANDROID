@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.ad_add.AddAdCheckActivity
 import com.android.hipart_android.ui.home.data.HomeFragAdData
 import com.android.hipart_android.ui.main.MainActivity
+import com.bumptech.glide.Glide
+import org.jetbrains.anko.startActivity
 
 
 /**
@@ -28,10 +30,34 @@ class HomeFragAdAdapter(private val dataList: List<HomeFragAdData>, private val 
 
         val img = view.findViewById<ImageView>(R.id.iv_tv_item_home_ad)
 
-        val title = view.findViewById<TextView>(R.id.tv_rv_item_home_ad_title)
+//        val title = view.findViewById<TextView>(R.id.tv_rv_item_home_ad_title)
+//
+//        val des = view.findViewById<TextView>(R.id.tv_rv_item_home_ad_des)
+//
+//        val des2 = view.findViewById<TextView>(R.id.tv_rv_item_home_ad_des2)
 
-        val des = view.findViewById<TextView>(R.id.tv_rv_item_home_ad_des)
+        when(dataList[position].clickFlag){
+            true -> {
+                Glide.with(context!!).load(R.drawable.main_ad_2_img).into(img)
+            }
+            false -> {
+                Glide.with(context!!).load(R.drawable.main_ad_1_img).into(img)
+            }
+        }
 
+        /*when(position){
+            0 -> {
+                title.visibility = View.GONE
+                des.visibility = View.GONE
+            }
+            1 -> {
+                title.visibility = View.VISIBLE
+                title.text = "[망원] 하이팟 아지트"
+                des.text = "삼겹살로 서울을 제패한"
+                des2.text = "하이팟 아지트에 초대합니다 !"
+                des.visibility = View.VISIBLE
+            }
+        }*/
 
             if(dataList[position].clickFlag == true){
                 img.setOnClickListener {
@@ -39,7 +65,7 @@ class HomeFragAdAdapter(private val dataList: List<HomeFragAdData>, private val 
                 }
             }else{
                 img.setOnClickListener {
-                    // TODO : 광고 뷰로 보내기
+                    context.startActivity<AddAdCheckActivity>()
                 }
             }
 
