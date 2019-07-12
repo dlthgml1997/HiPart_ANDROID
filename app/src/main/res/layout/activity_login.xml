@@ -140,6 +140,26 @@
                         android:id="@+id/txt_login_act_signup"
                         android:layout_weight="1"/>
             </LinearLayout>
+            <RelativeLayout
+                    android:id="@+id/temp_login_act_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="?android:selectableItemBackground"
+            android:layout_marginTop="4dp">
+
+                <TextView
+                        android:id="@+id/temp_login_act_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:fontFamily="@font/nanum_bold"
+                        android:text="체험하기"
+                        android:textColor="#7947fd"
+                        android:textSize="15dp" />
+            </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

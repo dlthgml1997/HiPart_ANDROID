@@ -11,7 +11,6 @@
     <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_act_splash"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
-            app:lottie_imageAssetsFolder="images"
             app:lottie_fileName="data.json"
             app:lottie_autoPlay="true"
             android:layout_centerInParent="true"

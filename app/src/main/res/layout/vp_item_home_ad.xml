@@ -6,7 +6,6 @@
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent"
                     android:layout_marginHorizontal="4dp"
-                    android:background="@drawable/box_rv_item_home_ad"
                     android:clipToPadding="true">
 
         <ImageView
@@ -16,30 +15,47 @@
                 android:scaleType="fitXY"
         />
 
-        <TextView
-                android:id="@+id/tv_rv_item_home_ad_title"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="#204e0c"
-                android:text="롯데리아 더블 시리즈"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/nanum_extra_bold"
-        />
+        <!--<TextView-->
+                <!--android:visibility="gone"-->
+                <!--android:id="@+id/tv_rv_item_home_ad_title"-->
+                <!--android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+                <!--android:textSize="18sp"-->
+                <!--android:textColor="#204e0c"-->
+                <!--android:text="롯데리아 더블 시리즈"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:fontFamily="@font/nanum_extra_bold"-->
+        <!--/>-->
 
-        <TextView
-                android:id="@+id/tv_rv_item_home_ad_des"
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#204e0c"
-                android:text="먹방 크리에이터들을 위한 롯데리아의 신작
+        <!--<TextView-->
+                <!--android:visibility="gone"-->
+                <!--android:id="@+id/tv_rv_item_home_ad_des"-->
+                <!--android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+                <!--android:textSize="12sp"-->
+                <!--android:textColor="#204e0c"-->
+                <!--android:text="먹방 크리에이터들을 위한 롯데리아의 신작-->
 
-신청하러가기 →"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/nanum_light"
-                android:layout_below="@+id/tv_rv_item_home_ad_title"
-                android:layout_marginTop="4dp"
-        />
+<!--신청하러가기 →"-->
+                <!--android:layout_marginHorizontal="20dp"-->
+                <!--android:fontFamily="@font/nanum_light"-->
+                <!--android:layout_below="@+id/tv_rv_item_home_ad_title"-->
+                <!--android:layout_marginTop="4dp"-->
+        <!--/>-->
+
+        <!--<TextView-->
+                <!--android:visibility="gone"-->
+                <!--android:id="@+id/tv_rv_item_home_ad_des2"-->
+                <!--android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+                <!--android:textSize="12sp"-->
+                <!--android:textColor="#204e0c"-->
+                <!--android:text="먹방 크리에이터들을 위한 롯데리아의 신작-->
+
+<!--신청하러가기 →"-->
+                <!--android:layout_marginHorizontal="20dp"-->
+                <!--android:fontFamily="@font/nanum_light"-->
+                <!--android:layout_below="@+id/tv_rv_item_home_ad_des"-->
+                <!--android:layout_marginTop="8dp"-->
+        <!--/>-->
 
 
     </RelativeLayout>
