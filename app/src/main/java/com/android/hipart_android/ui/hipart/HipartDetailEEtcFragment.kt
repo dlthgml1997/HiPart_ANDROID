@@ -79,8 +79,11 @@ class HipartDetailEEtcFragment : Fragment() {
         val articleList = ArrayList<HipartDetailArticleData>()
         Log.d(TAG, user.thumbnail!!.size.toString())
         if (user.thumbnail!!.isNotEmpty()) {
+            ll_hipat_detail_frag_no_work.visibility = View.GONE
             for (i in 0..user.thumbnail.size - 1)
                 articleList.add(HipartDetailArticleData(user.thumbnail[i], user.title!![i], user.content!![i]))
+        }else{
+            ll_hipat_detail_frag_no_work.visibility = View.VISIBLE
         }
 
         rv_frag_hip_det_frag_article.adapter = HipartDetailCpatArticleAdapter(activity!!, articleList)

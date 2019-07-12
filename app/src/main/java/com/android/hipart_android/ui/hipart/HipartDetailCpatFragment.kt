@@ -14,10 +14,10 @@ import com.android.hipart_android.R
 import com.android.hipart_android.ui.hipart.get.UserDetailCData
 import com.android.hipart_android.util.Filter
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.fragment_hipart_detail_cpat.*
 
 import kotlinx.android.synthetic.main.fragment_hipart_detail_eetc.*
 import kotlinx.android.synthetic.main.fragment_hipart_detail_eetc.rv_frag_hip_det_frag_article
+import java.util.*
 
 class HipartDetailCpatFragment : Fragment() {
 
@@ -84,15 +84,18 @@ class HipartDetailCpatFragment : Fragment() {
     private fun setArticleList(user: UserDetailCData) {
         val articleList = ArrayList<HipartDetailArticleData>()
         if (user.thumbnail!!.isNotEmpty()) {
+            ll_hipat_detail_frag_no_work.visibility = View.GONE
             for (i in 0..user.thumbnail.size - 1)
                 articleList.add(HipartDetailArticleData(user.thumbnail[i], user.title!![i], user.content!![i]))
-
 
             rv_frag_hip_det_frag_article.adapter = HipartDetailCpatArticleAdapter(activity!!, articleList)
             rv_frag_hip_det_frag_article.layoutManager =
                 LinearLayoutManager(activity!!, OrientationHelper.HORIZONTAL, false)
+        }else{
+            ll_hipat_detail_frag_no_work.visibility = View.VISIBLE
         }
     }
+
 
     private fun setTagList(user: UserDetailCData) {
         val tagList = ArrayList<String>()

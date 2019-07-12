@@ -42,6 +42,7 @@ class HipartDetailTpatFragment : Fragment() {
 
 
     }
+
     private fun setView() {
         ll_hip_det_eetc_frag_subscribe.visibility = View.GONE
 
@@ -54,9 +55,9 @@ class HipartDetailTpatFragment : Fragment() {
 
         tv_frag_hip_det_eetc_type.text = Filter.type(user.user_type)
 
-        if(user.pd != 0) {
+        if (user.pd != 0) {
             tv_frag_hip_det_eetc_pd.text = Filter.pd(user.pd)
-        }else
+        } else
             rl_hip_det_eetc_frag_pd_background.visibility = View.GONE
 
 
@@ -70,20 +71,22 @@ class HipartDetailTpatFragment : Fragment() {
         tv_frag_hip_det_eetc_spec.text = user.detail_appeal
 
         //연락하기/연락처 보기
-        if(HipartDetailActivity.hifiveStatus ==1) {
+        if (HipartDetailActivity.hifiveStatus == 1) {
             btn_frag_hip_det_eetc_call.text = "연락처 보기"
-        }else
+        } else
             btn_frag_hip_det_eetc_call.text = "연락하기"
     }
+
     private fun setArticleList(user: UserDetailTData) {
         val translationList = ArrayList<HipartDetailTranslationData>()
 
         if (user.before!!.isNotEmpty()) {
+            ll_hipat_detail_frag_no_work.visibility = View.GONE
             for (i in 0..user.before.size - 1)
                 translationList.add(HipartDetailTranslationData(user.before[i], user.after!![i]))
-
-
             rv_frag_hip_det_frag_article.adapter = HipartDetailTranslationAdapter(activity!!, translationList)
+        } else {
+            ll_hipat_detail_frag_no_work.visibility = View.VISIBLE
         }
     }
 
@@ -105,7 +108,7 @@ class HipartDetailTpatFragment : Fragment() {
 
     private fun setListeners() {
         btn_frag_hip_det_eetc_call.setOnClickListener {
-            if(HipartDetailActivity.hifiveStatus == 0) {
+            if (HipartDetailActivity.hifiveStatus == 0) {
                 val contactDialog = ContactDialogFragment()
                 contactDialog.show(childFragmentManager, "contact dialog")
                 Log.d(TAG, "contact btn clicked")
@@ -123,7 +126,6 @@ class HipartDetailTpatFragment : Fragment() {
         }
 
     }
-
 
 
 }
