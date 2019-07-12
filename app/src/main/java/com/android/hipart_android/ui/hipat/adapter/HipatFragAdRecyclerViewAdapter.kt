@@ -2,16 +2,24 @@ package com.android.hipart_android.ui.hipat.adapter
 
 import android.content.Context
 import android.support.v4.view.PagerAdapter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.android.hipart_android.R
+import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.ad_add.AddAdActivity
 import com.android.hipart_android.ui.hipat.data.HipatFragAdData
 import com.android.hipart_android.ui.main.MainActivity
+import com.android.hipart_android.ui.main.data.PutClickBannerRequest
+import com.android.hipart_android.ui.modifyportfolio.put.PutModifyPortFolioResponse
+import com.android.hipart_android.util.SharedPreferenceController
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HipatFragAdRecyclerViewAdapter(private val context: Context, private val dataList: ArrayList<HipatFragAdData>) :
     PagerAdapter() {
@@ -48,7 +56,7 @@ class HipatFragAdRecyclerViewAdapter(private val context: Context, private val d
 
         if(dataList[position].clickFlag == true){
             image.setOnClickListener {
-                (context as MainActivity).setAddPickAnimPickIcon()
+                putClickBanner(position)
                 showAnimFlag = true
             }
         }else{
@@ -64,5 +72,31 @@ class HipatFragAdRecyclerViewAdapter(private val context: Context, private val d
 
     override fun destroyItem(container: ViewGroup, position: Int, obj : Any) {
         container.removeView(obj as View)
+    }
+
+    fun putClickBanner(bannerIdx : Int){
+        val networkService = ApplicationController.instance.networkService
+        val putClickBanner = networkService.putClickBanner("application/json", SharedPreferenceController.getAuthorization(context!!), PutClickBannerRequest(bannerIdx))
+
+        putClickBanner.enqueue(object: Callback<PutModifyPortFolioResponse> {
+            override fun onFailure(call: Call<PutModifyPortFolioResponse>, t: Throwable) {
+                Log.e("Main Act Err", Log.getStackTraceString(t))
+            }
+
+            override fun onResponse(
+                call: Call<PutModifyPortFolioResponse>,
+                response: Response<PutModifyPortFolioResponse>
+            ) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.message
+                    ?.let {
+                        if(it == "배너 포인트 획득"){
+                            (context as MainActivity).setAddPickAnimPickIcon()
+                        }
+                    }
+            }
+        })
     }
 }
