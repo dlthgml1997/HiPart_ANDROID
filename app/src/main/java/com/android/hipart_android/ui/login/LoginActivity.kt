@@ -60,7 +60,6 @@ class LoginActivity : BaseActivity(), KeyboardVisibilityEventListener {
     private fun setAutoLogin() {
         if (SharedPreferenceController.getAuthorization(this).isNotEmpty()) {
             startActivity<MainActivity>()
-            finish()
         }
     }
 
