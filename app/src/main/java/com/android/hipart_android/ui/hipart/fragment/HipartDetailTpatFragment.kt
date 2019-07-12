@@ -1,4 +1,4 @@
-package com.android.hipart_android.ui.hipart
+package com.android.hipart_android.ui.hipart.fragment
 
 
 import android.os.Bundle
@@ -10,6 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.hipart.HipartDetailActivity
+import com.android.hipart_android.ui.hipart.HipartDetailTagRecyclerAdapter
+import com.android.hipart_android.ui.hipart.HipartDetailTranslationAdapter
+import com.android.hipart_android.ui.hipart.HipartDetailTranslationData
 import com.android.hipart_android.ui.hipart.get.UserDetailTData
 
 
@@ -87,11 +91,20 @@ class HipartDetailTpatFragment : Fragment() {
         if (user.before!!.isNotEmpty()) {
             ll_hipat_detail_frag_no_work.visibility = View.GONE
             for (i in 0..user.before.size - 1)
-                translationList.add(HipartDetailTranslationData(user.before[i], user.after!![i]))
-            rv_frag_hip_det_frag_article.adapter = HipartDetailTranslationAdapter(activity!!, translationList)
+                translationList.add(
+                    HipartDetailTranslationData(
+                        user.before[i],
+                        user.after!![i]
+                    )
+                )
+            rv_frag_hip_det_frag_article.adapter =
+                HipartDetailTranslationAdapter(activity!!, translationList)
         } else {
             ll_hipat_detail_frag_no_work.visibility = View.VISIBLE
         }
+
+        rv_frag_hip_det_frag_article.adapter = HipartDetailTranslationAdapter(activity!!, translationList)
+        rv_frag_hip_det_frag_article.layoutManager = LinearLayoutManager(activity!!, OrientationHelper.HORIZONTAL, false)
     }
 
     private fun setTagList(user: UserDetailTData) {
@@ -104,7 +117,8 @@ class HipartDetailTpatFragment : Fragment() {
             tagList.add(Filter.etc(user.etc))
 
         if (tagList.size > 0) {
-            rv_frag_hip_det_eetc_tag.adapter = HipartDetailTagRecyclerAdapter(activity!!, tagList)
+            rv_frag_hip_det_eetc_tag.adapter =
+                HipartDetailTagRecyclerAdapter(activity!!, tagList)
             rv_frag_hip_det_eetc_tag.layoutManager =
                 LinearLayoutManager(activity!!, OrientationHelper.HORIZONTAL, false)
         }
@@ -112,18 +126,31 @@ class HipartDetailTpatFragment : Fragment() {
 
     private fun setListeners() {
         btn_frag_hip_det_eetc_call.setOnClickListener {
-            if (HipartDetailActivity.hifiveStatus == 0) {
+            if(HipartDetailActivity.hifiveStatus == 0) {
+
                 val contactDialog = ContactDialogFragment()
+
+                val bundle = Bundle()
+                bundle.putString("nickname", user.user_nickname)
+                bundle.putInt("type", user.user_type)
+                contactDialog.arguments = bundle
+
                 contactDialog.show(childFragmentManager, "contact dialog")
                 Log.d(TAG, "contact btn clicked")
             } else {
+                val purchaseFragment = ContactPurchaseFragment()
+
+                val bundle = Bundle()
+                bundle.putString("nickname", user.user_nickname)
+                bundle.putInt("type", user.user_type)
+                purchaseFragment.arguments = bundle
+
                 val fm = activity!!.supportFragmentManager
                 val fragmentTransaction = fm.beginTransaction()
-                fragmentTransaction.add(R.id.fl_hip_detail_act, ContactPurchaseFragment())
+                fragmentTransaction.add(R.id.fl_hip_detail_act, purchaseFragment)
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
             }
-
         }
         iv_frag_hip_det_eetc_back.setOnClickListener {
             (context as HipartDetailActivity).finish()

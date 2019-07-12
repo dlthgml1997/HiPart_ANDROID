@@ -15,6 +15,7 @@ import com.android.hipart_android.ui.login.data.PostLoginRequest
 import com.android.hipart_android.ui.login.data.PostLoginResponse
 import com.android.hipart_android.ui.login.data.RefreshTokenResponse
 import com.android.hipart_android.ui.login.data.get.GetMyInfoResponse
+import com.android.hipart_android.ui.main.data.PutClickBannerRequest
 import com.android.hipart_android.ui.modifyportfolio.data.ModifyList
 import com.android.hipart_android.ui.modifyportfolio.data.WorkIndex
 import com.android.hipart_android.ui.modifyportfolio.delete.DeleteModifyPortFolioResponse
@@ -539,6 +540,21 @@ interface NetworkService {
     fun getMyInfo(
         @Header("token") token: String
     ): Call<GetMyInfoResponse>
+
+
+    /**
+     * 클릭배터
+     * @header token
+     * @body work_idx
+     */
+    @PUT("banner/click")
+    fun putClickBanner(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Body putClickBannerRequest : PutClickBannerRequest
+    ): Call<PutModifyPortFolioResponse>
+
+
 
 
 }

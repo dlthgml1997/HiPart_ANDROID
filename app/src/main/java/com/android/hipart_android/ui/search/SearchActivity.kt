@@ -288,6 +288,9 @@ class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityE
             override fun afterTextChanged(s: Editable?) {
                 if (s.toString().length > 0) {
                     iv_search_act_search_text.setImageResource(R.drawable.search_x_big_icon)
+                    iv_search_act_search_text.setOnClickListener {
+                        et_search_act_search.setText("")
+                    }
                     rl_search_act_search_button.visibility = View.VISIBLE
                 } else {
                     iv_search_act_search_text.setImageResource(R.drawable.search_search_icon)
