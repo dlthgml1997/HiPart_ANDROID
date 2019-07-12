@@ -14,38 +14,38 @@
                       android:layout_centerHorizontal="true"
                       android:gravity="center_horizontal">
             <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:src="@drawable/search_x_img"/>
+                       android:src="@drawable/search_x_img"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:orientation="vertical"
+                          android:gravity="center_horizontal"
+                          android:layout_marginTop="24dp"
+            android:id="@+id/ll_sear_etc_frag_no_result_text">
+                <TextView
+                        style="@style/nanum_extra_bold"
+                        android:textSize="21sp"
+                        android:textColor="#bcbcbc"
+                        android:lineSpacingExtra="3sp"
+                        android:text="검색결과가 없습니다."
+                />
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="21sp"
-                    android:textColor="#bcbcbc"
-                    android:lineSpacingExtra="3sp"
-                    android:gravity="center_horizontal"
-                    tools:text="검색결과가 없습니다."
-                    android:layout_marginTop="24dp"
-            />
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:textColor="#bcbcbc"
-                    android:lineSpacingExtra="1sp"
-                    android:gravity="center_horizontal"
-                    tools:text="철자를 확인하거나"
-                    android:layout_marginTop="16dp"
-            />
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="13sp"
-                    android:textColor="#bcbcbc"
-                    android:lineSpacingExtra="1sp"
-                    android:gravity="center_horizontal"
-                    tools:text="긴 문구는 띄어쓰기를 해보세요."
-                    android:layout_marginTop="8dp"/>
+                <TextView
+                        style="@style/nanum_regular"
+                        android:textSize="13sp"
+                        android:textColor="#bcbcbc"
+                        android:lineSpacingExtra="1sp"
+                        android:gravity="center_horizontal"
+                        android:text="철자를 확인하거나"
+                        android:layout_marginTop="16dp"
+                />
+                <TextView
+                        style="@style/nanum_regular"
+                        android:textSize="13sp"
+                        android:textColor="#bcbcbc"
+                        android:lineSpacingExtra="1sp"
+                        android:gravity="center_horizontal"
+                        android:text="긴 문구는 띄어쓰기를 해보세요."
+                        android:layout_marginTop="8dp"/>
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 

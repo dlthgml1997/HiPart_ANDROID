@@ -22,6 +22,7 @@ import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SearchData
 import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_search.*
+import kotlinx.android.synthetic.main.fragment_search_etc.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 import org.jetbrains.anko.toast
@@ -40,9 +41,12 @@ class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityE
         if (isOpen) {
             sv_search_act.scrollTo(0, sv_search_act.bottom)
             rl_search_act_search_button.visibility = View.VISIBLE
+            ll_sear_etc_frag_no_result_text.visibility = View.GONE
+
         } else {
             sv_search_act.scrollTo(0, sv_search_act.top)
             rl_search_act_search_button.visibility = View.GONE
+            ll_sear_etc_frag_no_result_text.visibility = View.VISIBLE
         }
     }
 
