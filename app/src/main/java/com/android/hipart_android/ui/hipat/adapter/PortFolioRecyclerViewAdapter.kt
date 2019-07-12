@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.android.hipart_android.BuildConfig
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.hipart.HipartDetailActivity
@@ -87,63 +88,55 @@ class PortFolioRecyclerViewAdapter(
 
         val thirdTheme = holder.thirdFilter
         if (conceptFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length >10)
-            {
-                setConceptTheme(11,thirdTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length > 10) {
+                setConceptTheme(11, thirdTheme)
+            } else
                 setConceptTheme(data.concept, thirdTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length >10)
-            {
-                setConceptTheme(11,thirdTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length > 10) {
+                setConceptTheme(11, thirdTheme)
+            } else
                 setPDTheme(data.pd, thirdTheme)
             pdFlag = true
         } else if (langFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length >10)
-            {
-                setConceptTheme(11,thirdTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length > 10) {
+                setConceptTheme(11, thirdTheme)
+            } else
                 setLangTheme(data.lang, thirdTheme)
             langFlag = true
         } else if (etcFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length >10)
-            {
-                setConceptTheme(11,thirdTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length > 10) {
+                setConceptTheme(11, thirdTheme)
+            } else
                 setEtcTheme(data.etc, thirdTheme)
             etcFlag = true
         }
 
         val fourthTheme = holder.fourthFilter
         if (conceptFlag == false) {
-            Log.v("TAGGG",(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length).toString())
-            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
-            {
-                setConceptTheme(11,fourthTheme)
-            }else
+            Log.v("TAGGG", (firstTheme.text.length + secondTheme.text.length + thirdTheme.text.length).toString())
+            if (firstTheme.text.length + secondTheme.text.length + thirdTheme.text.length > 10) {
+                setConceptTheme(11, fourthTheme)
+            } else
                 setConceptTheme(data.concept, fourthTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
-            {
-                setConceptTheme(11,fourthTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length + thirdTheme.text.length > 10) {
+                setConceptTheme(11, fourthTheme)
+            } else
                 setPDTheme(data.pd, fourthTheme)
             pdFlag = true
         } else if (langFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
-            {
-                setConceptTheme(11,fourthTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length + thirdTheme.text.length > 10) {
+                setConceptTheme(11, fourthTheme)
+            } else
                 setLangTheme(data.lang, fourthTheme)
             langFlag = true
         } else if (etcFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
-            {
-                setConceptTheme(11,fourthTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length + thirdTheme.text.length > 10) {
+                setConceptTheme(11, fourthTheme)
+            } else
                 setEtcTheme(data.etc, fourthTheme)
             etcFlag = true
         }
@@ -205,52 +198,68 @@ class PortFolioRecyclerViewAdapter(
 
 
 
-        holder.root.setOnClickListener { ctx!!.startActivity<HipartDetailActivity>("user_nickname" to data.user_nickname, "user_type" to data.user_type) }
+        holder.root.setOnClickListener {
+            if (SharedPreferenceController.getNickName(ctx) == BuildConfig.TEST_USER_NCIKNAME) {
+                (ctx as MainActivity).showGoToLoginDialog()
+            } else {
+                ctx!!.startActivity<HipartDetailActivity>(
+                    "user_nickname" to data.user_nickname,
+                    "user_type" to data.user_type
+                )
+            }
+        }
 
         if (mainActivityFlag == true) {
             btnPick.setOnClickListener {
-//                if (holder.is_picked.isSelected == false) {
+                //                if (holder.is_picked.isSelected == false) {
 //                    (ctx as MainActivity).setAnimPickIcon()
 //                }
-
-
-                if (btnPick.isSelected == false) {
-                    addPick(data.user_nickname, true)
-                    btnPick.isSelected = true
-                    pickNum.textColor = Color.parseColor("#7947fd")
-                    dataList[position].pickState = 1
-                    data.pick = data.pick + 1
-
+                if (SharedPreferenceController.getNickName(ctx) == BuildConfig.TEST_USER_NCIKNAME) {
+                    (ctx as MainActivity).showGoToLoginDialog()
                 } else {
-                    deletePick(data.user_nickname)
-                    btnPick.isSelected = false
-                    data.pick = data.pick - 1
-                    pickNum.textColor = Color.parseColor("#c7c7c7")
-                    dataList[position].pickState = 0
+                    if (btnPick.isSelected == false) {
+                        addPick(data.user_nickname, true)
+                        btnPick.isSelected = true
+                        pickNum.textColor = Color.parseColor("#7947fd")
+                        dataList[position].pickState = 1
+                        data.pick = data.pick + 1
+
+                    } else {
+                        deletePick(data.user_nickname)
+                        btnPick.isSelected = false
+                        data.pick = data.pick - 1
+                        pickNum.textColor = Color.parseColor("#c7c7c7")
+                        dataList[position].pickState = 0
+                    }
+                    notifyItemChanged(position)
                 }
-                notifyItemChanged(position)
             }
         } else {
             btnPick.setOnClickListener {
-//                if (holder.is_picked.isSelected == false) {
+                //                if (holder.is_picked.isSelected == false) {
 //                    (ctx as MyPickActivity).setAnimPickIcon()
 //                }
 //                holder.is_picked.isSelected = !holder.is_picked.isSelected
-                if (btnPick.isSelected == false) {
-                    addPick(data.user_nickname, false)
-                    btnPick.isSelected = true
-                    pickNum.textColor = Color.parseColor("#7947fd")
-                    dataList[position].pickState = 1
-                    data.pick = data.pick + 1
+                if (SharedPreferenceController.getNickName(ctx) == BuildConfig.TEST_USER_NCIKNAME) {
+                    (ctx as MainActivity).showGoToLoginDialog()
                 } else {
-                    deletePick(data.user_nickname)
-                    btnPick.isSelected = false
-                    data.pick = data.pick - 1
-                    pickNum.textColor = Color.parseColor("#c7c7c7")
-                    dataList[position].pickState = 0
+                    if (btnPick.isSelected == false) {
+                        addPick(data.user_nickname, false)
+                        btnPick.isSelected = true
+                        pickNum.textColor = Color.parseColor("#7947fd")
+                        dataList[position].pickState = 1
+                        data.pick = data.pick + 1
+                    } else {
+                        deletePick(data.user_nickname)
+                        btnPick.isSelected = false
+                        data.pick = data.pick - 1
+                        pickNum.textColor = Color.parseColor("#c7c7c7")
+                        dataList[position].pickState = 0
+                    }
+                    notifyItemChanged(position)
                 }
-                notifyItemChanged(position)
             }
+
         }
 
         conceptFlag = false
@@ -303,8 +312,8 @@ class PortFolioRecyclerViewAdapter(
             7 -> {
                 tv.text = "교육/정보"
             }
-            11->{
-                tv.text="..."
+            11 -> {
+                tv.text = "..."
             }
             else -> {
                 tv.visibility = View.GONE
