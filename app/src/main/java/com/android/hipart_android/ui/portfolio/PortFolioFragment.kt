@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.main.MainActivity
 import com.android.hipart_android.ui.modifyportfolio.ModifyPortFolioActivity
+import com.android.hipart_android.util.OnSingleClickListener
 import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_portfolio.*
 import org.jetbrains.anko.support.v4.startActivity
@@ -24,28 +25,34 @@ class PortFolioFragment : BottomSheetDialogFragment() {
     }
 
     private fun setonBtnClickListener() {
-        val userType =  SharedPreferenceController.getUserType(context!!)
-        ll_port_frag_portfolio_upload.setOnClickListener {
-            when(userType){
-                1,2,4 ->{
-                    startActivity<NotTpatUploadActivity>("nickName" to SharedPreferenceController.getNickName(this@PortFolioFragment.context!!))
-                }
-                3->{
-                    startActivity<TpatUploadActivity>("nickName" to SharedPreferenceController.getNickName(this@PortFolioFragment.context!!))
+        val userType = SharedPreferenceController.getUserType(context!!)
+        ll_port_frag_portfolio_upload.setOnClickListener(object : OnSingleClickListener() {
+            override fun onSingleClick(v: View) {
+                when (userType) {
+                    1, 2, 4 -> {
+                        startActivity<NotTpatUploadActivity>("nickName" to SharedPreferenceController.getNickName(this@PortFolioFragment.context!!))
+                    }
+                    3 -> {
+                        startActivity<TpatUploadActivity>("nickName" to SharedPreferenceController.getNickName(this@PortFolioFragment.context!!))
+                    }
                 }
             }
-        }
+        })
 
-        ll_port_frag_portfolio_edit.setOnClickListener {
-            startActivity<ModifyPortFolioActivity>()
-        }
+        ll_port_frag_portfolio_edit.setOnClickListener (
+            object : OnSingleClickListener() {
+                override fun onSingleClick(v: View) {
+                    startActivity<ModifyPortFolioActivity>()
+                }
+            }
+        )
 
-        img_port_frag_background.setOnClickListener {
-            (context as MainActivity).removeFragment()
-        }
-
+        img_port_frag_background.setOnClickListener(
+            object: OnSingleClickListener(){
+                override fun onSingleClick(v: View) {
+                    (context as MainActivity).removeFragment()
+                }
+            }
+        )
     }
-
-
-
 }
