@@ -27,21 +27,11 @@ class AddAdActivity : BaseActivity() {
         configureMainTab()
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if(requestCode == 0){
-//            if(resultCode == Activity.RESULT_OK)
-//                Log.d("AddAdActivity", "onActivityResult")
-//                    finish()
-//        }
-//    }
-
     private fun configureTitleBar() {
         btn_addad_act_cancle.setOnClickListener {
             finish()
         }
         btn_addad_act_next.setOnClickListener {
-
             val intent = Intent(this, AddAdCheckActivity::class.java)
             startActivityForResult(intent, 0)
         }
