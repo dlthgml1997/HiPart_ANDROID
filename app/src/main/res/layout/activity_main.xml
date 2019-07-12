@@ -125,7 +125,7 @@
             <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:orientation="vertical"
                           android:layout_centerInParent="true"
-            android:background="#fafafa">
+                          android:background="#fafafa">
 
                 <ImageView
                         android:id="@+id/iv_mypage"
@@ -155,11 +155,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="invisible">
+            android:visibility="gone">
         <ImageView
                 android:id="@+id/iv_main_act_anim"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:src="@drawable/pick_popup_img"/>
+                android:src="@drawable/pick_popup_img"
+        android:layout_centerHorizontal="true"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
@@ -180,6 +181,45 @@
                     android:layout_marginRight="6dp"/>
             <TextView
                     android:text="했습니다."
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nanum_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/rl_main_act_add_parm_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone">
+        <ImageView
+                android:id="@+id/iv_main_act_add_parm_anim"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:src="@drawable/pick_popup_img"
+                android:layout_centerHorizontal="true"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/iv_main_act_add_parm_anim"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/pick_modification_border"
+                android:paddingVertical="6dp"
+                android:paddingHorizontal="9dp">
+            <TextView
+                    android:text="2팜"
+                    android:textSize="14sp"
+                    android:textColor="#3eecad"
+                    android:fontFamily="@font/nanum_extra_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+            />
+            <TextView
+                    android:text="이 적립되었습니다."
                     android:textColor="#ffffff"
                     android:textSize="14sp"
                     android:fontFamily="@font/nanum_regular"

@@ -17,7 +17,8 @@
         <activity android:name=".ui.main.MainActivity">
 
         </activity>
-        <activity android:name=".ui.search.SearchActivity">
+        <activity android:name=".ui.search.SearchActivity"
+                  android:windowSoftInputMode="adjustResize|stateVisible">
 
         </activity>
         <activity android:name=".ui.notification.NotificationActivity">
@@ -26,14 +27,16 @@
         <activity android:name=".ui.hipart.HipartDetailActivity">
 
         </activity>
-        <activity android:name=".ui.login.LoginActivity">
+        <activity android:name=".ui.login.LoginActivity"
+        android:windowSoftInputMode="adjustResize|stateVisible">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.signup.SignupActivity">
+        <activity android:name=".ui.signup.SignupActivity"
+                  android:windowSoftInputMode="adjustResize|stateVisible">
 
         </activity>
         <activity android:name=".ui.hipart_filter.HipatFilterActivity">

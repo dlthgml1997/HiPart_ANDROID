@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+        android:clipToPadding="false"
         xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="6dp"
 >
 
-    <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <RelativeLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:id="@+id/root_item_frag_hip_detc_article"
 
 
@@ -17,8 +19,6 @@
                 android:layout_width="176dp"
                 android:layout_height="wrap_content"
         >
-            <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                            android:background="@drawable/box_modify_portfolio_act_grey">
                 <ImageView
                         android:id="@+id/iv_item_frag_hip_det_c_acticle"
                         android:layout_width="175dp" android:layout_height="98dp"
@@ -27,16 +27,13 @@
                         android:layout_margin="0.5dp"
                         android:background="@drawable/box_modify_portfolio_act_grey"
                 />
-
-
-            </RelativeLayout>
-
             <TextView
                     android:id="@+id/tv_item_frag_hip_det_c_acticle_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
                     android:textColor="#434343"
+                    android:fontFamily="@font/nanum_square_bold"
                     android:lineSpacingExtra="1sp"
                     android:gravity="center_horizontal"
                     tools:text="명랑핫도그 먹방"
@@ -48,6 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="10sp"
+                    android:fontFamily="@font/nanum_square_regular"
                     android:textColor="#434343"
                     android:lineSpacingExtra="4dp"
                     tools:text="너무너무 맛있어요~~!! 특히 치즈를 올려"

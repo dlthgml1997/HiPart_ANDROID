@@ -337,7 +337,26 @@ class MainActivity : BaseActivity() {
                 is EtcHiPatFragment -> frag.setAdapterData(profileAllDataList.filter { it.info[0].user_type == 4 })
             }
         }
+    }
 
+    fun setAddPickAnimPickIcon() {
+        val interpolator = MyBounceInterpolator(0.2, 20.0)
+        val anim: Animation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.expand_anim)
+        anim.interpolator = interpolator
+
+        anim.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationRepeat(animation: Animation?) {
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                rl_main_act_add_parm_anim.visibility = View.GONE
+            }
+
+            override fun onAnimationStart(animation: Animation?) {
+                rl_main_act_add_parm_anim.visibility = View.VISIBLE
+            }
+        })
+        rl_main_act_add_parm_anim.startAnimation(anim)
     }
 
 }

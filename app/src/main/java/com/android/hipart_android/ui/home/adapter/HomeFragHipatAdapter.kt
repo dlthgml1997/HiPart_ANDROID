@@ -98,30 +98,30 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
 
         val thirdTheme = view.findViewById<TextView>(R.id.tv_rv_home_hipat_theme_third)
         if (conceptFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length >10)
+            if(firstTheme.text.length+secondTheme.text.length >9)
             {
-                setConceptTheme(11,thirdTheme)
+                setConceptTheme(12,thirdTheme)
             }else
             setConceptTheme(data.concept, thirdTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length >10)
+            if(firstTheme.text.length+secondTheme.text.length >9)
             {
-                setConceptTheme(11,thirdTheme)
+                setConceptTheme(12,thirdTheme)
             }else
             setPDTheme(data.pd, thirdTheme)
             pdFlag = true
         } else if (langFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length >10)
+            if(firstTheme.text.length+secondTheme.text.length >9)
             {
-                setConceptTheme(11,thirdTheme)
+                setConceptTheme(12,thirdTheme)
             }else
             setLangTheme(data.lang, thirdTheme)
             langFlag = true
         } else if (etcFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length >10)
+            if(firstTheme.text.length+secondTheme.text.length >9)
             {
-                setConceptTheme(11,thirdTheme)
+                setConceptTheme(12,thirdTheme)
             }else
             setEtcTheme(data.etc, thirdTheme)
             etcFlag = true
@@ -130,30 +130,30 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
         val fourthTheme = view.findViewById<TextView>(R.id.tv_rv_home_hipat_theme_fourth)
         if (conceptFlag == false) {
             Log.v("TAGGG",(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length).toString())
-            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
+            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >9)
             {
-                setConceptTheme(11,fourthTheme)
+                setConceptTheme(12,fourthTheme)
             }else
             setConceptTheme(data.concept, fourthTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
+            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >9)
             {
-                setConceptTheme(11,fourthTheme)
+                setConceptTheme(12,fourthTheme)
             }else
             setPDTheme(data.pd, fourthTheme)
             pdFlag = true
         } else if (langFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
+            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >9)
             {
-                setConceptTheme(11,fourthTheme)
+                setConceptTheme(12,fourthTheme)
             }else
             setLangTheme(data.lang, fourthTheme)
             langFlag = true
         } else if (etcFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
+            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >9)
             {
-                setConceptTheme(11,fourthTheme)
+                setConceptTheme(12,fourthTheme)
             }else
             setEtcTheme(data.etc, fourthTheme)
             etcFlag = true
@@ -296,16 +296,16 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
                 return ""
             }
             1 -> {
-                return "크리에이터"
+                return "Creator"
             }
             2 -> {
-                return "에디터"
+                return "Editor"
             }
             3 -> {
-                return "번역가"
+                return "Translator"
             }
             4 -> {
-                return "기타"
+                return "Etc."
             }
             else -> {
                 Log.e("HomeFragHipatAdapter", "오류 발견")
@@ -338,10 +338,11 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
             7 -> {
                 tv.text = "교육/정보"
             }
-            11->{
-                tv.text="..."
+            12 -> {
+                tv.text = "..."
             }
             else -> {
+                Log.e("HomeFragHipatAdapter", "conceptFlag == ?")
                 tv.visibility = View.GONE
             }
         }
@@ -356,8 +357,12 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
             2 -> {
                 tv.text = "기획"
             }
+            12 -> {
+                tv.text = "..."
+            }
             else -> {
                 tv.visibility = View.GONE
+                Log.e("HomeFragHipatAdapter", "pd == ?")
             }
         }
     }
@@ -398,6 +403,9 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
             11 -> {
                 tv.text = "인도네시아어"
             }
+            12 -> {
+                tv.text = "..."
+            }
             else -> {
                 tv.visibility = View.GONE
             }
@@ -424,6 +432,9 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
             }
             6 -> {
                 tv.text = "썸네일"
+            }
+            12 -> {
+                tv.text = "..."
             }
             else -> {
                 tv.visibility = View.GONE
