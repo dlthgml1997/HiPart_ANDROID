@@ -16,6 +16,7 @@ import android.view.View.VISIBLE
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.signup.data.GetDuplicateFlagResponse
+import com.android.hipart_android.util.BaseActivity
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.startActivity
@@ -24,7 +25,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 
-class SignupActivity : AppCompatActivity() {
+class SignupActivity : BaseActivity() {
     val REQUEST_CODE_SELECT_IMAGE: Int = 1004
     val My_READ_STORAGE_REQUEST_CODE = 7777
     var imageURI: String = ""
@@ -91,6 +92,7 @@ class SignupActivity : AppCompatActivity() {
             } else {
                 ll_Signup_Password_Check.setBackgroundResource(R.drawable.signup_gray_border)
                 edt_Signup_PasswordCheck_img.setImageResource(R.drawable.login_password_off_icon)
+                txt_Signup_Wrong_Password.visibility = View.INVISIBLE
                 if (edt_Signup_PasswordCheck.getText().toString().length == 0) {
                     ll_Signup_Password_Check.setBackgroundResource(R.drawable.signup_gray_border)
                     edt_Signup_PasswordCheck_img.setImageResource(R.drawable.login_password_off_icon)
@@ -123,6 +125,7 @@ class SignupActivity : AppCompatActivity() {
                 }
             }
         }
+
         edt_Signup_Phonenumber.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 ll_Signup_Phonenumber.setBackgroundResource(R.drawable.signup_purple_border)
@@ -139,8 +142,15 @@ class SignupActivity : AppCompatActivity() {
                 }
             }
         }
+
         btn_signup_nextstep.setOnClickListener {
-            if (emailDuplicateFlag == false && nickNameDuplicateFlag == false) {
+            if(edt_Signup_Email.text.toString() == "" || edt_Signup_Password.text.toString() == "" ||
+            edt_Signup_PasswordCheck.text.toString() == "" || edt_Signup_Nickname.text.toString() == ""
+            || edt_Signup_Phonenumber.text.toString() == ""){
+            txt_signup_try_again.visibility = VISIBLE
+        }
+
+            else if (emailDuplicateFlag == false && nickNameDuplicateFlag == false) {
                 if (txt_Signup_Wrong_Email.visibility == INVISIBLE && txt_Signup_Wrong_Password.visibility == INVISIBLE) {
                     txt_signup_try_again.visibility = INVISIBLE
                     startActivity<SignupPartActivity>(
@@ -150,6 +160,9 @@ class SignupActivity : AppCompatActivity() {
                         "phoneNum" to edt_Signup_Phonenumber.text.toString(),
                         "img" to imageURI
                     )
+                }
+                else{
+                    txt_signup_try_again.visibility = VISIBLE
                 }
             }
             else{
