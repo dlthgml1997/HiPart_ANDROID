@@ -86,7 +86,8 @@ class HomeFragment : Fragment(){
             HomeFragAdData(
                 "",
                 "",
-                ""
+                "",
+                false
             )
         )
 
@@ -94,7 +95,8 @@ class HomeFragment : Fragment(){
             HomeFragAdData(
                 "",
                 "",
-                ""
+                "",
+                true
             )
         )
 
@@ -102,7 +104,8 @@ class HomeFragment : Fragment(){
             HomeFragAdData(
                 "",
                 "",
-                ""
+                "",
+                true
             )
         )
 
@@ -110,7 +113,8 @@ class HomeFragment : Fragment(){
             HomeFragAdData(
                 "",
                 "",
-                ""
+                "",
+                false
             )
         )
 
@@ -118,7 +122,8 @@ class HomeFragment : Fragment(){
             HomeFragAdData(
                 "",
                 "",
-                ""
+                "",
+                true
             )
         )
 
@@ -126,7 +131,8 @@ class HomeFragment : Fragment(){
             HomeFragAdData(
                 "",
                 "",
-                ""
+                "",
+                false
             )
         )
 

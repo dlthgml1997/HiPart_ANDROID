@@ -27,24 +27,32 @@
                             android:id="@+id/iv_frag_hip_det_eetc_back" android:layout_marginTop="12dp"
                             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
                             android:layout_marginStart="17dp"/>
-                    <ImageView
-                            android:src="@drawable/pofol_pick_off_white_icon"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:id="@+id/iv_frag_hip_det_eetc_pick_off"
-                            android:layout_marginTop="12dp" app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="25dp"/>
-                    <TextView
+                    <LinearLayout
+                            android:orientation="vertical"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="9sp"
-                            android:textColor="#ffffff"
-                            android:lineSpacingExtra="1sp"
-                            android:text="224"
-                            android:id="@+id/tv_hip_det_eetc_frag_pick_num"
-                            app:layout_constraintTop_toBottomOf="@+id/iv_frag_hip_det_eetc_pick_off"
+                            android:layout_marginTop="12dp"
+                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="29dp"/>
+                            android:layout_marginEnd="25dp"
+                            android:layout_height="wrap_content">
+                        <ImageView
+                                android:src="@drawable/pofol_pick_off_white_icon"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:id="@+id/iv_frag_hip_det_eetc_pick_off"/>
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="9sp"
+                                android:textColor="#ffffff"
+                                android:lineSpacingExtra="1sp"
+                                android:text="224"
+                                android:id="@+id/tv_hip_det_eetc_frag_pick_num"
+                                app:layout_constraintTop_toBottomOf="@+id/iv_frag_hip_det_eetc_pick_off"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_gravity="center_horizontal"
+                        />
+                    </LinearLayout>
                     <TextView
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
@@ -175,7 +183,7 @@
                                     android:text="먹방"/>
                         </RelativeLayout>
                         <android.support.v7.widget.RecyclerView android:layout_width="wrap_content"
-                                                                android:layout_height="20dp"
+                                                                android:layout_height="wrap_content"
                                                                 android:id="@+id/rv_frag_hip_det_eetc_tag"></android.support.v7.widget.RecyclerView>
 
                     </LinearLayout>
@@ -205,6 +213,7 @@
                               android:orientation="vertical"
                               android:layout_marginTop="12dp"
                               android:background="#f6f6f6">
+
                     <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                                   android:orientation="horizontal"
                                   android:layout_marginTop="12dp">
@@ -218,19 +227,46 @@
                         <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
                                    android:src="@drawable/hipat_tpatx_work_adot_img"/>
                     </LinearLayout>
+                    <RelativeLayout android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                        <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/rl_hipat_detail_act_no_work"
+                                android:layout_width="match_parent"
+                                android:layout_height="208dp"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                        >
 
-                    <RelativeLayout android:layout_width="match_parent" android:layout_height="170dp"
-                                    android:layout_marginTop="8dp"
-                                    android:background="#f6f6f6">
-                        <android.support.v7.widget.RecyclerView android:layout_width="match_parent"
-                                                                android:layout_height="178dp"
-                                                                android:layout_marginTop="11dp"
-                                                                android:id="@+id/rv_frag_hip_det_frag_article"
-                                                                android:clipToPadding="true"
-                                                                android:paddingLeft="24dp"
-                                                                android:layout_centerVertical="true"></android.support.v7.widget.RecyclerView>
+                            <ImageView android:layout_width="82dp" android:layout_height="52dp"
+                                       android:src="@drawable/hipat_nowork_img"
+                                       android:layout_gravity="center_horizontal"/>
+
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                      android:textSize="17sp"
+                                      android:textColor="#484848"
+                                      android:fontFamily="@font/nanum_bold"
+                                      android:text="업로드된 작품이 없어요"
+                                      android:layout_marginTop="22dp"
+                                      android:layout_gravity="center_horizontal"/>
+                        </LinearLayout>
+
+                        <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:background="#f6f6f6">
+                            <android.support.v7.widget.RecyclerView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="11dp"
+                                    android:id="@+id/rv_frag_hip_det_frag_article"
+                                    android:clipToPadding="false"
+                                    android:paddingLeft="24dp"
+                                    android:layout_centerVertical="true"></android.support.v7.widget.RecyclerView>
+                        </RelativeLayout>
+
                     </RelativeLayout>
-
                 </LinearLayout>
 
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
