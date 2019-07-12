@@ -196,7 +196,6 @@
     </LinearLayout>
 
     <!--<RelativeLayout-->
-<<<<<<< HEAD
             <!--android:id="@+id/rv_main_act_pick"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
@@ -232,7 +231,6 @@
                     <!--android:layout_width="wrap_content"-->
                     <!--android:layout_height="wrap_content"/>-->
         <!--</LinearLayout>-->
-=======
     <!--android:id="@+id/rv_main_act_pick"-->
     <!--android:layout_width="wrap_content"-->
     <!--android:layout_height="wrap_content"-->
@@ -268,6 +266,5 @@
     <!--android:layout_width="wrap_content"-->
     <!--android:layout_height="wrap_content"/>-->
     <!--</LinearLayout>-->
->>>>>>> f134dd01ed070c634b8c2ad335e00a6650e6a224
     <!--</RelativeLayout>-->
 </RelativeLayout>

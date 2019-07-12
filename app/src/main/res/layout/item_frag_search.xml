@@ -2,12 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent" android:layout_height="wrap_content">
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="176dp"
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="188dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginHorizontal="24dp"
                     android:background="@drawable/hipat_list_box"
                     android:layout_marginBottom="20dp"
-    android:id="@+id/rl_item_frag_search_item">
+                    android:id="@+id/rl_item_frag_search_item">
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                       android:layout_marginHorizontal="24dp"
@@ -16,9 +16,11 @@
 
             <LinearLayout android:layout_width="wrap_content" android:layout_height="80dp"
                           android:orientation="horizontal">
-                <ImageView android:layout_width="80dp" android:layout_height="80dp"
-                           android:src="@drawable/main_profile_photo_image"
-                           android:id="@+id/iv_item_frag_search_photo"/>
+                <de.hdodenhof.circleimageview.CircleImageView android:layout_width="80dp" android:layout_height="80dp"
+                                                              android:src="@drawable/main_profile_photo_image"
+                                                              android:id="@+id/iv_item_frag_search_photo"
+
+                                                              android:scaleType="centerCrop"/>
                 <RelativeLayout android:layout_width="wrap_content" android:layout_height="match_parent"
 
                                 android:layout_marginLeft="16dp">
@@ -47,14 +49,11 @@
                             <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                                           android:layout_alignParentRight="true"
                                           android:orientation="vertical"
-                                          android:gravity="center_horizontal">
-                                <ToggleButton android:layout_width="16dp" android:layout_height="16dp"
-                                              android:background="@drawable/selector_pick_icon"
-                                              android:text=""
-                                              android:textOn=""
-                                              android:textOff=""
-                                              android:checked="false"
-                                              android:id="@+id/tb_item_frag_search_pick"/>
+                                          android:gravity="center_horizontal"
+                                          android:background="@android:color/white">
+                                <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                                           android:background="@drawable/main_pick_off_icon"
+                                           android:id="@+id/tb_item_frag_search_pick"/>
                                 <TextView
                                         style="@style/nanum_bold"
                                         android:textSize="9sp"
@@ -72,8 +71,8 @@
                                 android:textColor="#707070"
                                 android:lineSpacingExtra="1sp"
                                 android:text="크리에이터"
-                                android:layout_marginTop="8dp"
-                                android:id="@+id/tv_item_frag_search_type"/>
+                                android:gravity="center"
+                                android:id="@+id/tv_item_frag_search_type" android:layout_height="wrap_content"/>
 
 
                     </LinearLayout>
@@ -81,15 +80,16 @@
                                   android:orientation="horizontal"
                                   android:layout_alignParentBottom="true">
 
-                        <RelativeLayout style="@style/HipartDetailIntroPrimaryTagLayout">
+                        <RelativeLayout style="@style/HipartDetailIntroPrimaryTagLayout"
+                                        android:id="@+id/tv_item_frag_search_pd">
                             <TextView style="@style/nanum_light"
                                       android:textSize="11sp"
                                       android:textColor="@android:color/white"
                                       android:lineSpacingExtra="1sp"
                                       android:gravity="center_horizontal"
                                       android:text="먹방"
-                                      android:layout_centerInParent="true"
-                                      android:id="@+id/tv_item_frag_search_pd"/>
+                                      android:layout_centerHorizontal="true" android:layout_marginTop="3dp"
+                                      android:layout_alignParentTop="true"/>
                         </RelativeLayout>
 
                         <android.support.v7.widget.RecyclerView android:layout_width="wrap_content"
@@ -108,7 +108,7 @@
                     android:textSize="13sp"
                     android:textColor="#242424"
                     android:lineSpacingExtra="8dp"
-                    android:text="안녕하세요~ 먹고 싶은 모든 것들을 영상으로"
+                    android:text="안녕하세요~ 먹고 싶은 모든 것들을 영상으로ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ홀"
                     android:layout_marginTop="20dp"
                     android:id="@+id/tv_item_frag_search_intro"/>
 

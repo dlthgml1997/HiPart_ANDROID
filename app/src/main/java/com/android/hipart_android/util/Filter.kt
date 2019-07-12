@@ -84,6 +84,14 @@ object Filter {
         }
     }
 
+    fun pick(num : Int) :Boolean {
+        return when(num) {
+            0 -> false
+            1 -> true
+            else ->false
+        }
+    }
+
 
 
 

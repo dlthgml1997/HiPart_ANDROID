@@ -54,7 +54,11 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
         //타입
         holder.type.text = Filter.type(dataList[position].info[0].user_type)
         //pd
-        holder.pd.text = Filter.pd(dataList[position].info[0].pd)
+        if(dataList[position].info[0].pd != 0) {
+            holder.pd.text = Filter.pd(dataList[position].info[0].pd)
+        }else{
+            holder.pd.visibility = View.GONE
+        }
 
         //3가지 태그 리사이클러
         val tagList = ArrayList<String>()
@@ -74,20 +78,38 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
         //소개
         holder.intro.text = dataList[position].info[0].detail_oneline
 
-        holder.pick.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener{
-            override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-                if(isChecked) {
-                    addPick(dataList[position].info[0].user_nickname!!, false)
-                    holder.pick_num.text = (dataList[position].info[0].pick + 1).toString()
 
-                }else
-                    deletePick(dataList[position].info[0].user_nickname!!)
-                    holder.pick_num.text = dataList[position].info[0].pick.toString()
+        val iniPickStatus = Filter.pick(dataList[position].pickState)
+        var pickStatus = false
+
+
+        //pick
+        holder.pick.apply {
+            if (iniPickStatus) {
+                holder.pick.setBackgroundResource(R.drawable.main_pick_on_icon)
+                pickStatus = iniPickStatus
+            } else {
+                holder.pick.setBackgroundResource(R.drawable.main_pick_off_icon)
+                pickStatus = iniPickStatus
             }
-        })
+            setOnClickListener {
+                if (pickStatus == false) {
+                    holder.pick.setBackgroundResource(R.drawable.main_pick_on_icon)
+                    holder.pick_num.text = (dataList[position].info[0].pick + 1).toString()
+                    addPick(dataList[position].info[0].user_nickname!!, false)
+                    pickStatus = true
+                } else {
+                    holder.pick.setBackgroundResource(R.drawable.main_pick_off_icon)
+                    holder.pick_num.text = (dataList[position].info[0].pick).toString()
+                    deletePick(dataList[position].info[0].user_nickname!!)
+                    pickStatus = false
+                }
+            }
+        }
 
-        //픽 수
-        holder.pick_num.text = dataList[position].info[0].pick.toString()
+            //픽 수
+            holder.pick_num.text = dataList[position].info[0].pick.toString()
+
 
     }
 
@@ -172,7 +194,7 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
         val pd = itemView.findViewById(R.id.tv_item_frag_search_pd) as TextView
         val tag = itemView.findViewById(R.id.rv_item_frag_search_tag) as RecyclerView
         val intro = itemView.findViewById(R.id.tv_item_frag_search_intro) as TextView
-        val pick = itemView.findViewById(R.id.tb_item_frag_search_pick) as ToggleButton
+        val pick = itemView.findViewById(R.id.tb_item_frag_search_pick) as ImageView
         var pick_num = itemView.findViewById(R.id.tv_item_frag_search_pick_num) as TextView
 
     }
