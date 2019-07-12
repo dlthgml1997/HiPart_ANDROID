@@ -8,6 +8,7 @@
     <TextView
             android:id="@+id/tv_item_frag_hip_det_t_before"
             style="@style/nanum_regular"
+android:layout_gravity="center"
             android:textSize="13sp"
             android:textColor="#434343"
             android:lineSpacingExtra="8dp"
@@ -24,6 +25,7 @@
             style="@style/nanum_regular"
             android:textSize="14sp"
             android:textColor="#434343"
+            android:layout_gravity="center"
             android:lineSpacingExtra="8dp"
             android:text="여기는 외국어 적는 뷰에요~\nfffff \n fffff"/>
 

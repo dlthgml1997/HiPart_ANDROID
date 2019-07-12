@@ -46,4 +46,8 @@
         <item name="android:fontFamily">@font/nanum_square_light</item>
     </style>
 
+    <style name="EdittextStyle" parent="AppTheme">
+        <item name="android:textColorHighlight">@color/colorHIpatback</item>
+        <item name="colorControlActivated">@color/colorHIpat</item>
+    </style>
 </resources>
