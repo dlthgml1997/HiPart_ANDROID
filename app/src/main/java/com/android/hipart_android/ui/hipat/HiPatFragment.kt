@@ -94,6 +94,30 @@ class HiPatFragment : Fragment(), View.OnClickListener {
 
 
     private fun configureAdViewPager() {
+        dataList.add(HipatFragAdData(
+            "",
+            false
+        ))
+
+        dataList.add(HipatFragAdData(
+            "",
+            true
+        ))
+
+        dataList.add(HipatFragAdData(
+            "",
+            true
+        ))
+        dataList.add(HipatFragAdData(
+            "",
+            true
+        ))
+
+        dataList.add(HipatFragAdData(
+            "",
+            true
+        ))
+
         vp_hipat_frag_ad.adapter = hipatFragAdRecyclerViewAdapter
     }
 

@@ -202,7 +202,7 @@
         <ImageView
                 android:id="@+id/iv_main_act_add_parm_anim"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:src="@drawable/pick_popup_img"
+                android:src="@drawable/get_palm_popup_img"
                 android:layout_centerHorizontal="true"/>
         <LinearLayout
                 android:orientation="horizontal"
