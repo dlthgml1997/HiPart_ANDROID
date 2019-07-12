@@ -8,6 +8,7 @@ import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.login.LoginActivity
 import com.android.hipart_android.ui.signup.data.PostSignUpResponse
+import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.ImageConverter
 import kotlinx.android.synthetic.main.activity_signup_part.*
 import okhttp3.MediaType
@@ -21,7 +22,7 @@ import retrofit2.Response
 import java.io.File
 
 
-class SignupPartActivity : AppCompatActivity() {
+class SignupPartActivity : BaseActivity() {
 
     private var email = ""
     private var password = ""

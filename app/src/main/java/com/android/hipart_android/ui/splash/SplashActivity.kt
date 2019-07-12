@@ -21,14 +21,15 @@ class SplashActivity : AppCompatActivity() {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
-                startActivity<LoginActivity>()
-                finish()
+              //  startActivity<LoginActivityoginActivity>()
+              //  finish()
             }
 
             override fun onAnimationCancel(animation: Animator?) {
             }
 
             override fun onAnimationStart(animation: Animator?) {
+
             }
         })
         animation_act_splash.playAnimation()
