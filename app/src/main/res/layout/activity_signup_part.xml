@@ -17,7 +17,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#242424"
                 android:layout_marginTop="96dp"
-                android:fontFamily="@font/nanum_square_bold"
+                android:fontFamily="@font/nanum_bold"
                 android:layout_marginLeft="50dp"
                 android:textSize="20sp"/>
         <TextView
@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#242424"
-                android:fontFamily="@font/nanum_square_bold"
+                android:fontFamily="@font/nanum_bold"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="50dp"
                 android:textSize="20sp"/>
@@ -84,7 +84,7 @@
                 android:text="가입 진행 시,"
                 android:textColor="#707070"
                 android:textSize="11sp"
-                android:fontFamily="@font/nanum_square_regular"
+                android:fontFamily="@font/nanum_regular"
         />
         <TextView
                 android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
                 android:text="에 동의하는 것으로 간주합니다."
                 android:textColor="#707070"
                 android:textSize="11sp"
-                android:fontFamily="@font/nanum_square_regular"
+                android:fontFamily="@font/nanum_regular"
         />
     </LinearLayout>
     <Button
@@ -113,7 +113,7 @@
             android:text="회원 가입 완료"
             android:textColor="#ffffff"
             android:textSize="15sp"
-            android:fontFamily="@font/nanum_square_extra_bold"
+            android:fontFamily="@font/nanum_extra_bold"
             android:layout_alignParentBottom="true"
     />
 </RelativeLayout>

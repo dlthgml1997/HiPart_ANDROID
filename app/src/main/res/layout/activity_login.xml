@@ -84,6 +84,7 @@
                         android:textSize="13sp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/nanum_regular"
                         android:layout_toEndOf="@id/img_login_act_password_off"
                         android:textCursorDrawable="@drawable/text_cursor"
                         android:layout_marginLeft="16dp"

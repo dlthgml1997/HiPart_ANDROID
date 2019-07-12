@@ -14,6 +14,7 @@
             android:lineSpacingExtra="1sp"
             android:gravity="center_horizontal"
             tools:text="명랑핫도그 먹방"
+            android:fontFamily="@font/nanum_bold"
             android:layout_marginLeft="6dp"
             android:layout_marginTop="15dp"/>
     <TextView
@@ -22,6 +23,7 @@
             android:textSize="10sp"
             android:textColor="#434343"
             android:lineSpacingExtra="8dp"
+            android:fontFamily="@font/nanum_regular"
             tools:text="너무너무 맛있어요~~!! 특히 치즈를 올려/nfffff"
             android:layout_marginLeft="6dp"
             android:layout_marginTop="8dp"/>

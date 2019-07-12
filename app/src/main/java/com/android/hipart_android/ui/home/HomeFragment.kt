@@ -2,6 +2,7 @@ package com.android.hipart_android.ui.home
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.view.ViewPager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -53,12 +54,14 @@ class HomeFragment : Fragment(){
         view!!.findViewById<ImageView>(R.id.iv_frag_home_alarm)
     }
 
+    lateinit var viewPager: ViewPager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_home, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         getMyInfo()
+        viewPager = vp_frag_home_recommend_hipat
         super.onActivityCreated(savedInstanceState)
         hipartDataList = ArrayList<ResData>()
         // 하는 중
@@ -80,7 +83,7 @@ class HomeFragment : Fragment(){
     }
 
     private fun setPatVpAdapter() {
-        vp_frag_home_recommend_hipat.adapter = homeFragHipatAdapter
+        viewPager.adapter = homeFragHipatAdapter
         customRecommedNetworkFlag = false
     }
 
@@ -91,6 +94,33 @@ class HomeFragment : Fragment(){
                 "",
                 "",
                 false
+            )
+        )
+
+        adDataList.add(
+            HomeFragAdData(
+                "",
+                "",
+                "",
+                true
+            )
+        )
+
+        adDataList.add(
+            HomeFragAdData(
+                "",
+                "",
+                "",
+                true
+            )
+        )
+
+        adDataList.add(
+            HomeFragAdData(
+                "",
+                "",
+                "",
+                true
             )
         )
 

@@ -60,7 +60,7 @@
                     <TextView
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:fontFamily="@font/nanum_square_regular"
+                            android:fontFamily="@font/nanum_regular"
                             android:textSize="12sp"
                             android:textColor="#ffffff"
                             android:lineSpacingExtra="3sp"
@@ -74,7 +74,7 @@
                     <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanum_square_bold"
+                            android:fontFamily="@font/nanum_bold"
                             android:textSize="20sp"
                             android:textColor="#ffffff"
                             android:maxLength="5"
@@ -91,7 +91,7 @@
                             android:textColor="#ffffff"
                             android:lineSpacingExtra="2sp"
                             android:text="님"
-                            android:fontFamily="@font/nanum_square_regular"
+                            android:fontFamily="@font/nanum_regular"
                             android:id="@+id/textView4"
                             app:layout_constraintTop_toTopOf="@+id/tv_hip_det_frag_eetc_name"
                             app:layout_constraintStart_toEndOf="@+id/tv_hip_det_frag_eetc_name"
@@ -144,7 +144,7 @@
                                   android:lineSpacingExtra="2sp"
                                   android:text="나와 하이파이브 했어요"/>
                         <TextView
-                                android:fontFamily="@font/nanum_square_regular"
+                                android:fontFamily="@font/nanum_regular"
                                 android:textSize="15sp"
                                 android:textColor="#575757"
                                 android:lineSpacingExtra="2sp"
@@ -225,7 +225,7 @@
                                   android:layout_marginTop="12dp">
                         <TextView
                                 android:gravity="center_vertical"
-                                android:fontFamily="@font/nanum_square_bold"
+                                android:fontFamily="@font/nanum_bold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:textSize="12sp"

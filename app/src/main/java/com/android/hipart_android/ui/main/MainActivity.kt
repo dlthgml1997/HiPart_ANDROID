@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.RelativeLayout
 import com.android.hipart_android.BuildConfig
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
@@ -42,6 +43,8 @@ class MainActivity : BaseActivity() {
 
     var profileAllDataList = ArrayList<GetMyPickData>()
     var noFilterProfileAllDataList = ArrayList<GetMyPickData>()
+    lateinit var pickAnim : RelativeLayout
+    lateinit var addParmAnim : RelativeLayout
 
     private val pleaseLoginDialog by lazy {
         PleaseLoginDialog()
@@ -53,6 +56,8 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         attachHomeFragment()
         setOnClickListener()
+        pickAnim = rl_main_act_anim
+        addParmAnim = rl_main_act_add_parm_anim
         Log.e("토큰", SharedPreferenceController.getAuthorization(this@MainActivity))
     }
 
@@ -214,14 +219,14 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                rl_main_act_anim.visibility = View.GONE
+                pickAnim.visibility = View.GONE
             }
 
             override fun onAnimationStart(animation: Animation?) {
-                rl_main_act_anim.visibility = View.VISIBLE
+                pickAnim.visibility = View.VISIBLE
             }
         })
-        rl_main_act_anim.startAnimation(anim)
+        pickAnim.startAnimation(anim)
     }
 
     internal inner class MyBounceInterpolator(amplitude: Double, frequency: Double) :
@@ -362,14 +367,14 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                rl_main_act_add_parm_anim.visibility = View.GONE
+                addParmAnim.visibility = View.GONE
             }
 
             override fun onAnimationStart(animation: Animation?) {
-                rl_main_act_add_parm_anim.visibility = View.VISIBLE
+                addParmAnim.visibility = View.VISIBLE
             }
         })
-        rl_main_act_add_parm_anim.startAnimation(anim)
+        addParmAnim.startAnimation(anim)
     }
 
     fun showGoToLoginDialog() {

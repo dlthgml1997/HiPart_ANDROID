@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.android.hipart_android.R
-import com.android.hipart_android.ui.ad_add.AddAdCheckActivity
+import com.android.hipart_android.ui.ad_add.AddAdActivity
 import com.android.hipart_android.ui.home.data.HomeFragAdData
 import com.android.hipart_android.ui.main.MainActivity
 import com.bumptech.glide.Glide
@@ -38,28 +38,25 @@ class HomeFragAdAdapter(private val dataList: List<HomeFragAdData>, private val 
 //
 //        val des2 = view.findViewById<TextView>(R.id.tv_rv_item_home_ad_des2)
 
-        when(dataList[position].clickFlag){
-            true -> {
-                Glide.with(context!!).load(R.drawable.main_ad_2_img).into(img)
-            }
-            false -> {
-                Glide.with(context!!).load(R.drawable.main_ad_1_img).into(img)
-            }
-        }
 
-        /*when(position){
+
+        when(position){
             0 -> {
-                title.visibility = View.GONE
-                des.visibility = View.GONE
+                Glide.with(context!!).load(R.drawable.main_ad_one_img).into(img)
             }
             1 -> {
-                title.visibility = View.VISIBLE
-                title.text = "[망원] 하이팟 아지트"
-                des.text = "삼겹살로 서울을 제패한"
-                des2.text = "하이팟 아지트에 초대합니다 !"
-                des.visibility = View.VISIBLE
+                Glide.with(context!!).load(R.drawable.main_ad_fiv_img).into(img)
             }
-        }*/
+            2 -> {
+                Glide.with(context!!).load(R.drawable.main_ad_fo_img).into(img)
+            }
+            3 -> {
+                Glide.with(context!!).load(R.drawable.main_ad_thr_img).into(img)
+            }
+            4 -> {
+                Glide.with(context!!).load(R.drawable.main_ad_two_img).into(img)
+            }
+        }
 
             if(dataList[position].clickFlag == true){
                 img.setOnClickListener {
@@ -68,7 +65,7 @@ class HomeFragAdAdapter(private val dataList: List<HomeFragAdData>, private val 
                 }
             }else{
                 img.setOnClickListener {
-                    context.startActivity<AddAdCheckActivity>()
+                    context!!.startActivity<AddAdActivity>()
                 }
             }
 

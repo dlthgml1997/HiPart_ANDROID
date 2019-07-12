@@ -24,6 +24,7 @@
                     android:textColorHint="#a2a2a2"
                     android:background="@null"
                     android:gravity="top"
+                    android:fontFamily="@font/nanum_regular"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
         </RelativeLayout>
@@ -31,7 +32,7 @@
                 android:text="담당자에게 금방 전달해드릴게요 !"
                 android:textSize="15sp"
                 android:textColor="#707070"
-                android:fontFamily="@font/nanum_square_regular"
+                android:fontFamily="@font/nanum_regular"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center_horizontal"
@@ -41,7 +42,7 @@
                 android:text="조금만 기다려주세요 :)"
                 android:textSize="15sp"
                 android:textColor="#707070"
-                android:fontFamily="@font/nanum_square_regular"
+                android:fontFamily="@font/nanum_regular"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

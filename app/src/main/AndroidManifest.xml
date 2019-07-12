@@ -66,6 +66,10 @@
         <activity android:name=".ui.ad_add.AddAdCheckActivity">
         </activity>
 
+        <activity android:name=".ui.ad_add.AddAdActivity">
+
+        </activity>
+
 
     </application>
 
