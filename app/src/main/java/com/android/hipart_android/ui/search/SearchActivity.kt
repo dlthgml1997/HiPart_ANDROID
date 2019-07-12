@@ -183,26 +183,28 @@ class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityE
 //    }
 
     private fun filterSearchData(data: ArrayList<User>) {
+
+        searchDataForC.removeAll(searchDataForC)
+        searchDataForE.removeAll(searchDataForE)
+        searchDataForT.removeAll(searchDataForT)
+        searchDataForETC.removeAll(searchDataForETC)
         for (i in 0..data.size - 1) {
             if (data[i].info[0].user_type == 1) {
-                searchDataForC.removeAll(searchDataForC)
                 searchDataForC.add(data[i])
                 Log.d("searchDataForC", "added")
             } else if (data[i].info[0].user_type == 2) {
-                searchDataForE.removeAll(searchDataForE)
                 searchDataForE.add(data[i])
                 Log.d("searchDataForE", "added")
 
             } else if (data[i].info[0].user_type == 3) {
-                searchDataForT.removeAll(searchDataForT)
                 searchDataForT.add(data[i])
                 Log.d("searchDataForT", "added")
             } else {
-                searchDataForETC.removeAll(searchDataForETC)
                 searchDataForETC.add(data[i])
                 Log.d("searchDataForETC", "added")
             }
         }
+
         SearchData.searchDataForC = searchDataForC
         SearchData.searchDataForE = searchDataForE
         SearchData.searchDataForT = searchDataForT
