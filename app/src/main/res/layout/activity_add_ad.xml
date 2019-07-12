@@ -51,7 +51,7 @@
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="30dp">
                 <TextView
-                        android:text="롯데리아 더블 시리즈"
+                        android:text="삼겹살 파티파티"
                         android:textColor="#434343"
                         android:textSize="20sp"
                         android:fontFamily="@font/nanum_bold"
@@ -60,7 +60,7 @@
                         android:layout_marginBottom="10dp"
                         android:id="@+id/txt_addad_act_title"/>
                 <TextView
-                        android:text="먹방 크리에이터들을 위한 롯데리아의 신작"
+                        android:text="먹방 크리에이터들을 위한 삼겹살 협찬"
                         android:textColor="#707070"
                         android:textSize="13sp"
                         android:fontFamily="@font/nanum_light"
@@ -105,10 +105,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"/>
                 <TextView
-                        android:text="앱잼, 망원동 단체회식"
+                        android:text="7만원 상당의 육류 + 식사류 + 주류
+                        \n1. 육류 – 삼겹살, 목살
+                        \n2. 식사류 – 구워먹는 치즈
+                        \n3. 10,000원 이하 제공
+                        \n*1,2 메뉴는 필수로 시키고 남은 금액은 다른 음식으로 대체
+                        \n가능 (차액 환불 X)
+                        \n*추가 인원 및 메뉴 별도 지불(음료,주류 포함)"
                         android:textColor="#707070"
                         android:textSize="13sp"
                         android:fontFamily="@font/nanum_light"
+                        android:lineSpacingExtra="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -122,13 +129,19 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"/>
                 <TextView
-                        android:text="7만원 상당의 육류 + 식사류 + 주류"
+                        android:text="앱잼, 망원동 단체회식
+                        \n1. 제목 : 업체명 + 자율 키워드
+                        \n2. 영상 : 영상 URL
+                        \n필수 키워드 및 띄어쓰기가 지켜지지 않으면 수정 요청 사항
+                        \n이 있을 수 있습니다."
                         android:textColor="#707070"
                         android:textSize="13sp"
                         android:fontFamily="@font/nanum_light"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
+
+                        android:lineSpacingExtra="8dp"
                         android:id="@+id/txt_addad_act_keyword"/>
                 <TextView
                         android:text="발표일"
@@ -139,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"/>
                 <TextView
-                        android:text="0000-00-00"
+                        android:text="2019-07-07"
                         android:textColor="#707070"
                         android:textSize="13sp"
                         android:fontFamily="@font/nanum_light"
@@ -156,7 +169,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"/>
                 <TextView
-                        android:text="0000-00-00 ~ 0000-00-00"
+                        android:text="2019-07-14 ~ 2019- 08-14"
                         android:textColor="#707070"
                         android:textSize="13sp"
                         android:fontFamily="@font/nanum_light"
@@ -173,13 +186,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"/>
                 <TextView
-                        android:text="월 ~ 금 10:00 ~ 22:00"
+                        android:text="월 ~ 금 10:00 ~ 22:00
+                        \n토 ~ 일 12:00 ~ 22:00
+                        \n라스트 오더 21:30
+                        \n연중무휴"
                         android:textColor="#707070"
                         android:textSize="13sp"
                         android:fontFamily="@font/nanum_light"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
+                        android:lineSpacingExtra="8dp"
                         android:id="@+id/txt_addad_act_opentime"/>
                 <TextView
                         android:text="영상 등록 시 유의사항"
@@ -190,13 +207,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"/>
                 <TextView
-                        android:text="1. 영상 내에 지도 첨부"
+                        android:text="1. 영상 내에 지도 첨부
+                        \n2. 전체 음식 영상에 담기"
                         android:textColor="#707070"
                         android:textSize="13sp"
                         android:fontFamily="@font/nanum_light"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
+                        android:lineSpacingExtra="8dp"
                         android:id="@+id/txt_addad_act_upload_note"/>
                 <TextView
                         android:text="방문 시 유의사항"
@@ -207,13 +226,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"/>
                 <TextView
-                        android:text="1. 방문 2~3일 전 예약(당일 예약시 체험 불가)"
+                        android:text="1. 방문 2~3일 전 예약(당일 예약시 체험 불가)
+                        \n2. 금요일 예약 18:00까지 가능
+                        \n3. 토요일 예약 점심시간 or 17:00까지 예약 가능
+                        \n4 .타쿠폰 중복적용 불가/테이크아웃불가"
                         android:textColor="#707070"
                         android:textSize="13sp"
                         android:fontFamily="@font/nanum_light"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="27dp"
+                        android:lineSpacingExtra="8dp"
                         android:id="@+id/txt_addad_act_visit_note"/>
             </LinearLayout>
             <RelativeLayout
