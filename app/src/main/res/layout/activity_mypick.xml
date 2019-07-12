@@ -44,6 +44,7 @@
             android:id="@+id/toolbar_mypick"
             layout="@layout/toolbar_mypick"/>
     <RelativeLayout
+            android:background="#fafafa"
             android:layout_below="@+id/toolbar_mypick"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

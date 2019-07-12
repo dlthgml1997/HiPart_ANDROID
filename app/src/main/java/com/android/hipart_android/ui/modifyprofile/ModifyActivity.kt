@@ -154,6 +154,7 @@ class ModifyActivity : BaseActivity() {
         textView.setOnClickListener {
             if (!textView.isSelected) {
                 reverseBtn(textView)
+                textView.textColor = Color.parseColor("#7947fd")
             } else {
                 textView.isSelected = false
                 textView.textColor = Color.parseColor("#707070")
