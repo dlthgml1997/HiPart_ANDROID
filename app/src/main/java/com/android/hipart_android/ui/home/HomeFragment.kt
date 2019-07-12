@@ -26,6 +26,7 @@ import com.android.hipart_android.util.FragmentKind
 import com.android.hipart_android.util.OnSingleClickListener
 import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.support.v4.startActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -142,7 +143,7 @@ class HomeFragment : Fragment(){
                 if(SharedPreferenceController.getNickName(this@HomeFragment.context!!) == BuildConfig.TEST_USER_NCIKNAME){
                     (context as MainActivity).showGoToLoginDialog()
                 }else{
-                    startActivity<NotificationActivity>()
+                    activity!!.startActivityForResult<NotificationActivity>(3)
                 }
             }
         })
@@ -259,13 +260,14 @@ class HomeFragment : Fragment(){
                     ?.body()
                     ?.data
                     ?.let{
-                        SharedPreferenceController.setNickName(this@HomeFragment.context!!, it[0].user_nickname)
-                        if(it[0].user_nickname == BuildConfig.TEST_USER_NCIKNAME){
-                            setNickName(true, "")
-                        }else {
-                            setNickName(false, it[0].user_nickname)
+                        if(it.isNullOrEmpty() == false && it[0].user_nickname.isNullOrEmpty() == false){
+                            SharedPreferenceController.setNickName(this@HomeFragment.context!!, it[0].user_nickname)
+                            if(it[0].user_nickname == BuildConfig.TEST_USER_NCIKNAME){
+                                setNickName(true, "")
+                            }else {
+                                setNickName(false, it[0].user_nickname)
+                            }
                         }
-
                     }
             }
         })
@@ -279,5 +281,9 @@ class HomeFragment : Fragment(){
             tv_frag_home_user_name.text = nickname
             tv_frag_home_user_nim.visibility = View.VISIBLE
         }
+    }
+
+    fun setNormalNotifiaction(){
+        iv_frag_home_alarm.setImageResource(R.drawable.selector_home_frag_alarm_btn)
     }
 }
