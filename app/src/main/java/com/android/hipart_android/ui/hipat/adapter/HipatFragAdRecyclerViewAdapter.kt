@@ -2,17 +2,21 @@ package com.android.hipart_android.ui.hipat.adapter
 
 import android.content.Context
 import android.support.v4.view.PagerAdapter
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import com.android.hipart_android.R
+import com.android.hipart_android.ui.ad_add.AddAdActivity
 import com.android.hipart_android.ui.hipat.data.HipatFragAdData
+import com.android.hipart_android.ui.main.MainActivity
+import com.bumptech.glide.Glide
+import org.jetbrains.anko.startActivity
 
 class HipatFragAdRecyclerViewAdapter(private val context: Context, private val dataList: ArrayList<HipatFragAdData>) :
     PagerAdapter() {
+
+    var showAnimFlag = false
 
 
     override fun isViewFromObject(view: View, obj: Any): Boolean = view.equals(obj)
@@ -23,10 +27,35 @@ class HipatFragAdRecyclerViewAdapter(private val context: Context, private val d
         val view = LayoutInflater.from(context).inflate(R.layout.rv_item_hipat_frag_advertisement, container, false)
 
         val image = view.findViewById(R.id.img_rv_item_hipat_frag_ad) as ImageView
-        val title = view.findViewById(R.id.txt_rv_item_hipat_frag_ad_title) as TextView
-        val context = view.findViewById(R.id.txt_rv_item_hipat_frag_ad_more) as TextView
 
-        image.setImageResource(R.drawable.hipat_ad_1_img)
+        when(position){
+            0 -> {
+                Glide.with(context).load(R.drawable.main_ad_mini_one_img).into(image)
+            }
+            1 -> {
+                Glide.with(context).load(R.drawable.main_ad_mini_two_img).into(image)
+            }
+            2 -> {
+                Glide.with(context).load(R.drawable.main_ad_mini_thr_img).into(image)
+            }
+            3 -> {
+                Glide.with(context).load(R.drawable.main_ad_mini_fo_img).into(image)
+            }
+            4 -> {
+                Glide.with(context).load(R.drawable.main_ad_mini_fiv_img).into(image)
+            }
+        }
+
+        if(dataList[position].clickFlag == true){
+            image.setOnClickListener {
+                (context as MainActivity).setAddPickAnimPickIcon()
+                showAnimFlag = true
+            }
+        }else{
+            image.setOnClickListener {
+                context!!.startActivity<AddAdActivity>()
+            }
+        }
 
         container.addView(view, 0)
 

@@ -52,7 +52,7 @@ class LoginActivity : BaseActivity(), KeyboardVisibilityEventListener {
         setContentView(R.layout.activity_login)
 
         setUnderlineText()
-        setAutoLogin()
+        // setAutoLogin()
         setOnFocusChangeListener()
         setTextChangedListenerEmail()
         setTextChangedListenerPassword()
