@@ -25,6 +25,7 @@ class HipartDetailCpatArticleAdapter(val ctx : Context, val dataList : ArrayList
             .into(holder.photo)
 
         holder.title.text = dataList[position].title
+        holder.photo.clipToOutline = true
         holder.content.text = dataList[position].content
     }
 

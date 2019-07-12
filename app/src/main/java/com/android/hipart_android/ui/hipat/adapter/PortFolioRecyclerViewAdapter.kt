@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
@@ -87,63 +88,55 @@ class PortFolioRecyclerViewAdapter(
 
         val thirdTheme = holder.thirdFilter
         if (conceptFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length >10)
-            {
-                setConceptTheme(11,thirdTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length > 10) {
+                setConceptTheme(12, thirdTheme)
+            } else
                 setConceptTheme(data.concept, thirdTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length >10)
-            {
-                setConceptTheme(11,thirdTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length > 10) {
+                setConceptTheme(12, thirdTheme)
+            } else
                 setPDTheme(data.pd, thirdTheme)
             pdFlag = true
         } else if (langFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length >10)
-            {
-                setConceptTheme(11,thirdTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length > 10) {
+                setConceptTheme(12, thirdTheme)
+            } else
                 setLangTheme(data.lang, thirdTheme)
             langFlag = true
         } else if (etcFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length >10)
-            {
-                setConceptTheme(11,thirdTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length > 10) {
+                setConceptTheme(12, thirdTheme)
+            } else
                 setEtcTheme(data.etc, thirdTheme)
             etcFlag = true
         }
 
         val fourthTheme = holder.fourthFilter
         if (conceptFlag == false) {
-            Log.v("TAGGG",(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length).toString())
-            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
-            {
-                setConceptTheme(11,fourthTheme)
-            }else
+            Log.v("TAGGG", (firstTheme.text.length + secondTheme.text.length + thirdTheme.text.length).toString())
+            if (firstTheme.text.length + secondTheme.text.length + thirdTheme.text.length > 10) {
+                setConceptTheme(12, fourthTheme)
+            } else
                 setConceptTheme(data.concept, fourthTheme)
             conceptFlag = true
         } else if (pdFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
-            {
-                setConceptTheme(11,fourthTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length + thirdTheme.text.length > 10) {
+                setConceptTheme(12, fourthTheme)
+            } else
                 setPDTheme(data.pd, fourthTheme)
             pdFlag = true
         } else if (langFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
-            {
-                setConceptTheme(11,fourthTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length + thirdTheme.text.length > 10) {
+                setConceptTheme(12, fourthTheme)
+            } else
                 setLangTheme(data.lang, fourthTheme)
             langFlag = true
         } else if (etcFlag == false) {
-            if(firstTheme.text.length+secondTheme.text.length+thirdTheme.text.length >10)
-            {
-                setConceptTheme(11,fourthTheme)
-            }else
+            if (firstTheme.text.length + secondTheme.text.length + thirdTheme.text.length > 10) {
+                setConceptTheme(12, fourthTheme)
+            } else
                 setEtcTheme(data.etc, fourthTheme)
             etcFlag = true
         }
@@ -174,16 +167,16 @@ class PortFolioRecyclerViewAdapter(
         val kindOfPat = holder.kind_of_pat
         when (data.user_type) {
             1 -> { //c-pat
-                kindOfPat.text = "크리에이터"
+                kindOfPat.text = "Creator"
             }
             2 -> {
-                kindOfPat.text = "편집자"
+                kindOfPat.text = "Editor"
             }
             3 -> {
-                kindOfPat.text = "번역가"
+                kindOfPat.text = "Translator"
             }
             4 -> {
-                kindOfPat.text = "기타"
+                kindOfPat.text = "Etc."
             }
         }
 
@@ -205,11 +198,16 @@ class PortFolioRecyclerViewAdapter(
 
 
 
-        holder.root.setOnClickListener { ctx!!.startActivity<HipartDetailActivity>("user_nickname" to data.user_nickname, "user_type" to data.user_type) }
+        holder.root.setOnClickListener {
+            ctx!!.startActivity<HipartDetailActivity>(
+                "user_nickname" to data.user_nickname,
+                "user_type" to data.user_type
+            )
+        }
 
         if (mainActivityFlag == true) {
             btnPick.setOnClickListener {
-//                if (holder.is_picked.isSelected == false) {
+                //                if (holder.is_picked.isSelected == false) {
 //                    (ctx as MainActivity).setAnimPickIcon()
 //                }
 
@@ -232,7 +230,7 @@ class PortFolioRecyclerViewAdapter(
             }
         } else {
             btnPick.setOnClickListener {
-//                if (holder.is_picked.isSelected == false) {
+                //                if (holder.is_picked.isSelected == false) {
 //                    (ctx as MyPickActivity).setAnimPickIcon()
 //                }
 //                holder.is_picked.isSelected = !holder.is_picked.isSelected
@@ -273,7 +271,7 @@ class PortFolioRecyclerViewAdapter(
         var fourthFilter = itemView.findViewById(R.id.tv_hipat_filter_act_chinese) as TextView
 
 
-        var is_picked = itemView.findViewById(R.id.img_rv_item_hipat_frag_pick) as ImageView
+        var is_picked = itemView.findViewById(R.id.img_rv_item_hipat_frag_pick) as LinearLayout
         var how_picked = itemView.findViewById(R.id.txt_rv_item_hipat_frag_how_picked) as TextView
         var root = itemView.findViewById(R.id.btn_rv_item_hipat_frag_port_root) as RelativeLayout
 
@@ -303,8 +301,8 @@ class PortFolioRecyclerViewAdapter(
             7 -> {
                 tv.text = "교육/정보"
             }
-            11->{
-                tv.text="..."
+            12 -> {
+                tv.text = "..."
             }
             else -> {
                 tv.visibility = View.GONE
@@ -363,6 +361,9 @@ class PortFolioRecyclerViewAdapter(
             11 -> {
                 tv.text = "인도네시아어"
             }
+            12 -> {
+                tv.text = "..."
+            }
             else -> {
                 tv.visibility = View.GONE
             }
@@ -389,6 +390,9 @@ class PortFolioRecyclerViewAdapter(
             }
             6 -> {
                 tv.text = "썸네일"
+            }
+            12 -> {
+                tv.text = "..."
             }
             else -> {
                 tv.visibility = View.GONE

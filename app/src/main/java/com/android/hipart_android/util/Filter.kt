@@ -7,10 +7,10 @@ object Filter {
     fun type(num : Int) : String{
         return when(num) {
             0 -> "게임"
-            1 -> "크리에이터"
-            2 -> "에디터"
-            3 -> "편집자"
-            4 -> "기타"
+            1 -> "Creator"
+            2 -> "Editor"
+            3 -> "Translator"
+            4 -> "Etc."
             else -> ""
         }
     }
