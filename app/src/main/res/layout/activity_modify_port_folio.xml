@@ -145,6 +145,7 @@
                                     android:textColorHint="#575757"
                                     android:lineSpacingExtra="2sp"
                                     android:hint="17,462"
+                                    app:theme="@style/EdittextStyle"
                                     android:background="@null"
                                     android:layout_marginTop="11dp"
                                     android:fontFamily="@font/nanum_regular"
@@ -245,6 +246,7 @@
                                 android:maxLength="25"
                                 android:fontFamily="@font/nanum_regular"
                                 android:textColor="#242424"
+                                app:theme="@style/EdittextStyle"
                                 android:lineSpacingExtra="8dp"
                                 android:layout_marginTop="11dp"
                                 android:hint="안녕하세요 00입니다 :)\n 저랑 하이팟 하실 분 구해요!"
@@ -365,6 +367,7 @@
                                 android:background="@null"
                                 android:textSize="13sp"
                                 android:lineSpacingExtra="8dp"
+                                app:theme="@style/EdittextStyle"
                                 android:fontFamily="@font/nanum_regular"
                                 android:layout_marginTop="11dp"
                                 android:textColor="#242424"
@@ -400,6 +403,7 @@
                                   android:fontFamily="@font/nanum_regular"
                                   android:layout_marginTop="11dp"
                                   android:textColor="#242424"
+                                app:theme="@style/EdittextStyle"
                                   android:hint="자유롭게 자신을 자랑해 주세요 :)"
                         />
 

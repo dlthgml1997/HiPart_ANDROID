@@ -198,6 +198,7 @@ class HiPatFragment : Fragment(), View.OnClickListener {
         btn_frag_hipat_filter.setOnClickListener(this)
         btn_hipat_frag_search.setOnClickListener(this)
     }
+
     fun getProfileLookUp(flag : Int){
         var networkService: NetworkService = ApplicationController.instance.networkService
 

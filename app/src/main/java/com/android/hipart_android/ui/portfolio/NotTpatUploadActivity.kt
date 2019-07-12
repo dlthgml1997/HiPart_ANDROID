@@ -136,7 +136,7 @@ class NotTpatUploadActivity : BaseActivity() {
             ) {
                 // 작품 등록 성공
                 response?.takeIf { it.isSuccessful }
-                    ?.body()?.takeIf { it.message == "작품 등록 성공" }
+                    ?.body()?.takeIf { it.message == "성공" }
                     ?.let {
                         showDialog()
                     }
@@ -157,7 +157,7 @@ class NotTpatUploadActivity : BaseActivity() {
             ) {
                 // 작품 등록 성공
                 response?.takeIf { it.isSuccessful }
-                    ?.body()?.takeIf { it.message == "작품 등록 성공" }
+                    ?.body()?.takeIf { it.message == "성공" }
                     ?.let {
                         showDialog()
                     }
@@ -178,7 +178,7 @@ class NotTpatUploadActivity : BaseActivity() {
             ) {
                 // 작품 등록 성공
                 response?.takeIf { it.isSuccessful }
-                    ?.body()?.takeIf { it.message == "작품 등록 성공" }
+                    ?.body()?.takeIf { it.message == "성공" }
                     ?.let {
                         showDialog()
                     }
@@ -289,7 +289,7 @@ class NotTpatUploadActivity : BaseActivity() {
     }
 
     private fun setNickName(nickname: String) {
-        tv_tpat_upload_act_nickname.text = "${nickname} + 님,"
+        tv_tpat_upload_act_nickname.text = "${nickname}님,"
     }
 }
 
