@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import com.android.hipart_android.BuildConfig
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.hipat.HiPatFragment
@@ -20,6 +21,7 @@ import com.android.hipart_android.ui.login.data.get.GetMyInfoResponse
 import com.android.hipart_android.ui.main.MainActivity
 import com.android.hipart_android.ui.notification.NotificationActivity
 import com.android.hipart_android.ui.search.SearchActivity
+import com.android.hipart_android.util.FragmentKind
 import com.android.hipart_android.util.OnSingleClickListener
 import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -66,6 +68,7 @@ class HomeFragment : Fragment(){
 
         if(getNotiNetworkFlag == false)
             getNotificationFlag()
+
 
         setVpAdapter()
         setOnClickListener()
@@ -142,7 +145,11 @@ class HomeFragment : Fragment(){
     private fun setOnClickListener() {
         btn_frag_home_alarm.setOnClickListener(object : OnSingleClickListener(){
             override fun onSingleClick(v: View) {
-                startActivity<NotificationActivity>()
+                if(SharedPreferenceController.getNickName(this@HomeFragment.context!!) == BuildConfig.TEST_USER_NCIKNAME){
+                    (context as MainActivity).showGoToLoginDialog()
+                }else{
+                    startActivity<NotificationActivity>()
+                }
             }
         })
         btn_frag_home_search.setOnClickListener(object : OnSingleClickListener(){
@@ -153,24 +160,28 @@ class HomeFragment : Fragment(){
         btn_frag_home_c_pat.setOnClickListener(object : OnSingleClickListener(){
             override fun onSingleClick(v: View) {
                 (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 1)
+                (activity as MainActivity).setBottomIconChanger(FragmentKind.Hipat)
                 Log.d("HomeFragment", "replaceFragmentFromHome")
             }
         })
         btn_frag_home_e_pat.setOnClickListener(object : OnSingleClickListener(){
             override fun onSingleClick(v: View) {
                 (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 2)
+                (activity as MainActivity).setBottomIconChanger(FragmentKind.Hipat)
                 Log.d("HomeFragment", "replaceFragmentFromHome")
             }
         })
         btn_frag_home_t_pat.setOnClickListener(object : OnSingleClickListener(){
             override fun onSingleClick(v: View) {
                 (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 3)
+                (activity as MainActivity).setBottomIconChanger(FragmentKind.Hipat)
                 Log.d("HomeFragment", "replaceFragmentFromHome")
             }
         })
         btn_frag_home_etc.setOnClickListener(object : OnSingleClickListener(){
             override fun onSingleClick(v: View) {
                 (activity as MainActivity).replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 4)
+                (activity as MainActivity).setBottomIconChanger(FragmentKind.Hipat)
                 Log.d("HomeFragment", "replaceFragmentFromHome")
             }
         })
@@ -255,8 +266,24 @@ class HomeFragment : Fragment(){
                     ?.data
                     ?.let{
                         SharedPreferenceController.setNickName(this@HomeFragment.context!!, it[0].user_nickname)
+                        if(it[0].user_nickname == BuildConfig.TEST_USER_NCIKNAME){
+                            setNickName(true, "")
+                        }else {
+                            setNickName(false, it[0].user_nickname)
+                        }
+
                     }
             }
         })
+    }
+
+    private fun setNickName(testLoginFlag : Boolean, nickname: String){
+        if(testLoginFlag == true){
+            tv_frag_home_user_name.text = "반가워요!"
+            tv_frag_home_user_nim.visibility = View.GONE
+        }else{
+            tv_frag_home_user_name.text = nickname
+            tv_frag_home_user_nim.visibility = View.VISIBLE
+        }
     }
 }
