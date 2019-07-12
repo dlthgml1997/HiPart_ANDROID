@@ -75,7 +75,10 @@ android:scrollbars="none">
                       android:layout_marginTop="13dp"
                       android:layout_marginBottom="24dp"
                       android:layout_marginHorizontal="25dp"/>
-                <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                <RelativeLayout
+                        android:background="#fafafa"
+                        android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
                     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                                   android:orientation="vertical"
@@ -132,7 +135,7 @@ android:scrollbars="none">
             <Button android:layout_width="match_parent" android:layout_height="match_parent"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginVertical="8dp"
-                    android:background="#7947fd"
+                    android:background="@drawable/primary_border_fill"
                     style="@style/nanum_extra_bold"
                     android:textSize="15sp"
                     android:textColor="#ffffff"

@@ -37,6 +37,7 @@
                                             android:textSize="20sp"
                                             android:textColor="#242424"
                                             android:lineSpacingExtra="3sp"
+                                            android:maxLength="5"
                                             android:text="Nado"
                                             android:id="@+id/tv_item_frag_sear_name"
                                     />
@@ -89,7 +90,8 @@
                                     android:lineSpacingExtra="1sp"
                                     android:gravity="center_horizontal"
                                     android:text="먹방"
-                                    android:layout_centerHorizontal="true" android:layout_marginTop="3dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="3dp"
                                     android:layout_alignParentTop="true"/>
                         </RelativeLayout>
 
@@ -109,6 +111,7 @@
                     android:textSize="13sp"
                     android:textColor="#242424"
                     android:lineSpacingExtra="8dp"
+                    android:maxLength="57"
                     android:text="안녕하세요~ 먹고 싶은 모든 것들을 영상으로ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ홀"
                     android:layout_marginTop="20dp"
                     android:id="@+id/tv_item_frag_search_intro"/>
