@@ -8,5 +8,6 @@ data class HomeFragAdData(
 
     var img : String,
     var title : String,
-    var des : String
+    var des : String,
+    var clickFlag : Boolean
 )
