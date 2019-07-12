@@ -7,26 +7,28 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageView
+import android.widget.RelativeLayout
+import android.widget.TextView
+import com.android.hipart_android.BuildConfig
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.hipart.HipartDetailActivity
 import com.android.hipart_android.ui.hipart.HipartDetailTagRecyclerAdapter
 import com.android.hipart_android.ui.home.data.post.PickDTO
 import com.android.hipart_android.ui.home.data.post.PickResponse
-import com.android.hipart_android.ui.main.MainActivity
-import com.android.hipart_android.ui.mypick.MyPickActivity
 import com.android.hipart_android.ui.search.get.User
 import com.android.hipart_android.util.Filter
 import com.android.hipart_android.util.SharedPreferenceController
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.layoutInflater
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import org.jetbrains.anko.startActivity
 
-class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayList<User>) : RecyclerView.Adapter<SearchResultRecyclerViewAdapter.Holder>(){
+class SearchResultRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<User>) :
+    RecyclerView.Adapter<SearchResultRecyclerViewAdapter.Holder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = ctx.layoutInflater.inflate(R.layout.item_frag_search, p0, false)
@@ -37,9 +39,15 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.item.setOnClickListener {
-            ctx!!.startActivity<HipartDetailActivity>(
-                "user_nickname" to dataList[position].info[0].user_nickname,
-                "user_type" to dataList[position].info[0].user_type)
+            if (SharedPreferenceController.getNickName(ctx) == BuildConfig.TEST_USER_NCIKNAME) {
+                (ctx as SearchActivity).showGoToLoginDialog()
+            } else {
+                ctx!!.startActivity<HipartDetailActivity>(
+                    "user_nickname" to dataList[position].info[0].user_nickname,
+                    "user_type" to dataList[position].info[0].user_type
+                )
+            }
+
         }
 
 
@@ -54,9 +62,9 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
         //타입
         holder.type.text = Filter.type(dataList[position].info[0].user_type)
         //pd
-        if(dataList[position].info[0].pd != 0) {
+        if (dataList[position].info[0].pd != 0) {
             holder.pd.text = Filter.pd(dataList[position].info[0].pd)
-        }else{
+        } else {
             holder.pd.visibility = View.GONE
         }
 
@@ -93,22 +101,26 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
                 pickStatus = iniPickStatus
             }
             setOnClickListener {
-                if (pickStatus == false) {
-                    holder.pick.setBackgroundResource(R.drawable.main_pick_on_icon)
-                    holder.pick_num.text = (dataList[position].info[0].pick + 1).toString()
-                    addPick(dataList[position].info[0].user_nickname!!, false)
-                    pickStatus = true
+                if (SharedPreferenceController.getNickName(ctx) == BuildConfig.TEST_USER_NCIKNAME) {
+                    (ctx as SearchActivity).showGoToLoginDialog()
                 } else {
-                    holder.pick.setBackgroundResource(R.drawable.main_pick_off_icon)
-                    holder.pick_num.text = (dataList[position].info[0].pick).toString()
-                    deletePick(dataList[position].info[0].user_nickname!!)
-                    pickStatus = false
+                    if (pickStatus == false) {
+                        holder.pick.setBackgroundResource(R.drawable.main_pick_on_icon)
+                        holder.pick_num.text = (dataList[position].info[0].pick + 1).toString()
+                        addPick(dataList[position].info[0].user_nickname!!, false)
+                        pickStatus = true
+                    } else {
+                        holder.pick.setBackgroundResource(R.drawable.main_pick_off_icon)
+                        holder.pick_num.text = (dataList[position].info[0].pick).toString()
+                        deletePick(dataList[position].info[0].user_nickname!!)
+                        pickStatus = false
+                    }
                 }
             }
         }
 
-            //픽 수
-            holder.pick_num.text = dataList[position].info[0].pick.toString()
+        //픽 수
+        holder.pick_num.text = dataList[position].info[0].pick.toString()
 
 
     }
@@ -128,7 +140,9 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
                     ?.body()
                     ?.let {
                         when (it?.message ?: " ") {
-                            "픽 성공" -> { }
+                            "픽 성공" -> {
+                                (ctx as SearchActivity).setAnimPickIcon()
+                            }
                             " " -> {
                                 Log.v("태그", "message가 널인데 ?")
                             }
@@ -183,9 +197,7 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
     }
 
 
-
-
-    inner class Holder( itemView : View) : RecyclerView.ViewHolder(itemView) {
+    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val item = itemView.findViewById<RelativeLayout>(R.id.rl_item_frag_search_item)
         val photo = itemView.findViewById(R.id.iv_item_frag_search_photo) as ImageView
         val name = itemView.findViewById(R.id.tv_item_frag_sear_name) as TextView
