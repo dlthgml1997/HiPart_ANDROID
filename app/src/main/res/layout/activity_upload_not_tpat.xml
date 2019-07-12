@@ -102,7 +102,7 @@
         <EditText
                 android:id="@+id/et_not_tpat_upload_act_title"
                 android:hint="제목을 입력해주세요"
-                android:maxLines="1"
+                android:inputType="text"
                 android:textColorHint="#838383"
                 android:textSize="20sp"
                 android:fontFamily="@font/nanum_square_bold"

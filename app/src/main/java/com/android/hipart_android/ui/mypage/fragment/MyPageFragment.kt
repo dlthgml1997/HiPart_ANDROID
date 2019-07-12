@@ -83,10 +83,10 @@ class MyPageFragment : Fragment() {
 
     private fun getUserType(p0: Int): String {
         return when (p0) {
-            1 -> "크리에이터"
-            2 -> "에디터"
-            3 -> "번역가"
-            4 -> "기타"
+            1 -> "Creator"
+            2 -> "Editor"
+            3 -> "Translator"
+            4 -> "Etc."
             else -> ""
         }
     }

@@ -252,7 +252,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                             edt_modify_port_act_want.hint = data.detailWant
 
                         //유저 타입
-                        tv_modify_port_folio_act_job.text = "creator"
+                        tv_modify_port_folio_act_job.text = "Creator"
 
                         //구독자
                         ll_modify_port_act_subscriber.visibility = View.VISIBLE
@@ -495,7 +495,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         tv_modify_port_act_user_name.text = data.userNickname
 
                         //유저 타입
-                        tv_modify_port_folio_act_job.text = "editor"
+                        tv_modify_port_folio_act_job.text = "Editor"
 
                         //하이파이브
                         edt_modify_port_act_hifive.hint = data.hifive.toString()
@@ -556,7 +556,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         tv_modify_port_act_user_name.text = data.userNickname
 
                         //유저 타입
-                        tv_modify_port_folio_act_job.text = "translator"
+                        tv_modify_port_folio_act_job.text = "Translator"
 
                         //하이파이브
                         edt_modify_port_act_hifive.hint = data.hifive.toString()
@@ -617,7 +617,7 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         tv_modify_port_act_user_name.text = data.userNickname
 
                         //유저 타입
-                        tv_modify_port_folio_act_job.text = "etc"
+                        tv_modify_port_folio_act_job.text = "Etc."
 
                         //하이파이브
                         edt_modify_port_act_hifive.hint = data.hifive.toString()
