@@ -16,50 +16,10 @@
 
                 <android.support.constraint.ConstraintLayout
                         android:layout_width="match_parent" android:layout_height="130dp"
-                        android:background="#3eecad"
+                        android:background="@drawable/pofol_bg_long_height_img"
                         android:id="@+id/cl_frag_hip_det_eetc_top"
                 >
-                    <ImageView
-                            android:src="@android:drawable/btn_star_big_on"
-                            android:layout_width="85dp"
-                            android:layout_height="67.7dp"
-                            android:id="@+id/imageView" android:layout_marginTop="13dp"
-                            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginStart="11dp" android:layout_marginBottom="8dp"
-                            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.181"/>
-                    <ImageView
-                            android:src="@android:drawable/btn_star_big_on"
-                            android:layout_width="41.3dp"
-                            android:layout_height="35dp"
-                            android:id="@+id/imageView2" app:layout_constraintStart_toEndOf="@+id/imageView"
-                            android:layout_marginTop="40dp"
-                            app:layout_constraintTop_toTopOf="@+id/imageView" android:layout_marginBottom="8dp"
-                            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginStart="44dp"/>
-                    <ImageView
-                            android:src="@android:drawable/btn_star_big_on"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/imageView3" app:layout_constraintStart_toEndOf="@+id/imageView2"
-                            android:layout_marginStart="44dp" android:layout_marginTop="17dp"
-                            app:layout_constraintTop_toTopOf="@+id/imageView"/>
-                    <ImageView
-                            android:src="@android:drawable/btn_star_big_on"
-                            android:layout_width="80dp"
-                            android:layout_height="40dp"
-                            android:id="@+id/imageView4" app:layout_constraintStart_toEndOf="@+id/imageView3"
-                            android:layout_marginStart="13dp" android:layout_marginBottom="8dp"
-                            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginEnd="8dp" android:layout_marginTop="22dp"
-                            app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
-                    <ImageView
-                            android:src="@android:drawable/btn_star_big_on"
-                            android:layout_width="40dp"
-                            android:layout_height="16dp"
-                            android:id="@+id/imageView5"
-                            app:layout_constraintTop_toBottomOf="@+id/imageView" android:layout_marginTop="30dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/imageView2"
-                            android:layout_marginEnd="8dp"/>
+
                     <ImageView
                             android:src="@drawable/pofol_back_white_icon"
                             android:layout_width="wrap_content"
@@ -72,7 +32,7 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:id="@+id/iv_frag_hip_det_eetc_pick_off"
-                            android:layout_marginTop="36dp" app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="12dp" app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="25dp"/>
                     <TextView
                             android:layout_width="wrap_content"
@@ -86,22 +46,26 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginEnd="29dp"/>
                     <TextView
-                            style="@style/nanum_regular"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:fontFamily="@font/nanum_square_regular"
                             android:textSize="12sp"
                             android:textColor="#ffffff"
                             android:lineSpacingExtra="3sp"
-                            android:text="편집자"
+                            android:text=""
                             android:id="@+id/tv_frag_hip_det_eetc_type"
                             app:layout_constraintStart_toStartOf="@+id/tv_hip_det_frag_eetc_name"
                             app:layout_constraintTop_toBottomOf="@+id/tv_hip_det_frag_eetc_name"
                             android:layout_marginTop="12dp"/>
 
                     <TextView
-                            style="@style/nanum_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_bold"
                             android:textSize="20sp"
                             android:textColor="#ffffff"
                             android:lineSpacingExtra="3sp"
-                            android:text="Nado"
+                            android:text=""
                             android:id="@+id/tv_hip_det_frag_eetc_name"
                             android:layout_marginStart="126dp"
                             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="72dp"
@@ -113,6 +77,7 @@
                             android:textColor="#ffffff"
                             android:lineSpacingExtra="2sp"
                             android:text="님"
+                            android:fontFamily="@font/nanum_square_regular"
                             android:id="@+id/textView4"
                             app:layout_constraintTop_toTopOf="@+id/tv_hip_det_frag_eetc_name"
                             app:layout_constraintStart_toEndOf="@+id/tv_hip_det_frag_eetc_name"
@@ -120,8 +85,8 @@
                             app:layout_constraintBottom_toBottomOf="@+id/tv_hip_det_frag_eetc_name"/>
 
                 </android.support.constraint.ConstraintLayout>
-                <ImageView
-                        android:src="@drawable/main_profile_photo_image"
+                <de.hdodenhof.circleimageview.CircleImageView
+                        android:src="@drawable/sign_photo_icon"
                         android:layout_width="80dp"
                         android:layout_height="80dp" android:id="@+id/iv_frag_hip_det_eetc_photo"
                         android:layout_marginTop="72dp"
@@ -130,7 +95,7 @@
                               android:orientation="horizontal"
                               android:layout_below="@id/cl_frag_hip_det_eetc_top"
                               android:layout_toRightOf="@id/iv_frag_hip_det_eetc_photo"
-                              android:layout_marginTop="12.7dp"
+                              android:layout_marginTop="12dp"
                               android:layout_marginLeft="11dp">
 
                     <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -151,8 +116,8 @@
                                 android:lineSpacingExtra="2sp"
                                 android:text="17462"
                                 android:id="@+id/tv_frag_hip_det_eetc_subscribe_num"
-                                android:layout_marginTop="12dp"
-                                android:layout_marginBottom="24dp"/>
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="20dp"/>
 
                     </LinearLayout>
                     <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -163,15 +128,17 @@
                                   android:textSize="10sp"
                                   android:textColor="#434343"
                                   android:lineSpacingExtra="2sp"
-                                  android:text="나와 하이파이브 했어"/>
+                                  android:text="나와 하이파이브 했어요"/>
                         <TextView
-                                style="@style/nanum_regular"
+                                android:fontFamily="@font/nanum_square_regular"
                                 android:textSize="15sp"
                                 android:textColor="#575757"
                                 android:lineSpacingExtra="2sp"
                                 android:text="331" android:id="@+id/tv_frag_hip_det_eetc_hif_num"
-                                android:layout_marginTop="12dp"
-                                android:layout_marginBottom="24dp"/>
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="20dp"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"/>
 
                     </LinearLayout>
 
@@ -196,8 +163,8 @@
                         <RelativeLayout android:layout_width="40dp" android:layout_height="20dp"
                                         android:background="@drawable/bg_tag_purple"
                                         android:layout_marginRight="8dp"
-                        android:id="@+id/rl_hip_det_eetc_frag_pd_background">
                                         android:id="@+id/rl_hip_det_eetc_frag_pd_background">
+                            android:id="@+id/rl_hip_det_eetc_frag_pd_background">
                             <TextView
                                     android:id="@+id/tv_frag_hip_det_eetc_pd"
                                     style="@style/nanum_light"

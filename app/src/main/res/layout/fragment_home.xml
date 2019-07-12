@@ -16,7 +16,8 @@
             <!--검색 버튼-->
             <RelativeLayout
                     android:id="@+id/btn_frag_home_search"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginRight="16dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true">
@@ -40,8 +41,8 @@
                 <ImageView
                         android:id="@+id/iv_frag_home_alarm"
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
-                           android:layout_margin="8dp"
-                           android:src="@drawable/main_alarm_icon"/>
+                        android:layout_margin="8dp"
+                        android:src="@drawable/selector_home_frag_alarm_btn"/>
 
             </RelativeLayout>
 
@@ -53,7 +54,7 @@
                     android:id="@+id/tv_frag_home_user_name"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:text="User"
-                    android:fontFamily="@font/nanum_bold"
+                    android:fontFamily="@font/nanum_square_bold"
                     android:textColor="#242424"
                     android:textSize="20sp"
                     android:layout_marginLeft="24dp"
@@ -63,7 +64,7 @@
                     android:layout_toRightOf="@+id/tv_frag_home_user_name"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:text="님,"
-                    android:fontFamily="@font/nanum_bold"
+                    android:fontFamily="@font/nanum_square_bold"
                     android:textColor="#242424"
                     android:textSize="20sp"
                     android:layout_marginTop="18dp"/>
@@ -73,7 +74,7 @@
 
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:text="하이팟들과 하이파이브 어때요?"
-                android:fontFamily="@font/nanum_bold"
+                android:fontFamily="@font/nanum_square_bold"
                 android:textColor="#242424"
                 android:textSize="20sp"
                 android:layout_marginLeft="24dp"
@@ -86,10 +87,11 @@
                 android:layout_marginTop="20dp"
                 android:overScrollMode="never"
                 android:clipToPadding="false"
-                android:paddingHorizontal="24dp"
+                android:paddingLeft="22dp"
+                android:paddingRight="20dp"
         />
 
-        <TextView android:layout_width="wrap_content" android:layout_height="35dp"
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:textSize="20sp"
                   android:textColor="#242424"
                   android:fontFamily="@font/nanum_bold"
@@ -98,9 +100,10 @@
                   android:layout_marginTop="20dp"
         />
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="52dp"
-                      android:layout_marginTop="30dp"
-                      android:orientation="horizontal"
+        <LinearLayout
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
         >
             <LinearLayout
                     android:id="@+id/btn_frag_home_c_pat"
@@ -193,6 +196,7 @@
     </LinearLayout>
 
     <!--<RelativeLayout-->
+<<<<<<< HEAD
             <!--android:id="@+id/rv_main_act_pick"-->
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
@@ -228,5 +232,42 @@
                     <!--android:layout_width="wrap_content"-->
                     <!--android:layout_height="wrap_content"/>-->
         <!--</LinearLayout>-->
+=======
+    <!--android:id="@+id/rv_main_act_pick"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:visibility="invisible">-->
+    <!--<ImageView-->
+    <!--android:id="@+id/img_main_act_pick"-->
+    <!--android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+    <!--android:src="@drawable/pick_popup_img"/>-->
+    <!--<LinearLayout-->
+    <!--android:orientation="horizontal"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_below="@id/img_main_act_pick"-->
+    <!--android:layout_marginTop="16dp"-->
+    <!--android:background="@drawable/pick_modification_border"-->
+    <!--android:paddingVertical="6dp"-->
+    <!--android:paddingHorizontal="9dp">-->
+    <!--<TextView-->
+    <!--android:text="PICK"-->
+    <!--android:textSize="14sp"-->
+    <!--android:textColor="#3eecad"-->
+    <!--android:fontFamily="@font/nanum_extra_bold"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginRight="6dp"/>-->
+    <!--<TextView-->
+    <!--android:text="했습니다."-->
+    <!--android:textColor="#ffffff"-->
+    <!--android:textSize="14sp"-->
+    <!--android:fontFamily="@font/nanum_regular"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"/>-->
+    <!--</LinearLayout>-->
+>>>>>>> f134dd01ed070c634b8c2ad335e00a6650e6a224
     <!--</RelativeLayout>-->
 </RelativeLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,4 +7,14 @@
         android:layout_height="match_parent"
         tools:context=".ui.splash.SplashActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_act_splash"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            app:lottie_imageAssetsFolder="images"
+            app:lottie_fileName="data.json"
+            app:lottie_autoPlay="true"
+            android:layout_centerInParent="true"
+    />
+
+
+</RelativeLayout>

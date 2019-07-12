@@ -10,10 +10,14 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.android.hipart_android.R
+import com.android.hipart_android.network.ApplicationController
+import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.hipat.HiPatFragment
+import com.android.hipart_android.ui.hipat.data.GetProfileLookUpResponse
 import com.android.hipart_android.ui.hipat.fragment.*
 import com.android.hipart_android.ui.home.HomeFragment
 import com.android.hipart_android.ui.mypage.fragment.MyPageFragment
+import com.android.hipart_android.ui.mypick.data.GetMyPickData
 import com.android.hipart_android.ui.portfolio.PortFolioFragment
 import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.FragmentKind
@@ -21,6 +25,9 @@ import com.android.hipart_android.util.OnSingleClickListener
 import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_hipat.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 /**
@@ -30,6 +37,9 @@ import kotlinx.android.synthetic.main.fragment_hipat.*
  **/
 
 class MainActivity : BaseActivity() {
+
+    var profileAllDataList = ArrayList<GetMyPickData>()
+    var noFilterProfileAllDataList = ArrayList<GetMyPickData>()
 
     private var FILTER_ACTIVITY_RESULT = 9
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,6 +100,7 @@ class MainActivity : BaseActivity() {
             override fun onSingleClick(v: View) {
                 replaceFragmentFromHome(R.id.frame_layout_main_act, HiPatFragment(), 0)
                 setBottomIconChanger(FragmentKind.Hipat)
+                getAllProfileLookUp()
             }
         })
         btn_portfolio.setOnClickListener(object : OnSingleClickListener() {
@@ -218,35 +229,115 @@ class MainActivity : BaseActivity() {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        Log.v("이놈!", "잘들어오는중")
         super.onActivityResult(requestCode, resultCode, data)
-        Log.v("이놈!", requestCode.toString())
         if (requestCode == FILTER_ACTIVITY_RESULT) {
             Log.v("이놈!", "잘들어오는중")
-            // Log.v("이놈!", data!!.getIntExtr("filterFlag", 0).toString())
             val filterFlag: Int = data!!.getIntExtra("filterFlag", 100)
 
             if (filterFlag == 100) {
                 // 아무일도,, 아무것도,,
             } else {
-                val hipatFragment = supportFragmentManager.findFragmentById(R.id.frame_layout_main_act) as HiPatFragment
-//            Log.e(object{}::class.java.enclosingMethod.name,frag)
 
-                (0..4).forEach {
+                profileAllDataList = noFilterProfileAllDataList
+                setFilterData(filterFlag)
 
-                    val frag =
-                        hipatFragment.vp_hipat_frag_nav.adapter?.instantiateItem(hipatFragment.vp_hipat_frag_nav, it)
+                setIndividualPartAdapterData()
 
-                    when (frag) {
-                        is AllHipatFragment -> frag.setFilterData(filterFlag)
-                        is CPatHiPatFragment -> frag.setFilterData(filterFlag)
-                        is EPatHiPatFragment -> frag.setFilterData(filterFlag)
-                        is TPatHiPatFragment -> frag.setFilterData(filterFlag)
-                        is EtcHiPatFragment -> frag.setFilterData(filterFlag)
-                    }
 
-                }
+//                val hipatFragment = supportFragmentManager.findFragmentById(R.id.frame_layout_main_act) as HiPatFragment
+//
+//                setFilterData(filterFlag)
+////            Log.e(object{}::class.java.enclosingMethod.name,frag)
+//
+//                (0..4).forEach {
+//
+//                    val frag =
+//                        hipatFragment.vp_hipat_frag_nav.adapter?.instantiateItem(hipatFragment.vp_hipat_frag_nav, it)
+//
+//
+////                    when (frag) {
+////                        is AllHipatFragment -> frag.setAdapterData(filterFlag)
+////                        is CPatHiPatFragment -> frag.setAdapterData(filterFlag)
+////                        is EPatHiPatFragment -> frag.setFilterData(filterFlag)
+////                        is TPatHiPatFragment -> frag.setFilterData(filterFlag)
+////                        is EtcHiPatFragment -> frag.setFilterData(filterFlag)
+////                    }
+//
+//                }
             }
         }
     }
+
+// TODO: 아무것도안돼있으면 ffilterflag 를 0 으로
+    private fun getAllProfileLookUp() {
+        var networkService: NetworkService = ApplicationController.instance.networkService
+
+        val getProfileLookUp = networkService.getProfileLookUp(
+            SharedPreferenceController.getAuthorization(this@MainActivity),
+            0
+        )
+
+        getProfileLookUp.enqueue(object : Callback<GetProfileLookUpResponse> {
+            override fun onFailure(call: Call<GetProfileLookUpResponse>, t: Throwable) {
+                Log.e("All HighPat Frag Err", Log.getStackTraceString(t))
+            }
+
+            override fun onResponse(
+                call: Call<GetProfileLookUpResponse>,
+                response: Response<GetProfileLookUpResponse>
+            ) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.takeIf { it.message == "조회 성공" }
+                    ?.data
+                    ?.let {
+                        noFilterProfileAllDataList = it
+                        profileAllDataList = it
+                        setIndividualPartAdapterData()
+                    }
+            }
+        })
+    }
+
+    fun setFilterData(flag: Int) {
+        when (flag) {
+            0 -> {
+                // 초기화 로직
+                profileAllDataList = noFilterProfileAllDataList
+            }
+            1, 2, 3, 4, 5, 6, 7 -> {
+                profileAllDataList = ArrayList(profileAllDataList.filter { it.info[0].concept == flag })
+            }
+            8, 9 -> {
+                profileAllDataList = ArrayList(profileAllDataList.filter { it.info[0].pd == flag - 7 })
+            }
+            10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 -> {
+                profileAllDataList = ArrayList(profileAllDataList.filter { it.info[0].lang == flag - 9 })
+            }
+            21, 22, 23, 24, 25, 26 -> {
+                profileAllDataList = ArrayList(profileAllDataList.filter { it.info[0].etc == flag - 20 })
+            }
+        }
+    }
+
+    fun setIndividualPartAdapterData() {
+        val hipatFragment = supportFragmentManager.findFragmentById(R.id.frame_layout_main_act) as HiPatFragment
+
+        (0..4).forEach {
+
+            val frag =
+                hipatFragment.vp_hipat_frag_nav.adapter?.instantiateItem(hipatFragment.vp_hipat_frag_nav, it)
+
+            when (frag) {
+                is AllHipatFragment -> frag.setAdapterData(profileAllDataList)
+                is CPatHiPatFragment -> frag.setAdapterData(profileAllDataList.filter { it.info[0].user_type == 1 })
+                is EPatHiPatFragment -> frag.setAdapterData(profileAllDataList.filter { it.info[0].user_type == 2 })
+                is TPatHiPatFragment -> frag.setAdapterData(profileAllDataList.filter { it.info[0].user_type == 3 })
+                is EtcHiPatFragment -> frag.setAdapterData(profileAllDataList.filter { it.info[0].user_type == 4 })
+            }
+        }
+
+    }
+
 }
