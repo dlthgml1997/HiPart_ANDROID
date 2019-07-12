@@ -539,6 +539,8 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 call: Call<GetModifyPortFolioResponseTpat>,
                 response: Response<GetModifyPortFolioResponseTpat>
             ) {
+
+                Log.v("소희",response.body()!!.message)
                 if (response.isSuccessful) {
                     if (response.body()!!.message == "조회 성공") {
                         val data = response.body()!!.data
@@ -576,7 +578,11 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
 
                         //작품 리사이클러뷰 설정
                         val tmp: GetModifyPortFolioDataTpat? = response.body()!!.data
+
+                        Log.v("소희 1",data.before.toString())
                         if (data.before != null) {
+                            Log.v("소희",data.before.toString())
+                            rl_modify_port_folio_act_no_work.visibility = View.GONE
                             Log.v("dataList size", data.before.size.toString())
                             setTpatWorkRVAdapter(tmp!!)
                         }

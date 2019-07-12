@@ -10,6 +10,7 @@ import com.android.hipart_android.ui.portfolio.data.PostPortfolioTransResponse
 import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_upload_tpat.*
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -40,12 +41,9 @@ class TpatUploadActivity : BaseActivity() {
         }
         btn_tpat_upload_act_submit.setOnClickListener {
             val before = edt_tpat_upload_act_foreign.text.toString()
-            val after: String = edt_tpat_upload_act_korean.text.toString()
+            val after = edt_tpat_upload_act_korean.text.toString()
             postPortfolioTransResponse(before, after)
             finish()
-            /* *
-            나중에 통신 연결 하기/
-             */
         }
     }
 
@@ -68,8 +66,9 @@ class TpatUploadActivity : BaseActivity() {
                 Log.v("qwejwqljqwil", response.body()!!.message.toString())
 
                 response?.takeIf { it.isSuccessful }
-                    ?.body()?.takeIf { it.message == "작품 등록 성공" }
+                    ?.body()?.takeIf { it.message == "성공" }
                     ?.let {
+                        toast("작품이 업로드 되었습니다.")
                         finish()
                     }
             }
