@@ -49,8 +49,8 @@ class HipatFragPortViewPagerAdapter(fm: FragmentManager, private val num_fragmen
             0 -> AllHipatFragment()
             1 -> CPatHiPatFragment()
             2 -> EPatHiPatFragment()
-            3 -> EtcHiPatFragment()
-            4 -> TPatHiPatFragment()
+            3 -> TPatHiPatFragment()
+            4 -> EtcHiPatFragment()
             else -> null
         }
     }
