@@ -1,4 +1,4 @@
-package com.android.hipart_android.ui.hipart
+package com.android.hipart_android.ui.hipart.fragment
 
 
 import android.content.ClipData
@@ -6,7 +6,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,12 +15,8 @@ import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
 import com.android.hipart_android.ui.hipart.data.GetHifiveNumResponse
-import com.android.hipart_android.ui.hipart.data.PostHifiveRequest
-import com.android.hipart_android.ui.hipart.data.PostHifiveResponse
 import com.android.hipart_android.util.Filter
-import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.fragment_contact_purchase.*
-import kotlinx.android.synthetic.main.fragment_mypage.*
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -50,18 +45,18 @@ class ContactPurchaseFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        setView(nickname, type)
+//
+//        setView(nickname, type)
 
         getHifiveNumResponse("bj_ho")
 
         setListeners()
     }
-
-    private fun setView(nickname : String, type : Int) {
-        tv_contact_purc_frag_name.text = nickname
-        tv_contact_purc_frag_type.text = Filter.typePat(type)
-    }
+//
+//    private fun setView(nickname : String, type : Int) {
+//        tv_contact_purc_frag_name.text = nickname
+//        tv_contact_purc_frag_type.text = Filter.typePat(type)
+//    }
 
     private fun setListeners() {
         iv_contact_purc_frag_back.setOnClickListener {
@@ -100,6 +95,7 @@ class ContactPurchaseFragment : Fragment() {
 
                         tv_contact_purc_frag_farm.text = "남은 팜: " + data.point.toString() + "개"
                         tv_contact_purc_frag_nunmber.text = data.number
+                        Log.d("ContactFragment", "number : ${data.number}")
                     }
                 }
             }
