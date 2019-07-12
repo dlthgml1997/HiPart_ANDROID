@@ -64,7 +64,7 @@ class HipartDetailEEtcFragment : Fragment() {
         tv_hip_det_eetc_frag_intro.text = user.detail_oneline
 
         setArticleList(user)
-
+        tv_frag_hip_det_eetc_hif_num.text = user.hifive.toString()
         tv_frag_hip_det_eetc_want.text = user.detail_want
         tv_frag_hip_det_eetc_spec.text = user.detail_appeal
 
@@ -81,7 +81,7 @@ class HipartDetailEEtcFragment : Fragment() {
         if (user.thumbnail!!.isNotEmpty()) {
             ll_hipat_detail_frag_no_work.visibility = View.GONE
             for (i in 0..user.thumbnail.size - 1)
-                articleList.add(HipartDetailArticleData(user.thumbnail[i], user.title!![i], user.content!![i]))
+                articleList.add(HipartDetailArticleData(user.thumbnail[i], user.title!![i], user.content!![i],user.url!![i]))
         }else{
             ll_hipat_detail_frag_no_work.visibility = View.VISIBLE
         }

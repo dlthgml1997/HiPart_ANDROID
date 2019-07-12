@@ -33,6 +33,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
                     android:textColor="#434343"
+                    android:maxLength="12"
                     android:fontFamily="@font/nanum_square_bold"
                     android:lineSpacingExtra="1sp"
                     android:gravity="center_horizontal"

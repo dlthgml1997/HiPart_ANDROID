@@ -65,7 +65,7 @@
                             app:layout_constraintStart_toStartOf="@+id/tv_hip_det_frag_eetc_name"
                             app:layout_constraintTop_toBottomOf="@+id/tv_hip_det_frag_eetc_name"
                             android:layout_marginTop="12dp"
-                    android:layout_marginBottom="7dp"/>
+                            android:layout_marginBottom="7dp"/>
 
                     <TextView
                             android:layout_width="wrap_content"
@@ -73,6 +73,7 @@
                             android:fontFamily="@font/nanum_square_bold"
                             android:textSize="20sp"
                             android:textColor="#ffffff"
+                            android:maxLength="5"
                             android:lineSpacingExtra="3sp"
                             android:text=""
                             android:id="@+id/tv_hip_det_frag_eetc_name"
@@ -228,8 +229,10 @@
                                 android:lineSpacingExtra="1sp"
                                 android:text="작품"
                                 android:layout_marginLeft="24dp"/>
-                        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                   android:src="@drawable/hipat_tpatx_work_adot_img"/>
+                        <ImageView
+                                android:id="@+id/img_hipart_detail_work"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:src="@drawable/hipat_tpatx_work_adot_img"/>
                     </LinearLayout>
                     <RelativeLayout android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
@@ -300,11 +303,11 @@
                 <LinearLayout
                         android:layout_marginBottom="24dp"
                         android:layout_width="match_parent" android:layout_height="wrap_content"
-                              android:orientation="vertical"
-                              android:paddingTop="30dp"
-                              android:paddingHorizontal="25dp"
-                              android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
-                              android:id="@+id/ll_hip_det_eetc_frag_spec">
+                        android:orientation="vertical"
+                        android:paddingTop="30dp"
+                        android:paddingHorizontal="25dp"
+                        android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+                        android:id="@+id/ll_hip_det_eetc_frag_spec">
                     <TextView
                             style="@style/nanum_bold"
                             android:textSize="12sp"

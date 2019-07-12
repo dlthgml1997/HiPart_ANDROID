@@ -605,6 +605,8 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                         val data = response.body()!!.data
                         Log.v("etcModify TAGGG", data.userType.toString())
 
+                        //작품 글씨 옆 이미지
+                        img_modify_port_folio_act_work.setBackgroundResource(R.drawable.hipat_tpat_work_adot_img)
                         //필터
                         getFilterETC(data)
 
@@ -877,7 +879,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 var oneline = String()
                 if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
                     oneline = edt_modify_port_act_detail_oneline.text.toString()
-                else oneline = edt_modify_port_act_detail_oneline.hint.toString()
+                else{
+                    oneline = "안녕하세요 크리에이터 " + tv_modify_port_act_user_name.text.toString() + "입니다 :) \n 저랑 하이팟 하실 분 구해요!"
+                }
                 //원해요
                 var want = String()
                 if (edt_modify_port_act_want.text.isNotEmpty())
@@ -963,7 +967,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 var oneline = String()
                 if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
                     oneline = edt_modify_port_act_detail_oneline.text.toString()
-                else oneline = edt_modify_port_act_detail_oneline.hint.toString()
+                else{
+                    oneline = "안녕하세요 편집자 " + tv_modify_port_act_user_name.text.toString() + "입니다 :) \n 저랑 하이팟 하실 분 구해요!"
+                }
                 //원해요
                 var want = String()
                 if (edt_modify_port_act_want.text.isNotEmpty())
@@ -1052,7 +1058,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 var oneline = String()
                 if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
                     oneline = edt_modify_port_act_detail_oneline.text.toString()
-                else oneline = edt_modify_port_act_detail_oneline.hint.toString()
+                else {
+                    oneline = "안녕하세요 번역가 " + tv_modify_port_act_user_name.text.toString() + "입니다 :) \n 저랑 하이팟 하실 분 구해요!"
+                }
                 //원해요
                 var want = String()
                 if (edt_modify_port_act_want.text.isNotEmpty())
@@ -1143,7 +1151,9 @@ class ModifyPortFolioActivity : BaseActivity(), View.OnClickListener {
                 var oneline = String()
                 if (edt_modify_port_act_detail_oneline.text.isNotEmpty())
                     oneline = edt_modify_port_act_detail_oneline.text.toString()
-                else oneline = edt_modify_port_act_detail_oneline.hint.toString()
+                else{
+                    oneline = "안녕하세요 기타 유저 " + tv_modify_port_act_user_name.text.toString() + "입니다 :) \n 저랑 하이팟 하실 분 구해요!"
+                }
                 //원해요
                 var want = String()
                 if (edt_modify_port_act_want.text.isNotEmpty())
