@@ -8,4 +8,6 @@
 
     <color name="colorWhite">#ffffff</color>
     <color name="colorGray">#434343</color>
+    <color name="colorHIpat">#7947fd</color>
+    <color name="colorHIpatback">#ffffff</color>
 </resources>

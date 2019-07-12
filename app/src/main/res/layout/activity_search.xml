@@ -57,6 +57,7 @@ android:scrollbars="none">
                               android:layout_height="wrap_content"
                               style="@style/nanum_regular"
                               android:textSize="13sp"
+                              app:theme="@style/EdittextStyle"
                               android:textColor="#707070"
                               android:lineSpacingExtra="1sp"
                               android:hint="원하는 검색어를 입력해주세요."

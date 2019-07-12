@@ -52,6 +52,7 @@
                         android:textSize="13sp"
                         android:hint="이메일"
                         android:fontFamily="@font/nanum_regular"
+                        app:theme="@style/EdittextStyle"
                         android:textCursorDrawable="@drawable/text_cursor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
