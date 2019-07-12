@@ -2,24 +2,21 @@ package com.android.hipart_android.ui.search
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Parcelable
 import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.RelativeLayout
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
-import com.android.hipart_android.ui.search.fragment.SearchAllFragment
-import com.android.hipart_android.ui.search.fragment.SearchCpatFragment
-import com.android.hipart_android.ui.search.fragment.SearchEpatFragment
+import com.android.hipart_android.ui.main.dialog.PleaseLoginDialog
 import com.android.hipart_android.ui.search.get.GetSearchResponse
-import com.android.hipart_android.ui.search.get.SearchUserDetail
 import com.android.hipart_android.ui.search.get.User
 import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SearchData
@@ -34,6 +31,11 @@ import retrofit2.Response
 
 
 class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityEventListener {
+
+    private val pleaseLoginDialog by lazy {
+        PleaseLoginDialog()
+    }
+
     override fun onVisibilityChanged(isOpen: Boolean) {
         if (isOpen) {
             sv_search_act.scrollTo(0, sv_search_act.bottom)
@@ -324,6 +326,46 @@ class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityE
 
     fun setOnClickLister() {
         btn_act_search_cancel.setOnClickListener(this)
+    }
+
+    fun setAnimPickIcon() {
+        val interpolator = MyBounceInterpolator(0.2, 20.0)
+        val anim: Animation = AnimationUtils.loadAnimation(this@SearchActivity, R.anim.expand_anim)
+        anim.interpolator = interpolator
+
+        anim.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationRepeat(animation: Animation?) {
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                rl_search_act_anim.visibility = View.GONE
+            }
+
+            override fun onAnimationStart(animation: Animation?) {
+                rl_search_act_anim.visibility = View.VISIBLE
+            }
+        })
+        rl_search_act_anim.startAnimation(anim)
+    }
+
+    internal inner class MyBounceInterpolator(amplitude: Double, frequency: Double) :
+        android.view.animation.Interpolator {
+        private var mAmplitude = 1.0
+        private var mFrequency = 10.0
+
+        init {
+            mAmplitude = amplitude
+            mFrequency = frequency
+        }
+
+        override fun getInterpolation(time: Float): Float {
+            return (-1.0 * Math.pow(Math.E, -time / mAmplitude) *
+                    Math.cos(mFrequency * time) + 1).toFloat()
+        }
+    }
+
+    fun showGoToLoginDialog() {
+        pleaseLoginDialog.show(supportFragmentManager, "go to login")
     }
 }
 
