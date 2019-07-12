@@ -24,7 +24,7 @@
                 android:text="Nado님,"
                 android:textSize="20sp"
                 android:textColor="#242424"
-                android:fontFamily="@font/nanum_square_bold"
+                android:fontFamily="@font/nanum_bold"
                 android:layout_marginTop="32dp"
                 android:layout_marginLeft="24dp"
                 android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
                 android:text="오늘의 번역을 기록해볼까요?"
                 android:textSize="20sp"
                 android:textColor="#242424"
-                android:fontFamily="@font/nanum_square_bold"
+                android:fontFamily="@font/nanum_bold"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="24dp"
                 android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
                     android:text="외국어"
                     android:textSize="20sp"
                     android:textColor="#242424"
-                    android:fontFamily="@font/nanum_square_bold"
+                    android:fontFamily="@font/nanum_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             <EditText
@@ -82,7 +82,7 @@
                     android:text="한국어"
                     android:textSize="20sp"
                     android:textColor="#242424"
-                    android:fontFamily="@font/nanum_square_bold"
+                    android:fontFamily="@font/nanum_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             <EditText

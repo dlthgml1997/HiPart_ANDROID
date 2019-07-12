@@ -44,7 +44,7 @@
                     android:textColor="#a2a2a2"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="24dp"
-                    android:fontFamily="@font/nanum_square_bold"
+                    android:fontFamily="@font/nanum_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             <LinearLayout
@@ -102,7 +102,7 @@
                     android:text="닉네임"
                     android:textColor="#a2a2a2"
                     android:textSize="12sp"
-                    android:fontFamily="@font/nanum_square_bold"
+                    android:fontFamily="@font/nanum_bold"
                     android:layout_marginLeft="24dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -112,7 +112,7 @@
                     android:textSize="20sp"
                     android:textColor="#242424"
                     android:textColorHint="#242424"
-                    android:fontFamily="@font/nanum_square_bold"
+                    android:fontFamily="@font/nanum_bold"
                     android:textCursorDrawable="@drawable/text_cursor"
                     android:background="@null"
                     android:layout_marginVertical="10dp"
@@ -129,7 +129,7 @@
                     android:text="연락처"
                     android:textColor="#a2a2a2"
                     android:textSize="12sp"
-                    android:fontFamily="@font/nanum_square_bold"
+                    android:fontFamily="@font/nanum_bold"
                     android:layout_marginLeft="24dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -139,7 +139,7 @@
                     android:textSize="20sp"
                     android:textColor="#242424"
                     android:textColorHint="#242424"
-                    android:fontFamily="@font/nanum_square_bold"
+                    android:fontFamily="@font/nanum_bold"
                     android:textCursorDrawable="@drawable/text_cursor"
                     android:background="@null"
                     android:layout_marginVertical="10dp"
@@ -156,7 +156,7 @@
                     android:text="현재 비밀번호"
                     android:textColor="#a2a2a2"
                     android:textSize="12sp"
-                    android:fontFamily="@font/nanum_square_bold"
+                    android:fontFamily="@font/nanum_bold"
                     android:layout_marginLeft="24dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -169,7 +169,8 @@
                     android:textColorHint="#dddddd"
                     android:background="@null"
                     android:layout_marginVertical="10dp"
-                    android:fontFamily="@font/nanum_square_bold"
+                    android:textCursorDrawable="@drawable/text_cursor"
+                    android:fontFamily="@font/nanum_bold"
                     android:layout_marginHorizontal="24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -183,7 +184,7 @@
                     android:text="새 비밀번호"
                     android:textColor="#a2a2a2"
                     android:textSize="12sp"
-                    android:fontFamily="@font/nanum_square_bold"
+                    android:fontFamily="@font/nanum_bold"
                     android:layout_marginLeft="24dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -196,7 +197,8 @@
                     android:textColorHint="#dddddd"
                     android:background="@null"
                     android:layout_marginVertical="10dp"
-                    android:fontFamily="@font/nanum_square_bold"
+                    android:fontFamily="@font/nanum_bold"
+                    android:textCursorDrawable="@drawable/text_cursor"
                     android:layout_marginHorizontal="24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -217,7 +219,7 @@
                         android:text="로그아웃"
                         android:textSize="12sp"
                         android:textColor="#a2a2a2"
-                        android:fontFamily="@font/nanum_square_regular"
+                        android:fontFamily="@font/nanum_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 <View

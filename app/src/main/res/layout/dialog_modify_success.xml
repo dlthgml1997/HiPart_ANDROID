@@ -20,7 +20,7 @@
                 android:text="수정이 완료되었습니다."
                 android:textSize="15sp"
                 android:textColor="#707070"
-                android:fontFamily="@font/nanum_square_bold"
+                android:fontFamily="@font/nanum_bold"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

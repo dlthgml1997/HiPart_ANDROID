@@ -25,6 +25,7 @@
                 android:textColor="#bcbcbc"
                 android:lineSpacingExtra="3sp"
                 android:gravity="center_horizontal"
+                android:fontFamily="@font/nanum_bold"
                 android:text="검색결과가 없습니다."
                 android:layout_marginTop="28dp"
         />
@@ -36,6 +37,7 @@
                 android:textColor="#bcbcbc"
                 android:lineSpacingExtra="1sp"
                 android:gravity="center_horizontal"
+                android:fontFamily="@font/nanum_regular"
                 android:text="철자를 확인하거나"
                 android:layout_marginTop="16dp"
         />
@@ -46,6 +48,7 @@
                 android:textColor="#bcbcbc"
                 android:lineSpacingExtra="1sp"
                 android:gravity="center_horizontal"
+                android:fontFamily="@font/nanum_regular"
                 android:text="긴 문구는 띄어쓰기를 해보세요."
                 android:layout_marginTop="8dp"/>
     </LinearLayout>

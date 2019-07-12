@@ -13,6 +13,7 @@
               android:gravity="center_horizontal"
               android:id="@+id/tv_item_frag_hip_det_c_tag"
               android:layout_centerInParent="true"
+              android:fontFamily="@font/nanum_light"
               android:text="먹방"/>
 
 </RelativeLayout>

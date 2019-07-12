@@ -13,7 +13,7 @@
                 android:text="정말 수정하시겠습니까?"
                 android:textSize="15sp"
                 android:textColor="#707070"
-                android:fontFamily="@font/nanum_square_bold"
+                android:fontFamily="@font/nanum_bold"
                 android:layout_marginTop="40dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
