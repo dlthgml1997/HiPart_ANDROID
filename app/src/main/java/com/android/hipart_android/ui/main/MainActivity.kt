@@ -43,8 +43,9 @@ class MainActivity : BaseActivity() {
 
     var profileAllDataList = ArrayList<GetMyPickData>()
     var noFilterProfileAllDataList = ArrayList<GetMyPickData>()
-    lateinit var pickAnim : RelativeLayout
-    lateinit var addParmAnim : RelativeLayout
+    var pickAnimNum = 0
+    var addParmAnimNum = 0
+    lateinit var addParmAnim: RelativeLayout
 
     private val pleaseLoginDialog by lazy {
         PleaseLoginDialog()
@@ -56,8 +57,9 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         attachHomeFragment()
         setOnClickListener()
-        pickAnim = rl_main_act_anim
         addParmAnim = rl_main_act_add_parm_anim
+        // setAnimPickIcon()
+        setAddPickAnimPickIcon()
         Log.e("토큰", SharedPreferenceController.getAuthorization(this@MainActivity))
     }
 
@@ -210,6 +212,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun setAnimPickIcon() {
+        Log.v("태그3", "태그3")
         val interpolator = MyBounceInterpolator(0.2, 20.0)
         val anim: Animation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.expand_anim)
         anim.interpolator = interpolator
@@ -219,14 +222,21 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                pickAnim.visibility = View.GONE
+                rl_main_act_anim.visibility = View.INVISIBLE
             }
 
             override fun onAnimationStart(animation: Animation?) {
-                pickAnim.visibility = View.VISIBLE
+                if (pickAnimNum == 0) {
+                    pickAnimNum++
+                } else {
+                    rl_main_act_anim.visibility = View.VISIBLE
+                }
+
             }
         })
-        pickAnim.startAnimation(anim)
+        Log.v("태그4", "태그4")
+        rl_main_act_anim.startAnimation(anim)
+        Log.v("태그5", "태그5")
     }
 
     internal inner class MyBounceInterpolator(amplitude: Double, frequency: Double) :
@@ -283,6 +293,11 @@ class MainActivity : BaseActivity() {
 //
 //                }
             }
+        }
+
+        if (requestCode == 3) {
+            val homeFrag = supportFragmentManager.findFragmentById(R.id.frame_layout_main_act) as HomeFragment
+            homeFrag.setNormalNotifiaction()
         }
     }
 
@@ -367,14 +382,19 @@ class MainActivity : BaseActivity() {
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                addParmAnim.visibility = View.GONE
+                addParmAnim.visibility = View.INVISIBLE
+
             }
 
             override fun onAnimationStart(animation: Animation?) {
+                Log.v("요노오오옴!", "요노오오옴!")
                 addParmAnim.visibility = View.VISIBLE
             }
         })
-        addParmAnim.startAnimation(anim)
+        if(addParmAnimNum != 0){
+            addParmAnim.startAnimation(anim)
+        }
+        addParmAnimNum++
     }
 
     fun showGoToLoginDialog() {
