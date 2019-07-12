@@ -21,8 +21,8 @@ class SplashActivity : AppCompatActivity() {
             }
 
             override fun onAnimationEnd(animation: Animator?) {
-              //  startActivity<LoginActivityoginActivity>()
-              //  finish()
+                startActivity<LoginActivity>()
+                finish()
             }
 
             override fun onAnimationCancel(animation: Animator?) {
