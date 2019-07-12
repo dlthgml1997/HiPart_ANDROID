@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.home.data.HomeFragAdData
+import com.android.hipart_android.ui.main.MainActivity
 
 
 /**
@@ -30,6 +31,17 @@ class HomeFragAdAdapter(private val dataList: List<HomeFragAdData>, private val 
         val title = view.findViewById<TextView>(R.id.tv_rv_item_home_ad_title)
 
         val des = view.findViewById<TextView>(R.id.tv_rv_item_home_ad_des)
+
+
+            if(dataList[position].clickFlag == true){
+                img.setOnClickListener {
+                    (context as MainActivity).setAddPickAnimPickIcon()
+                }
+            }else{
+                img.setOnClickListener {
+                    // TODO : 광고 뷰로 보내기
+                }
+            }
 
         container.addView(view, 0)
 
