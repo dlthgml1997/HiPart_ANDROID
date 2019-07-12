@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.android.hipart_android.BuildConfig
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.hipart.HipartDetailActivity
@@ -199,10 +200,14 @@ class PortFolioRecyclerViewAdapter(
 
 
         holder.root.setOnClickListener {
-            ctx!!.startActivity<HipartDetailActivity>(
-                "user_nickname" to data.user_nickname,
-                "user_type" to data.user_type
-            )
+            if (SharedPreferenceController.getNickName(ctx) == BuildConfig.TEST_USER_NCIKNAME) {
+                (ctx as MainActivity).showGoToLoginDialog()
+            } else {
+                ctx!!.startActivity<HipartDetailActivity>(
+                    "user_nickname" to data.user_nickname,
+                    "user_type" to data.user_type
+                )
+            }
         }
 
         if (mainActivityFlag == true) {
@@ -210,23 +215,25 @@ class PortFolioRecyclerViewAdapter(
                 //                if (holder.is_picked.isSelected == false) {
 //                    (ctx as MainActivity).setAnimPickIcon()
 //                }
-
-
-                if (btnPick.isSelected == false) {
-                    addPick(data.user_nickname, true)
-                    btnPick.isSelected = true
-                    pickNum.textColor = Color.parseColor("#7947fd")
-                    dataList[position].pickState = 1
-                    data.pick = data.pick + 1
-
+                if (SharedPreferenceController.getNickName(ctx) == BuildConfig.TEST_USER_NCIKNAME) {
+                    (ctx as MainActivity).showGoToLoginDialog()
                 } else {
-                    deletePick(data.user_nickname)
-                    btnPick.isSelected = false
-                    data.pick = data.pick - 1
-                    pickNum.textColor = Color.parseColor("#c7c7c7")
-                    dataList[position].pickState = 0
+                    if (btnPick.isSelected == false) {
+                        addPick(data.user_nickname, true)
+                        btnPick.isSelected = true
+                        pickNum.textColor = Color.parseColor("#7947fd")
+                        dataList[position].pickState = 1
+                        data.pick = data.pick + 1
+
+                    } else {
+                        deletePick(data.user_nickname)
+                        btnPick.isSelected = false
+                        data.pick = data.pick - 1
+                        pickNum.textColor = Color.parseColor("#c7c7c7")
+                        dataList[position].pickState = 0
+                    }
+                    notifyItemChanged(position)
                 }
-                notifyItemChanged(position)
             }
         } else {
             btnPick.setOnClickListener {
@@ -234,21 +241,26 @@ class PortFolioRecyclerViewAdapter(
 //                    (ctx as MyPickActivity).setAnimPickIcon()
 //                }
 //                holder.is_picked.isSelected = !holder.is_picked.isSelected
-                if (btnPick.isSelected == false) {
-                    addPick(data.user_nickname, false)
-                    btnPick.isSelected = true
-                    pickNum.textColor = Color.parseColor("#7947fd")
-                    dataList[position].pickState = 1
-                    data.pick = data.pick + 1
+                if (SharedPreferenceController.getNickName(ctx) == BuildConfig.TEST_USER_NCIKNAME) {
+                    (ctx as MainActivity).showGoToLoginDialog()
                 } else {
-                    deletePick(data.user_nickname)
-                    btnPick.isSelected = false
-                    data.pick = data.pick - 1
-                    pickNum.textColor = Color.parseColor("#c7c7c7")
-                    dataList[position].pickState = 0
+                    if (btnPick.isSelected == false) {
+                        addPick(data.user_nickname, false)
+                        btnPick.isSelected = true
+                        pickNum.textColor = Color.parseColor("#7947fd")
+                        dataList[position].pickState = 1
+                        data.pick = data.pick + 1
+                    } else {
+                        deletePick(data.user_nickname)
+                        btnPick.isSelected = false
+                        data.pick = data.pick - 1
+                        pickNum.textColor = Color.parseColor("#c7c7c7")
+                        dataList[position].pickState = 0
+                    }
+                    notifyItemChanged(position)
                 }
-                notifyItemChanged(position)
             }
+
         }
 
         conceptFlag = false

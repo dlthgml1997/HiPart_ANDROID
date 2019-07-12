@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import com.android.hipart_android.BuildConfig
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
@@ -16,6 +17,7 @@ import com.android.hipart_android.ui.hipat.HiPatFragment
 import com.android.hipart_android.ui.hipat.data.GetProfileLookUpResponse
 import com.android.hipart_android.ui.hipat.fragment.*
 import com.android.hipart_android.ui.home.HomeFragment
+import com.android.hipart_android.ui.main.dialog.PleaseLoginDialog
 import com.android.hipart_android.ui.mypage.fragment.MyPageFragment
 import com.android.hipart_android.ui.mypick.data.GetMyPickData
 import com.android.hipart_android.ui.portfolio.PortFolioFragment
@@ -40,6 +42,10 @@ class MainActivity : BaseActivity() {
 
     var profileAllDataList = ArrayList<GetMyPickData>()
     var noFilterProfileAllDataList = ArrayList<GetMyPickData>()
+
+    private val pleaseLoginDialog by lazy {
+        PleaseLoginDialog()
+    }
 
     private var FILTER_ACTIVITY_RESULT = 9
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,23 +111,30 @@ class MainActivity : BaseActivity() {
         })
         btn_portfolio.setOnClickListener(object : OnSingleClickListener() {
             override fun onSingleClick(v: View) {
-                if (getVisibleFragment() !is PortFolioFragment) {
-                    addFragment(R.id.frame_layout_main_act, PortFolioFragment())
-                    setBottomIconChanger(FragmentKind.PortFolio)
+                if (SharedPreferenceController.getNickName(this@MainActivity) == BuildConfig.TEST_USER_NCIKNAME) {
+                    showGoToLoginDialog()
+                } else {
+                    if (getVisibleFragment() !is PortFolioFragment) {
+                        addFragment(R.id.frame_layout_main_act, PortFolioFragment())
+                        setBottomIconChanger(FragmentKind.PortFolio)
+                    }
                 }
             }
         }
         )
         btn_mypage.setOnClickListener(object : OnSingleClickListener() {
             override fun onSingleClick(v: View) {
-                replaceFragment(R.id.frame_layout_main_act, MyPageFragment())
-                setBottomIconChanger(FragmentKind.Mypage)
-
+                if (SharedPreferenceController.getNickName(this@MainActivity) == BuildConfig.TEST_USER_NCIKNAME) {
+                    showGoToLoginDialog()
+                } else {
+                    replaceFragment(R.id.frame_layout_main_act, MyPageFragment())
+                    setBottomIconChanger(FragmentKind.Mypage)
+                }
             }
         })
     }
 
-    private fun setBottomIconChanger(fragKind: FragmentKind) {
+    fun setBottomIconChanger(fragKind: FragmentKind) {
 
         when (fragKind) {
             FragmentKind.Home -> {
@@ -268,7 +281,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
-// TODO: 아무것도안돼있으면 ffilterflag 를 0 으로
+    // TODO: 아무것도안돼있으면 ffilterflag 를 0 으로
     private fun getAllProfileLookUp() {
         var networkService: NetworkService = ApplicationController.instance.networkService
 
@@ -357,6 +370,10 @@ class MainActivity : BaseActivity() {
             }
         })
         rl_main_act_add_parm_anim.startAnimation(anim)
+    }
+
+    fun showGoToLoginDialog() {
+        pleaseLoginDialog.show(supportFragmentManager, "go to login")
     }
 
 }

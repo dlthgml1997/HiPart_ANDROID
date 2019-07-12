@@ -19,9 +19,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"http://52.78.120.232:3000/\""
+            buildConfigField "String", "TEST_USER_NCIKNAME", "\"testU\""
         }
         debug {
             buildConfigField "String", "BASE_URL", "\"http://52.78.120.232:3000/\""
+            buildConfigField "String", "TEST_USER_NCIKNAME", "\"testU\""
         }
     }
 }

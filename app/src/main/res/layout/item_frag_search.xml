@@ -80,16 +80,17 @@
                                   android:orientation="horizontal"
                                   android:layout_alignParentBottom="true">
 
-                        <RelativeLayout style="@style/HipartDetailIntroPrimaryTagLayout"
-                                        android:id="@+id/tv_item_frag_search_pd">
-                            <TextView style="@style/nanum_light"
-                                      android:textSize="11sp"
-                                      android:textColor="@android:color/white"
-                                      android:lineSpacingExtra="1sp"
-                                      android:gravity="center_horizontal"
-                                      android:text="먹방"
-                                      android:layout_centerHorizontal="true" android:layout_marginTop="3dp"
-                                      android:layout_alignParentTop="true"/>
+                        <RelativeLayout style="@style/HipartDetailIntroPrimaryTagLayout">
+                            <TextView
+                                    android:id="@+id/tv_item_frag_search_pd"
+                                    style="@style/nanum_light"
+                                    android:textSize="11sp"
+                                    android:textColor="@android:color/white"
+                                    android:lineSpacingExtra="1sp"
+                                    android:gravity="center_horizontal"
+                                    android:text="먹방"
+                                    android:layout_centerHorizontal="true" android:layout_marginTop="3dp"
+                                    android:layout_alignParentTop="true"/>
                         </RelativeLayout>
 
                         <android.support.v7.widget.RecyclerView android:layout_width="wrap_content"

@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.android.hipart_android.BuildConfig
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.hipart.HipartDetailActivity
@@ -181,25 +182,33 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
         container.addView(view, 0)
 
         btnPick.setOnClickListener {
-            if (pickBtnFlag == 0) {
-                addPick(data.user_nickname)
-                ivPick.isSelected = true
-                pickNum.text = "${pickNum.text.toString().toInt()+ 1}"
-                pickNum.textColor = Color.parseColor("#7947fd")
+            if(SharedPreferenceController.getNickName(context) == BuildConfig.TEST_USER_NCIKNAME){
+                (context as MainActivity).showGoToLoginDialog()
+            }else{
+                if (pickBtnFlag == 0) {
+                    addPick(data.user_nickname)
+                    ivPick.isSelected = true
+                    pickNum.text = "${pickNum.text.toString().toInt()+ 1}"
+                    pickNum.textColor = Color.parseColor("#7947fd")
 
-                pickBtnFlag = 1
-            } else {
-                deletePick(data.user_nickname)
-                ivPick.isSelected = false
-                pickNum.text = "${pickNum.text.toString().toInt()- 1}"
-                pickNum.textColor = Color.parseColor("#c7c7c7")
-                pickBtnFlag = 0
+                    pickBtnFlag = 1
+                } else {
+                    deletePick(data.user_nickname)
+                    ivPick.isSelected = false
+                    pickNum.text = "${pickNum.text.toString().toInt()- 1}"
+                    pickNum.textColor = Color.parseColor("#c7c7c7")
+                    pickBtnFlag = 0
+                }
             }
         }
 
         root.setOnClickListener {
-            // TODO : HipartDetailActivity에 user_id 넘기기
-            context!!.startActivity<HipartDetailActivity>("user_nickname" to data.user_nickname, "user_type" to data.user_type)
+
+            if(SharedPreferenceController.getNickName(context) == BuildConfig.TEST_USER_NCIKNAME){
+                (context as MainActivity).showGoToLoginDialog()
+            }else{
+                context!!.startActivity<HipartDetailActivity>("user_nickname" to data.user_nickname, "user_type" to data.user_type)
+            }
         }
 
         val platform = view.findViewById<ImageView>(R.id.iv_rv_home_hipat_platform)
