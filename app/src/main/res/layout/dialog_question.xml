@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"/>
         <Button
                 android:id="@+id/btn_question_dialog_ok"
-                android:text="확인"
+                android:text="전송"
                 android:textSize="15sp"
                 android:textColor="#ffffff"
                 android:fontFamily="@font/nanum_extra_bold"

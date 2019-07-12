@@ -57,7 +57,9 @@
                         android:id="@+id/txt_modify_act_cpat"
                         android:text="C-PAT"
                         android:paddingHorizontal="15dp"
-                        android:paddingVertical="5dp"
+                        android:paddingVertical="4dp"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/nanum_light"
                         android:background="@drawable/selector_hipat_filter_border"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -66,6 +68,8 @@
                         android:text="E-PAT"
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="5dp"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/nanum_light"
                         android:background="@drawable/selector_hipat_filter_border"
                         android:layout_marginLeft="9dp"
                         android:layout_width="wrap_content"
@@ -76,6 +80,8 @@
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="5dp"
                         android:background="@drawable/selector_hipat_filter_border"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/nanum_light"
                         android:layout_marginLeft="9dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -84,6 +90,8 @@
                         android:text="ETC."
                         android:paddingHorizontal="15dp"
                         android:paddingVertical="5dp"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/nanum_light"
                         android:background="@drawable/selector_hipat_filter_border"
                         android:layout_marginLeft="9dp"
                         android:layout_width="wrap_content"
@@ -144,7 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"/>
             <TextView
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="28dp"
                     android:text="현재 비밀번호"
                     android:textColor="#a2a2a2"
                     android:textSize="12sp"
@@ -161,6 +169,7 @@
                     android:textColorHint="#dddddd"
                     android:background="@null"
                     android:layout_marginVertical="10dp"
+                    android:fontFamily="@font/nanum_square_bold"
                     android:layout_marginHorizontal="24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -187,6 +196,7 @@
                     android:textColorHint="#dddddd"
                     android:background="@null"
                     android:layout_marginVertical="10dp"
+                    android:fontFamily="@font/nanum_square_bold"
                     android:layout_marginHorizontal="24dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -200,7 +210,7 @@
                     android:id="@+id/ll_modify_act_logout"
                     android:orientation="vertical"
                     android:layout_marginLeft="22dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="28dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                 <TextView
@@ -223,11 +233,11 @@
                     android:textSize="15sp"
                     android:fontFamily="@font/nanum_extra_bold"
                     android:background="@drawable/primary_border_fill"
-                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginHorizontal="14dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="8dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="42dp"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
