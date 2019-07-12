@@ -48,7 +48,7 @@ class TPatHiPatFragment : Fragment() {
         portFolioRecyclerViewAdapter = PortFolioRecyclerViewAdapter(context!!, dataList,true)
         rv_hipat_tpat_frag.adapter = portFolioRecyclerViewAdapter
         rv_hipat_tpat_frag.layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.VERTICAL, false)
-         getProfileLookUp(3)
+         getProfileLookUp(4)
     }
 
     fun getProfileLookUp(flag : Int){

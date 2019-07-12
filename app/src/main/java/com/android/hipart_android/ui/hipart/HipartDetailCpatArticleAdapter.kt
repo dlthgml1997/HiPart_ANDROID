@@ -2,19 +2,24 @@ package com.android.hipart_android.ui.hipart
 
 import android.content.Context
 import android.content.Intent
-import android.support.v4.content.ContextCompat.startActivity
+import android.net.Uri
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import com.android.hipart_android.R
-import com.android.hipart_android.url.UrlActivity
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.layoutInflater
-import org.jetbrains.anko.support.v4.startActivity
+
+
+
+
+
+
+
+
 
 class HipartDetailCpatArticleAdapter(val ctx: Context, val dataList: ArrayList<HipartDetailArticleData>) :
     RecyclerView.Adapter<HipartDetailCpatArticleAdapter.Holder>() {
@@ -38,10 +43,10 @@ class HipartDetailCpatArticleAdapter(val ctx: Context, val dataList: ArrayList<H
         holder.content.text = dataList[position].content
         holder.photo.setOnClickListener {
             if (url!!.isNotEmpty()) {
-                val intent = Intent(ctx, UrlActivity::class.java).apply {
-                    putExtra("url", url)
-                }
-                startActivity(ctx, intent, null)
+                Log.v("TAGGGG", url.toString())
+                var parseUrl = "https://" + url
+                val browse = Intent(Intent.ACTION_VIEW, Uri.parse(parseUrl))
+                ctx.startActivity(browse)
             }
         }
 
@@ -49,7 +54,7 @@ class HipartDetailCpatArticleAdapter(val ctx: Context, val dataList: ArrayList<H
 
 
     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val photo = itemView.findViewById(R.id.iv_item_frag_hip_det_c_acticle) as ImageView
+        val photo = itemView.findViewById(com.android.hipart_android.R.id.iv_item_frag_hip_det_c_acticle) as ImageView
         val title = itemView.findViewById(R.id.tv_item_frag_hip_det_c_acticle_title) as TextView
         val content = itemView.findViewById(R.id.tv_item_frag_hip_det_c_acticle_description) as TextView
     }

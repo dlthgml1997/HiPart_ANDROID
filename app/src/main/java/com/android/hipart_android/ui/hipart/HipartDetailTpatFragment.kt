@@ -22,6 +22,8 @@ class HipartDetailTpatFragment : Fragment() {
     private val TAG = "HipartDetailTFrag"
 
     lateinit var user: UserDetailTData
+    var pickBtnFlag = true
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +32,6 @@ class HipartDetailTpatFragment : Fragment() {
         // Inflate the layout for this fragment
         user = arguments!!.getSerializable("user") as UserDetailTData
         Log.d(TAG, user.user_nickname)
-
         return inflater.inflate(R.layout.fragment_hipart_detail_eetc, container, false)
     }
 
@@ -126,6 +127,11 @@ class HipartDetailTpatFragment : Fragment() {
         }
         iv_frag_hip_det_eetc_back.setOnClickListener {
             (context as HipartDetailActivity).finish()
+        }
+
+        btn_frag_hip_det_eetc_pick_off.setOnClickListener{
+            (context as HipartDetailActivity).setAnimPickIcon()
+            iv_frag_hip_det_eetc_pick_off.setImageResource(R.drawable.pofol_pick_off_white_icon)
         }
 
     }
