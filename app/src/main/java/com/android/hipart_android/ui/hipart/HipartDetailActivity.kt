@@ -8,6 +8,9 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
+import com.android.hipart_android.ui.hipart.fragment.HipartDetailCpatFragment
+import com.android.hipart_android.ui.hipart.fragment.HipartDetailEEtcFragment
+import com.android.hipart_android.ui.hipart.fragment.HipartDetailTpatFragment
 import com.android.hipart_android.ui.hipart.get.*
 import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SharedPreferenceController
