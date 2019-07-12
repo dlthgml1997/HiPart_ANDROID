@@ -34,12 +34,6 @@
                         android:layout_marginBottom="10dp"
                         android:id="@+id/txt_rv_item_notification_date"/>
             </LinearLayout>
-            <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    app:srcCompat="@drawable/alarm_more_icon"
-                    android:id="@+id/btn_item_notification_more"/>
         </LinearLayout>
     <View
             android:layout_width="match_parent"
