@@ -35,6 +35,7 @@
                                 android:textSize="20sp"
                                 android:textColor="#ffffff"
                                 android:lineSpacingExtra="3sp"
+                                android:maxLength="5"
                                 android:text="Nado"
                                 android:id="@+id/tv_modify_port_act_user_name"
                                 android:layout_marginTop="54dp"
@@ -245,7 +246,7 @@
                                 android:textColor="#242424"
                                 android:lineSpacingExtra="8dp"
                                 android:layout_marginTop="11dp"
-                                android:hint="바꿀 소개 멘트를 입력해주세요!"
+                                android:hint="안녕하세요 00입니다 :)\n 저랑 하이팟 하실 분 구해요!"
                         />
 
                     </LinearLayout>
@@ -276,7 +277,9 @@
                                     android:layout_centerVertical="true"
                                     android:fontFamily="@font/nanum_bold"/>
 
-                            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            <ImageView
+                                    android:id="@+id/img_modify_port_folio_act_work"
+                                    android:layout_width="wrap_content" android:layout_height="wrap_content"
                                        android:src="@drawable/hipat_tpatx_work_adot_img"
                                        android:layout_toRightOf="@+id/tv_act_modify_port_folio_top_work_box"
                                        android:layout_marginLeft="4dp"
@@ -363,7 +366,7 @@
                                 android:fontFamily="@font/nanum_regular"
                                 android:layout_marginTop="11dp"
                                 android:textColor="#242424"
-                                android:hint="이런 하이팟을 원해요"
+                                android:hint="어떤 하이팟과 작업하고 싶은지 작성해 주세요 :)"
                         />
 
                     </LinearLayout>
@@ -395,7 +398,7 @@
                                   android:fontFamily="@font/nanum_regular"
                                   android:layout_marginTop="11dp"
                                   android:textColor="#242424"
-                                  android:hint="학력 자격증 수상 경력을 입력해주세요"
+                                  android:hint="자유롭게 자신을 자랑해 주세요 :)"
                         />
 
                     </LinearLayout>

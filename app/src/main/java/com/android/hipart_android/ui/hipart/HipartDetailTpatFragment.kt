@@ -64,8 +64,11 @@ class HipartDetailTpatFragment : Fragment() {
         setTagList(user)
 
         tv_hip_det_eetc_frag_intro.text = user.detail_oneline
+        img_hipart_detail_work.setImageResource(R.drawable.hipat_tpat_work_adot_img)
 
         setArticleList(user)
+
+        tv_frag_hip_det_eetc_hif_num.text =user.hifive.toString()
 
         tv_frag_hip_det_eetc_want.text = user.detail_want
         tv_frag_hip_det_eetc_spec.text = user.detail_appeal

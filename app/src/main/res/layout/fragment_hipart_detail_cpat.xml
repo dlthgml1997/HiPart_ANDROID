@@ -97,6 +97,7 @@
                             android:textColor="#ffffff"
                             android:lineSpacingExtra="3sp"
                             android:text="Nado"
+                            android:maxLength="5"
                             android:id="@+id/tv_modify_port_act_user_name"
                             android:layout_marginStart="126dp"
                             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="72dp"
