@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#8e000000">
+
+    <RelativeLayout android:layout_width="260dp" android:layout_height="185dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/login_please_box">
+
+    </RelativeLayout>
+
+    <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+    >
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:textSize="17sp"
+                  android:textColor="#434343"
+                  android:fontFamily="@font/nanum_regular"
+                  android:text="계속 진행하기 위해서는"
+        />
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_gravity="center_horizontal"
+                      android:layout_marginTop="12dp"
+        >
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:textSize="17sp"
+                      android:textColor="#7947fd"
+                      android:fontFamily="@font/nanum_bold"
+                      android:text="로그인"
+            />
+
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:textSize="17sp"
+                      android:textColor="#434343"
+                      android:fontFamily="@font/nanum_regular"
+                      android:text="이 필요합니다."
+            />
+        </LinearLayout>
+
+        <RelativeLayout
+                android:id="@+id/btn_dialog_please_login"
+                android:layout_width="match_parent" android:layout_height="42dp"
+                android:layout_marginTop="36dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/primary_border_fill">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="로그인 하러 가기"
+                      android:layout_centerInParent="true"
+                      android:fontFamily="@font/nanum_extra_bold"
+                      android:textSize="15sp"
+                      android:textColor="#ffffff"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>
