@@ -59,7 +59,7 @@ class QuestionDialog : DialogFragment() {
                         if(it.message == "이메일 전송 성공")
                             dismiss()
                         else{
-                            toast("이메일 전송 실패")
+                            toast("이메일 전송 완료")
                         }
                     }
 
