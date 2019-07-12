@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
@@ -16,13 +17,25 @@ import com.android.hipart_android.ui.signup.SignupActivity
 import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SharedPreferenceController
 import kotlinx.android.synthetic.main.activity_login.*
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginActivity : BaseActivity() {
+class LoginActivity : BaseActivity(), KeyboardVisibilityEventListener {
+    override fun onVisibilityChanged(isOpen: Boolean) {
+        if(isOpen) {
+            ll_login_act_sign_in.visibility = View.GONE
+            sv_login_act.scrollTo(0, sv_login_act.bottom)
+        }else{
+
+            ll_login_act_sign_in.visibility = View.VISIBLE
+            sv_login_act.scrollTo(0, sv_login_act.top)
+        }
+    }
 
     val REQUEST_CODE_LOGIN_ACTIVITY = 1000
 
@@ -33,6 +46,8 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        KeyboardVisibilityEvent.setEventListener(this, this)
 
         setAutoLogin()
         setOnFocusChangeListener()
