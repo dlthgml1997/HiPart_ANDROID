@@ -18,6 +18,7 @@ import com.android.hipart_android.ui.modifyportfolio.put.PutModifyPortFolioRespo
 import com.android.hipart_android.util.SharedPreferenceController
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -112,7 +113,16 @@ class HomeFragAdAdapter(private val dataList: List<HomeFragAdData>, private val 
                     ?.body()
                     ?.message
                         ?.let {
-                        (context as MainActivity).setAddPickAnimPickIcon()
+                            when(it){
+                                "배너 포인트 획득"-> (context as MainActivity).setAddPickAnimPickIcon()
+                                "이미 팜을 받은 유저입니다" -> {
+                                     context.toast("이미 참여한 이벤트입니다.")
+                                }
+                                else ->  {
+                                    context.toast("이미 참여한 이벤트입니다.")
+                                }
+                            }
+
                     }
             }
         })

@@ -274,18 +274,22 @@ class ModifyActivity : BaseActivity() {
                     }
                     1 -> {
                         txt_modify_act_cpat.isSelected = true
+                        txt_modify_act_cpat.setTextColor(Color.parseColor("#7947fd"))
                         userType = 1
                     }
                     2 -> {
                         txt_modify_act_epat.isSelected = true
+                        txt_modify_act_cpat.setTextColor(Color.parseColor("#7947fd"))
                         userType = 2
                     }
                     3 -> {
                         txt_modify_act_tpat.isSelected = true
+                        txt_modify_act_cpat.setTextColor(Color.parseColor("#7947fd"))
                         userType = 3
                     }
                     4 -> {
                         txt_modify_act_etc.isSelected = true
+                        txt_modify_act_cpat.setTextColor(Color.parseColor("#7947fd"))
                         userType = 4
                     }
                     else -> {

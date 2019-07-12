@@ -17,6 +17,7 @@ import com.android.hipart_android.ui.modifyportfolio.put.PutModifyPortFolioRespo
 import com.android.hipart_android.util.SharedPreferenceController
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,7 +30,7 @@ class HipatFragAdRecyclerViewAdapter(private val context: Context, private val d
 
     override fun isViewFromObject(view: View, obj: Any): Boolean = view.equals(obj)
 
-    override fun getCount(): Int = 4
+    override fun getCount(): Int = 5
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = LayoutInflater.from(context).inflate(R.layout.rv_item_hipat_frag_advertisement, container, false)
@@ -74,11 +75,15 @@ class HipatFragAdRecyclerViewAdapter(private val context: Context, private val d
         container.removeView(obj as View)
     }
 
-    fun putClickBanner(bannerIdx : Int){
+    fun putClickBanner(bannerIdx: Int) {
         val networkService = ApplicationController.instance.networkService
-        val putClickBanner = networkService.putClickBanner("application/json", SharedPreferenceController.getAuthorization(context!!), PutClickBannerRequest(bannerIdx))
+        val putClickBanner = networkService.putClickBanner(
+            "application/json",
+            SharedPreferenceController.getAuthorization(context!!),
+            PutClickBannerRequest(bannerIdx)
+        )
 
-        putClickBanner.enqueue(object: Callback<PutModifyPortFolioResponse> {
+        putClickBanner.enqueue(object : Callback<PutModifyPortFolioResponse> {
             override fun onFailure(call: Call<PutModifyPortFolioResponse>, t: Throwable) {
                 Log.e("Main Act Err", Log.getStackTraceString(t))
             }
@@ -87,14 +92,22 @@ class HipatFragAdRecyclerViewAdapter(private val context: Context, private val d
                 call: Call<PutModifyPortFolioResponse>,
                 response: Response<PutModifyPortFolioResponse>
             ) {
+                Log.v("현재 잘나옴?", "현재잘나옴")
                 response
                     ?.takeIf { it.isSuccessful }
                     ?.body()
                     ?.message
                     ?.let {
-                        if(it == "배너 포인트 획득"){
-                            (context as MainActivity).setAddPickAnimPickIcon()
+                        when(it){
+                            "배너 포인트 획득"-> (context as MainActivity).setAddPickAnimPickIcon()
+                            "이미 팜을 받은 유저입니다" -> {
+                                context.toast("이미 참여한 이벤트입니다.")
+                            }
+                            else ->  {
+                                context.toast("이미 참여한 이벤트입니다.")
+                            }
                         }
+
                     }
             }
         })
