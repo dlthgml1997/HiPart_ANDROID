@@ -19,7 +19,7 @@
             android:id="@+id/bottom_main_act_tab_bar"
             android:layout_width="match_parent" android:layout_height="56dp"
             android:layout_alignParentBottom="true"
-            android:background="#FFFFFF"
+            android:background="#fafafa"
             android:elevation="4dp"
             android:orientation="horizontal"
     >
@@ -159,7 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="gone">
+            android:visibility="invisible">
         <ImageView
                 android:id="@+id/iv_main_act_anim"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -198,7 +198,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="gone">
+            android:visibility="invisible">
         <ImageView
                 android:id="@+id/iv_main_act_add_parm_anim"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
