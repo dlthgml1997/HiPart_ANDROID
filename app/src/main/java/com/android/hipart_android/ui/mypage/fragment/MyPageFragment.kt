@@ -65,7 +65,6 @@ class MyPageFragment : Fragment() {
                     ?.body()
                     ?.data
                     ?.let {
-<<<<<<< HEAD
 //                        val data = response.body()!!.data[0]
 //
 //                        txt_mypage_frag_name.searchText = data.user_nickname
@@ -77,7 +76,6 @@ class MyPageFragment : Fragment() {
 //                        txt_mypage_frag_farm_num.searchText = data.point.toString()
 //                        txt_mypage_frag_pick_num.searchText = data.pick.toString()
 //                        txt_mypage_frag_hifive_num.searchText = data.hifive.toString()
-=======
                         val data = response.body()!!.data
                         txt_mypage_frag_name.text = data.user_nickname
                         txt_mypage_frag_part.text = getUserType(data.user_type)
@@ -88,7 +86,6 @@ class MyPageFragment : Fragment() {
                         txt_mypage_frag_farm_num.text = data.point.toString()
                         txt_mypage_frag_pick_num.text = data.pick.toString()
                         txt_mypage_frag_hifive_num.text = data.hifive.toString()
->>>>>>> facfd39244ca3053bcd9da1658a89e0f267dbfda
                     }
             }
 

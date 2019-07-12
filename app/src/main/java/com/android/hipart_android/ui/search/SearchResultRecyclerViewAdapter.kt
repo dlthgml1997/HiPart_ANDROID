@@ -7,12 +7,10 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.ToggleButton
+import android.widget.*
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
+import com.android.hipart_android.ui.hipart.HipartDetailActivity
 import com.android.hipart_android.ui.hipart.HipartDetailTagRecyclerAdapter
 import com.android.hipart_android.ui.home.data.post.PickDTO
 import com.android.hipart_android.ui.home.data.post.PickResponse
@@ -26,6 +24,7 @@ import org.jetbrains.anko.layoutInflater
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import org.jetbrains.anko.startActivity
 
 class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayList<User>) : RecyclerView.Adapter<SearchResultRecyclerViewAdapter.Holder>(){
 
@@ -37,6 +36,13 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+        holder.item.setOnClickListener {
+            ctx!!.startActivity<HipartDetailActivity>(
+                "user_nickname" to dataList[position].info[0].user_nickname,
+                "user_type" to dataList[position].info[0].user_type)
+        }
+
+
         //사진
         Glide.with(ctx)
             .load(dataList[position].info[0].user_img)
@@ -82,7 +88,6 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
 
         //픽 수
         holder.pick_num.text = dataList[position].info[0].pick.toString()
-
 
     }
 
@@ -158,8 +163,8 @@ class SearchResultRecyclerViewAdapter (val ctx : Context, val dataList : ArrayLi
 
 
 
-
     inner class Holder( itemView : View) : RecyclerView.ViewHolder(itemView) {
+        val item = itemView.findViewById<RelativeLayout>(R.id.rl_item_frag_search_item)
         val photo = itemView.findViewById(R.id.iv_item_frag_search_photo) as ImageView
         val name = itemView.findViewById(R.id.tv_item_frag_sear_name) as TextView
         val platform = itemView.findViewById(R.id.iv_item_frag_search_platform) as ImageView

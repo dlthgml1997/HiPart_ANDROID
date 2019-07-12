@@ -24,7 +24,6 @@ import com.android.hipart_android.ui.search.get.User
 import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SearchData
 import com.android.hipart_android.util.SharedPreferenceController
-import com.android.hipart_android.util.SharedPreferenceController.addSearchHistory
 import kotlinx.android.synthetic.main.activity_search.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
@@ -89,8 +88,7 @@ class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityE
             Log.d(TAG, "search button clicked")
             setViewPagerVisibility()
 
-            val searchText = et_search_act_search.text.toString()
-            getSearchResponse(searchText, token)
+            getSearchResponse(token)
 
             setKeyboardListener()
         }
@@ -112,35 +110,47 @@ class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityE
 
     }
 
-    private fun setViewPagerVisibility() {
+    fun setViewPagerVisibility() {
         ll_search_act_recent_search.visibility = View.GONE
         rl_search_act_search_result.visibility = View.VISIBLE
     }
 
-    fun getSearchResponse(searchText : String, token: String) {
-        getSearchResponse = networkService.getSearchResponse("application/json", token, searchText)
-        getSearchResponse.enqueue(object : Callback<GetSearchResponse> {
-            override fun onFailure(call: Call<GetSearchResponse>, t: Throwable) {
-                toast(t.toString())
-                Log.e(TAG, t.toString())
-            }
+    fun getSearchResponse(token: String) {
+        val searchText = et_search_act_search.text.toString()
+        if (et_search_act_search.text.isNotEmpty()) {
+            getSearchResponse = networkService.getSearchResponse("application/json", token, searchText)
+            getSearchResponse.enqueue(object : Callback<GetSearchResponse> {
+                override fun onFailure(call: Call<GetSearchResponse>, t: Throwable) {
+                    toast(t.toString())
+                    Log.e(TAG, t.toString())
+                }
 
-            override fun onResponse(call: Call<GetSearchResponse>, response: Response<GetSearchResponse>) {
-                if (response.isSuccessful) {
-                    if (response.body()!!.status == 200) {
-                        if(response.body()!!.data != null) {
-                            Log.d(TAG, response.body()!!.message + response.body()!!.data.size.toString())
-                            SearchData.searchDataAll = response.body()!!.data
+                override fun onResponse(call: Call<GetSearchResponse>, response: Response<GetSearchResponse>) {
+                    if (response.isSuccessful) {
+                        if (response.body()!!.status == 200) {
+                            if (response.body()!!.data != null) {
+                                Log.d(TAG, response.body()!!.message + response.body()!!.data.size.toString())
+                                SearchData.searchDataAll = response.body()!!.data
 
-                            filterSearchData(SearchData.searchDataAll)
+                                filterSearchData(SearchData.searchDataAll)
 
-                            addSearchHistory(this@SearchActivity, searchText)
+                                var sameExist = false
+                                if (SharedPreferenceController.searchHistoryList.size > 0) {
+                                    for (i in 0..SharedPreferenceController.searchHistoryList.size - 1) {
+                                        if (searchText == SharedPreferenceController.searchHistoryList[i])
+                                            sameExist = true
+                                    }
+                                }
+                                if (!sameExist) {
+                                    SharedPreferenceController.addSearchHistory(this@SearchActivity, searchText)
+                                }
+                            }
+
                         }
-
                     }
                 }
-            }
-        })
+            })
+        }
     }
 //    private fun getSearchResponse(token: String) {
 //        val userDetailDataList = ArrayList<SearchUserDetail>()
@@ -169,15 +179,20 @@ class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityE
     private fun filterSearchData(data: ArrayList<User>) {
         for (i in 0..data.size - 1) {
             if (data[i].info[0].user_type == 1) {
+                searchDataForC.removeAll(searchDataForC)
                 searchDataForC.add(data[i])
                 Log.d("searchDataForC", "added")
             } else if (data[i].info[0].user_type == 2) {
+                searchDataForE.removeAll(searchDataForE)
                 searchDataForE.add(data[i])
                 Log.d("searchDataForE", "added")
+
             } else if (data[i].info[0].user_type == 3) {
+                searchDataForT.removeAll(searchDataForT)
                 searchDataForT.add(data[i])
                 Log.d("searchDataForT", "added")
             } else {
+                searchDataForETC.removeAll(searchDataForETC)
                 searchDataForETC.add(data[i])
                 Log.d("searchDataForETC", "added")
             }
@@ -191,7 +206,7 @@ class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityE
 
         Log.d("SearchData full size", "filter SearchData ${data.size}")
         Log.d("SearchDataC full size", "filter SearchData ${SearchData.searchDataForC.size}")
-        Log.d("SearchDataE full size", "filter SearchData ${SearchData.searchDataForE.size}")
+        Log.d("SearchDataE full size", "filter SearchData ${searchDataForE.size}")
         Log.d("SearchDataT full size", "filter SearchData ${SearchData.searchDataForT.size}")
         Log.d("SearchDataETC full size", "filter SearchData ${SearchData.searchDataForETC.size}")
 
@@ -267,10 +282,10 @@ class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityE
             override fun afterTextChanged(s: Editable?) {
                 if (s.toString().length > 0) {
                     iv_search_act_search_text.setImageResource(R.drawable.search_x_big_icon)
-                    btn_search_act_search.visibility = View.VISIBLE
+                    rl_search_act_search_button.visibility = View.VISIBLE
                 } else {
                     iv_search_act_search_text.setImageResource(R.drawable.search_search_icon)
-                    btn_search_act_search.visibility = View.GONE
+                    rl_search_act_search_button.visibility = View.GONE
                 }
             }
 

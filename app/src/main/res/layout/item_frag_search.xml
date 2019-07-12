@@ -6,7 +6,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginHorizontal="24dp"
                     android:background="@drawable/hipat_list_box"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="20dp"
+    android:id="@+id/rl_item_frag_search_item">
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                       android:layout_marginHorizontal="24dp"

@@ -35,7 +35,8 @@ class SearchHistoryAdapter(val dataList: ArrayList<String>) :
         holder.item.setOnClickListener {
             val editSearch: EditText = (ctx as SearchActivity).findViewById(R.id.et_search_act_search)
             editSearch.setText(holder.searchText.text.toString())
-            ctx.getSearchResponse(holder.searchText.toString(), SharedPreferenceController.getAuthorization(ctx))
+            ctx.getSearchResponse(SharedPreferenceController.getAuthorization(ctx))
+            ctx.setViewPagerVisibility()
         }
 
         holder.searchText.text = dataList[position]
@@ -44,8 +45,8 @@ class SearchHistoryAdapter(val dataList: ArrayList<String>) :
             dataList.removeAt(position)
             notifyItemRemoved(position)
 
+            Log.d(TAG, SharedPreferenceController.getSearchHistory(ctx).size.toString())
             SharedPreferenceController.removeSearchHistory(ctx, position)
-            Log.d(TAG, SharedPreferenceController.searchHistoryList.size.toString())
 
             (ctx as SearchActivity).setRecentSearchList()
         }

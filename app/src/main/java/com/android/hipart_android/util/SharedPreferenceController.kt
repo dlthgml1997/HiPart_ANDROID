@@ -1,6 +1,7 @@
 package com.android.hipart_android.util
 
 import android.content.Context
+import android.util.Log
 import org.json.JSONArray
 import org.json.JSONException
 
@@ -22,6 +23,7 @@ object SharedPreferenceController {
     private val searchKey = "Search_Key"
 
     private val USER_NICKNAME= "USER_NICKNAME"
+    private val TAG = "SharedPreference"
     val searchHistoryList = ArrayList<String>()
 
     fun setAuthorization(context: Context, authorization : String){
@@ -80,10 +82,7 @@ object SharedPreferenceController {
     }
 
     fun addSearchHistory(context : Context, text : String) {
-        for(i in 0..searchHistoryList.size-1) {
-            if(searchHistoryList[i] == text) {
-
-            }else{
+        Log.d(TAG, "add to searchHistoryList")
                 searchHistoryList.add(text)
                 val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE)
                 val editor = pref.edit()
@@ -96,9 +95,8 @@ object SharedPreferenceController {
                 }else {
                     editor.putString(searchKey, null)
                 }
+                Log.d(TAG, "add complete")
                 editor.apply()
-            }
-        }
 
     }
 
@@ -119,6 +117,7 @@ object SharedPreferenceController {
             editor.apply()
         }
     }
+
     fun getSearchHistory(context : Context) : ArrayList<String> {
         val pref = context.getSharedPreferences(USER_NAME, Context.MODE_PRIVATE)
         val json : String = pref.getString(searchKey, "")
