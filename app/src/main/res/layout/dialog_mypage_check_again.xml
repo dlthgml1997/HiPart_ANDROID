@@ -7,7 +7,8 @@
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="156dp">
+            android:layout_height="156dp"
+            android:background="@drawable/dialog_box">>
         <TextView
                 android:text="정말 수정하시겠습니까?"
                 android:textSize="15sp"
