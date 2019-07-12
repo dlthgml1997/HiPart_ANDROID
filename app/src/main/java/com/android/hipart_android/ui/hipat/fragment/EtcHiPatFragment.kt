@@ -51,7 +51,7 @@ class EtcHiPatFragment : Fragment() {
         rv_hipat_etc_frag.adapter = portFolioRecyclerViewAdapter
         rv_hipat_etc_frag.layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.VERTICAL, false)
 
-         getProfileLookUp(3)
+         getProfileLookUp(4)
     }
 
     fun getProfileLookUp(flag : Int){
