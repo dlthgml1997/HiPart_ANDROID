@@ -80,7 +80,8 @@
                                   android:orientation="horizontal"
                                   android:layout_alignParentBottom="true">
 
-                        <RelativeLayout style="@style/HipartDetailIntroPrimaryTagLayout">
+                        <RelativeLayout style="@style/HipartDetailIntroPrimaryTagLayout"
+                        android:id="@+id/rl_item_frag_search_pd">
                             <TextView
                                     android:id="@+id/tv_item_frag_search_pd"
                                     style="@style/nanum_light"

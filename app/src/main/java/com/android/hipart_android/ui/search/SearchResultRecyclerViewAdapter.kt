@@ -65,10 +65,11 @@ class SearchResultRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<
         if (dataList[position].info[0].pd != 0) {
             holder.pd.text = Filter.pd(dataList[position].info[0].pd)
         } else {
-            holder.pd.visibility = View.GONE
+            holder.pd_bg.visibility = View.GONE
         }
 
         //3가지 태그 리사이클러
+        var fullLength = 0
         val tagList = ArrayList<String>()
         if (dataList[position].info[0].concept != 0)
             tagList.add(Filter.concept(dataList[position].info[0].concept))
@@ -78,6 +79,23 @@ class SearchResultRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<
             tagList.add(Filter.etc(dataList[position].info[0].etc))
 
         if (tagList.size > 0) {
+            for (i in 0..tagList.size - 1) {
+                fullLength += tagList[i].length
+            }
+            if (fullLength > 9) {
+                if (dataList[position].info[0].pd == 0) {
+                    if (tagList.size > 2) {
+                        tagList.set(2, "...")
+                    }
+                }else {
+                    if(tagList.size ==2) {
+                        tagList.set(1,"...")
+                        tagList.removeAt(2)
+                    }else if(tagList.size ==3) {
+                        tagList.set(2, "...")
+                    }
+                }
+            }
             holder.tag.adapter = HipartDetailTagRecyclerAdapter(ctx, tagList)
             holder.tag.layoutManager =
                 LinearLayoutManager(ctx, OrientationHelper.HORIZONTAL, false)
@@ -203,6 +221,7 @@ class SearchResultRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<
         val name = itemView.findViewById(R.id.tv_item_frag_sear_name) as TextView
         val platform = itemView.findViewById(R.id.iv_item_frag_search_platform) as ImageView
         val type = itemView.findViewById(R.id.tv_item_frag_search_type) as TextView
+        val pd_bg = itemView.findViewById<RelativeLayout>(R.id.rl_item_frag_search_pd)
         val pd = itemView.findViewById(R.id.tv_item_frag_search_pd) as TextView
         val tag = itemView.findViewById(R.id.rv_item_frag_search_tag) as RecyclerView
         val intro = itemView.findViewById(R.id.tv_item_frag_search_intro) as TextView
