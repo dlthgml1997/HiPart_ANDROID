@@ -204,9 +204,9 @@ class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityE
 
         this.onResume()
 
-        Log.d("SearchData full size", "filter SearchData ${data.size}")
+        Log.d("SearchData full size", "filter SearchData ${SearchData.searchDataAll.size}")
         Log.d("SearchDataC full size", "filter SearchData ${SearchData.searchDataForC.size}")
-        Log.d("SearchDataE full size", "filter SearchData ${searchDataForE.size}")
+        Log.d("SearchDataE full size", "filter SearchData ${SearchData.searchDataForE.size}")
         Log.d("SearchDataT full size", "filter SearchData ${SearchData.searchDataForT.size}")
         Log.d("SearchDataETC full size", "filter SearchData ${SearchData.searchDataForETC.size}")
 
