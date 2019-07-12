@@ -129,11 +129,6 @@ class HipartDetailTpatFragment : Fragment() {
             (context as HipartDetailActivity).finish()
         }
 
-        btn_frag_hip_det_eetc_pick_off.setOnClickListener{
-            (context as HipartDetailActivity).setAnimPickIcon()
-            iv_frag_hip_det_eetc_pick_off.setImageResource(R.drawable.pofol_pick_off_white_icon)
-        }
-
     }
 
 

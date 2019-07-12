@@ -148,10 +148,6 @@ class HipartDetailCpatFragment : Fragment() {
             (context as HipartDetailActivity).finish()
         }
 
-        btn_frag_hip_det_eetc_pick_off.setOnClickListener{
-            (context as HipartDetailActivity).setAnimPickIcon()
-        }
-
 
 //            val contactDialog: ContactAlertDialog = ContactAlertDialog(activity!!)
 //            contactDialog.show()
