@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
@@ -31,6 +32,21 @@ class MyPageFragment : Fragment() {
         ApplicationController.instance.networkService
     }
 
+    lateinit var name : TextView
+
+    lateinit var part : TextView
+
+    lateinit var platform : ImageView
+
+
+    lateinit var profilePhoto : ImageView
+
+    lateinit var farmNum : TextView
+
+    lateinit var pickNum : TextView
+
+    lateinit var hifiveNum : TextView
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_mypage, container, false)
         return view
@@ -39,7 +55,20 @@ class MyPageFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Log.v("성청하", "onActCre")
+        name= txt_mypage_frag_name
 
+        part = txt_mypage_frag_part
+
+        platform = txt_mypage_frag_detail_platform
+
+
+        profilePhoto = img_mypage_frag_profile_photo
+
+        farmNum = txt_mypage_frag_farm_num
+
+        pickNum = txt_mypage_frag_pick_num
+
+        hifiveNum = txt_mypage_frag_hifive_num
         getMypageResponse()
 
         setOnBtnClikListener()
@@ -77,15 +106,15 @@ class MyPageFragment : Fragment() {
 //                        txt_mypage_frag_pick_num.searchText = data.pick.toString()
 //                        txt_mypage_frag_hifive_num.searchText = data.hifive.toString()
                         val data = response.body()!!.data
-                        txt_mypage_frag_name.text = data.user_nickname
-                        txt_mypage_frag_part.text = getUserType(data.user_type)
-                        getPlatformType(data.detail_platform, txt_mypage_frag_detail_platform)
+                        name.text = data.user_nickname
+                        part.text = getUserType(data.user_type)
+                        getPlatformType(data.detail_platform, platform)
                         Glide.with(ctx)
                             .load(data.user_img)
-                            .into(img_mypage_frag_profile_photo)
-                        txt_mypage_frag_farm_num.text = data.point.toString()
-                        txt_mypage_frag_pick_num.text = data.pick.toString()
-                        txt_mypage_frag_hifive_num.text = data.hifive.toString()
+                            .into(profilePhoto)
+                        farmNum.text = data.point.toString()
+                        pickNum.text = data.pick.toString()
+                        hifiveNum.text = data.hifive.toString()
                     }
             }
 
