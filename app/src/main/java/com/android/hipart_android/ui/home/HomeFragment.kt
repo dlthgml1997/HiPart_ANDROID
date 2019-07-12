@@ -103,42 +103,6 @@ class HomeFragment : Fragment(){
             )
         )
 
-        adDataList.add(
-            HomeFragAdData(
-                "",
-                "",
-                "",
-                true
-            )
-        )
-
-        adDataList.add(
-            HomeFragAdData(
-                "",
-                "",
-                "",
-                false
-            )
-        )
-
-        adDataList.add(
-            HomeFragAdData(
-                "",
-                "",
-                "",
-                true
-            )
-        )
-
-        adDataList.add(
-            HomeFragAdData(
-                "",
-                "",
-                "",
-                false
-            )
-        )
-
         rv_frag_home_advertising.adapter = homeFragAdAdapter
     }
 
