@@ -3,11 +3,15 @@ package com.android.hipart_android.ui.hipart
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.hipart.get.*
 import com.android.hipart_android.util.BaseActivity
 import com.android.hipart_android.util.SharedPreferenceController
+import kotlinx.android.synthetic.main.activity_hipart_detail.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,7 +19,7 @@ import java.io.Serializable
 
 class HipartDetailActivity : BaseActivity() {
 
-    companion object{
+    companion object {
         var hifiveStatus = 0
     }
 
@@ -41,9 +45,9 @@ class HipartDetailActivity : BaseActivity() {
     private fun filterUser(nickname: String, type: Int) {
         when (type) {
             1 -> getDetailCResponse(nickname)
-            2,4 -> getDetailEEtcResponse(
-                nickname)
+            2 -> getDetailEEtcResponse(nickname)
             3 -> getDetailTResponse(nickname)
+            4 -> getDetailEtcResponse(nickname)
         }
     }
 
@@ -62,12 +66,11 @@ class HipartDetailActivity : BaseActivity() {
             override fun onResponse(call: Call<GetDetailCResponse>, response: Response<GetDetailCResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
-                        Log.d(TAG, response.body()!!.message)
                         if (response.body()?.data != null) {
                             var userData: DetailCData? = response.body()!!.data
                             hifiveStatus = userData!!.hifiveState
 
-                            var userDetailCData : UserDetailCData = userData!!.resData
+                            var userDetailCData: UserDetailCData = userData!!.resData
                             setFragment(HipartDetailCpatFragment(), userDetailCData)
 
                         }
@@ -91,24 +94,66 @@ class HipartDetailActivity : BaseActivity() {
             }
 
             override fun onResponse(call: Call<GetDetailEEtcResponse>, response: Response<GetDetailEEtcResponse>) {
-                if (response.isSuccessful) {
-                    if (response.body()!!.status == 200) {
-                        Log.d(TAG, response.body()!!.message)
-                        if (response.body()?.data != null) {
-                            var userData: DetailEEtcData = response.body()!!.data
-                            hifiveStatus = userData!!.hifiveState
-
-                            userDetailData = userData.resData
-                            Log.d(TAG, userDetailData.user_nickname)
-
-                            setFragment(HipartDetailEEtcFragment(), userDetailData)
-
-                        }
+                Log.v("rrraerae", response.body().toString())
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.data
+                    ?.let {
+                        var userData: DetailEEtcData = response.body()!!.data
+                        hifiveStatus = userData!!.hifiveState
+                        userDetailData = userData.resData
+                        setFragment(HipartDetailEEtcFragment(), userDetailData)
                     }
-                }
+//                if (response.isSuccessful) {
+//                    if (response.body()!!.status == 200) {
+//                        if (response.body()?.data != null) {
+//                            var userData: DetailEEtcData = response.body()!!.data
+//                            hifiveStatus = userData!!.hifiveState
+//                            userDetailData = userData.resData
+//                            setFragment(HipartDetailEEtcFragment(), userDetailData)
+//                        }
+//                    }
+//                }
             }
         })
+    }
 
+    private fun getDetailEtcResponse(nickname: String) {
+        val getDetailETcResponse = networkService.getDetailEtcResponse(
+            "application/json",
+            SharedPreferenceController.getAuthorization(this),
+            nickname
+        )
+
+        getDetailETcResponse.enqueue(object : Callback<GetDetailEEtcResponse> {
+            override fun onFailure(call: Call<GetDetailEEtcResponse>, t: Throwable) {
+                Log.e(TAG, t.toString())
+            }
+
+            override fun onResponse(call: Call<GetDetailEEtcResponse>, response: Response<GetDetailEEtcResponse>) {
+                response
+                    ?.takeIf { it.isSuccessful }
+                    ?.body()
+                    ?.data
+                    ?.let {
+                        var userData: DetailEEtcData = response.body()!!.data
+                        hifiveStatus = userData!!.hifiveState
+                        userDetailData = userData.resData
+                        setFragment(HipartDetailEEtcFragment(), userDetailData)
+                    }
+//                if (response.isSuccessful) {
+//                    if (response.body()!!.status == 200) {
+//                        if (response.body()?.data != null) {
+//                            var userData: DetailEEtcData = response.body()!!.data
+//                            hifiveStatus = userData!!.hifiveState
+//                            userDetailData = userData.resData
+//                            setFragment(HipartDetailEEtcFragment(), userDetailData)
+//                        }
+//                    }
+//                }
+            }
+        })
     }
 
     private fun getDetailTResponse(nickname: String) {
@@ -126,7 +171,6 @@ class HipartDetailActivity : BaseActivity() {
             override fun onResponse(call: Call<GetDetailTResponse>, response: Response<GetDetailTResponse>) {
                 if (response.isSuccessful) {
                     if (response.body()!!.status == 200) {
-                        Log.d(TAG, response.body()!!.message)
                         if (response.body()?.data != null) {
                             var userData: DetailTData = response.body()!!.data
                             hifiveStatus = userData!!.hifiveState
@@ -135,8 +179,6 @@ class HipartDetailActivity : BaseActivity() {
                             Log.d(TAG, userDetailTData.user_nickname)
 
                             setFragment(HipartDetailTpatFragment(), userDetailTData)
-
-
                         }
                     }
                 }
@@ -146,7 +188,7 @@ class HipartDetailActivity : BaseActivity() {
     }
 
 
-    private fun setFragment(fragment: Fragment, userData : Any?) {
+    private fun setFragment(fragment: Fragment, userData: Any?) {
 
         val bundle = Bundle()
         bundle.putSerializable("user", userData as Serializable)
@@ -160,7 +202,8 @@ class HipartDetailActivity : BaseActivity() {
 
 
     }
-    fun addFragment(frameLayoutId: Int, fragment: Fragment, nickname : String, type : Int) {
+
+    fun addFragment(frameLayoutId: Int, fragment: Fragment, nickname: String, type: Int) {
 
         val bundle = Bundle()
         bundle.putString("nickname", nickname)
@@ -182,6 +225,43 @@ class HipartDetailActivity : BaseActivity() {
             supportFragmentManager.popBackStack()
         }
     }
+
+    fun setAnimPickIcon() {
+        val interpolator = MyBounceInterpolator(0.2, 20.0)
+        val anim: Animation = AnimationUtils.loadAnimation(this@HipartDetailActivity, R.anim.expand_anim)
+        anim.interpolator = interpolator
+
+        anim.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationRepeat(animation: Animation?) {
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                rl_hipart_detail_act_anim.visibility = View.GONE
+            }
+
+            override fun onAnimationStart(animation: Animation?) {
+                rl_hipart_detail_act_anim.visibility = View.VISIBLE
+            }
+        })
+        rl_hipart_detail_act_anim.startAnimation(anim)
+    }
+
+    internal inner class MyBounceInterpolator(amplitude: Double, frequency: Double) :
+        android.view.animation.Interpolator {
+        private var mAmplitude = 1.0
+        private var mFrequency = 10.0
+
+        init {
+            mAmplitude = amplitude
+            mFrequency = frequency
+        }
+
+        override fun getInterpolation(time: Float): Float {
+            return (-1.0 * Math.pow(Math.E, -time / mAmplitude) *
+                    Math.cos(mFrequency * time) + 1).toFloat()
+        }
+    }
+
 /*
 for(Fragment fragment : fragmentList){
        if(fragment instanceof OnBackPressedListener){

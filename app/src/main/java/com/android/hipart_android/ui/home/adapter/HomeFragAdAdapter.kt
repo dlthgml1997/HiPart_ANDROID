@@ -19,6 +19,8 @@ import org.jetbrains.anko.startActivity
  */
 class HomeFragAdAdapter(private val dataList: List<HomeFragAdData>, private val context: Context?) : PagerAdapter() {
 
+    var showAnimFlag = false
+
     override fun getCount(): Int = dataList.size
 
     // Determines whether a page View is associated with a specific key object as returned by instantiateItem(ViewGroup, int).
@@ -62,6 +64,7 @@ class HomeFragAdAdapter(private val dataList: List<HomeFragAdData>, private val 
             if(dataList[position].clickFlag == true){
                 img.setOnClickListener {
                     (context as MainActivity).setAddPickAnimPickIcon()
+                    showAnimFlag = true
                 }
             }else{
                 img.setOnClickListener {

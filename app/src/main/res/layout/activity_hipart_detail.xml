@@ -1,10 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".ui.hipart.HipartDetailCpatFragment"
-                android:orientation="vertical"
-android:id="@+id/fl_hip_detail_act">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" tools:context=".ui.hipart.HipartDetailCpatFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+>
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-</FrameLayout>
+            android:orientation="vertical"
+            android:id="@+id/fl_hip_detail_act">
+
+    </FrameLayout>
+
+    <RelativeLayout
+            android:id="@+id/rl_hipart_detail_act_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone">
+        <ImageView
+                android:id="@+id/iv_hipart_detail_act_anim"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:src="@drawable/pick_popup_img"
+                android:layout_centerHorizontal="true"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/iv_hipart_detail_act_anim"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/pick_modification_border"
+                android:paddingVertical="6dp"
+                android:paddingHorizontal="9dp">
+            <TextView
+                    android:text="PICK"
+                    android:textSize="14sp"
+                    android:textColor="#3eecad"
+                    android:fontFamily="@font/nanum_extra_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="6dp"/>
+            <TextView
+                    android:text="했습니다."
+                    android:textColor="#ffffff"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nanum_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
