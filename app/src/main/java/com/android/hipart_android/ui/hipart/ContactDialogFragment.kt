@@ -1,4 +1,4 @@
-package com.android.hipart_android.ui.hipart.fragment
+package com.android.hipart_android.ui.hipart
 
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
@@ -10,7 +10,6 @@ import android.widget.CompoundButton
 import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.network.NetworkService
-import com.android.hipart_android.ui.hipart.HipartDetailActivity
 import com.android.hipart_android.ui.hipart.data.PostHifiveRequest
 import com.android.hipart_android.ui.hipart.data.PostHifiveResponse
 import com.android.hipart_android.util.SharedPreferenceController
@@ -96,8 +95,7 @@ class ContactDialogFragment : DialogFragment() {
                     ?.body()?.takeIf { it.message == "연락 성공" }
                     ?.let {
                         Log.d(TAG, "Diallog 통신 성공")
-                        (activity as HipartDetailActivity).addFragment(R.id.fl_hip_detail_act,
-                            ContactPurchaseFragment(), nickname, type)
+                        (activity as HipartDetailActivity).addFragment(R.id.fl_hip_detail_act, ContactPurchaseFragment(), nickname, type)
 
                         dismiss()
                     }

@@ -33,12 +33,10 @@ class LoginActivity : BaseActivity(), KeyboardVisibilityEventListener {
     override fun onVisibilityChanged(isOpen: Boolean) {
         if (isOpen) {
             ll_login_act_sign_in.visibility = View.GONE
-            temp_login_act_btn.visibility = View.GONE
             sv_login_act.scrollTo(0, sv_login_act.bottom)
         } else {
 
             ll_login_act_sign_in.visibility = View.VISIBLE
-            temp_login_act_btn.visibility = View.GONE
             sv_login_act.scrollTo(0, sv_login_act.top)
         }
     }
