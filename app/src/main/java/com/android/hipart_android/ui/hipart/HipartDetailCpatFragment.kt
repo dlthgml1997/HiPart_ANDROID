@@ -9,14 +9,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.android.hipart_android.R
 import com.android.hipart_android.ui.hipart.get.UserDetailCData
 import com.android.hipart_android.util.Filter
 import com.bumptech.glide.Glide
-
 import kotlinx.android.synthetic.main.fragment_hipart_detail_eetc.*
-import kotlinx.android.synthetic.main.fragment_hipart_detail_eetc.rv_frag_hip_det_frag_article
 import java.util.*
 
 class HipartDetailCpatFragment : Fragment() {
@@ -149,6 +146,10 @@ class HipartDetailCpatFragment : Fragment() {
 
         iv_frag_hip_det_eetc_back.setOnClickListener {
             (context as HipartDetailActivity).finish()
+        }
+
+        btn_frag_hip_det_eetc_pick_off.setOnClickListener{
+            (context as HipartDetailActivity).setAnimPickIcon()
         }
 
 

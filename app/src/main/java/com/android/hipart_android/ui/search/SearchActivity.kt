@@ -308,6 +308,7 @@ class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityE
     private fun setViewPager() {
         vp_search_act.adapter = SearchFragmentPagerAdapter(5, supportFragmentManager)
         tl_search_act.setupWithViewPager(vp_search_act)
+        vp_search_act.offscreenPageLimit = 5
 
         val tabSearch: View =
             (this.getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater)

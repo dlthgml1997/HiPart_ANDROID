@@ -50,7 +50,6 @@ class SearchAllFragment : Fragment() {
             if (searchDataAll.isNotEmpty()) {
                 rl_sear_etc_frag_no_result.visibility = View.GONE
                 rl_sear_etc_frag_yes_result.visibility = View.VISIBLE
-
                 setRecyclerView()
             }
         }

@@ -390,6 +390,15 @@ interface NetworkService {
         @Path("nickname") nickname: String
     ): Call<GetDetailEEtcResponse>
 
+    //상세보기-지원
+    //c
+    @GET("profile/detail/etc/{nickname}")
+    fun getDetailEtcResponse(
+        @Header("Content-Type") content_type: String,
+        @Header("token") token: String,
+        @Path("nickname") nickname: String
+    ): Call<GetDetailEEtcResponse>
+
     //e
     @GET("profile/detail/creator/{nickname}")
     fun getDetailCResponse(
