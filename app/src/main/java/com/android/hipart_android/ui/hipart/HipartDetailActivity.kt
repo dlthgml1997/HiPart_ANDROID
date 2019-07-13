@@ -10,6 +10,7 @@ import com.android.hipart_android.R
 import com.android.hipart_android.network.ApplicationController
 import com.android.hipart_android.ui.hipart.fragment.HipartDetailCpatFragment
 import com.android.hipart_android.ui.hipart.fragment.HipartDetailEEtcFragment
+import com.android.hipart_android.ui.hipart.fragment.HipartDetailEtcFragment
 import com.android.hipart_android.ui.hipart.fragment.HipartDetailTpatFragment
 import com.android.hipart_android.ui.hipart.get.*
 import com.android.hipart_android.util.BaseActivity
@@ -143,7 +144,7 @@ class HipartDetailActivity : BaseActivity() {
                         var userData: DetailEEtcData = response.body()!!.data
                         hifiveStatus = userData!!.hifiveState
                         userDetailData = userData.resData
-                        setFragment(HipartDetailEEtcFragment(), userDetailData)
+                        setFragment(HipartDetailEtcFragment(), userDetailData)
                     }
 //                if (response.isSuccessful) {
 //                    if (response.body()!!.status == 200) {
