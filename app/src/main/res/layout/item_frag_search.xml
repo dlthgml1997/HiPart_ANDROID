@@ -81,19 +81,25 @@
                                   android:orientation="horizontal"
                                   android:layout_alignParentBottom="true">
 
-                        <RelativeLayout style="@style/HipartDetailIntroPrimaryTagLayout"
-                        android:id="@+id/rl_item_frag_search_pd">
+                        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/main_home_first_filter_box"
+                                        android:layout_marginRight="4dp"
+                        android:id="@+id/rl_item_frag_search_pd"
+                        >
                             <TextView
-                                    android:id="@+id/tv_item_frag_search_pd"
                                     style="@style/nanum_light"
                                     android:textSize="11sp"
-                                    android:textColor="@android:color/white"
+                                    android:paddingHorizontal="10dp"
+                                    android:paddingVertical="4dp"
+                                    android:textColor="#FFF"
                                     android:lineSpacingExtra="1sp"
                                     android:gravity="center_horizontal"
-                                    android:text="먹방"
-                                    android:layout_centerHorizontal="true"
-                                    android:layout_marginTop="3dp"
-                                    android:layout_alignParentTop="true"/>
+                                    android:id="@+id/tv_item_frag_search_pd"
+                                    android:layout_centerInParent="true"
+                                    android:fontFamily="@font/nanum_light"
+                                    android:text="먹방"/>
                         </RelativeLayout>
 
                         <android.support.v7.widget.RecyclerView android:layout_width="wrap_content"

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_frag_hip_det_intro_round"
+                android:background="@drawable/main_home_filter_box"
                 android:layout_marginRight="4dp">
     <TextView style="@style/nanum_light"
               android:textSize="11sp"
