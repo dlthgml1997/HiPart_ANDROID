@@ -160,6 +160,8 @@ class SearchResultRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<
                         when (it?.message ?: " ") {
                             "픽 성공" -> {
                                 (ctx as SearchActivity).setAnimPickIcon()
+
+                                (ctx as SearchActivity).getSearchResponse(SharedPreferenceController.getAuthorization(ctx))
                             }
                             " " -> {
                                 Log.v("태그", "message가 널인데 ?")
@@ -197,6 +199,8 @@ class SearchResultRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<
 
                             "픽 취소 성공" -> {
                                 Log.v("태그", it.message)
+
+                                (ctx as SearchActivity).getSearchResponse(SharedPreferenceController.getAuthorization(ctx))
                             }
                             " " -> {
                                 Log.v("태그", "message가 널인데 ?")
