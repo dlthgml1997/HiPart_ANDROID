@@ -77,9 +77,7 @@ class SearchActivity : BaseActivity(), View.OnClickListener, KeyboardVisibilityE
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        val token: String =
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuaWNrbmFtZSI6Iuq4sO2DgCIsImlkeCI6NiwidHlwZSI6NCwiaWF0IjoxNTYyNTY2OTgwLCJleHAiOjE1NjM3NzY1ODAsImlzcyI6ImlnIn0.Q2x2Z6OKdAs78ExzZk5zZvRNfsu9lL3Av3WJ05XB74g"
-
+        val token: String = SharedPreferenceController.getAuthorization(this)
         setRecentSearchList()
 
         setSearch()
