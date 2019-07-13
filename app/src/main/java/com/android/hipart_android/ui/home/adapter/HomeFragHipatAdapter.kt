@@ -398,19 +398,19 @@ class HomeFragHipatAdapter(private val dataList: ArrayList<ResData>, private val
                 tv.text = "러시아어"
             }
             7 -> {
-                tv.text = "프랑스어"
+                tv.text = "인도네시아"
             }
             8 -> {
-                tv.text = "스페인어"
+                tv.text = "베트남"
             }
             9 -> {
-                tv.text = "베트남어"
+                tv.text = "이탈리아"
             }
             10 -> {
-                tv.text = "이탈리아어"
+                tv.text = "프랑스"
             }
             11 -> {
-                tv.text = "인도네시아어"
+                tv.text = "스페인어"
             }
             12 -> {
                 tv.text = "..."

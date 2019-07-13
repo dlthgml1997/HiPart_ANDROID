@@ -105,8 +105,31 @@ class EtcHiPatFragment : Fragment() {
 //    }
 
     fun setAdapterData(adapterDataList: List<GetMyPickData>) {
-        portFolioRecyclerViewAdapter.dataList = adapterDataList
-        portFolioRecyclerViewAdapter.notifyDataSetChanged()
+        if(adapterDataList.isEmpty()){
+            frag_hipat_etc_no_result.visibility = View.VISIBLE
+            rv_hipat_etc_frag.visibility = View.GONE
+
+        }else{
+            frag_hipat_etc_no_result.visibility = View.GONE
+            rv_hipat_etc_frag.visibility = View.VISIBLE
+            portFolioRecyclerViewAdapter.dataList = adapterDataList
+            portFolioRecyclerViewAdapter.notifyDataSetChanged()
+        }
     }
 
+
+    fun setAdapterChangeData(nickName: String){
+        if (portFolioRecyclerViewAdapter.dataList.find { it.info[0].user_nickname == nickName }?.pickState == 0) {
+            portFolioRecyclerViewAdapter.dataList.find { it.info[0].user_nickname == nickName }?.let {
+                it.pickState = 1
+                it.info[0].pick = it.info[0].pick + 1
+            }
+        } else {
+            portFolioRecyclerViewAdapter.dataList.find { it.info[0].user_nickname == nickName }?.let {
+                it.pickState = 0
+                it.info[0].pick = it.info[0].pick - 1
+            }
+        }
+        portFolioRecyclerViewAdapter.notifyDataSetChanged()
+    }
 }

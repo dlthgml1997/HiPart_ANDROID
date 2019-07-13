@@ -26,6 +26,7 @@ class TPatHiPatFragment : Fragment() {
         //portfoliodata
         ArrayList<GetMyPickData>()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -45,13 +46,13 @@ class TPatHiPatFragment : Fragment() {
     }
 
     private fun configureRecyclerView() {
-        portFolioRecyclerViewAdapter = PortFolioRecyclerViewAdapter(context!!, dataList,true)
+        portFolioRecyclerViewAdapter = PortFolioRecyclerViewAdapter(context!!, dataList, true)
         rv_hipat_tpat_frag.adapter = portFolioRecyclerViewAdapter
         rv_hipat_tpat_frag.layoutManager = LinearLayoutManager(context!!, LinearLayoutManager.VERTICAL, false)
-         getProfileLookUp(3)
+        getProfileLookUp(3)
     }
 
-    fun getProfileLookUp(flag : Int){
+    fun getProfileLookUp(flag: Int) {
         var networkService: NetworkService = ApplicationController.instance.networkService
 
         val getProfileLookUp = networkService.getProfileLookUp(
@@ -59,7 +60,7 @@ class TPatHiPatFragment : Fragment() {
             flag
         )
 
-        getProfileLookUp.enqueue(object: Callback<GetProfileLookUpResponse> {
+        getProfileLookUp.enqueue(object : Callback<GetProfileLookUpResponse> {
             override fun onFailure(call: Call<GetProfileLookUpResponse>, t: Throwable) {
                 Log.e("All HighPat Frag Err", Log.getStackTraceString(t))
             }
@@ -80,7 +81,8 @@ class TPatHiPatFragment : Fragment() {
             }
         })
     }
-//    fun setFilterData(flag: Int){
+
+    //    fun setFilterData(flag: Int){
 //        when(flag){
 //            1,2,3,4,5,6,7 -> {
 //                portFolioRecyclerViewAdapter.dataList.filter { it.info[0].concept == flag }
@@ -101,7 +103,30 @@ class TPatHiPatFragment : Fragment() {
 //        }
 //    }
     fun setAdapterData(adapterDataList: List<GetMyPickData>) {
-        portFolioRecyclerViewAdapter.dataList = adapterDataList
+        if (adapterDataList.isEmpty()) {
+            frag_hipat_t_no_result.visibility = View.VISIBLE
+            rv_hipat_tpat_frag.visibility = View.GONE
+
+        } else {
+            frag_hipat_t_no_result.visibility = View.GONE
+            rv_hipat_tpat_frag.visibility = View.VISIBLE
+            portFolioRecyclerViewAdapter.dataList = adapterDataList
+            portFolioRecyclerViewAdapter.notifyDataSetChanged()
+        }
+    }
+
+    fun setAdapterChangeData(nickName: String) {
+        if (portFolioRecyclerViewAdapter.dataList.find { it.info[0].user_nickname == nickName }?.pickState == 0) {
+            portFolioRecyclerViewAdapter.dataList.find { it.info[0].user_nickname == nickName }?.let {
+                it.pickState = 1
+                it.info[0].pick = it.info[0].pick + 1
+            }
+        } else {
+            portFolioRecyclerViewAdapter.dataList.find { it.info[0].user_nickname == nickName }?.let {
+                it.pickState = 0
+                it.info[0].pick = it.info[0].pick - 1
+            }
+        }
         portFolioRecyclerViewAdapter.notifyDataSetChanged()
     }
 }
