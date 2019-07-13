@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.android.hipart_android.R
-import com.android.hipart_android.ui.search.SearchResultRecyclerViewAdapter
-import com.android.hipart_android.ui.search.SearchItem
+import com.android.hipart_android.ui.search.adapter.SearchResultEEtcRecyclerViewAdapter
 import com.android.hipart_android.ui.search.get.User
 import com.android.hipart_android.util.SearchData
 import kotlinx.android.synthetic.main.fragment_search_etc.*
@@ -52,7 +50,7 @@ class SearchETCFragment : Fragment() {
     }
     private fun setRecyclerView() {
         rv_sear_etc_frag.adapter =
-            SearchResultRecyclerViewAdapter(activity!!, searchDataETC)
+            SearchResultEEtcRecyclerViewAdapter(activity!!, searchDataETC)
         rv_sear_etc_frag.layoutManager = LinearLayoutManager(activity!!, OrientationHelper.HORIZONTAL, false)
     }
 

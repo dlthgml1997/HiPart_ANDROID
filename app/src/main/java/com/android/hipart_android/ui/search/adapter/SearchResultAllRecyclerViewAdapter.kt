@@ -1,4 +1,4 @@
-package com.android.hipart_android.ui.search
+package com.android.hipart_android.ui.search.adapter
 
 import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
@@ -17,18 +17,20 @@ import com.android.hipart_android.ui.hipart.HipartDetailActivity
 import com.android.hipart_android.ui.hipart.HipartDetailTagRecyclerAdapter
 import com.android.hipart_android.ui.home.data.post.PickDTO
 import com.android.hipart_android.ui.home.data.post.PickResponse
+import com.android.hipart_android.ui.search.SearchActivity
 import com.android.hipart_android.ui.search.get.User
 import com.android.hipart_android.util.Filter
 import com.android.hipart_android.util.SharedPreferenceController
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.fragment_hipart_detail_eetc.*
 import org.jetbrains.anko.layoutInflater
 import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SearchResultRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<User>) :
-    RecyclerView.Adapter<SearchResultRecyclerViewAdapter.Holder>() {
+class SearchResultAllRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<User>) :
+    RecyclerView.Adapter<SearchResultAllRecyclerViewAdapter.Holder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view = ctx.layoutInflater.inflate(R.layout.item_frag_search, p0, false)
@@ -61,44 +63,133 @@ class SearchResultRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<
         holder.platform.setImageResource(Filter.platform(dataList[position].info[0].detail_platform))
         //타입
         holder.type.text = Filter.type(dataList[position].info[0].user_type)
-        //pd
-        if (dataList[position].info[0].pd != 0) {
-            holder.pd.text = Filter.pd(dataList[position].info[0].pd)
-        } else {
-            holder.pd_bg.visibility = View.GONE
-        }
+        when (dataList[position].info[0].user_type) {
+            1 -> {//pd
 
-        //3가지 태그 리사이클러
-        var fullLength = 0
-        val tagList = ArrayList<String>()
-        if (dataList[position].info[0].concept != 0)
-            tagList.add(Filter.concept(dataList[position].info[0].concept))
-        if (dataList[position].info[0].lang != 0)
-            tagList.add(Filter.language(dataList[position].info[0].lang))
-        if (dataList[position].info[0].etc != 0)
-            tagList.add(Filter.etc(dataList[position].info[0].etc))
+                if (dataList[position].info[0].concept != 0) {
+                    holder.pd.text = Filter.concept(dataList[position].info[0].concept)
+                } else {
+                    holder.pd_bg.visibility = View.GONE
+                }
 
-        if (tagList.size > 0) {
-            for (i in 0..tagList.size - 1) {
-                fullLength += tagList[i].length
-            }
-            if (fullLength > 9) {
-                if (dataList[position].info[0].pd == 0) {
-                    if (tagList.size > 2) {
-                        tagList.set(2, "...")
+
+                //3가지 태그 리사이클러
+                var fullLength = 0
+                val tagList = ArrayList<String>()
+                if (dataList[position].info[0].pd != 0)
+                    tagList.add(Filter.pd(dataList[position].info[0].pd))
+                if (dataList[position].info[0].lang != 0)
+                    tagList.add(Filter.language(dataList[position].info[0].lang))
+                if (dataList[position].info[0].etc != 0)
+                    tagList.add(Filter.etc(dataList[position].info[0].etc))
+
+                if (tagList.size > 0) {
+                    for (i in 0..tagList.size - 1) {
+                        fullLength += tagList[i].length
                     }
-                }else {
-                    if(tagList.size ==2) {
-                        tagList.set(1,"...")
-                        tagList.removeAt(2)
-                    }else if(tagList.size ==3) {
-                        tagList.set(2, "...")
+                    if (fullLength > 9) {
+                        if (dataList[position].info[0].pd == 0) {
+                            if (tagList.size > 2) {
+                                tagList.set(2, "...")
+                            }
+                        } else {
+                            if (tagList.size == 2) {
+                                tagList.set(1, "...")
+                                tagList.removeAt(2)
+                            } else if (tagList.size == 3) {
+                                tagList.set(2, "...")
+                            }
+                        }
                     }
+                    holder.tag.adapter = HipartDetailTagRecyclerAdapter(ctx, tagList)
+                    holder.tag.layoutManager =
+                        LinearLayoutManager(ctx, OrientationHelper.HORIZONTAL, false)
                 }
             }
-            holder.tag.adapter = HipartDetailTagRecyclerAdapter(ctx, tagList)
-            holder.tag.layoutManager =
-                LinearLayoutManager(ctx, OrientationHelper.HORIZONTAL, false)
+
+            2, 4-> {
+                //pd
+                if (dataList[position].info[0].pd != 0) {
+                    holder.pd.text = Filter.pd(dataList[position].info[0].pd)
+                } else {
+                    holder.pd_bg.visibility = View.GONE
+                }
+
+                //3가지 태그 리사이클러
+                var fullLength = 0
+                val tagList = ArrayList<String>()
+                if (dataList[position].info[0].concept != 0)
+                    tagList.add(Filter.concept(dataList[position].info[0].concept))
+                if (dataList[position].info[0].lang != 0)
+                    tagList.add(Filter.language(dataList[position].info[0].lang))
+                if (dataList[position].info[0].etc != 0)
+                    tagList.add(Filter.etc(dataList[position].info[0].etc))
+
+                if (tagList.size > 0) {
+                    for (i in 0..tagList.size - 1) {
+                        fullLength += tagList[i].length
+                    }
+                    if (fullLength > 9) {
+                        if (dataList[position].info[0].pd == 0) {
+                            if (tagList.size > 2) {
+                                tagList.set(2, "...")
+                            }
+                        }else {
+                            if(tagList.size ==2) {
+                                tagList.set(1,"...")
+                                tagList.removeAt(2)
+                            }else if(tagList.size ==3) {
+                                tagList.set(2, "...")
+                            }
+                        }
+                    }
+                    holder.tag.adapter = HipartDetailTagRecyclerAdapter(ctx, tagList)
+                    holder.tag.layoutManager =
+                        LinearLayoutManager(ctx, OrientationHelper.HORIZONTAL, false)
+                }
+            }
+
+            3 -> {
+                //pd
+                if (dataList[position].info[0].lang != 0) {
+                    holder.pd.text = Filter.language(dataList[position].info[0].lang)
+                } else {
+                    holder.pd_bg.visibility = View.GONE
+                }
+
+                //3가지 태그 리사이클러
+                var fullLength = 0
+                val tagList = ArrayList<String>()
+                if (dataList[position].info[0].concept != 0)
+                    tagList.add(Filter.concept(dataList[position].info[0].concept))
+                if (dataList[position].info[0].pd != 0)
+                    tagList.add(Filter.pd(dataList[position].info[0].pd))
+                if (dataList[position].info[0].etc != 0)
+                    tagList.add(Filter.etc(dataList[position].info[0].etc))
+
+                if (tagList.size > 0) {
+                    for (i in 0..tagList.size - 1) {
+                        fullLength += tagList[i].length
+                    }
+                    if (fullLength > 9) {
+                        if (dataList[position].info[0].pd == 0) {
+                            if (tagList.size > 2) {
+                                tagList.set(2, "...")
+                            }
+                        }else {
+                            if(tagList.size ==2) {
+                                tagList.set(1,"...")
+                                tagList.removeAt(2)
+                            }else if(tagList.size ==3) {
+                                tagList.set(2, "...")
+                            }
+                        }
+                    }
+                    holder.tag.adapter = HipartDetailTagRecyclerAdapter(ctx, tagList)
+                    holder.tag.layoutManager =
+                        LinearLayoutManager(ctx, OrientationHelper.HORIZONTAL, false)
+                }
+            }
         }
 
         //소개
@@ -161,7 +252,11 @@ class SearchResultRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<
                             "픽 성공" -> {
                                 (ctx as SearchActivity).setAnimPickIcon()
 
-                                (ctx as SearchActivity).getSearchResponse(SharedPreferenceController.getAuthorization(ctx))
+                                (ctx as SearchActivity).getSearchResponse(
+                                    SharedPreferenceController.getAuthorization(
+                                        ctx
+                                    )
+                                )
                             }
                             " " -> {
                                 Log.v("태그", "message가 널인데 ?")
@@ -200,7 +295,11 @@ class SearchResultRecyclerViewAdapter(val ctx: Context, val dataList: ArrayList<
                             "픽 취소 성공" -> {
                                 Log.v("태그", it.message)
 
-                                (ctx as SearchActivity).getSearchResponse(SharedPreferenceController.getAuthorization(ctx))
+                                (ctx as SearchActivity).getSearchResponse(
+                                    SharedPreferenceController.getAuthorization(
+                                        ctx
+                                    )
+                                )
                             }
                             " " -> {
                                 Log.v("태그", "message가 널인데 ?")

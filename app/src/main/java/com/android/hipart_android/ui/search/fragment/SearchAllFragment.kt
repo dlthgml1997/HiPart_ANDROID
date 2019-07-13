@@ -11,7 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.android.hipart_android.R
-import com.android.hipart_android.ui.search.SearchResultRecyclerViewAdapter
+import com.android.hipart_android.ui.search.adapter.SearchResultAllRecyclerViewAdapter
+import com.android.hipart_android.ui.search.adapter.SearchResultEEtcRecyclerViewAdapter
 import com.android.hipart_android.ui.search.get.User
 import com.android.hipart_android.util.SearchData
 import kotlinx.android.synthetic.main.fragment_search_etc.*
@@ -58,7 +59,7 @@ class SearchAllFragment : Fragment() {
 
     private fun setRecyclerView() {
         rv_sear_etc_frag.adapter =
-            SearchResultRecyclerViewAdapter(activity!!, searchDataAll)
+            SearchResultAllRecyclerViewAdapter(activity!!, searchDataAll)
         rv_sear_etc_frag.layoutManager = LinearLayoutManager(activity!!, OrientationHelper.HORIZONTAL, false)
     }
 
