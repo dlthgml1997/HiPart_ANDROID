@@ -54,7 +54,7 @@ class AllHipatFragment : Fragment() {
         getProfileLookUp(0)
     }
 
-    fun getProfileLookUp(flag : Int){
+    fun getProfileLookUp(flag: Int) {
         var networkService: NetworkService = ApplicationController.instance.networkService
 
         val getProfileLookUp = networkService.getProfileLookUp(
@@ -62,7 +62,7 @@ class AllHipatFragment : Fragment() {
             flag
         )
 
-        getProfileLookUp.enqueue(object: Callback<GetProfileLookUpResponse> {
+        getProfileLookUp.enqueue(object : Callback<GetProfileLookUpResponse> {
             override fun onFailure(call: Call<GetProfileLookUpResponse>, t: Throwable) {
                 Log.e("All HighPat Frag Err", Log.getStackTraceString(t))
             }
@@ -83,7 +83,6 @@ class AllHipatFragment : Fragment() {
             }
         })
     }
-
 
 
 //    fun setFilterData(flag: Int){
@@ -111,10 +110,30 @@ class AllHipatFragment : Fragment() {
 
 
     fun setAdapterData(adapterDataList: List<GetMyPickData>) {
-        portFolioRecyclerViewAdapter.dataList = adapterDataList
-        portFolioRecyclerViewAdapter.notifyDataSetChanged()
+        if(adapterDataList.isEmpty()){
+            frag_hipat_all_no_result.visibility = View.VISIBLE
+            rv_hipat_all_frag.visibility = View.GONE
+
+        }else{
+            frag_hipat_all_no_result.visibility = View.GONE
+            rv_hipat_all_frag.visibility = View.VISIBLE
+            portFolioRecyclerViewAdapter.dataList = adapterDataList
+            portFolioRecyclerViewAdapter.notifyDataSetChanged()
+        }
     }
 
-
-
+    fun setAdapterChangeData(nickName: String) {
+        if (portFolioRecyclerViewAdapter.dataList.find { it.info[0].user_nickname == nickName }?.pickState == 0) {
+            portFolioRecyclerViewAdapter.dataList.find { it.info[0].user_nickname == nickName }?.let {
+                it.pickState = 1
+                it.info[0].pick = it.info[0].pick + 1
+            }
+        } else {
+            portFolioRecyclerViewAdapter.dataList.find { it.info[0].user_nickname == nickName }?.let {
+                it.pickState = 0
+                it.info[0].pick = it.info[0].pick - 1
+            }
+        }
+        portFolioRecyclerViewAdapter.notifyDataSetChanged()
+    }
 }

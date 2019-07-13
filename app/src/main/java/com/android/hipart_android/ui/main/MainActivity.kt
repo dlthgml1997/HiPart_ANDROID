@@ -401,4 +401,23 @@ class MainActivity : BaseActivity() {
         pleaseLoginDialog.show(supportFragmentManager, "go to login")
     }
 
+    fun setChangePartAdapterData(nickName : String) {
+        Log.v("로그로그", nickName.toString())
+        val hipatFragment = supportFragmentManager.findFragmentById(R.id.frame_layout_main_act) as HiPatFragment
+
+        (0..4).forEach {
+
+            val frag =
+                hipatFragment.vp_hipat_frag_nav.adapter?.instantiateItem(hipatFragment.vp_hipat_frag_nav, it)
+
+            when (frag) {
+                is AllHipatFragment -> frag.setAdapterChangeData(nickName)
+                is CPatHiPatFragment -> frag.setAdapterChangeData(nickName)
+                is EPatHiPatFragment -> frag.setAdapterChangeData(nickName)
+                is TPatHiPatFragment -> frag.setAdapterChangeData(nickName)
+                is EtcHiPatFragment -> frag.setAdapterChangeData(nickName)
+            }
+        }
+    }
+
 }

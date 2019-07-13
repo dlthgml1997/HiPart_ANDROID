@@ -10,4 +10,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:paddingTop="80dp"
+                  android:layout_centerHorizontal="true"
+                  android:gravity="center_horizontal"
+                  android:background="@android:color/white"
+                  android:id="@+id/frag_hipat_e_no_result"
+    android:visibility="gone">
+        <ImageView
+                android:src="@drawable/search_x_img"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:background="@drawable/border_frag_sear_nothing">
+
+        </ImageView>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="21sp"
+                android:textColor="#bcbcbc"
+                android:lineSpacingExtra="3sp"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/nanum_bold"
+                android:text="검색결과가 없습니다."
+                android:layout_marginTop="28dp"
+        />
+    </LinearLayout>
 </RelativeLayout>
