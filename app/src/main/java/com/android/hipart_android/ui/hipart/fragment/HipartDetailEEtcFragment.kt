@@ -107,9 +107,9 @@ class HipartDetailEEtcFragment : Fragment() {
         if (user.concept != 0)
             tagList.add(Filter.concept(user.concept))
         if (user.lang != 0)
-            tagList.add(Filter.language(user.concept))
+            tagList.add(Filter.language(user.lang))
         if (user.concept != 0)
-            tagList.add(Filter.etc(user.concept))
+            tagList.add(Filter.etc(user.etc))
 
         if (tagList.size > 0) {
             rv_frag_hip_det_eetc_tag.adapter =

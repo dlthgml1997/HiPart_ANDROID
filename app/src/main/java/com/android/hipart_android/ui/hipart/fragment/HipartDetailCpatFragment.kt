@@ -59,8 +59,8 @@ class HipartDetailCpatFragment : Fragment() {
 
         tv_frag_hip_det_eetc_type.text = Filter.type(user.user_type)
 
-        if (user.pd != 0) {
-            tv_frag_hip_det_eetc_pd.text = Filter.pd(user.pd)
+        if (user.concept != 0) {
+            tv_frag_hip_det_eetc_pd.text = Filter.concept(user.concept)
         } else
             rl_hip_det_eetc_frag_pd_background.visibility = View.GONE
 
@@ -109,12 +109,12 @@ class HipartDetailCpatFragment : Fragment() {
 
     private fun setTagList(user: UserDetailCData) {
         val tagList = ArrayList<String>()
-        if (user.concept != 0)
-            tagList.add(Filter.concept(user.concept))
+        if (user.pd != 0)
+            tagList.add(Filter.pd(user.pd))
         if (user.lang != 0)
-            tagList.add(Filter.language(user.concept))
+            tagList.add(Filter.language(user.lang))
         if (user.concept != 0)
-            tagList.add(Filter.etc(user.concept))
+            tagList.add(Filter.etc(user.etc))
 
         if (tagList.size > 0) {
             rv_frag_hip_det_eetc_tag.adapter =
